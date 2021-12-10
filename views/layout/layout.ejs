@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+
+        <meta charset="utf-8" />
+        <title>Dashboard | Dason - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
+
+        <!-- plugin css -->
+        <link href="/admin/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+
+        <!-- preloader css -->
+        <link rel="stylesheet" href="/admin/assets/css/preloader.min.css" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="/admin/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="/admin/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+  
+        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        
+        <title>Ekka - Ecommerce HTML Template.</title>
+        <meta name="keywords" content="apparel, catalog, clean, ecommerce, ecommerce HTML, electronics, fashion, html eCommerce, html store, minimal, multipurpose, multipurpose ecommerce, online store, responsive ecommerce template, shops" />
+        <meta name="description" content="Best ecommerce html template for single and multi vendor store.">
+        <meta name="author" content="ashishmaraviya">
+    
+        <!-- site Favicon -->
+        <link rel="icon" href="assets/images/favicon/favicon.png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="assets/images/favicon/favicon.png" />
+        <meta name="msapplication-TileImage" content="assets/images/favicon/favicon.png" />
+    
+        <!-- css Icon Font -->
+        <link rel="stylesheet" href="assets/css/vendor/ecicons.min.css" />
+    
+        <!-- css All Plugins Files -->
+        <link rel="stylesheet" href="assets/css/plugins/animate.css" />
+        <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
+        <link rel="stylesheet" href="assets/css/plugins/countdownTimer.css" />
+        <link rel="stylesheet" href="assets/css/plugins/slick.min.css" />
+        <link rel="stylesheet" href="assets/css/plugins/bootstrap.css" />
+    
+        <!-- Main Style -->
+        <link rel="stylesheet" href="assets/css/demo1.css" />
+        <link rel="stylesheet" href="assets/css/responsive.css" />
+    
+        <!-- Background css -->
+        <link rel="stylesheet" id="bg-switcher-css" href="assets/css/backgrounds/bg-4.css">
+          
+   
+
+
+    
+</head>
+<body>
+
+ 
+
+
+    <% if (admin===1) { %>
+        <%- include('../partials/adminHead.ejs') %>
+    <% } else if (admin===0) { %>
+        <%- include('../partials/userHead.ejs') %>
+    <% } else { %>
+            
+    <% } %>
+
+
+    <%-body %>
+    
+    
+
+</body>
+</html>

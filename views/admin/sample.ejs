@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+
+    
+<!-- Mirrored from themesbrand.com/dason/layouts/default/ecommerce-add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Nov 2021 10:58:50 GMT -->
+<head>
+        
+        <meta charset="utf-8" />
+        <title>Add Product | Dason - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- select2 css -->
+        <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- dropzone css -->
+        <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- preloader css -->
+        <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body data-topbar="dark">
+
+    <!-- <body data-layout="horizontal"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            
+
+            <!-- ========== Left Sidebar Start ========== -->
+            
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Add Product</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+                                            <li class="breadcrumb-item active">Add Product</li>
+                                        </ol>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Basic Information</h4>
+                                        <p class="card-title-desc">Fill all information below</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="/admin/add_product" enctype="multipart/form-data" method="POST" >
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="mb-3">
+                                                        <label for="productname">Product Name</label>
+                                                        <input id="productname" name="productname" type="text" class="form-control">
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="manufacturername">Manufacturer Name</label>
+                                                        <input id="manufacturername" name="manufacturername" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="manufacturerbrand">Manufacturer Brand</label>
+                                                        <input id="manufacturerbrand" name="manufacturerbrand" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="productname">Product quantity</label>
+                                                        <input id="productname" name="quantity" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="productname">Product tag</label>
+                                                        <input id="productname" name="quantity" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="price">Price</label>
+                                                        <input id="price" name="price" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-sm-6">
+
+
+                                                  
+
+                                                    <div class="mb-3">
+                                                        <label class="control-label">Category</label>
+                                                        <select onchange="getsubcat()" id="categoryid" name='category' class="form-control select2">
+                                                            <option  >Select</option>
+                                                           
+                                                            
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="control-label">subcategory</label>
+        
+                                                        <select class="select2 form-control select2-multiple" name="subcategory" id="chage-subcategory"  data-placeholder="Choose ...">
+                                                            <option value=""></option>
+                                                           
+                                                        </select>
+        
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="productdesc">Product Description</label>
+                                                        <input id="productdesc" name="productdiscription" type="text" rows="5" class="form-control">
+                                                        <!-- <textarea class="form-control" id="productdesc" rows="5"></textarea> -->
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="fallback mb-3">
+                                                            <input name="file1" type="file">
+                                                        </div>
+                                                        <div class="fallback mb-3">
+                                                            <input name="file2" type="file">
+                                                        </div>
+                                                        <div class="fallback mb-3">
+                                                            <input name="file3" type="file">
+                                                        </div>
+                                                    
+    
+                                                    </div>
+                                                    
+                                                   
+                                                </div>
+                                            </div>
+        
+                                            <div class="d-flex flex-wrap gap-2">
+                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
+                                                <button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button>
+                                            </div>
+                                        </form>
+        
+                                    </div>
+                                </div>
+                                <!-- file uploads -->
+<!-- 
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title mb-0">Product Images</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="https://themesbrand.com/" method="post" class="dropzone">
+                                            <div class="fallback">
+                                                <input name="file" type="file" multiple />
+                                            </div>
+            
+                                            <div class="dz-message needsclick">
+                                                <div class="mb-3">
+                                                    <i class="display-4 text-muted bx bxs-cloud-upload"></i>
+                                                </div>
+                                                
+                                                <h4>Drop files here or click to upload.</h4>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div> end card -->
+        
+                                <!-- <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Meta Data</h4>
+                                        <p class="card-title-desc">Fill all information below</p>
+                                    </div>
+                                    <div class="card-body">
+        
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="mb-3">
+                                                        <label for="metatitle">Meta title</label>
+                                                        <input id="metatitle" name="productname" type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="metakeywords">Meta Keywords</label>
+                                                        <input id="metakeywords" name="manufacturername" type="text" class="form-control">
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-sm-6">
+                                                    <div class="mb-3">
+                                                        <label for="metadescription">Meta Description</label>
+                                                        <textarea class="form-control" id="metadescription" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <div class="d-flex flex-wrap gap-2">
+                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
+                                                <button type="submit" class="btn btn-secondary waves-effect waves-light">Cancel</button>
+                                            </div>
+                                        </form>
+        
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © Dason.
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-sm-end d-none d-sm-block">
+                                    Design & Develop by <a href="#!" class="text-decoration-underline">Themesbrand</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        
+        <!-- Right Sidebar -->
+        <div class="right-bar">
+            <div data-simplebar class="h-100">
+                <div class="rightbar-title d-flex align-items-center bg-dark p-3">
+
+                    <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
+
+                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                        <i class="mdi mdi-close noti-icon"></i>
+                    </a>
+                </div>
+
+                <!-- Settings -->
+                <hr class="m-0" />
+
+                <div class="p-4">
+                    <h6 class="mb-3">Layout</h6>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout"
+                            id="layout-vertical" value="vertical">
+                        <label class="form-check-label" for="layout-vertical">Vertical</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout"
+                            id="layout-horizontal" value="horizontal">
+                        <label class="form-check-label" for="layout-horizontal">Horizontal</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-mode"
+                            id="layout-mode-light" value="light">
+                        <label class="form-check-label" for="layout-mode-light">Light</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-mode"
+                            id="layout-mode-dark" value="dark">
+                        <label class="form-check-label" for="layout-mode-dark">Dark</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-width"
+                            id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
+                        <label class="form-check-label" for="layout-width-fuild">Fluid</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-width"
+                            id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed'),document.body.setAttribute('data-sidebar-size', 'sm')">
+                        <label class="form-check-label" for="layout-width-boxed">Boxed</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-position"
+                            id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
+                        <label class="form-check-label" for="layout-position-fixed">Fixed</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-position"
+                            id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
+                        <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="topbar-color"
+                            id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
+                        <label class="form-check-label" for="topbar-color-light">Light</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="topbar-color"
+                            id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
+                        <label class="form-check-label" for="topbar-color-dark">Dark</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
+
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
+                        <label class="form-check-label" for="sidebar-size-default">Default</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
+                        <label class="form-check-label" for="sidebar-size-compact">Compact</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-size"
+                            id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
+                        <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
+
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
+                        <label class="form-check-label" for="sidebar-color-light">Light</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
+                        <label class="form-check-label" for="sidebar-color-dark">Dark</label>
+                    </div>
+                    <div class="form-check sidebar-setting">
+                        <input class="form-check-input" type="radio" name="sidebar-color"
+                            id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
+                        <label class="form-check-label" for="sidebar-color-brand">Brand</label>
+                    </div>
+
+                    <h6 class="mt-4 mb-3 pt-2">Direction</h6>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-direction"
+                            id="layout-direction-ltr" value="ltr">
+                        <label class="form-check-label" for="layout-direction-ltr">LTR</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="layout-direction"
+                            id="layout-direction-rtl" value="rtl">
+                        <label class="form-check-label" for="layout-direction-rtl">RTL</label>
+                    </div>
+
+                </div>
+
+            </div> <!-- end slimscroll-menu-->
+        </div>
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            function getsubcat(){
+                let category = $('#categoryid').val()
+                $.ajax({
+                    url:'/admin/ajaxaddproduct',
+                    method:'post',
+                    data:{subcat:category},
+                    success:(datas)=>{
+                        console.log('success ajax response'+datas);
+                        $('#chage-subcategory').find('option').remove()
+                        for(var i =0;i < datas.length;i++){
+                            $('#chage-subcategory').append('<option>'+datas[i]+'</option>')
+                        }
+                       
+                    }
+                })
+            }
+        </script>
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+        <script src="assets/libs/feather-icons/feather.min.js"></script>
+        <!-- pace js -->
+        <script src="assets/libs/pace-js/pace.min.js"></script>
+
+        <!-- select 2 plugin -->
+        <script src="assets/libs/select2/js/select2.min.js"></script>
+
+        <!-- dropzone plugin -->
+        <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+
+        <!-- init js -->
+        <script src="assets/js/pages/ecommerce-select2.init.js"></script>
+
+        <script src="assets/js/app.js"></script>
+
+    </body>
+
+<!-- Mirrored from themesbrand.com/dason/layouts/default/ecommerce-add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Nov 2021 10:58:52 GMT -->
+</html>

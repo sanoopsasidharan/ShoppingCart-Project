@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+
+
+<!-- Mirrored from themesbrand.com/dason/layouts/default/form-wizard.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Nov 2021 11:00:10 GMT -->
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Form Wizard | Dason - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- twitter-bootstrap-wizard css -->
+    <link rel="stylesheet" href="assets/libs/twitter-bootstrap-wizard/prettify.css">
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body data-topbar="dark">
+
+    <!-- <body data-layout="horizontal"> -->
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+
+
+
+        <!-- ========== Left Sidebar Start ========== -->
+
+        <!-- Left Sidebar End -->
+
+
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+
+                    <!-- end page title -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title mb-0">Add category offer</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div id="basic-pills-wizard" class="twitter-bs-wizard">
+                                        <ul class="twitter-bs-wizard-nav">
+                                            <li class="nav-item">
+                                                <a href="#seller-details" class="nav-link" data-toggle="tab">
+                                                    <!-- <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Seller Details">
+                                                            <i class="bx bx-list-ul"></i>
+                                                        </div> -->
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                        <!-- wizard-nav -->
+
+                                        <div class="tab-content twitter-bs-wizard-tab-content">
+                                            <div class="tab-pane" id="seller-details">
+                                                <!-- <div class="text-center mb-4">
+                                                        <h5>Seller Details</h5>
+                                                        <p class="card-title-desc">Fill all information below</p>
+                                                    </div> -->
+                                                <form id="add-offer">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-3">
+                                                                <label for="basicpill-firstname-input"
+                                                                    class="form-label">Offer Name</label>
+                                                                <input type="text" name="offername" class="form-control"
+                                                                    id="basicpill-firstname-input">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-3">
+                                                                <label for="basicpill-lastname-input"
+                                                                    class="form-label">Expiry date</label>
+                                                                <input type="date" name="expirydate"
+                                                                    class="form-control" id="basicpill-lastname-input">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-3">
+                                                                <label for="basicpill-phoneno-input"
+                                                                    class="form-label">percentage of offer</label>
+                                                                <input type="text" name="percentage"
+                                                                    class="form-control" id="basicpill-phoneno-input">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-3">
+                                                                <label for="basicpill-email-input"
+                                                                    class="form-label">Categorys </label>
+                                                                <select id="categoryid" name='category'
+                                                                    class="form-control select2">
+                                                                    <% for(var i=0; i< allCates.length; i++) {%>
+                                                                        <option value="<%= allCates[i].category %>">
+                                                                            <%= allCates[i].category %>
+                                                                        </option>
+                                                                        <% } %>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+
+
+                                                        </div>
+                                                        <div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-3">
+                                                                <label for="basicpill-address-input"
+                                                                    class="form-label">Offer description</label>
+                                                                <textarea id="basicpill-address-input"
+                                                                    name="description" class="form-control"
+                                                                    rows="2"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div style="display: flex; justify-content: right;">
+                                                        <button type="submit"
+                                                            class="btn btn-dark waves-effect waves-light">submit</button>
+                                                    </div>
+                                                </form>
+
+                                            </div>
+                                            <!-- tab pane -->
+
+                                            <!-- tab pane -->
+
+                                            <!-- tab pane -->
+                                        </div>
+                                        <!-- end tab content -->
+                                    </div>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title mb-0">show all offers</h4>
+                                </div>
+                                <div class="card-body">
+
+                                    <div id="tableId" class="table-responsive">
+                                        <table class="table">
+                                            <% if(allOffers.length !=0){ %>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Offer Name</th>
+                                                        <th scope="col">Expiry date</th>
+                                                        <th scope="col">Percentage</th>
+                                                        <th scope="col"> action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% for(var i=0; i < allOffers.length; i++) { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= allOffers[i].offername %>
+                                                            </td>
+                                                            <td>
+                                                                <%= allOffers[i].expirydate %>
+                                                            </td>
+                                                            <td>
+                                                                <%= allOffers[i].percentage %>
+                                                            </td>
+
+                                                            <td>
+                                                                <div>
+                                                                    <a class="btn btn-outline-info" href="">Edit</a>
+                                                                    <button type="button" class="btn btn-outline-danger"
+                                                                        onclick="deleterOffer('<%= allOffers[i]._id %>')">Delete</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <% } %>
+                                                </tbody>
+                                                <% } else{ %>
+                                                    <div style="display: flex; justify-content: center;">
+                                                        <h4 style="color:red;"> No offers </h4>
+                                                    </div>
+
+
+                                                    <% } %>
+
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end card body -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+            <!-- Modal -->
+            <div class="modal fade confirmModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header border-bottom-0">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <div class="mb-3">
+                                    <i class="bx bx-check-circle display-4 text-success"></i>
+                                </div>
+                                <h5>Confirm Save Changes</h5>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn btn-light w-md" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary w-md" data-bs-dismiss="modal"
+                                onclick="nextTab()">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end modal -->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Dason.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Develop by <a href="#!" class="text-decoration-underline">Themesbrand</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+
+    <!-- Right Sidebar -->
+    <div class="right-bar">
+        <div data-simplebar class="h-100">
+            <div class="rightbar-title d-flex align-items-center bg-dark p-3">
+
+                <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
+
+                <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                    <i class="mdi mdi-close noti-icon"></i>
+                </a>
+            </div>
+
+            <!-- Settings -->
+            <hr class="m-0" />
+
+            <div class="p-4">
+                <h6 class="mb-3">Layout</h6>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout" id="layout-vertical" value="vertical">
+                    <label class="form-check-label" for="layout-vertical">Vertical</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout" id="layout-horizontal"
+                        value="horizontal">
+                    <label class="form-check-label" for="layout-horizontal">Horizontal</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-mode" id="layout-mode-light"
+                        value="light">
+                    <label class="form-check-label" for="layout-mode-light">Light</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-mode" id="layout-mode-dark" value="dark">
+                    <label class="form-check-label" for="layout-mode-dark">Dark</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-width" id="layout-width-fuild"
+                        value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
+                    <label class="form-check-label" for="layout-width-fuild">Fluid</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-width" id="layout-width-boxed"
+                        value="boxed"
+                        onchange="document.body.setAttribute('data-layout-size', 'boxed'),document.body.setAttribute('data-sidebar-size', 'sm')">
+                    <label class="form-check-label" for="layout-width-boxed">Boxed</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-position" id="layout-position-fixed"
+                        value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
+                    <label class="form-check-label" for="layout-position-fixed">Fixed</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-position" id="layout-position-scrollable"
+                        value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
+                    <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="topbar-color" id="topbar-color-light"
+                        value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
+                    <label class="form-check-label" for="topbar-color-light">Light</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="topbar-color" id="topbar-color-dark" value="dark"
+                        onchange="document.body.setAttribute('data-topbar', 'dark')">
+                    <label class="form-check-label" for="topbar-color-dark">Dark</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
+
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-size" id="sidebar-size-default"
+                        value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
+                    <label class="form-check-label" for="sidebar-size-default">Default</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-size" id="sidebar-size-compact"
+                        value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
+                    <label class="form-check-label" for="sidebar-size-compact">Compact</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-size" id="sidebar-size-small"
+                        value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
+                    <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
+
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-color" id="sidebar-color-light"
+                        value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
+                    <label class="form-check-label" for="sidebar-color-light">Light</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-color" id="sidebar-color-dark"
+                        value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
+                    <label class="form-check-label" for="sidebar-color-dark">Dark</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-color" id="sidebar-color-brand"
+                        value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
+                    <label class="form-check-label" for="sidebar-color-brand">Brand</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">Direction</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-direction" id="layout-direction-ltr"
+                        value="ltr">
+                    <label class="form-check-label" for="layout-direction-ltr">LTR</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-direction" id="layout-direction-rtl"
+                        value="rtl">
+                    <label class="form-check-label" for="layout-direction-rtl">RTL</label>
+                </div>
+
+            </div>
+
+        </div> <!-- end slimscroll-menu-->
+    </div>
+    <!-- /Right-bar -->
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+    <script src="assets/libs/feather-icons/feather.min.js"></script>
+    <!-- pace js -->
+    <script src="assets/libs/pace-js/pace.min.js"></script>
+
+    <!-- twitter-bootstrap-wizard js -->
+    <script src="assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="assets/libs/twitter-bootstrap-wizard/prettify.js"></script>
+
+    <!-- form wizard init -->
+    <script src="assets/js/pages/form-wizard.init.js"></script>
+
+    <script src="assets/js/app.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $('#add-offer').submit((num) => {
+            num.preventDefault()
+            $.ajax({
+                url: '/admin/addNewcategoryOffer',
+                data: $('#add-offer').serialize(),
+                method: 'post',
+                success: (response) => {
+                    if (response.status) {
+                        Swal.fire({
+                            title: '',
+                            text: 'Add new category offer',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        })
+                        $("#tableId").load(location.href + " #tableId");
+                        $("#seller-details").load(location.href + " #seller-details");
+                    } else {
+                        alert('somthing error plz try again')
+                    }
+
+                }
+            })
+        })
+        function deleterOffer(offerId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't delete this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: ' delete '
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: "/admin/deleteCategoryOffer",
+                        data: { offerId: offerId },
+                        method: 'post',
+                        success: (response) => {
+                            if (response.status) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                $("#tableId").load(location.href + " #tableId");
+                            } else {
+                                alert('somthing error plz delete again')
+                            }
+                        }
+                    })
+
+                }
+            })
+
+        }
+    </script>
+
+</body>
+
+<!-- Mirrored from themesbrand.com/dason/layouts/default/form-wizard.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Nov 2021 11:00:14 GMT -->
+
+</html>
