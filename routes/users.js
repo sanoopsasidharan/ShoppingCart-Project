@@ -6,7 +6,7 @@ var router = express.Router();
 const userHelpers = require('../helpers/user-helpers')
 const cartHelpers = require('../helpers/cart-helpers')
 const orderHelpers = require('../helpers/order-helper')
-
+let fs = require ('fs')
 const dotenv=require("dotenv");
 dotenv.config();
 
@@ -734,9 +734,31 @@ router.get('/userProfile',verifyLogin,async(req,res)=>{
      result = results
    })
    let cartCount=await cartHelpers.getCartCount(req.session.user._id)
-   
-   res.render('user/userProfile',{admin:0,user,result,cartCount,})
- 
+   let userProfil = await userHelpers.userDetails(req.session.user._id)
+   res.render('user/userProfile',{admin:0,user,result,cartCount,userProfil})
+})
+
+// edit user Details
+router.post('/editUserDetails',verifyLogin,(req,res)=>{
+  userHelpers.editUserDetails(req.body,req.session.user._id).then((response)=>{
+    res.json(response)
+  }).catch((response)=>{
+    res.json(response)
+  })
+})
+
+// edit user password
+router.post('/userEditPassword',(req,res)=>{
+
+  if(req.body.newPassword===req.body.repeatPassword){
+    userHelpers.eidtUserPassword(req.body,req.session.user._id).then((response)=>{
+      res.json(response)
+    }).catch((response)=>{
+      res.json(response)
+    })
+  }else{
+    res.json({erorr:true})
+  }
 })
 
 // user address management 
@@ -763,6 +785,16 @@ router.post('/deleteUserAddress',(req,res)=>{
   })
 })
 
+// add profile pic
+router.post('/savePropic',verifyLogin,(req,res)=>{
+
+  let image1 = req.body.image1
+  let path1 = './public/productimage/image2/' + req.session.user._id + '_1.jpg'
+  let img1 = image1.replace(/^data:([A-Za-z+/]+);base64,/, "")
+  fs.writeFileSync(path1, img1, { encoding: 'base64' })
+  res.redirect('/userProfile')
+
+})
 
 
 

@@ -356,29 +356,69 @@ module.exports = {
                 rejects({status:false})
             })
         })
+    },
+    userDetails:(userId)=>{
+        return new Promise(async(resolve,rejects)=>{
+          var userDetails = await  db.get().collection(collection.userCollection).findOne({_id:objectId(userId)})
+          if(userDetails){
+              resolve(userDetails)
+          }else{
+              resolve(null)
+          }
+        })
+    },
+    editUserDetails:(user,Id)=>{
+        return new Promise( async (resolve,rejects)=>{
+           await db.get().collection(collection.userCollection).findOne({_id:objectId(Id)}).then((response)=>{
+                user.password = crypto.createHmac('sha256',user.password).update('hellos').digest('hex');
+
+                if (user.password === response.password) {
+                    db.get().collection(collection.userCollection).updateOne({ _id: objectId(Id) }, {
+                        $set: {
+                            name: user.name,
+                            email: user.email,
+                            number: user.number
+                        }
+                    }).then((response)=>{
+                        resolve({status:true})
+                        rejects({status:false})
+                    })
+
+                }else{
+                   resolve({status:false})
+                }
+            })
+        })
+    },
+    eidtUserPassword:(user,Id)=>{
+        return new Promise(async(resolve,rejects)=>{
+
+           await db.get().collection(collection.userCollection).findOne({_id:objectId(Id)}).then(async(response)=>{
+
+                checkpassword = await crypto.createHmac('sha256', user.password).update('hellos').digest('hex');
+
+
+                if (checkpassword === response.password){
+
+                    user.newPassword = await crypto.createHmac('sha256', user.newPassword).update('hellos').digest('hex');
+                    await db.get().collection(collection.userCollection).updateOne({ _id: objectId(Id)}, {
+                        $set:{password:user.newPassword}}).then((response)=>{
+
+                        resolve({status:true})
+                        rejects({status:false})
+                    })
+                }else{
+                    resolve({status:false})
+                }
+
+            })
+        
+        })
     }
+
 
 
 
 
 }
 
-
-
-// removeWishlistProduct:(proId,userId)=>{
-//     return new Promise(async(resolve,reject)=>{
-//       var removeProduct= await  db.get().collection(collection.wishlistCollection)
-//         .updateOne({user:objectId(userId)},{$pull:{products:{product:objectId(proId)}}})
-//         console.log(removeProduct);
-//         if(removeProduct){
-//             resolve({status:true})
-//         }else{
-//             resolve({status:false})
-//         }
-//     })
-// }
-
-
-
-
-// 5aLxOCAFtiedNDBC
