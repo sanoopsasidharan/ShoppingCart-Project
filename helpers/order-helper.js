@@ -18,7 +18,8 @@ module.exports={
     getUserOrder:(userId)=>{
         return new Promise(async(resolve,reject)=>{
             let orders = await db.get().collection(collection.orderCollection)
-            .find({userId:objectId(userId)}).sort({_id:-1}).toArray()
+            .find({ $and: [ { status:{ $ne: 'onlinePending' } }, {userId:objectId(userId)} ]}).sort({_id:-1}).toArray()
+            // { status: { $ne: 'onlinePending' } }
             console.log('its orders');
             console.log(orders);
             resolve(orders);
@@ -75,7 +76,7 @@ module.exports={
     // show all orders in admin
     getAllOrders:()=>{
         return new Promise(async(resolve,reject)=>{
-            var allOrders = await db.get().collection(collection.orderCollection).find().sort({_id:-1}).toArray()
+            var allOrders = await db.get().collection(collection.orderCollection).find( { status: { $ne: 'onlinePending' } }).sort({_id:-1}).toArray()
             if(allOrders){
                 resolve(allOrders)
             }else{
@@ -108,6 +109,7 @@ module.exports={
                      console.log(err);
                   }else{
                     console.log('new order id',order);
+                    
                     resolve(order)
 
                   }
@@ -115,7 +117,7 @@ module.exports={
               });
         })
     },
-    verifyPayment:(details)=>{
+    verifyPayment:(details,userId)=>{
         return new Promise((resolve,reject)=>{
             const crypto =require('crypto');
             let hmac = crypto.createHmac('sha256', 'NGRBvZ7b5Yej9B1Wu1HKPwSc');
@@ -123,6 +125,7 @@ module.exports={
             // console.log(hmac.digest('hex'));
             hmac=hmac.digest('hex')
             if(hmac===details['Payment[razorpay_signature]']){
+                db.get().collection(collection.cartCollection).updateOne({user:objectId(userId)},{$set:{products:[]}})
                 resolve()
             }else{
                 reject()

@@ -389,6 +389,27 @@ module.exports={
                 resolve({status:false})
             }
         })
+    },
+    placeOrderOnline:(order,products,total,addres)=>{
+        return new Promise((resolve,reject)=>{
+            let status=order.paymentmethod==='COD'?'placed':'onlinePending'
+            let orderObj={
+                deliveryDetails:addres[0].address
+                ,
+                userId:objectId(order.userId),
+                paymentmethod:order.paymentmethod,
+                products:products,
+                totalamount:total,
+                status:status,
+                date:new Date()
+            }
+
+            db.get().collection(collection.orderCollection).insertOne(orderObj).then((response)=>{
+                resolve(response.insertedId)
+            })
+
+        })
+
     }
 
 

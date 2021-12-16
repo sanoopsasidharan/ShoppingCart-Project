@@ -592,31 +592,32 @@ router.post('/placeOrders',async(req,res)=>{
     let products= await cartHelpers.getCartProductList(req.body.userId)
   let totalPrice= await cartHelpers.getTotalAmount(req.body.userId)
   let address = await userHelpers.getOneAddress(req.body.adderssId,req.session.user._id)
-   await cartHelpers.placeOrder(req.body,products,totalPrice,address).then((orderId)=>{
-     console.log(req.body['paymentmethod']==='COD');
+   
+    //  console.log(req.body['paymentmethod']==='COD');
      if(req.body['paymentmethod']==="COD"){
+      await cartHelpers.placeOrder(req.body,products,totalPrice.OfferTotal,address).then((orderId)=>{
+      })
       res.json({CODsuccess:true})
      }else{
-       orderHelpers.generateRazorpay(orderId,totalPrice).then((response)=>{
-         res.json(response)
+       await cartHelpers.placeOrderOnline(req.body,products,totalPrice.OfferTotal,address).then((orderId)=>{
+         orderHelpers.generateRazorpay(orderId,totalPrice.OfferTotal).then((response)=>{
+           res.json(response)
+          })
 
        })
-     }
-    console.log(orderId);
-    
-
-  })
+     } 
 })
 
-router.post('/verifyPayment',(req,res)=>{
-  console.log(req.body);
-  orderHelpers.verifyPayment(req.body).then(()=>{
+router.post('/verifyPayment',verifyLogin,async(req,res)=>{
+  orderHelpers.verifyPayment(req.body,req.session.user._id).then(()=>{
+    console.log('verifyPayment');
+    console.log(req.body);
     orderHelpers.OnlinePaymentChangeStatus(req.body['order[receipt]']).then(()=>{
       console.log('payment success full');
       res.json({status:true})
     })
-     
   }).catch((err)=>{
+    console.log('payment error');
     res.json({status:false,errMess:''})
   })
 })
