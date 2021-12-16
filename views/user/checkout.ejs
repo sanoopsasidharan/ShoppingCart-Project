@@ -50,6 +50,35 @@
             display: none;
         }
     </style>
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #f2f2f200;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f225;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
 
 </head>
 
@@ -173,7 +202,7 @@
                         <div class="ec-checkout-inner">
                             <div class="ec-checkout-wrap margin-bottom-30">
                                 <div class="ec-checkout-block ec-check-new">
-                                    <h3 class="ec-checkout-title">Address</h3>
+                                    <h3 style="margin-bottom: 33px;" class="ec-checkout-title">Address</h3>
                                     <div class="ec-check-block-content">
                                         <form action="" id="address-form">
                                             <!-- <div id="allAddress" class=" ">
@@ -202,20 +231,16 @@
                                                     </table>
                                                     <%}%>
                                             </div> -->
-                                            <div id="allAddress" style=" overflow: scroll; height: 250px; width: 100%;"
+
+
+                                            <div id="allAddress"
+                                                style=" overflow: scroll; height: 250px; width: 100%; margin-top: 20px;"
                                                 class="ec-vendor-card-body">
                                                 <div class="ec-vendor-card-table">
-                                                    <table style="border: 1px solid black; border-radius: 20px;"
+                                                    <table id="customers"
+                                                        style="border: 1px solid black; border-radius: 20px;"
                                                         class="table ec-table">
-                                                        <!-- <thead>
-                                                            <tr>
-                                                                <th scope="col"></th>
-                                                                <th scope="col">name</th>
-                                                                <th scope="col">number</th>
-                                                                <th scope="col">address</th>
-                                                                <th scope="col">state</th>
-                                                            </tr>
-                                                        </thead> -->
+
                                                         <tbody>
                                                             <% for(var j=0; j<addresss.length; j++) {%>
                                                                 <tr>
@@ -225,8 +250,18 @@
                                                                                 type="radio" checked></span></td>
                                                                     <td><span>
                                                                             <%= addresss[j].address.name%>
-                                                                            <%= addresss[j].address.addresId%>
+
                                                                         </span></td>
+                                                                    <td><span>
+
+                                                                            <%= addresss[j].address.location%>
+                                                                        </span></td>
+                                                                    <td><span>
+
+                                                                            <%= addresss[j].address.pincode%>
+
+                                                                        </span></td>
+
                                                                     <td><span>
                                                                             <%= addresss[j].address.number%>
                                                                         </span></td>
@@ -235,6 +270,9 @@
                                                                         </span></td>
                                                                     <td><span>
                                                                             <%= addresss[j].address.state%>
+                                                                        </span></td>
+                                                                    <td><span>
+                                                                            <%= addresss[j].address.City%>
                                                                         </span></td>
                                                                 </tr>
                                                                 <%}%>
@@ -265,20 +303,41 @@
                                                 </div>
                                                 <div class="ec-sb-block-content">
                                                     <div class="ec-checkout-summary">
-                                                        <div>
-                                                            <span class="text-left">Product price</span>
-                                                            <span class="text-right">₹ <%= total %></span>
-                                                        </div>
-                                                        <div>
-                                                            <span class="text-left">Delivery Charges</span>
-                                                            <span class="text-right">$80.00</span>
-                                                        </div>
-                                                        <div>
-                                                            <span class="text-left">Coupan Discount</span>
-                                                            <span class="text-right"><a class="ec-checkout-coupan">Apply
-                                                                    Coupan</a></span>
-                                                        </div>
-                                                        <!-- <div class="ec-checkout-coupan-content">
+
+                                                        <% if(total.OfferTotal===total.OrginalPrice ){ %>
+
+                                                            <div>
+                                                                <span class="text-left">Product price</span>
+                                                                <span class="text-right">₹ <%= total.OrginalPrice %>
+                                                                        </span>
+
+                                                            </div>
+                                                            <% } else{ %>
+                                                                <div>
+                                                                    <span class="text-left">Product price</span>
+                                                                    <span class="text-right">₹ <%= total.OrginalPrice %>
+                                                                            </span>
+                                                                </div>
+                                                                <div>
+                                                                    <span class="text-left">payable price</span>
+                                                                    <span class="text-right">₹ <%= total.OfferTotal %>
+                                                                            </span>
+                                                                </div>
+
+                                                                <% } %>
+
+
+                                                                    <div>
+                                                                        <span class="text-left">Delivery Charges</span>
+                                                                        <span class="text-right">$80.00</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span class="text-left">Coupan Discount</span>
+                                                                        <span class="text-right"><a
+                                                                                class="ec-checkout-coupan">Apply
+                                                                                Coupan</a></span>
+                                                                    </div>
+                                                                    <!-- <div class="ec-checkout-coupan-content">
                                                                 <form class="ec-checkout-coupan-form" name="ec-checkout-coupan-form"
                                                                     method="post" action="#">
                                                                     <input class="ec-coupan" type="text" required=""
@@ -287,10 +346,19 @@
                                                                         name="subscribe" value="">Apply</button>
                                                                 </form>
                                                             </div> -->
-                                                        <div class="ec-checkout-summary-total">
-                                                            <span class="text-left">Total Amount</span>
-                                                            <span class="text-right">₹ <%= total %></span>
-                                                        </div>
+                                                                    <% if(total.OfferTotal===total.OrginalPrice ){ %>
+                                                                        <div class="ec-checkout-summary-total">
+                                                                            <span class="text-left">Total Amount</span>
+                                                                            <span class="text-right">₹ <%= total.OrginalPrice %>
+                                                                                    </span>
+                                                                        </div>
+                                                                        <% } else{ %>
+                                                                            <div class="ec-checkout-summary-total">
+                                                                                <span class="text-left">Total Amount</span>
+                                                                                <span class="text-right">₹ <%= total.OfferTotal %>
+                                                                                        </span>
+                                                                            </div>
+                                                                            <% } %>
                                                     </div>
 
 
@@ -1094,655 +1162,648 @@
 
     <!-- Footer navigation panel for responsive display -->
     <%- include('../partials/footerIcons') %>
-    <!-- Footer navigation panel for responsive display end -->
+        <!-- Footer navigation panel for responsive display end -->
 
-    <!-- Recent Purchase Popup  -->
-    <div class="recent-purchase">
-        <img src="assets/images/product-image/1.jpg" alt="payment image">
-        <div class="detail">
-            <p>Someone in new just bought</p>
-            <h6>stylish baby shoes</h6>
-            <p>10 Minutes ago</p>
+        <!-- Recent Purchase Popup  -->
+
+        <!-- Recent Purchase Popup end -->
+
+        <!-- Cart Floating Button -->
+        <div class="ec-cart-float">
+            <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+                <div class="header-icon"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="" />
+                </div>
+                <span class="ec-cart-count cart-count-lable">3</span>
+            </a>
         </div>
-        <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
-    </div>
-    <!-- Recent Purchase Popup end -->
+        <!-- Cart Floating Button end -->
 
-    <!-- Cart Floating Button -->
-    <div class="ec-cart-float">
-        <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-            <div class="header-icon"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /></div>
-            <span class="ec-cart-count cart-count-lable">3</span>
-        </a>
-    </div>
-    <!-- Cart Floating Button end -->
-
-    <!-- Whatsapp -->
-    <div class="ec-style ec-right-bottom">
-        <!-- Start Floating Panel Container -->
-        <div class="ec-panel">
-            <!-- Panel Header -->
-            <div class="ec-header">
-                <strong>Need Help?</strong>
-                <p>Chat with us on WhatsApp</p>
-            </div>
-            <!-- Panel Content -->
-            <div class="ec-body">
-                <ul>
-                    <!-- Start Single Contact List -->
-                    <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
-                            <div class="d-flex bd-highlight">
-                                <!-- Profile Picture -->
-                                <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_01.jpg" class="ec-user-img"
-                                        alt="Profile image">
-                                    <span class="ec-status-icon"></span>
+        <!-- Whatsapp -->
+        <div class="ec-style ec-right-bottom">
+            <!-- Start Floating Panel Container -->
+            <div class="ec-panel">
+                <!-- Panel Header -->
+                <div class="ec-header">
+                    <strong>Need Help?</strong>
+                    <p>Chat with us on WhatsApp</p>
+                </div>
+                <!-- Panel Content -->
+                <div class="ec-body">
+                    <ul>
+                        <!-- Start Single Contact List -->
+                        <li>
+                            <a class="ec-list" data-number="918866774266"
+                                data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+                                <div class="d-flex bd-highlight">
+                                    <!-- Profile Picture -->
+                                    <div class="ec-img-cont">
+                                        <img src="assets/images/whatsapp/profile_01.jpg" class="ec-user-img"
+                                            alt="Profile image">
+                                        <span class="ec-status-icon"></span>
+                                    </div>
+                                    <!-- Display Name & Last Seen -->
+                                    <div class="ec-user-info">
+                                        <span>Sahar Darya</span>
+                                        <p>Sahar left 7 mins ago</p>
+                                    </div>
+                                    <!-- Chat iCon -->
+                                    <div class="ec-chat-icon">
+                                        <i class="fa fa-whatsapp"></i>
+                                    </div>
                                 </div>
-                                <!-- Display Name & Last Seen -->
-                                <div class="ec-user-info">
-                                    <span>Sahar Darya</span>
-                                    <p>Sahar left 7 mins ago</p>
+                            </a>
+                        </li>
+                        <!--/ End Single Contact List -->
+                        <!-- Start Single Contact List -->
+                        <li>
+                            <a class="ec-list" data-number="918866774266"
+                                data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+                                <div class="d-flex bd-highlight">
+                                    <!-- Profile Picture -->
+                                    <div class="ec-img-cont">
+                                        <img src="assets/images/whatsapp/profile_02.jpg" class="ec-user-img"
+                                            alt="Profile image">
+                                        <span class="ec-status-icon ec-online"></span>
+                                    </div>
+                                    <!-- Display Name & Last Seen -->
+                                    <div class="ec-user-info">
+                                        <span>Yolduz Rafi</span>
+                                        <p>Yolduz is online</p>
+                                    </div>
+                                    <!-- Chat iCon -->
+                                    <div class="ec-chat-icon">
+                                        <i class="fa fa-whatsapp"></i>
+                                    </div>
                                 </div>
-                                <!-- Chat iCon -->
-                                <div class="ec-chat-icon">
-                                    <i class="fa fa-whatsapp"></i>
+                            </a>
+                        </li>
+                        <!--/ End Single Contact List -->
+                        <!-- Start Single Contact List -->
+                        <li>
+                            <a class="ec-list" data-number="918866774266"
+                                data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+                                <div class="d-flex bd-highlight">
+                                    <!-- Profile Picture -->
+                                    <div class="ec-img-cont">
+                                        <img src="assets/images/whatsapp/profile_03.jpg" class="ec-user-img"
+                                            alt="Profile image">
+                                        <span class="ec-status-icon ec-offline"></span>
+                                    </div>
+                                    <!-- Display Name & Last Seen -->
+                                    <div class="ec-user-info">
+                                        <span>Nargis Hawa</span>
+                                        <p>Nargis left 30 mins ago</p>
+                                    </div>
+                                    <!-- Chat iCon -->
+                                    <div class="ec-chat-icon">
+                                        <i class="fa fa-whatsapp"></i>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!--/ End Single Contact List -->
-                    <!-- Start Single Contact List -->
-                    <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
-                            <div class="d-flex bd-highlight">
-                                <!-- Profile Picture -->
-                                <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_02.jpg" class="ec-user-img"
-                                        alt="Profile image">
-                                    <span class="ec-status-icon ec-online"></span>
+                            </a>
+                        </li>
+                        <!--/ End Single Contact List -->
+                        <!-- Start Single Contact List -->
+                        <li>
+                            <a class="ec-list" data-number="918866774266"
+                                data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
+                                <div class="d-flex bd-highlight">
+                                    <!-- Profile Picture -->
+                                    <div class="ec-img-cont">
+                                        <img src="assets/images/whatsapp/profile_04.jpg" class="ec-user-img"
+                                            alt="Profile image">
+                                        <span class="ec-status-icon ec-offline"></span>
+                                    </div>
+                                    <!-- Display Name & Last Seen -->
+                                    <div class="ec-user-info">
+                                        <span>Khadija Mehr</span>
+                                        <p>Khadija left 50 mins ago</p>
+                                    </div>
+                                    <!-- Chat iCon -->
+                                    <div class="ec-chat-icon">
+                                        <i class="fa fa-whatsapp"></i>
+                                    </div>
                                 </div>
-                                <!-- Display Name & Last Seen -->
-                                <div class="ec-user-info">
-                                    <span>Yolduz Rafi</span>
-                                    <p>Yolduz is online</p>
-                                </div>
-                                <!-- Chat iCon -->
-                                <div class="ec-chat-icon">
-                                    <i class="fa fa-whatsapp"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!--/ End Single Contact List -->
-                    <!-- Start Single Contact List -->
-                    <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
-                            <div class="d-flex bd-highlight">
-                                <!-- Profile Picture -->
-                                <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_03.jpg" class="ec-user-img"
-                                        alt="Profile image">
-                                    <span class="ec-status-icon ec-offline"></span>
-                                </div>
-                                <!-- Display Name & Last Seen -->
-                                <div class="ec-user-info">
-                                    <span>Nargis Hawa</span>
-                                    <p>Nargis left 30 mins ago</p>
-                                </div>
-                                <!-- Chat iCon -->
-                                <div class="ec-chat-icon">
-                                    <i class="fa fa-whatsapp"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!--/ End Single Contact List -->
-                    <!-- Start Single Contact List -->
-                    <li>
-                        <a class="ec-list" data-number="918866774266"
-                            data-message="Please help me! I have got wrong product - ORDER ID is : #654321485">
-                            <div class="d-flex bd-highlight">
-                                <!-- Profile Picture -->
-                                <div class="ec-img-cont">
-                                    <img src="assets/images/whatsapp/profile_04.jpg" class="ec-user-img"
-                                        alt="Profile image">
-                                    <span class="ec-status-icon ec-offline"></span>
-                                </div>
-                                <!-- Display Name & Last Seen -->
-                                <div class="ec-user-info">
-                                    <span>Khadija Mehr</span>
-                                    <p>Khadija left 50 mins ago</p>
-                                </div>
-                                <!-- Chat iCon -->
-                                <div class="ec-chat-icon">
-                                    <i class="fa fa-whatsapp"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <!--/ End Single Contact List -->
-                </ul>
-            </div>
-        </div>
-        <!--/ End Floating Panel Container -->
-        <!-- Start Right Floating Button-->
-        <div class="ec-right-bottom">
-            <div class="ec-box">
-                <div class="ec-button rotateBackward">
-                    <img class="whatsapp" src="assets/images/common/whatsapp.png" alt="whatsapp icon" />
+                            </a>
+                        </li>
+                        <!--/ End Single Contact List -->
+                    </ul>
                 </div>
             </div>
-        </div>
-        <!--/ End Right Floating Button-->
-    </div>
-    <!-- Whatsapp end -->
-
-    <!-- Feature tools -->
-    <div class="ec-tools-sidebar-overlay"></div>
-    <div class="ec-tools-sidebar">
-        <div class="tool-title">
-            <h3>Features</h3>
-        </div>
-        <a href="#" class="ec-tools-sidebar-toggle in-out">
-            <img alt="icon" src="assets/images/common/settings.png" />
-        </a>
-        <div class="ec-tools-detail">
-            <div class="ec-tools-sidebar-content ec-change-color ec-color-desc">
-                <h3>Color Scheme</h3>
-                <ul class="bg-panel">
-                    <li class="active" data-color="01"><a href="#" class="colorcode1"></a></li>
-                    <li data-color="02"><a href="#" class="colorcode2"></a></li>
-                    <li data-color="03"><a href="#" class="colorcode3"></a></li>
-                    <li data-color="04"><a href="#" class="colorcode4"></a></li>
-                    <li data-color="05"><a href="#" class="colorcode5"></a></li>
-                </ul>
-            </div>
-            <div class="ec-tools-sidebar-content">
-                <h3>Backgroung</h3>
-                <ul class="bg-panel">
-                    <li class="bg"><a class="back-bg-1" id="bg-1">Background-1</a></li>
-                    <li class="bg"><a class="back-bg-2" id="bg-2">Background-2</a></li>
-                    <li class="bg"><a class="back-bg-3" id="bg-3">Background-3</a></li>
-                    <li class="bg"><a class="back-bg-4" id="bg-4">Default</a></li>
-                </ul>
-            </div>
-            <div class="ec-tools-sidebar-content">
-                <h3>Full Screen mode</h3>
-                <div class="ec-fullscreen-mode">
-                    <div class="ec-fullscreen-switch">
-                        <div class="ec-fullscreen-btn">Mode</div>
-                        <div class="ec-fullscreen-on">On</div>
-                        <div class="ec-fullscreen-off">Off</div>
+            <!--/ End Floating Panel Container -->
+            <!-- Start Right Floating Button-->
+            <div class="ec-right-bottom">
+                <div class="ec-box">
+                    <div class="ec-button rotateBackward">
+                        <img class="whatsapp" src="assets/images/common/whatsapp.png" alt="whatsapp icon" />
                     </div>
                 </div>
             </div>
-            <div class="ec-tools-sidebar-content">
-                <h3>Dark mode</h3>
-                <div class="ec-change-mode">
-                    <div class="ec-mode-switch">
-                        <div class="ec-mode-btn">Mode</div>
-                        <div class="ec-mode-on">On</div>
-                        <div class="ec-mode-off">Off</div>
+            <!--/ End Right Floating Button-->
+        </div>
+        <!-- Whatsapp end -->
+
+        <!-- Feature tools -->
+        <div class="ec-tools-sidebar-overlay"></div>
+        <div class="ec-tools-sidebar">
+            <div class="tool-title">
+                <h3>Features</h3>
+            </div>
+            <a href="#" class="ec-tools-sidebar-toggle in-out">
+                <img alt="icon" src="assets/images/common/settings.png" />
+            </a>
+            <div class="ec-tools-detail">
+                <div class="ec-tools-sidebar-content ec-change-color ec-color-desc">
+                    <h3>Color Scheme</h3>
+                    <ul class="bg-panel">
+                        <li class="active" data-color="01"><a href="#" class="colorcode1"></a></li>
+                        <li data-color="02"><a href="#" class="colorcode2"></a></li>
+                        <li data-color="03"><a href="#" class="colorcode3"></a></li>
+                        <li data-color="04"><a href="#" class="colorcode4"></a></li>
+                        <li data-color="05"><a href="#" class="colorcode5"></a></li>
+                    </ul>
+                </div>
+                <div class="ec-tools-sidebar-content">
+                    <h3>Backgroung</h3>
+                    <ul class="bg-panel">
+                        <li class="bg"><a class="back-bg-1" id="bg-1">Background-1</a></li>
+                        <li class="bg"><a class="back-bg-2" id="bg-2">Background-2</a></li>
+                        <li class="bg"><a class="back-bg-3" id="bg-3">Background-3</a></li>
+                        <li class="bg"><a class="back-bg-4" id="bg-4">Default</a></li>
+                    </ul>
+                </div>
+                <div class="ec-tools-sidebar-content">
+                    <h3>Full Screen mode</h3>
+                    <div class="ec-fullscreen-mode">
+                        <div class="ec-fullscreen-switch">
+                            <div class="ec-fullscreen-btn">Mode</div>
+                            <div class="ec-fullscreen-on">On</div>
+                            <div class="ec-fullscreen-off">Off</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="ec-tools-sidebar-content">
-                <h3>RTL mode</h3>
-                <div class="ec-change-rtl">
-                    <div class="ec-rtl-switch">
-                        <div class="ec-rtl-btn">Rtl</div>
-                        <div class="ec-rtl-on">On</div>
-                        <div class="ec-rtl-off">Off</div>
+                <div class="ec-tools-sidebar-content">
+                    <h3>Dark mode</h3>
+                    <div class="ec-change-mode">
+                        <div class="ec-mode-switch">
+                            <div class="ec-mode-btn">Mode</div>
+                            <div class="ec-mode-on">On</div>
+                            <div class="ec-mode-off">Off</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="ec-tools-sidebar-content">
-                <h3>Clear local storage</h3>
-                <a class="clear-cach" href="javascript:void(0)">Clear Cache & Default</a>
+                <div class="ec-tools-sidebar-content">
+                    <h3>RTL mode</h3>
+                    <div class="ec-change-rtl">
+                        <div class="ec-rtl-switch">
+                            <div class="ec-rtl-btn">Rtl</div>
+                            <div class="ec-rtl-on">On</div>
+                            <div class="ec-rtl-off">Off</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ec-tools-sidebar-content">
+                    <h3>Clear local storage</h3>
+                    <a class="clear-cach" href="javascript:void(0)">Clear Cache & Default</a>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Feature tools end -->
+        <!-- Feature tools end -->
 
-    <!-- Vendor JS -->
-    <script data-cfasync="false"
-        src="https://loopinfosol.in/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
-    <script src="assets/js/vendor/popper.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.min.js"></script>
-    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
-    <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
+        <!-- Vendor JS -->
+        <script data-cfasync="false"
+            src="https://loopinfosol.in/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+        <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+        <script src="assets/js/vendor/popper.min.js"></script>
+        <script src="assets/js/vendor/bootstrap.min.js"></script>
+        <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+        <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
 
-    <!--Plugins JS-->
-    <script src="assets/js/plugins/swiper-bundle.min.js"></script>
-    <script src="assets/js/plugins/countdownTimer.min.js"></script>
-    <script src="assets/js/plugins/scrollup.js"></script>
-    <script src="assets/js/plugins/jquery.zoom.min.js"></script>
-    <script src="assets/js/plugins/slick.min.js"></script>
-    <script src="assets/js/plugins/infiniteslidev2.js"></script>
-    <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/plugins/jquery.sticky-sidebar.js"></script>
+        <!--Plugins JS-->
+        <script src="assets/js/plugins/swiper-bundle.min.js"></script>
+        <script src="assets/js/plugins/countdownTimer.min.js"></script>
+        <script src="assets/js/plugins/scrollup.js"></script>
+        <script src="assets/js/plugins/jquery.zoom.min.js"></script>
+        <script src="assets/js/plugins/slick.min.js"></script>
+        <script src="assets/js/plugins/infiniteslidev2.js"></script>
+        <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
+        <script src="assets/js/plugins/jquery.sticky-sidebar.js"></script>
 
-    <!-- Main Js -->
-    <script src="assets/js/vendor/index.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+        <!-- Main Js -->
+        <script src="assets/js/vendor/index.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script>
-        // $('#checkout-form').submit((e) => {
-        //     e.preventDefault()
-        //     $.ajax({
-        //         url: '/addAddressCheckout',
-        //         method: 'post',
-        //         data: $('#checkout-form').serialize(),
-        //         success: (response) => {
-        //             Swal.fire({
-        //                 position: 'top-end',
-        //                 icon: 'success',
-        //                 title: 'Your address has been saved',
-        //                 showConfirmButton: false,
-        //                 timer: 1500
-        //             })
-        //             $("#allAddress").load(location.href + " #allAddress");
-        //             $("#add-address-form").load(location.href + " #add-address-form");
-
-
-        //         }
-        //     })
-        // })
-        $('#address-form').submit((e) => {
-            e.preventDefault()
-            $.ajax({
-                url: '/placeOrders',
-                method: 'post',
-                data: $('#address-form').serialize(),
-                success: (response) => {
-                    Swal.fire({
-                        title: 'congratulation',
-                        text: "Your order placed successfully",
-                        icon: 'success',
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33'
-                    }).then((result) => {
-                        if (response.CODsuccess) {
-                            location.href = '/orders-success';
-                        } else {
-                            razorpayPayment(response)
-                        }
-                    })
-                    // alert('success')
-                    // location.href = '/orders-success';
-                    // $("#allAddress").load(location.href + " #allAddress");
-                }
-            })
-        })
-        function razorpayPayment(order) {
-            var options = {
-                "key": "rzp_test_7WV3qsRAPRaDgs", // Enter the Key ID generated from the Dashboard
-                "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-                "currency": "INR",
-                "name": "Ekka",
-                "description": "Test Transaction",
-                "image": "assets/images/favicon/favicon.png",
-                "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the previous step
-                "handler": function (response) {
-                    // alert(response.razorpay_payment_id);
-                    // alert(response.razorpay_order_id);
-                    // alert(response.razorpay_signature)
-
-                    verifyPayment(response,order)
-                },
-                "prefill": {
-                    "name": " sanoop sasidharan",
-                    "email": "sanoopsanu122@gmail.com",
-                    "contact": "9567946906"
-                },
-                "notes": {
-                    "address": "Razorpay Corporate Office"
-                },
-                "theme": {
-                    "color": "#3399cc"
-                }
-            };
-            var rzp1 = new Razorpay(options);
-            rzp1.open();
-
-        }
-        function verifyPayment(Payment,order){
-            $.ajax({
-                url:'/verifyPayment',
-                data:{
-                    Payment,
-                    order
-                },
-                method:'post',
-                success:(response)=>{
-
-                    if(response.status){
-                        location.href = '/orders-success';
-                    }else{
-                        alert('payment failed')
-                    }
-                }
-            })
-        }
-
-        var nameValidated = false;
-        var phoneValidated = false;
-        var addressValidated = false;
-        var locationValidated = false;
-        var pinValidated = false;
-        var cityValidated = false;
-        var stateValidated = false;
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+            // $('#checkout-form').submit((e) => {
+            //     e.preventDefault()
+            //     $.ajax({
+            //         url: '/addAddressCheckout',
+            //         method: 'post',
+            //         data: $('#checkout-form').serialize(),
+            //         success: (response) => {
+            //             Swal.fire({
+            //                 position: 'top-end',
+            //                 icon: 'success',
+            //                 title: 'Your address has been saved',
+            //                 showConfirmButton: false,
+            //                 timer: 1500
+            //             })
+            //             $("#allAddress").load(location.href + " #allAddress");
+            //             $("#add-address-form").load(location.href + " #add-address-form");
 
 
-        $("#fname").keyup(function () {
-            if ($("#fname").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-                $("#name-Text").show();
-                $("#name-Text").text(" ");
-                nameValidated = true;
-            } else {
-                $("#name-Text").show();
-                $("#name-Text").text("Invalid name! try again");
-                $("#name-Text").css("class", "invalid-feedback");
-                nameValidated = false;
-            }
-            $("#fname").keypress(function (num) {
-                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                    num.preventDefault();
-                }
-            });
-            if ($("#fname").val().length < 3) {
-                $("#name-Text").show();
-                $("#name-Text").text("Name should have type morethan 3 characters");
-                $("#name-Text").css("class", "invalid-feedback");
-                nameValidated = false;
-            }
-        });
-        $("#fname").blur(function () {
-            if ($("#fname").val() == "") {
-                $("#name-Text").show();
-                $("#name-Text").text("Name should not be empty!");
-                $("#name-Text").css("class", "invalid-feedback");
-                nameValidated = false;
-            }
-        });
-
-
-        $("#numberValidation").keypress(function (num) {
-            return num.charCode >= 48 && num.charCode <= 57;
-        });
-        $("#numberValidation").keyup(function () {
-            if ($("#numberValidation").val().match(/^\d+$/)) {
-                $("#text-Number").show();
-                $("#text-Number").text(" ");
-                phoneValidated = true;
-            }
-            if ($("#numberValidation").val().length < 10) {
-                $("#text-Number").show();
-                $("#text-Number").text("Phone number should be 10 digits!");
-                $("#text-Number").css("class", "invalid-feedback");
-                phoneValidated = false;
-            }
-        });
-
-        $("#numberValidation").blur(function () {
-            if ($("#numberValidation").val() == "") {
-                $("#text-Number").show();
-                $("#text-Number").text("Phone number is required!");
-                $("#text-Number").css("class", "invalid-feedback");
-                phoneValidated = false;
-            }
-        });
-
-
-        $("#address").keyup(function () {
-            if ($("#address").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-                $("#address-Text").show();
-                $("#address-Text").text(" ");
-                addressValidated = true;
-            } else {
-                $("#address-Text").show();
-                $("#address-Text").text("Invalid Address! try again");
-                $("#address-Text").css("class", "invalid-feedback");
-                addressValidated = false;
-            }
-            $("#address").keypress(function (num) {
-                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                    num.preventDefault();
-                }
-            });
-            if ($("#address").val().length < 3) {
-                $("#address-Text").show();
-                $("#address-Text").text("Address should have type morethan 3 characters");
-                $("#address-Text").css("class", "invalid-feedback");
-                addressValidated = false;
-            }
-        });
-        $("#address").blur(function () {
-            if ($("#address").val() == "") {
-                $("#address-Text").show();
-                $("#address-Text").text("Address should not be empty!");
-                $("#address-Text").css("class", "invalid-feedback");
-                addressValidated = false;
-            }
-        });
-
-        $("#location").keyup(function () {
-            if ($("#location").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-                $("#location-Text").show();
-                $("#location-Text").text(" ");
-                locationValidated = true;
-            } else {
-                $("#location-Text").show();
-                $("#location-Text").text("Invalid location! try again");
-                $("#location-Text").css("class", "invalid-feedback");
-                locationValidated = false;
-            }
-            $("#location").keypress(function (num) {
-                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                    num.preventDefault();
-                }
-            });
-            if ($("#location").val().length < 3) {
-                $("#location-Text").show();
-                $("#location-Text").text("location should have type morethan 3 characters");
-                $("#location-Text").css("class", "invalid-feedback");
-                locationValidated = false;
-            }
-        });
-        $("#location").blur(function () {
-            if ($("#location").val() == "") {
-                $("#location-Text").show();
-                $("#location-Text").text("location should not be empty!");
-                $("#location-Text").css("class", "invalid-feedback");
-                locationValidated = false;
-            }
-        });
-
-        $("#city").keyup(function () {
-            if ($("#city").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-                $("#city-Text").show();
-                $("#city-Text").text(" ");
-                cityValidated = true;
-            } else {
-                $("#city-Text").show();
-                $("#city-Text").text("Invalid city! try again");
-                $("#city-Text").css("class", "invalid-feedback");
-                cityValidated = false;
-            }
-            $("#city").keypress(function (num) {
-                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                    num.preventDefault();
-                }
-            });
-            if ($("#city").val().length < 3) {
-                $("#city-Text").show();
-                $("#city-Text").text("city should have type morethan 3 characters");
-                $("#city-Text").css("class", "invalid-feedback");
-                cityValidated = false;
-            }
-        });
-        $("#city").blur(function () {
-            if ($("#city").val() == "") {
-                $("#city-Text").show();
-                $("#city-Text").text("city should not be empty!");
-                $("#city-Text").css("class", "invalid-feedback");
-                cityValidated = false;
-            }
-        });
-
-
-
-        $("#pinValidation").keypress(function (num) {
-            return num.charCode >= 48 && num.charCode <= 57;
-        });
-        $("#pinValidation").keyup(function () {
-            if ($("#pinValidation").val().match(/^\d+$/)) {
-                $("#text-pin").show();
-                $("#text-pin").text(" ");
-                pinValidated = true;
-            }
-            if ($("#pinValidation").val().length < 6) {
-                $("#text-pin").show();
-                $("#text-pin").text("pin should be 6 digits!");
-                $("#text-pin").css("class", "invalid-feedback");
-                pinValidated = false;
-            }
-        });
-
-        $("#pinValidation").blur(function () {
-            if ($("#pinValidation").val() == "") {
-                $("#text-pin").show();
-                $("#text-pin").text("Pin is required!");
-                $("#text-pin").css("class", "invalid-feedback");
-                pinValidated = false;
-            }
-        });
-
-
-
-
-
-
-        $("#state").keyup(function () {
-            if ($("#state").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-                $("#state-Text").show();
-                $("#state-Text").text(" ");
-                stateValidated = true;
-            } else {
-                $("#state-Text").show();
-                $("#state-Text").text("Invalid city! try again");
-                $("#state-Text").css("class", "invalid-feedback");
-                stateValidated = false;
-            }
-            $("#state").keypress(function (num) {
-                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                    num.preventDefault();
-                }
-            });
-            if ($("#state").val().length < 3) {
-                $("#state-Text").show();
-                $("#state-Text").text("city should have type morethan 3 characters");
-                $("#state-Text").css("class", "invalid-feedback");
-                stateValidated = false;
-            }
-        });
-        $("#state").blur(function () {
-            if ($("#state").val() == "") {
-                $("#state-Text").show();
-                $("#state-Text").text("city should not be empty!");
-                $("#state-Text").css("class", "invalid-feedback");
-                stateValidated = false;
-            }
-        });
-
-
-
-        $("#checkout-form").submit(function (num) {
-            if ($("#fname").val() == "" || $("#numberValidation").val() == "" ||
-                $("#address").val() == "" || $("#location").val() == "" || $("#city").val() == ""
-                || $("#pinValidation").val() == "" || $("#state").val() == "") {
-                // alert("please fill the form properly");
-                Swal.fire(
-                    'Unknown error !',
-                    'please fill the form properly',
-                    'warning'
-                )
-            }
-            if ($("#fname").val() == "" && $("#numberValidation").val() == ""
-                && $("#address").val() == "" && $("#location").val() == "" && $("#city").val() == ""
-                && $("#pinValidation").val() == "" && $("#state").val() == "") {
-                num.preventDefault();
-                console.log('com in if');
-                $("#name-Text").show();
-                $("#text-Number").show();
-                $("#address-Text").show();
-                $("#location-Text").show();
-                $("#city-Text").show();
-                $("#text-pin").show();
-                $("#state-Text").show();
-            } else if (
-                nameValidated &&
-                phoneValidated &&
-                addressValidated &&
-                locationValidated &&
-                pinValidated &&
-                cityValidated &&
-                stateValidated
-
-            ) {
-                num.preventDefault();
+            //         }
+            //     })
+            // })
+            $('#address-form').submit((e) => {
+                e.preventDefault()
                 $.ajax({
-                    url: '/addAddressCheckout',
+                    url: '/placeOrders',
                     method: 'post',
-                    data: $('#checkout-form').serialize(),
+                    data: $('#address-form').serialize(),
                     success: (response) => {
                         Swal.fire({
-                            position: 'top-end',
+                            title: 'congratulation',
+                            text: "Your order placed successfully",
                             icon: 'success',
-                            title: 'Your address has been saved',
-                            showConfirmButton: false,
-                            timer: 1500
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33'
+                        }).then((result) => {
+                            if (response.CODsuccess) {
+                                location.href = '/orders-success';
+                            } else {
+                                razorpayPayment(response)
+                            }
                         })
-                        $("#allAddress").load(location.href + " #allAddress");
-                        $("#add-address-form").load(location.href + " #add-address-form");
-
-
+                        // alert('success')
+                        // location.href = '/orders-success';
+                        // $("#allAddress").load(location.href + " #allAddress");
                     }
                 })
+            })
+            function razorpayPayment(order) {
+                var options = {
+                    "key": "rzp_test_7WV3qsRAPRaDgs", // Enter the Key ID generated from the Dashboard
+                    "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                    "currency": "INR",
+                    "name": "Ekka",
+                    "description": "Test Transaction",
+                    "image": "assets/images/favicon/favicon.png",
+                    "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the previous step
+                    "handler": function (response) {
+                        // alert(response.razorpay_payment_id);
+                        // alert(response.razorpay_order_id);
+                        // alert(response.razorpay_signature)
 
-                //   $.ajax({
-                //     url: '/signup',
-                //     data: $('#siginup_form').serialize(),
-                //     method: 'post',
-                //     success: (response) => {
-                //       if (response.status) {
-                //         location.href = '/login'
-                //       } else {
-                //         document.getElementById('erorrMessage').innerHTML = "sorry change your number"
-                //       }
-                //     }
-                //   })
+                        verifyPayment(response, order)
+                    },
+                    "prefill": {
+                        "name": " sanoop sasidharan",
+                        "email": "sanoopsanu122@gmail.com",
+                        "contact": "9567946906"
+                    },
+                    "notes": {
+                        "address": "Razorpay Corporate Office"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
 
-            } else {
-                num.preventDefault();
             }
-        });
-        
+            function verifyPayment(Payment, order) {
+                $.ajax({
+                    url: '/verifyPayment',
+                    data: {
+                        Payment,
+                        order
+                    },
+                    method: 'post',
+                    success: (response) => {
+
+                        if (response.status) {
+                            location.href = '/orders-success';
+                        } else {
+                            alert('payment failed')
+                        }
+                    }
+                })
+            }
+
+            var nameValidated = false;
+            var phoneValidated = false;
+            var addressValidated = false;
+            var locationValidated = false;
+            var pinValidated = false;
+            var cityValidated = false;
+            var stateValidated = false;
+
+
+            $("#fname").keyup(function () {
+                if ($("#fname").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                    $("#name-Text").show();
+                    $("#name-Text").text(" ");
+                    nameValidated = true;
+                } else {
+                    $("#name-Text").show();
+                    $("#name-Text").text("Invalid name! try again");
+                    $("#name-Text").css("class", "invalid-feedback");
+                    nameValidated = false;
+                }
+                $("#fname").keypress(function (num) {
+                    if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                        num.preventDefault();
+                    }
+                });
+                if ($("#fname").val().length < 3) {
+                    $("#name-Text").show();
+                    $("#name-Text").text("Name should have type morethan 3 characters");
+                    $("#name-Text").css("class", "invalid-feedback");
+                    nameValidated = false;
+                }
+            });
+            $("#fname").blur(function () {
+                if ($("#fname").val() == "") {
+                    $("#name-Text").show();
+                    $("#name-Text").text("Name should not be empty!");
+                    $("#name-Text").css("class", "invalid-feedback");
+                    nameValidated = false;
+                }
+            });
+
+
+            $("#numberValidation").keypress(function (num) {
+                return num.charCode >= 48 && num.charCode <= 57;
+            });
+            $("#numberValidation").keyup(function () {
+                if ($("#numberValidation").val().match(/^\d+$/)) {
+                    $("#text-Number").show();
+                    $("#text-Number").text(" ");
+                    phoneValidated = true;
+                }
+                if ($("#numberValidation").val().length < 10) {
+                    $("#text-Number").show();
+                    $("#text-Number").text("Phone number should be 10 digits!");
+                    $("#text-Number").css("class", "invalid-feedback");
+                    phoneValidated = false;
+                }
+            });
+
+            $("#numberValidation").blur(function () {
+                if ($("#numberValidation").val() == "") {
+                    $("#text-Number").show();
+                    $("#text-Number").text("Phone number is required!");
+                    $("#text-Number").css("class", "invalid-feedback");
+                    phoneValidated = false;
+                }
+            });
+
+
+            $("#address").keyup(function () {
+                if ($("#address").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                    $("#address-Text").show();
+                    $("#address-Text").text(" ");
+                    addressValidated = true;
+                } else {
+                    $("#address-Text").show();
+                    $("#address-Text").text("Invalid Address! try again");
+                    $("#address-Text").css("class", "invalid-feedback");
+                    addressValidated = false;
+                }
+                $("#address").keypress(function (num) {
+                    if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                        num.preventDefault();
+                    }
+                });
+                if ($("#address").val().length < 3) {
+                    $("#address-Text").show();
+                    $("#address-Text").text("Address should have type morethan 3 characters");
+                    $("#address-Text").css("class", "invalid-feedback");
+                    addressValidated = false;
+                }
+            });
+            $("#address").blur(function () {
+                if ($("#address").val() == "") {
+                    $("#address-Text").show();
+                    $("#address-Text").text("Address should not be empty!");
+                    $("#address-Text").css("class", "invalid-feedback");
+                    addressValidated = false;
+                }
+            });
+
+            $("#location").keyup(function () {
+                if ($("#location").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                    $("#location-Text").show();
+                    $("#location-Text").text(" ");
+                    locationValidated = true;
+                } else {
+                    $("#location-Text").show();
+                    $("#location-Text").text("Invalid location! try again");
+                    $("#location-Text").css("class", "invalid-feedback");
+                    locationValidated = false;
+                }
+                $("#location").keypress(function (num) {
+                    if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                        num.preventDefault();
+                    }
+                });
+                if ($("#location").val().length < 3) {
+                    $("#location-Text").show();
+                    $("#location-Text").text("location should have type morethan 3 characters");
+                    $("#location-Text").css("class", "invalid-feedback");
+                    locationValidated = false;
+                }
+            });
+            $("#location").blur(function () {
+                if ($("#location").val() == "") {
+                    $("#location-Text").show();
+                    $("#location-Text").text("location should not be empty!");
+                    $("#location-Text").css("class", "invalid-feedback");
+                    locationValidated = false;
+                }
+            });
+
+            $("#city").keyup(function () {
+                if ($("#city").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                    $("#city-Text").show();
+                    $("#city-Text").text(" ");
+                    cityValidated = true;
+                } else {
+                    $("#city-Text").show();
+                    $("#city-Text").text("Invalid city! try again");
+                    $("#city-Text").css("class", "invalid-feedback");
+                    cityValidated = false;
+                }
+                $("#city").keypress(function (num) {
+                    if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                        num.preventDefault();
+                    }
+                });
+                if ($("#city").val().length < 3) {
+                    $("#city-Text").show();
+                    $("#city-Text").text("city should have type morethan 3 characters");
+                    $("#city-Text").css("class", "invalid-feedback");
+                    cityValidated = false;
+                }
+            });
+            $("#city").blur(function () {
+                if ($("#city").val() == "") {
+                    $("#city-Text").show();
+                    $("#city-Text").text("city should not be empty!");
+                    $("#city-Text").css("class", "invalid-feedback");
+                    cityValidated = false;
+                }
+            });
 
 
 
-    </script>
+            $("#pinValidation").keypress(function (num) {
+                return num.charCode >= 48 && num.charCode <= 57;
+            });
+            $("#pinValidation").keyup(function () {
+                if ($("#pinValidation").val().match(/^\d+$/)) {
+                    $("#text-pin").show();
+                    $("#text-pin").text(" ");
+                    pinValidated = true;
+                }
+                if ($("#pinValidation").val().length < 6) {
+                    $("#text-pin").show();
+                    $("#text-pin").text("pin should be 6 digits!");
+                    $("#text-pin").css("class", "invalid-feedback");
+                    pinValidated = false;
+                }
+            });
+
+            $("#pinValidation").blur(function () {
+                if ($("#pinValidation").val() == "") {
+                    $("#text-pin").show();
+                    $("#text-pin").text("Pin is required!");
+                    $("#text-pin").css("class", "invalid-feedback");
+                    pinValidated = false;
+                }
+            });
+
+
+
+
+
+
+            $("#state").keyup(function () {
+                if ($("#state").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                    $("#state-Text").show();
+                    $("#state-Text").text(" ");
+                    stateValidated = true;
+                } else {
+                    $("#state-Text").show();
+                    $("#state-Text").text("Invalid city! try again");
+                    $("#state-Text").css("class", "invalid-feedback");
+                    stateValidated = false;
+                }
+                $("#state").keypress(function (num) {
+                    if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                        num.preventDefault();
+                    }
+                });
+                if ($("#state").val().length < 3) {
+                    $("#state-Text").show();
+                    $("#state-Text").text("city should have type morethan 3 characters");
+                    $("#state-Text").css("class", "invalid-feedback");
+                    stateValidated = false;
+                }
+            });
+            $("#state").blur(function () {
+                if ($("#state").val() == "") {
+                    $("#state-Text").show();
+                    $("#state-Text").text("city should not be empty!");
+                    $("#state-Text").css("class", "invalid-feedback");
+                    stateValidated = false;
+                }
+            });
+
+
+
+            $("#checkout-form").submit(function (num) {
+                if ($("#fname").val() == "" || $("#numberValidation").val() == "" ||
+                    $("#address").val() == "" || $("#location").val() == "" || $("#city").val() == ""
+                    || $("#pinValidation").val() == "" || $("#state").val() == "") {
+                    // alert("please fill the form properly");
+                    Swal.fire(
+                        'Unknown error !',
+                        'please fill the form properly',
+                        'warning'
+                    )
+                }
+                if ($("#fname").val() == "" && $("#numberValidation").val() == ""
+                    && $("#address").val() == "" && $("#location").val() == "" && $("#city").val() == ""
+                    && $("#pinValidation").val() == "" && $("#state").val() == "") {
+                    num.preventDefault();
+                    console.log('com in if');
+                    $("#name-Text").show();
+                    $("#text-Number").show();
+                    $("#address-Text").show();
+                    $("#location-Text").show();
+                    $("#city-Text").show();
+                    $("#text-pin").show();
+                    $("#state-Text").show();
+                } else if (
+                    nameValidated &&
+                    phoneValidated &&
+                    addressValidated &&
+                    locationValidated &&
+                    pinValidated &&
+                    cityValidated &&
+                    stateValidated
+
+                ) {
+                    num.preventDefault();
+                    $.ajax({
+                        url: '/addAddressCheckout',
+                        method: 'post',
+                        data: $('#checkout-form').serialize(),
+                        success: (response) => {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your address has been saved',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            $("#allAddress").load(location.href + " #allAddress");
+                            $("#add-address-form").load(location.href + " #add-address-form");
+
+
+                        }
+                    })
+
+                    //   $.ajax({
+                    //     url: '/signup',
+                    //     data: $('#siginup_form').serialize(),
+                    //     method: 'post',
+                    //     success: (response) => {
+                    //       if (response.status) {
+                    //         location.href = '/login'
+                    //       } else {
+                    //         document.getElementById('erorrMessage').innerHTML = "sorry change your number"
+                    //       }
+                    //     }
+                    //   })
+
+                } else {
+                    num.preventDefault();
+                }
+            });
+
+
+
+
+        </script>
 
 </body>
 

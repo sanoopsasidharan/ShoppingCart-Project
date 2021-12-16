@@ -257,10 +257,11 @@ module.exports={
             // console.log(cartItems);
             // console.log(total);
 
-            resolve(total[0].total,OfferTotal)
+            // resolve(total[0].total,OfferTotal)
             let OrginalPrice = total[0].total
             // this is the price 
-            // resolve({OrginalPrice,OfferTotal})
+            resolve({OrginalPrice,OfferTotal})
+            // console.log(total[0].total,OfferTotal);
 
 
             // error when cart is empty then didnt open cart 

@@ -400,6 +400,16 @@ router.post('/deleteOfferProduct',(req,res)=>{
         res.json(response)
     })
 })
+
+// banner management
+router.get('/bannerManagement',(req,res)=>{
+    res.render('admin/banner',{admin:1})
+})
+
+// add new banner 
+router.post('/addBanner',(req,res)=>{
+    console.log(req.body);
+})
 router.post('/salesStatus',(req,res)=>{
 
 })

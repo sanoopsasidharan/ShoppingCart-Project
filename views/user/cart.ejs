@@ -363,18 +363,44 @@
                             <div class="ec-sb-block-content">
                                 <div class="ec-cart-summary-bottom">
                                     <div class="ec-cart-summary">
-                                        <div>
-                                            <span class="text-left">price of ( <span>
-                                                    <%= cartCount%>
-                                                </span> items) </span>
-                                            <span class="text-right">₹ <span id="Itemstotal">
-                                                    <%= total%>
-                                                </span></span>
-                                        </div>
-                                        <div>
+                                        
+                                        
+
+                                          <% if(total.OfferTotal === total.OrginalPrice ){ %>
+                                            <div>
+                                                <span class="text-left">price of ( <span>
+                                                        <%= cartCount%>
+                                                    </span> items) </span>
+                                                <span class="text-right"> <span id="Itemstotal">
+                                                       
+                                                    </span></span>
+                                                    <span class="text-right">
+                                                        ₹ <%= total.OrginalPrice%>
+                                                    </span>
+                                            </div>
+                                            <% } else{ %>  
+                                                <div>
+                                                    <span class="text-left">price of ( <span>
+                                                            <%= cartCount%>
+                                                        </span> items) </span>
+                                                    <span class="text-right"> <span id="Itemstotal">
+                                                           
+                                                        </span></span>
+                                                        <span class="text-right ">
+                                                            ₹ <%= total.OrginalPrice%>
+                                                        </span>
+                                                </div>
+                                                <div>
+                                                    <span class="text-left">Payable price</span>
+                                                    <span class="text-right text-success">₹ <%= total.OfferTotal%></span>
+                                                </div>
+                                        
+                                         <% } %>
+                                       
+                                        <!-- <div>
                                             <span class="text-left">Sub-Total</span>
                                             <span class="text-right">₹ 80.00</span>
-                                        </div>
+                                        </div> -->
                                         <div>
                                             <span class="text-left">Delivery Charges</span>
                                             <span class="text-right">₹ 80.00</span>
@@ -395,9 +421,17 @@
                                         <div class="ec-cart-summary-total">
                                             <span class="text-left">Total Amount</span>
                                             <!-- <span class="text-right">₹ <%= total%></span> -->
-                                            <span style="color: black;" class="">₹ <span id="total">
-                                                    <%= total%>
-                                                </span></span>
+                                            
+                                                <% if(total.OfferTotal > 0 ){ %>
+                                                     <span style="color: black;" class="">₹ <span id="total">
+                                                        <%= total.OfferTotal%>
+                                                    </span></span>
+                                                 <% } else{ %>  
+                                                    <span style="color: black;" class="">₹ <span id="total">
+                                                        <%= total.OrginalPrice%>
+                                                    </span></span>
+                                                   
+                                                <% } %>
                                         </div>
                                     </div>
 
@@ -991,15 +1025,7 @@
     <!-- Footer navigation panel for responsive display end -->
 
     <!-- Recent Purchase Popup  -->
-    <div class="recent-purchase">
-        <img src="assets/images/product-image/1.jpg" alt="payment image">
-        <div class="detail">
-            <p>Someone in new just bought</p>
-            <h6>stylish baby shoes</h6>
-            <p>10 Minutes ago</p>
-        </div>
-        <a href="javascript:void(0)" class="icon-btn recent-close">×</a>
-    </div>
+  
     <!-- Recent Purchase Popup end -->
 
     <!-- Cart Floating Button -->
@@ -1265,8 +1291,10 @@
                         $("#ProductDetails").load(location.href + " #ProductDetails");
                     } else {
                         document.getElementById(proId).innerHTML = quantity + count
-                        document.getElementById('total').innerHTML = response.total
-                        document.getElementById('Itemstotal').innerHTML = response.total
+                        // document.getElementById('total').innerHTML = response.total
+                        document.getElementById('total').innerHTML = ''
+                        // document.getElementById('Itemstotal').innerHTML = response.total
+                        document.getElementById('Itemstotal').innerHTML = ""
                         document.getElementById('subtotal' + proId).innerHTML = response.subtotal
 
                         //    to edit this line when go check out page return back conut is 1 and add this line

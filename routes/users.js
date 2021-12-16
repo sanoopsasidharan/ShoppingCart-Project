@@ -547,8 +547,9 @@ router.get('/checkout',verifyLogin,async(req,res)=>{
    let cartCount=await cartHelpers.getCartCount(req.session.user._id)
 
    let total = await cartHelpers.getTotalAmount(req.session.user._id)
-  //  console.log(total);
+   console.log(total);
    let addresss=await userHelpers.showAllAddress(req.session.user._id)
+   console.log(addresss);
 
    res.render('user/checkout',{admin:0,user,result,cartCount,addresss,total})
 
@@ -584,7 +585,10 @@ router.post('/addAddressCheckout',verifyLogin,(req,res)=>{
 })
 
 router.post('/placeOrders',async(req,res)=>{
+
   var obj = req.body
+  console.log('place order req.body');
+  console.log(req.body);
     let products= await cartHelpers.getCartProductList(req.body.userId)
   let totalPrice= await cartHelpers.getTotalAmount(req.body.userId)
   let address = await userHelpers.getOneAddress(req.body.adderssId,req.session.user._id)
