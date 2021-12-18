@@ -76,7 +76,7 @@ module.exports={
     // show all orders in admin
     getAllOrders:()=>{
         return new Promise(async(resolve,reject)=>{
-            var allOrders = await db.get().collection(collection.orderCollection).find( { status: { $ne: 'onlinePending' } }).sort({_id:-1}).toArray()
+            var allOrders = await db.get().collection(collection.orderCollection).find( { status: { $ne: 'onlinePending' } }).sort({date: -1}).toArray()
             if(allOrders){
                 resolve(allOrders)
             }else{

@@ -86,7 +86,74 @@
     <div id="ec-overlay"><span class="loader_img"></span></div>
 
     <!-- Header start  -->
-
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="add-address-form" class="ec-check-bill-form">
+                        <form action="" id="checkout-form">
+                            <span class="ec-bill-wrap ec-bill-half">
+                                <label>First Name*</label>
+                                <input id="fname" type="text" name="name"
+                                    placeholder="Enter your Name">
+                                <div class="invalid-feedback text-danger mb-3" id="name-Text">enter
+                                    your Name</div>
+                            </span>
+    
+                            <span class="ec-bill-wrap ec-bill-half">
+                                <label>Number*</label>
+                                <input id="numberValidation" type="text" name="number"
+                                    placeholder="Enter your Number" maxlength="10" />
+                                <div class="invalid-feedback text-danger mb-3" id="text-Number">
+                                    Enter your phone number </div>
+                            </span>
+                            <span class="ec-bill-wrap">
+                                <label>Address</label>
+                                <input type="text" id="address" name="address"
+                                    placeholder="Address Line 1" />
+                                <div class="invalid-feedback text-danger mb-3" id="address-Text">
+                                    enter your Name</div>
+                            </span>
+                            <span class="ec-bill-wrap">
+                                <label>Location</label>
+                                <input id="location" type="text" name="location"
+                                    placeholder=" current location" />
+                                <div class="invalid-feedback text-danger mb-3" id="location-Text">
+                                    enter your location</div>
+                            </span>
+                            <span class="ec-bill-wrap">
+                                <label>City</label>
+                                <input id="city" type="text" name="City"
+                                    placeholder=" current city" />
+                                <div class="invalid-feedback text-danger mb-3" id="city-Text">enter
+                                    your city</div>
+                            </span>
+                            <span class="ec-bill-wrap ec-bill-half">
+                                <label>Post Code</label>
+                                <input type="text" id="pinValidation" name="pincode"
+                                    placeholder="Pin code" />
+                                <div class="invalid-feedback text-danger mb-3" id="text-pin">Enter
+                                    your pin </div>
+                            </span>
+                            <span class="ec-bill-wrap">
+                                <label>state</label>
+                                <input id="state" type="text" name="state" placeholder="state" />
+                                <div class="invalid-feedback text-danger mb-3" id="state-Text">Enter
+                                    your state </div>
+                            </span>
+                            <input type="text" name="userId" value="<%=user._id%>" id="" hidden>
+                            <button class="btn btn btn-primary Flat-right"
+                                type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Header End  -->
 
     <!-- ekka Cart Start -->
@@ -196,13 +263,20 @@
     <section class="ec-page-content section-space-p">
         <div class="container">
             <div class="row">
-                <div class="ec-checkout-leftside col-lg-12 col-md-12 ">
+                <div class="ec-checkout-leftside col-lg-8 col-md-12 ">
                     <!-- checkout content Start -->
                     <div class="ec-checkout-content">
                         <div class="ec-checkout-inner">
-                            <div class="ec-checkout-wrap margin-bottom-30">
+                            <div class="ec-checkout-wrap ">
                                 <div class="ec-checkout-block ec-check-new">
-                                    <h3 style="margin-bottom: 33px;" class="ec-checkout-title">Address</h3>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div style="display: flex;">
+                                            <h3 class="ec-checkout-title">Address</h3>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            + address
+                                        </button>
+                                    </div>
                                     <div class="ec-check-block-content">
                                         <form action="" id="address-form">
                                             <!-- <div id="allAddress" class=" ">
@@ -552,117 +626,7 @@
                                 </div> -->
 
                             </div>
-                            <div class="ec-checkout-wrap margin-bottom-30 padding-bottom-3">
-                                <div class="ec-checkout-block ec-check-bill">
-                                    <h3 class="ec-checkout-title">Add New Details <br></h3>
-                                    <div class="ec-bl-block-content">
-                                        <div class="ec-check-subtitle"><br></div>
-                                        <!-- <span class="ec-bill-option">
-                                            <span>
-                                                <input type="radio" id="bill1" name="radio-group">
-                                                <label for="bill1">I want to use an existing address</label>
-                                            </span>
-                                            <span>
-                                                <input type="radio" id="bill2" name="radio-group" checked>
-                                                <label for="bill2">I want to use new address</label>
-                                            </span>
-                                        </span> -->
-
-
-
-
-
-
-
-                                        <div id="add-address-form" class="ec-check-bill-form">
-                                            <form action="" id="checkout-form">
-                                                <span class="ec-bill-wrap ec-bill-half">
-                                                    <label>First Name*</label>
-                                                    <input id="fname" type="text" name="name"
-                                                        placeholder="Enter your Name">
-                                                    <div class="invalid-feedback text-danger mb-3" id="name-Text">enter
-                                                        your Name</div>
-                                                </span>
-
-                                                <span class="ec-bill-wrap ec-bill-half">
-                                                    <label>Number*</label>
-                                                    <input id="numberValidation" type="text" name="number"
-                                                        placeholder="Enter your Number" maxlength="10" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="text-Number">
-                                                        Enter your phone number </div>
-                                                </span>
-                                                <span class="ec-bill-wrap">
-                                                    <label>Address</label>
-                                                    <input type="text" id="address" name="address"
-                                                        placeholder="Address Line 1" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="address-Text">
-                                                        enter your Name</div>
-                                                </span>
-                                                <span class="ec-bill-wrap">
-                                                    <label>Location</label>
-                                                    <input id="location" type="text" name="location"
-                                                        placeholder=" current location" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="location-Text">
-                                                        enter your location</div>
-                                                </span>
-                                                <span class="ec-bill-wrap">
-                                                    <label>City</label>
-                                                    <input id="city" type="text" name="City"
-                                                        placeholder=" current city" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="city-Text">enter
-                                                        your city</div>
-                                                </span>
-                                                <span class="ec-bill-wrap ec-bill-half">
-                                                    <label>Post Code</label>
-                                                    <input type="text" id="pinValidation" name="pincode"
-                                                        placeholder="Pin code" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="text-pin">Enter
-                                                        your pin </div>
-                                                </span>
-                                                <span class="ec-bill-wrap">
-                                                    <label>state</label>
-                                                    <input id="state" type="text" name="state" placeholder="state" />
-                                                    <div class="invalid-feedback text-danger mb-3" id="state-Text">Enter
-                                                        your state </div>
-                                                </span>
-
-                                                <!-- <span class="ec-bill-wrap ec-bill-half">
-                                                    <label>Country *</label>
-                                                    <span class="ec-bl-select-inner">
-                                                        <select name="ec_select_country" id="ec-select-country"
-                                                            class="ec-bill-select">
-                                                            <option selected disabled>Country</option>
-                                                            <option value="1">Country 1</option>
-                                                            <option value="2">Country 2</option>
-                                                            <option value="3">Country 3</option>
-                                                            <option value="4">Country 4</option>
-                                                            <option value="5">Country 5</option>
-                                                        </select>
-                                                    </span>
-                                                </span> -->
-                                                <input type="text" name="userId" value="<%=user._id%>" id="" hidden>
-                                                <!-- <span class="ec-bill-wrap ec-bill-half">
-                                                    <label>Payment method</label>
-                                                    <span class="ec-bl-select-inner">
-                                                        <select name="paymentmethod" id="ec-select-state"
-                                                            class="ec-bill-select">
-                                                            <option selected disabled></option>
-                                                            <option value="COD">COD</option>
-                                                            <option value="ONLINE">ONLINE</option>
-                                                           
-                                                        </select>
-                                                    </span>
-                                                </span> -->
-                                                <button class="btn btn btn-primary Flat-right"
-                                                    type="submit">Submit</button>
-
-                                            </form>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
+                            
                             <!-- <span class="ec-check-order-btn">
                                 <a class="btn btn-primary" >Place Order</a>
                             </span> -->
@@ -672,8 +636,8 @@
                 </div>
 
                 <!-- Sidebar Area Start -->
-                <!-- <div class="ec-checkout-rightside col-lg-4 col-md-12">
-                    <div class="ec-sidebar-wrap">
+                <div class="ec-checkout-rightside col-lg-4 col-md-12">
+                    <!-- <div class="ec-sidebar-wrap">
                       
                         <div class="ec-sidebar-block">
                             <div class="ec-sb-title">
@@ -708,195 +672,66 @@
                                     </div>
                                 </div>
 
-                                <div class="ec-checkout-pro">
-                                    <div class="col-sm-12 mb-6">
-                                        <div class="ec-product-inner">
-                                            <div class="ec-pro-image-outer">
-                                                <div class="ec-pro-image">
-                                                    <a href="product-left-sidebar.html" class="image">
-                                                        <img class="main-image"
-                                                            src="assets/images/product-image/1_1.jpg"
-                                                            alt="Product" />
-                                                        <img class="hover-image"
-                                                            src="assets/images/product-image/1_2.jpg"
-                                                            alt="Product" />
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="ec-pro-content">
-                                                <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Baby toy teddy bear</a></h5>
-                                                <div class="ec-pro-rating">
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star"></i>
-                                                </div>
-                                                <span class="ec-price">
-                                                    <span class="old-price">$95.00</span>
-                                                    <span class="new-price">$79.00</span>
-                                                </span>
-                                                <div class="ec-pro-option">
-                                                    <div class="ec-pro-color">
-                                                        <span class="ec-pro-opt-label">Color</span>
-                                                        <ul class="ec-opt-swatch ec-change-img">
-                                                            <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                                    data-src="assets/images/product-image/1_1.jpg"
-                                                                    data-src-hover="assets/images/product-image/1_1.jpg"
-                                                                    data-tooltip="Gray"><span
-                                                                        style="background-color:#6d4c36;"></span></a>
-                                                            </li>
-                                                            <li><a href="#" class="ec-opt-clr-img"
-                                                                    data-src="assets/images/product-image/1_2.jpg"
-                                                                    data-src-hover="assets/images/product-image/1_2.jpg"
-                                                                    data-tooltip="Orange"><span
-                                                                        style="background-color:#ffb0e1;"></span></a>
-                                                            </li>
-                                                            <li><a href="#" class="ec-opt-clr-img"
-                                                                    data-src="assets/images/product-image/1_3.jpg"
-                                                                    data-src-hover="assets/images/product-image/1_3.jpg"
-                                                                    data-tooltip="Green"><span
-                                                                        style="background-color:#8beeff;"></span></a>
-                                                            </li>
-                                                            <li><a href="#" class="ec-opt-clr-img"
-                                                                    data-src="assets/images/product-image/1_4.jpg"
-                                                                    data-src-hover="assets/images/product-image/1_4.jpg"
-                                                                    data-tooltip="Sky Blue"><span
-                                                                        style="background-color:#74f8d1;"></span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="ec-pro-size">
-                                                        <span class="ec-pro-opt-label">Size</span>
-                                                        <ul class="ec-opt-size">
-                                                            <li class="active"><a href="#" class="ec-opt-sz"
-                                                                    data-old="$95.00" data-new="$79.00"
-                                                                    data-tooltip="Small">S</a></li>
-                                                            <li><a href="#" class="ec-opt-sz" data-old="$90.00"
-                                                                    data-new="$70.00" data-tooltip="Medium">M</a></li>
-                                                            <li><a href="#" class="ec-opt-sz" data-old="$80.00"
-                                                                    data-new="$60.00" data-tooltip="Large">X</a></li>
-                                                            <li><a href="#" class="ec-opt-sz" data-old="$70.00"
-                                                                    data-new="$50.00" data-tooltip="Extra Large">XL</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 mb-0">
-                                        <div class="ec-product-inner">
-                                            <div class="ec-pro-image-outer">
-                                                <div class="ec-pro-image">
-                                                    <a href="product-left-sidebar.html" class="image">
-                                                        <img class="main-image"
-                                                            src="assets/images/product-image/8_1.jpg"
-                                                            alt="Product" />
-                                                        <img class="hover-image"
-                                                            src="assets/images/product-image/8_2.jpg"
-                                                            alt="Product" />
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="ec-pro-content">
-                                                <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Smart I watch 2GB</a></h5>
-                                                <div class="ec-pro-rating">
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star fill"></i>
-                                                    <i class="ecicon eci-star"></i>
-                                                </div>
-                                                <span class="ec-price">
-                                                    <span class="old-price">$58.00</span>
-                                                    <span class="new-price">$45.00</span>
-                                                </span>
-                                                <div class="ec-pro-option">
-                                                    <div class="ec-pro-color">
-                                                        <span class="ec-pro-opt-label">Color</span>
-                                                        <ul class="ec-opt-swatch ec-change-img">
-                                                            <li class="active"><a href="#" class="ec-opt-clr-img"
-                                                                    data-src="assets/images/product-image/8_2.jpg"
-                                                                    data-src-hover="assets/images/product-image/8_2.jpg"
-                                                                    data-tooltip="Gray"><span
-                                                                        style="background-color:#f3f3f3;"></span></a>
-                                                            </li>
-                                                            <li><a href="#" class="ec-opt-clr-img"
-                                                                    data-src="assets/images/product-image/8_3.jpg"
-                                                                    data-src-hover="assets/images/product-image/8_3.jpg"
-                                                                    data-tooltip="Orange"><span
-                                                                        style="background-color:#fac7f3;"></span></a>
-                                                            </li>
-                                                            <li><a href="#" class="ec-opt-clr-img"
-                                                                    data-src="assets/images/product-image/8_4.jpg"
-                                                                    data-src-hover="assets/images/product-image/8_4.jpg"
-                                                                    data-tooltip="Green"><span
-                                                                        style="background-color:#c5f1ff;"></span></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="ec-pro-size">
-                                                        <span class="ec-pro-opt-label">Size</span>
-                                                        <ul class="ec-opt-size">
-                                                            <li class="active"><a href="#" class="ec-opt-sz"
-                                                                    data-old="$48.00" data-new="$45.00"
-                                                                    data-tooltip="Small">S</a></li>
-                                                            <li><a href="#" class="ec-opt-sz" data-old="$90.00"
-                                                                    data-new="$70.00" data-tooltip="Medium">M</a></li>
-                                                            <li><a href="#" class="ec-opt-sz" data-old="$80.00"
-                                                                    data-new="$60.00" data-tooltip="Large">X</a></li>
-                                                            <li><a href="#" class="ec-opt-sz" data-old="$70.00"
-                                                                    data-new="$50.00" data-tooltip="Extra Large">XL</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                        
-                    </div>
+                    </div> -->
                     
                     
                     <div class="ec-sidebar-wrap ec-check-pay-img-wrap">
                       
                         <div class="ec-sidebar-block">
                             <div class="ec-sb-title">
-                                <h3 class="ec-sidebar-title">Payment Method</h3>
+                                <h3 class="ec-sidebar-title">Coupon</h3>
                             </div>
                             <div class="ec-sb-block-content">
-                                <div class="ec-check-pay-img-inner">
-                                    <div class="ec-check-pay-img">
-                                        <img src="assets/images/icons/payment1.png" alt="">
-                                    </div>
-                                    <div class="ec-check-pay-img">
-                                        <img src="assets/images/icons/payment2.png" alt="">
-                                    </div>
-                                    <div class="ec-check-pay-img">
-                                        <img src="assets/images/icons/payment3.png" alt="">
-                                    </div>
-                                    <div class="ec-check-pay-img">
-                                        <img src="assets/images/icons/payment4.png" alt="">
-                                    </div>
-                                    <div class="ec-check-pay-img">
-                                        <img src="assets/images/icons/payment5.png" alt="">
-                                    </div>
-                                    <div class="ec-check-pay-img">
-                                        <img src="assets/images/icons/payment6.png" alt="">
-                                    </div>
-                                    <div class="ec-check-pay-img">
-                                        <img src="assets/images/icons/payment7.png" alt="">
-                                    </div>
+                                <div>
+
+                                    
+                                        <% if(coupons.length> 0){ %>
+                                            <table>
+                                                
+                                                <% for(var i=0; i < coupons.length; i++) { %>
+                                                    <tr>
+                                                        <td>
+                                                             <span style="color: black;"><%= coupons[i].couponName %></span> &nbsp; &nbsp; &nbsp; <span style="color: black;"><%= coupons[i].couponAmount %></span> 
+                                                        </td>
+                                                        
+                                                        
+                                                        
+                                                        <td>
+                                                            <div style="display: flex;">
+                    
+                                                                <input style="border: 0px;" type="text" value="<%= coupons[i].code %>" id="myInput<%= coupons[i]._id %>" disabled="disabled">
+                                                                <button type="button" onclick="myFunction('<%= coupons[i]._id %>')">Copy</button>
+                                                               
+                                                            </div>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    <% } %>
+                                            </table>
+                                            <% } else{ %>
+                                                <h1>bar</h1>
+                                                <% } %>
+                    
+                                   
+                                </div>
+                                <div>
+                                    <h3 class="ec-sidebar-title">Apply offer</h3>
+                                    <form action="">
+                
+                                        <input type="text" name="" id="" placeholder="Enter Coupon Code ...">
+                                        <button class="btn btn-primary" type="submit">Submit</button>
+
+                                    </form>
                                 </div>
                             </div>
                         </div>
                        
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </section>

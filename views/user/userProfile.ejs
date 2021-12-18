@@ -46,9 +46,9 @@
     <!-- Background css -->
     <link rel="stylesheet" id="bg-switcher-css" href="assets/css/backgrounds/bg-4.css">
     <link href="/assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-  		<link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
-		<link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+    <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
     <style>
         .preview {
             overflow: hidden;
@@ -62,6 +62,24 @@
             max-width: 1000px !important;
         }
     </style>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 
 </head>
 
@@ -73,37 +91,37 @@
 
     <!-- Modal 1-->
     <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="img-container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <img src="" id="sampleImage1" />
-                        </div>
-                        <div class="col-md-4">
-                            <div class="preview" id="preview1"></div>
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="img-container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <img src="" id="sampleImage1" />
+                            </div>
+                            <div class="col-md-4">
+                                <div class="preview" id="preview1"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
+                <div class="modal-footer">
 
-                <button type="button" id="crop1" class="btn btn-primary">Crop</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="crop1" class="btn btn-primary">Crop</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Modal  1 end-->
+    <!-- Modal  1 end-->
 
 
     <!-- Modal -->
@@ -167,6 +185,63 @@
                             <button type="submit" class="btn btn-primary mt-4">Save</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCoupon" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Coupons</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <% if(coupons.length> 0){ %>
+                        <table>
+                            <tr>
+                                <th>Coupon Name</th>
+                                <th>Coupon Expiry date</th>
+                                <th>Coupon Percentage</th>
+                                <th>Minimum price</th>
+                                <th>Coupons code</th>
+                            </tr>
+                            <% for(var i=0; i < coupons.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <%= coupons[i].couponName %>
+                                    </td>
+                                    <td>
+                                        <%= coupons[i].couponExDate %>
+                                    </td>
+                                    <td>
+                                        <%= coupons[i].couponAmount %>
+                                    </td>
+                                    <td>
+                                        <%= coupons[i].minimumPrice %>
+                                    </td>
+                                    <td>
+                                        <div style="display: flex;">
+
+                                            <input style="border: 0px;" type="text" value="<%= coupons[i].code %>" id="myInput<%= coupons[i]._id %>" disabled="disabled">
+                                            <button type="button" onclick="myFunction('<%= coupons[i]._id %>')">Copy</button>
+                                           
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                                <% } %>
+                        </table>
+                        <% } else{ %>
+                            <h1>bar</h1>
+                            <% } %>
+
                 </div>
             </div>
         </div>
@@ -285,7 +360,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="ec-vendor-block-profile">
-                                       
+
 
                                         <!-- user profile show  -->
 
@@ -293,29 +368,38 @@
                                         <div class="row">
                                             <div class="col-md-6">
 
-                                                
+
                                                 <div class="text-center">
-                                                    
-                                                    
-                                                        <img style="width: 280px; margin-bottom: 20px;"id="checkpreview4" src="/productimage/image2/<%=user._id%>_1.jpg" class="rounded">
-                                                    
-                                                    <p style="color: black; cursor: pointer;" onclick="profileEdit()" id="picEdit">edit</p>
-                                                    <p style="color: rgb(255, 0, 0); cursor: pointer;" onclick="cancelProfileEdit()" id="cancelProfileEdit">cancel</p>
-                                                    
-                                                    <form method="post" enctype="multipart/form-data" action="/savePropic">  
-                                                       <div class="row" style="display: flex;padding: 40px;">
-                                                        <div class="col-md-8">
-                                                            <input style="line-height: 1 !important;" type="file" id="image1" accept="image/gif, image/jpeg, image/png" required />
-                                                        <textarea name="image1" id="imageValue1" cols="30"rows="10" hidden></textarea>
+
+
+                                                    <img style="width: 280px; margin-bottom: 20px;" id="checkpreview4"
+                                                        src="/productimage/image2/<%=user._id%>_1.jpg" class="rounded">
+
+                                                    <p style="color: black; cursor: pointer;" onclick="profileEdit()"
+                                                        id="picEdit">edit</p>
+                                                    <p style="color: rgb(255, 0, 0); cursor: pointer;"
+                                                        onclick="cancelProfileEdit()" id="cancelProfileEdit">cancel</p>
+
+                                                    <form method="post" enctype="multipart/form-data"
+                                                        action="/savePropic">
+                                                        <div class="row" style="display: flex;padding: 40px;">
+                                                            <div class="col-md-8">
+                                                                <input style="line-height: 1 !important;" type="file"
+                                                                    id="image1"
+                                                                    accept="image/gif, image/jpeg, image/png"
+                                                                    required />
+                                                                <textarea name="image1" id="imageValue1" cols="30"
+                                                                    rows="10" hidden></textarea>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button id="savepropicbtn" class="btn btn-primary"
+                                                                    type="submit">save</button>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-4">
-                                                            <button id="savepropicbtn" class="btn btn-primary" type="submit">save</button>
-                                                        </div>
-                                                       </div>
                                                     </form>
-                                                  </div>
-                                                  
-                                                   
+                                                </div>
+
+
 
                                             </div>
                                             <div class="col-md-6">
@@ -331,6 +415,12 @@
                                                     <h5 class="text-black">
                                                         <%= userProfil.number %>
                                                     </h5>
+                                                    <a href=""></a>
+
+                                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModalCoupon">
+                                                        Available coupons
+                                                    </button>
                                                     <br>
                                                     <button type="button" class="btn bg-danger text-white"
                                                         data-bs-toggle="modal" data-bs-target="#examplemodal4">
@@ -361,9 +451,9 @@
                                         </div> -->
 
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        edit
-                                    </button>
+                                            data-bs-target="#exampleModal">
+                                            edit
+                                        </button>
 
 
                                     </div>
@@ -650,7 +740,7 @@
     <!-- Footer navigation panel for responsive display end -->
 
     <!-- Recent Purchase Popup  -->
-    
+
     <!-- Recent Purchase Popup end -->
 
     <!-- Cart Floating Button -->
@@ -775,7 +865,7 @@
         </div>
         <!--/ End Floating Panel Container -->
         <!-- Start Right Floating Button-->
-        
+
         <!--/ End Right Floating Button-->
     </div>
     <!-- Whatsapp end -->
@@ -874,12 +964,12 @@
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="https://kit.fontawesome.com/4f9ff9a3d7.js" crossorigin="anonymous"></script>
-  <!-- Material Dashboard CSS -->
-  
+    <script src="https://kit.fontawesome.com/4f9ff9a3d7.js" crossorigin="anonymous"></script>
+    <!-- Material Dashboard CSS -->
 
-	<script src="https://unpkg.com/dropzone"></script>
-		<script src="https://unpkg.com/cropperjs"></script>
+
+    <script src="https://unpkg.com/dropzone"></script>
+    <script src="https://unpkg.com/cropperjs"></script>
 
     <script>
         $('#editUserProfile').submit((num) => {
@@ -954,34 +1044,34 @@
                             'sorry not match both password',
                             'warning'
                         )
-                        
+
                     } else {
                         Swal.fire(
                             '',
                             'old password not match',
                             'warning'
                         )
-                       
+
                     }
                 }
 
             })
         })
-        document.getElementById('image1').style.display='none'
-        document.getElementById('savepropicbtn').style.display='none'
-        function profileEdit(){
-            document.getElementById('image1').style.display='block'
-            document.getElementById('picEdit').style.display='none'
-            document.getElementById('cancelProfileEdit').style.display='block'
-            document.getElementById('savepropicbtn').style.display='block'
+        document.getElementById('image1').style.display = 'none'
+        document.getElementById('savepropicbtn').style.display = 'none'
+        function profileEdit() {
+            document.getElementById('image1').style.display = 'block'
+            document.getElementById('picEdit').style.display = 'none'
+            document.getElementById('cancelProfileEdit').style.display = 'block'
+            document.getElementById('savepropicbtn').style.display = 'block'
         }
-        document.getElementById('cancelProfileEdit').style.display='none'
-       
-        function cancelProfileEdit(){
-            document.getElementById('image1').style.display='none'
-            document.getElementById('picEdit').style.display='block'
-            document.getElementById('cancelProfileEdit').style.display='none'
-            document.getElementById('savepropicbtn').style.display='none'
+        document.getElementById('cancelProfileEdit').style.display = 'none'
+
+        function cancelProfileEdit() {
+            document.getElementById('image1').style.display = 'none'
+            document.getElementById('picEdit').style.display = 'block'
+            document.getElementById('cancelProfileEdit').style.display = 'none'
+            document.getElementById('savepropicbtn').style.display = 'none'
         }
     </script>
     <script>
@@ -990,15 +1080,15 @@
             var image1 = document.getElementById('sampleImage1');
             var modal4 = $('#modal4');
             var cropper1;
-    
+
             $('#image1').change(function (event) {
                 var files = event.target.files;
-    
+
                 var done = function (url) {
                     image1.src = url;
                     modal4.modal('show');
                 };
-    
+
                 if (files && files.length > 0) {
                     reader = new FileReader();
                     reader.onload = function (event) {
@@ -1007,10 +1097,10 @@
                     reader.readAsDataURL(files[0]);
                 }
             });
-    
+
             modal4.on('shown.bs.modal', function () {
                 cropper1 = new Cropper(image1, {
-                    aspectRatio: 7/8,
+                    aspectRatio: 7 / 8,
                     viewMode: 1,
                     preview: '#preview1'
                 });
@@ -1018,7 +1108,7 @@
                 cropper1.destroy();
                 cropper1 = null;
             });
-    
+
             $('#crop1').click(function () {
                 canvas = cropper1.getCroppedCanvas({
                     minWidth: 256,
@@ -1029,7 +1119,7 @@
                     imageSmoothingEnabled: true,
                     imageSmoothingQuality: 'high',
                 });
-    
+
                 canvas.toBlob(function (blob) {
                     url = URL.createObjectURL(blob);
                     var reader = new FileReader();
@@ -1043,25 +1133,32 @@
                 });
             });
             //modal4 and image 1 end
-    
-            
-            
-    
+
+
+
+
         });
     </script>
     <script>
-        $('#propicSave').submit((num)=>{
+        $('#propicSave').submit((num) => {
             num.preventDefault()
             $.ajax({
-                url:'/savePropic',
-                data:$('#propicSave').serialize(),
-                method:'post',
-                success:(response)=>{
+                url: '/savePropic',
+                data: $('#propicSave').serialize(),
+                method: 'post',
+                success: (response) => {
                     alert(response)
                 }
             })
         })
     </script>
+    <script>
+        function myFunction(id) {
+          var copyText = document.getElementById("myInput"+id);
+          copyText.setSelectionRange(0, 99999);
+          navigator.clipboard.writeText(copyText.value);
+        }
+        </script>
 
 
 </body>

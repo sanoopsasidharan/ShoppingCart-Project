@@ -4,6 +4,7 @@ var objectId = require('mongodb').ObjectId;
 
 const dotenv = require("dotenv");
 dotenv.config();
+var cc = require('coupon-code');
 
 module.exports = {
 
@@ -112,6 +113,49 @@ module.exports = {
             {$set:{ProOfferId:productOffer.productOfferId,proOfferName:productOffer.ProductOfferName,proOfferExpDate:productOffer.ProductOfferExpirydate,proOfferPercentage:productOffer.ProductOfferPercentage,proOffer:true}})
             response ? resolve({status:true}) : resolve(null)
             
+        })
+    },
+    // add new coupon
+    addNewCoupon:(coupon)=>{
+        let code = cc.generate();
+       coupon.code =code
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.couponCollection).insertOne(coupon).then((response)=>{
+                resolve({status:true})
+                reject({status:false})
+            })
+        })
+    },
+    // exisiting coupons list 
+    exisitingCoupons:()=>{
+        return new Promise(async(resolve,reject)=>{
+           var coupons = await db.get().collection(collection.couponCollection).find().sort({_id:-1}).toArray()
+           if(coupons){
+               resolve(coupons)
+           }else{
+               resolve(null)
+           }
+        
+        })
+    },
+    // delete coupon
+    deleteCoupon:(coupId)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.couponCollection).deleteOne({_id:objectId(coupId)}).then((response)=>{
+                resolve({status:true})
+                reject({status:false})
+            })
+        })
+    },
+    // user side show available coupons 
+    AvailableCoupons:()=>{
+        return new Promise(async(resolve,reject)=>{
+          var allCoupons = await  db.get().collection(collection.couponCollection).find().toArray()
+          if(allCoupons){
+              resolve(allCoupons)
+          }else{
+              resolve(null)
+          }
         })
     }
 }

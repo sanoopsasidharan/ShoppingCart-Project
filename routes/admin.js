@@ -9,6 +9,7 @@ const cartHelpers = require('../helpers/cart-helpers')
 const orderHelpers = require('../helpers/order-helper');
 const salesHelpers = require('../helpers/sales-helpers');
 const offerAndCouponHelpers = require('../helpers/offer-and-coupone-helper');
+const bannerHelpers = require('../helpers/banner-helper');
 const { response } = require('express');
 let fs = require ('fs')
 var addProductPopup = false;
@@ -401,15 +402,47 @@ router.post('/deleteOfferProduct',(req,res)=>{
     })
 })
 
+// coupons
+router.get('/coupons',verifyLogin,async(req,res)=>{
+   var coupons = await offerAndCouponHelpers.exisitingCoupons()
+    res.render('admin/coupons',{admin:1,coupons})
+})
+
+// add new coupon
+router.post('/add-new-coupon',(req,res)=>{
+    console.log(req.body);
+    offerAndCouponHelpers.addNewCoupon(req.body).then((response)=>{
+        res.json(response)
+    }).catch((response)=>{
+        res.json(response)
+    })
+})
+
+// delete the Coupon
+router.post('/delete-coupon',(req,res)=>{
+    console.log(req.body);
+    offerAndCouponHelpers.deleteCoupon(req.body.couponId).then((response)=>{
+        res.json(response)
+    }).catch((response)=>{
+        res.json(response)
+    })
+})
+
 // banner management
-router.get('/bannerManagement',(req,res)=>{
+router.get('/bannerManagement',verifyLogin,(req,res)=>{
     res.render('admin/banner',{admin:1})
 })
 
 // add new banner 
 router.post('/addBanner',(req,res)=>{
     console.log(req.body);
+    bannerHelpers.addBanner(req.body).then((response)=>{
+        res.redirect('/admin/bannerManagement')
+    }).catch((response)=>{
+        res.redirect('/admin/bannerManagement')
+    })
 })
+
 router.post('/salesStatus',(req,res)=>{
 
 })

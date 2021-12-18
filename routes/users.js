@@ -6,6 +6,8 @@ var router = express.Router();
 const userHelpers = require('../helpers/user-helpers')
 const cartHelpers = require('../helpers/cart-helpers')
 const orderHelpers = require('../helpers/order-helper')
+const offerAndCouponHelpers = require('../helpers/offer-and-coupone-helper');
+const bannerHelper = require('../helpers/banner-helper');
 let fs = require ('fs')
 const dotenv=require("dotenv");
 dotenv.config();
@@ -46,11 +48,11 @@ router.get('/',async (req, res,)=> {
   } 
 
   var allProducts = await productHelpers.getAllProducts()
- 
+  var banner = await bannerHelper.getAllBanner()
   await categoryHelpers.showAllCategorysubcate().then((result)=>{
 
    console.log(result);
-    res.render('user/userHome',{admin:0,user,allProducts,result,cartCount});
+    res.render('user/userHome',{admin:0,user,allProducts,result,cartCount,banner});
   })
 });
 
@@ -550,8 +552,9 @@ router.get('/checkout',verifyLogin,async(req,res)=>{
    console.log(total);
    let addresss=await userHelpers.showAllAddress(req.session.user._id)
    console.log(addresss);
+   let coupons = await offerAndCouponHelpers.AvailableCoupons()
 
-   res.render('user/checkout',{admin:0,user,result,cartCount,addresss,total})
+   res.render('user/checkout',{admin:0,user,result,cartCount,addresss,total,coupons})
 
 })
 
@@ -740,7 +743,8 @@ router.get('/userProfile',verifyLogin,async(req,res)=>{
    })
    let cartCount=await cartHelpers.getCartCount(req.session.user._id)
    let userProfil = await userHelpers.userDetails(req.session.user._id)
-   res.render('user/userProfile',{admin:0,user,result,cartCount,userProfil})
+   let coupons = await offerAndCouponHelpers.AvailableCoupons()
+   res.render('user/userProfile',{admin:0,user,result,cartCount,userProfil,coupons})
 })
 
 // edit user Details
@@ -812,8 +816,7 @@ router.get('/logout',(req,res)=>{
 
 // sample from validation 
 router.get('/sampleForm',(req,res)=>{
-
-  res.render('user/sample',{admin:9})
+  res.render('user/otp',{admin:9})
 })
 
 

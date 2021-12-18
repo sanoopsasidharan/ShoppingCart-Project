@@ -97,11 +97,47 @@
     <!-- ekka Cart End -->
 
     <!-- Main Slider Start -->
-    <div class="sticky-header-next-sec ec-main-slider section section-space-pb">
+    <% if(banner.length > 0){ %>
+        <div class="sticky-header-next-sec ec-main-slider section section-space-pb">
+            <div class="ec-slider swiper-container main-slider-nav main-slider-dot">
+              
+                <div class="swiper-wrapper">
+                    <!-- background-image: url("../images/main-slider-banner/1.jpg"); -->
+                    <% for(var i=0; i < banner.length; i++) { %>
+                    <div class="ec-slide-item swiper-slide d-flex ec-slide-2">
+                       
+                        <div class="container align-self-center">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center">
+                                    <div class="ec-slide-content slider-animation">
+                                        <h1 class="ec-slide-title"><%= banner[i].offerHead %></h1>
+                                        <h2 class="ec-slide-stitle">Sale Offer</h2>
+                                        <p><%= banner[i].offerDescription %></p>
+                                        <a href="" class="btn btn-lg btn-secondary">Order Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <% } %>
+                </div>
+                <div class="swiper-pagination swiper-pagination-white"></div>
+                <div class="swiper-buttons">
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+      <% } else{ %>  
+        <h1>bar</h1>
+     <% } %>
+     <!-- background-image: url("../images/main-slider-banner/1.jpg"); -->
+
+    <!-- <div class="sticky-header-next-sec ec-main-slider section section-space-pb">
         <div class="ec-slider swiper-container main-slider-nav main-slider-dot">
-            <!-- Main slider -->
+          
             <div class="swiper-wrapper">
-                <!-- background-image: url("../images/main-slider-banner/1.jpg"); -->
                 
                 <div style="background-image: url();" class="ec-slide-item swiper-slide d-flex ec-slide-1">
                     <div class="container align-self-center">
@@ -139,7 +175,8 @@
                 <div class="swiper-button-prev"></div>
             </div>
         </div>
-    </div>
+    </div> -->
+
     <!-- Main Slider End -->
 
     <!-- Product tab Area Start -->
@@ -808,7 +845,7 @@
                         <!-- ec 2nd Product tab start -->
                         <div class="tab-pane fade" id="tab-pro-for-men">
                             <div class="row">
-                                <!-- Product Content -->
+                                
                                 <div id="category" class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6  ec-product-content">
                                     <div class="ec-product-inner">
                                         <div class="ec-pro-image-outer">
@@ -1430,7 +1467,7 @@
                         <!-- ec 3rd Product tab start -->
                         <div class="tab-pane fade" id="tab-pro-for-women">
                             <div class="row">
-                                <!-- Product Content -->
+                              
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6  ec-product-content">
                                     <div class="ec-product-inner">
                                         <div class="ec-pro-image-outer">
@@ -2736,12 +2773,13 @@
     <!-- ec Product tab Area End -->
 
     <!-- ec Banner Section Start -->
-    <section class="ec-banner section section-space-p">
+
+    <!-- <section class="ec-banner section section-space-p">
         <h2 class="d-none">Banner</h2>
         <div class="container">
-            <!-- ec Banners Start -->
+            
             <div class="ec-banner-inner">
-                <!--ec Banner Start -->
+                
                 <div class="ec-banner-block ec-banner-block-2">
                     <div class="row">
                         <div class="banner-block col-lg-6 col-md-12 margin-b-30" data-animation="slideInRight">
@@ -2771,12 +2809,14 @@
                             </div>
                         </div>
                     </div>
-                    <!-- ec Banner End -->
+                   
                 </div>
-                <!-- ec Banners End -->
+                
             </div>
         </div>
-    </section>
+    </section> -->
+
+
     <!-- ec Banner Section End -->
 
     <!--  Category Section Start -->
@@ -2784,10 +2824,11 @@
     <!-- Category Section End -->
 
     <!--  Feature & Special Section Start -->
-    <section class="section ec-fre-spe-section section-space-p">
+
+    <!-- <section class="section ec-fre-spe-section section-space-p">
         <div class="container">
             <div class="row">
-                <!--  Feature Section Start -->
+              
                 <div class="ec-fre-section col-lg-6 col-md-6 col-sm-6 margin-b-30" data-animation="slideInRight">
                     <div class="col-md-12 text-left">
                         <div class="section-title">
@@ -2885,8 +2926,7 @@
                         </div>
                     </div>
                 </div>
-                <!--  Feature Section End -->
-                <!--  Special Section Start -->
+               
                 <div class="ec-spe-section col-lg-6 col-md-6 col-sm-6" data-animation="slideInLeft">
                     <div class="col-md-12 text-left">
                         <div class="section-title">
@@ -2982,10 +3022,12 @@
                         </div>
                     </div>
                 </div>
-                <!--  Special Section End -->
+               
             </div>
         </div>
-    </section>
+    </section> -->
+
+
     <!-- Feature & Special Section End -->
 
     <!--  services Section Start -->
@@ -3043,8 +3085,9 @@
     <!--services Section End -->
 
     <!--  offer Section Start -->
-    <section class="section ec-offer-section section-space-p section-space-m">
-        <!-- backgorund images we can edit this -->
+
+    <!-- <section class="section ec-offer-section section-space-p section-space-m">
+       
 
         <img style="width: 100%; height: 100%; object-fit: contain;" src="assets/images/offer-image/1.png" alt="">
         <h2 class="d-none">Offer</h2>
@@ -3061,7 +3104,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
+
+    
     <!-- offer Section End -->
 
     <!-- New Product Start -->
