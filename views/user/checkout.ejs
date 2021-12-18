@@ -98,44 +98,39 @@
                         <form action="" id="checkout-form">
                             <span class="ec-bill-wrap ec-bill-half">
                                 <label>First Name*</label>
-                                <input id="fname" type="text" name="name"
-                                    placeholder="Enter your Name">
+                                <input id="fname" type="text" name="name" placeholder="Enter your Name">
                                 <div class="invalid-feedback text-danger mb-3" id="name-Text">enter
                                     your Name</div>
                             </span>
-    
+
                             <span class="ec-bill-wrap ec-bill-half">
                                 <label>Number*</label>
-                                <input id="numberValidation" type="text" name="number"
-                                    placeholder="Enter your Number" maxlength="10" />
+                                <input id="numberValidation" type="text" name="number" placeholder="Enter your Number"
+                                    maxlength="10" />
                                 <div class="invalid-feedback text-danger mb-3" id="text-Number">
                                     Enter your phone number </div>
                             </span>
                             <span class="ec-bill-wrap">
                                 <label>Address</label>
-                                <input type="text" id="address" name="address"
-                                    placeholder="Address Line 1" />
+                                <input type="text" id="address" name="address" placeholder="Address Line 1" />
                                 <div class="invalid-feedback text-danger mb-3" id="address-Text">
                                     enter your Name</div>
                             </span>
                             <span class="ec-bill-wrap">
                                 <label>Location</label>
-                                <input id="location" type="text" name="location"
-                                    placeholder=" current location" />
+                                <input id="location" type="text" name="location" placeholder=" current location" />
                                 <div class="invalid-feedback text-danger mb-3" id="location-Text">
                                     enter your location</div>
                             </span>
                             <span class="ec-bill-wrap">
                                 <label>City</label>
-                                <input id="city" type="text" name="City"
-                                    placeholder=" current city" />
+                                <input id="city" type="text" name="City" placeholder=" current city" />
                                 <div class="invalid-feedback text-danger mb-3" id="city-Text">enter
                                     your city</div>
                             </span>
                             <span class="ec-bill-wrap ec-bill-half">
                                 <label>Post Code</label>
-                                <input type="text" id="pinValidation" name="pincode"
-                                    placeholder="Pin code" />
+                                <input type="text" id="pinValidation" name="pincode" placeholder="Pin code" />
                                 <div class="invalid-feedback text-danger mb-3" id="text-pin">Enter
                                     your pin </div>
                             </span>
@@ -146,8 +141,7 @@
                                     your state </div>
                             </span>
                             <input type="text" name="userId" value="<%=user._id%>" id="" hidden>
-                            <button class="btn btn btn-primary Flat-right"
-                                type="submit">Submit</button>
+                            <button class="btn btn btn-primary Flat-right" type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -273,7 +267,8 @@
                                         <div style="display: flex;">
                                             <h3 class="ec-checkout-title">Address</h3>
                                         </div>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
                                             + address
                                         </button>
                                     </div>
@@ -383,19 +378,20 @@
                                                             <div>
                                                                 <span class="text-left">Product price</span>
                                                                 <span class="text-right">₹ <%= total.OrginalPrice %>
-                                                                        </span>
+                                                                </span>
 
                                                             </div>
                                                             <% } else{ %>
                                                                 <div>
                                                                     <span class="text-left">Product price</span>
                                                                     <span class="text-right">₹ <%= total.OrginalPrice %>
-                                                                            </span>
+                                                                    </span>
                                                                 </div>
                                                                 <div>
                                                                     <span class="text-left">payable price</span>
-                                                                    <span class="text-right text-success">₹ <%= total.OfferTotal %>
-                                                                            </span>
+                                                                    <span class="text-right text-success">₹ <%=
+                                                                            total.OfferTotal %>
+                                                                    </span>
                                                                 </div>
 
                                                                 <% } %>
@@ -403,36 +399,39 @@
 
                                                                     <div>
                                                                         <span class="text-left">Delivery Charges</span>
-                                                                        <span class="text-right">$80.00</span>
+                                                                        <span class="text-right">₹ 00.00</span>
                                                                     </div>
                                                                     <div>
-                                                                        <span class="text-left">Coupan Discount</span>
-                                                                        <span class="text-right"><a
-                                                                                class="ec-checkout-coupan">Apply
-                                                                                Coupan</a></span>
+                                                                        <span id="coupon-discount"
+                                                                            class="text-left">Coupan Discount</span>
+                                                                        <span id="coupon-discount-amount"
+                                                                            class="text-right"> </span>
                                                                     </div>
-                                                                    <!-- <div class="ec-checkout-coupan-content">
-                                                                <form class="ec-checkout-coupan-form" name="ec-checkout-coupan-form"
-                                                                    method="post" action="#">
-                                                                    <input class="ec-coupan" type="text" required=""
-                                                                        placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
-                                                                    <button class="ec-coupan-btn button btn-primary" type="submit"
-                                                                        name="subscribe" value="">Apply</button>
-                                                                </form>
-                                                            </div> -->
+
+                                                                    <div>
+                                                                        <input type="text" name="couponCD" value=""
+                                                                            id="couponValue" >
+                                                                    </div>
+
                                                                     <% if(total.OfferTotal===total.OrginalPrice ){ %>
                                                                         <div class="ec-checkout-summary-total">
                                                                             <span class="text-left">Total Amount</span>
-                                                                            <span class="text-right">₹ <%= total.OrginalPrice %>
-                                                                                    </span>
+                                                                            <span id="total-price"
+                                                                                class="text-right coupon-total">₹
+                                                                                <%= total.OrginalPrice %>
+                                                                            </span>
                                                                         </div>
                                                                         <% } else{ %>
                                                                             <div class="ec-checkout-summary-total">
-                                                                                <span class="text-left">Total Amount</span>
-                                                                                <span class="text-right">₹ <%= total.OfferTotal %>
-                                                                                        </span>
+                                                                                <span class="text-left">Total
+                                                                                    Amount</span>
+                                                                                <span class="text-right coupon-total">₹
+                                                                                    <%= total.OfferTotal %>
+                                                                                </span>
                                                                             </div>
                                                                             <% } %>
+
+
                                                     </div>
 
 
@@ -626,7 +625,7 @@
                                 </div> -->
 
                             </div>
-                            
+
                             <!-- <span class="ec-check-order-btn">
                                 <a class="btn btn-primary" >Place Order</a>
                             </span> -->
@@ -677,59 +676,76 @@
                         </div>
                        
                     </div> -->
-                    
-                    
+
+
                     <div class="ec-sidebar-wrap ec-check-pay-img-wrap">
-                      
+
                         <div class="ec-sidebar-block">
                             <div class="ec-sb-title">
                                 <h3 class="ec-sidebar-title">Coupon</h3>
                             </div>
                             <div class="ec-sb-block-content">
-                                <div>
+                                <div style="display: flex; justify-content: center;">
 
-                                    
-                                        <% if(coupons.length> 0){ %>
-                                            <table>
-                                                
-                                                <% for(var i=0; i < coupons.length; i++) { %>
-                                                    <tr>
-                                                        <td>
-                                                             <span style="color: black;"><%= coupons[i].couponName %></span> &nbsp; &nbsp; &nbsp; <span style="color: black;"><%= coupons[i].couponAmount %></span> 
-                                                        </td>
-                                                        
-                                                        
-                                                        
-                                                        <td>
-                                                            <div style="display: flex;">
-                    
-                                                                <input style="border: 0px;" type="text" value="<%= coupons[i].code %>" id="myInput<%= coupons[i]._id %>" disabled="disabled">
-                                                                <button type="button" onclick="myFunction('<%= coupons[i]._id %>')">Copy</button>
-                                                               
-                                                            </div>
-                                                        </td>
-                                                        
-                                                    </tr>
-                                                    <% } %>
-                                            </table>
-                                            <% } else{ %>
-                                                <h1>bar</h1>
+
+                                    <% if(coupons.length> 0){ %>
+                                        <table>
+
+                                            <% for(var i=0; i < coupons.length; i++) { %>
+                                                <tr>
+                                                    <td>
+                                                        <span style="color: black;">
+                                                            <%= coupons[i].couponName %>
+                                                        </span> &nbsp; &nbsp; &nbsp; <span style="color: black;">
+                                                            <%= coupons[i].couponAmount %>
+                                                        </span>
+                                                    </td>
+
+                                                    <td>
+                                                        <div style="display: flex;">
+
+                                                            <input style="border: 0px;width: 180px;" type="text"
+                                                                value="<%= coupons[i].code %>"
+                                                                id="myInput<%= coupons[i]._id %>" disabled="disabled">
+                                                            <button type="button"
+                                                                onclick="myFunction('<%= coupons[i]._id %>')">Copy</button>
+
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
                                                 <% } %>
-                    
-                                   
+                                        </table>
+                                        <% } else{ %>
+                                            <h1>bar</h1>
+                                            <% } %>
+
+
                                 </div>
                                 <div>
                                     <h3 class="ec-sidebar-title">Apply offer</h3>
-                                    <form action="">
-                
-                                        <input type="text" name="" id="" placeholder="Enter Coupon Code ...">
-                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                    <form id="apply-coupons">
+                                        <% if(total.OfferTotal===total.OrginalPrice ){ %>
+                                            <input type="text" value="<%= total.OrginalPrice %>" name="total" id=""
+                                                hidden>
+                                            <% } else{ %>
+                                                <input type="text" name="total" value="<%= total.OfferTotal %>" id=""
+                                                    hidden>
+                                                <% } %>
+
+                                                    <input
+                                                        style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;"
+                                                        type="text" name="cpCode" id=""
+                                                        placeholder="Enter Coupon Code ...">
+                                                    <p id="couponErorr" style="color: red;"> </p>
+                                                    <button style="margin-top: 10px; border-radius: 5px;"
+                                                        class="btn btn-mini btn-primary" type="submit">Submit</button>
 
                                     </form>
                                 </div>
                             </div>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -1126,7 +1142,7 @@
             </div>
             <!--/ End Floating Panel Container -->
             <!-- Start Right Floating Button-->
-            
+
             <!--/ End Right Floating Button-->
         </div>
         <!-- Whatsapp end -->
@@ -1228,6 +1244,46 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script>
+
+            document.getElementById('coupon-discount').style.display = 'none'
+            document.getElementById('coupon-discount-amount').style.display = 'none'
+            document.querySelector('#couponErorr').innerHTML = ''
+
+            $('#apply-coupons').submit((num) => {
+                num.preventDefault()
+                $.ajax({
+                    url: '/checkCoupon',
+                    data: $('#apply-coupons').serialize(),
+                    method: 'post',
+                    success: (response) => {
+                        if (response.status) {
+                            document.getElementById('coupon-discount').style.display = 'block'
+                            document.getElementById('coupon-discount-amount').style.display = 'block'
+                            document.getElementById('coupon-discount-amount').innerHTML = response.coupone.percentage + '%'
+                            document.getElementById('couponValue').value = response.coupone.code
+
+                            document.querySelector('#couponErorr').innerHTML = ''
+
+                            document.querySelector(".coupon-total").innerHTML = '₹ ' + response.applycoupon
+
+                            var toatalPrice = document.getElementById("total-price").innerText
+
+                        } else if (response.useed) {
+                            document.getElementById('coupon-discount').style.display = 'none'
+                            document.getElementById('coupon-discount-amount').style.display = 'none'
+                            document.querySelector('#couponErorr').innerHTML = 'already use this coupon'
+                            document.getElementById('couponValue').value = ''
+                        } else {
+                            document.getElementById('couponValue').value = ''
+                            document.getElementById('coupon-discount').style.display = 'none'
+                            document.getElementById('coupon-discount-amount').style.display = 'none'
+                            document.querySelector('#couponErorr').innerHTML = 'invalid coupon code'
+
+                        }
+
+                    }
+                })
+            })
             // $('#checkout-form').submit((e) => {
             //     e.preventDefault()
             //     $.ajax({
@@ -1256,19 +1312,19 @@
                     method: 'post',
                     data: $('#address-form').serialize(),
                     success: (response) => {
-                        if(response.CODsuccess){
+                        if (response.CODsuccess) {
 
                             Swal.fire({
-                            title: 'congratulation',
-                            text: "Your order placed successfully",
-                            icon: 'success',
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33'
-                        }).then((result) => {
-                            location.href = '/orders-success';
-                            
-                        })
-                        }else{
+                                title: 'congratulation',
+                                text: "Your order placed successfully",
+                                icon: 'success',
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33'
+                            }).then((result) => {
+                                location.href = '/orders-success';
+
+                            })
+                        } else {
                             razorpayPayment(response)
                         }
                     }
@@ -1631,6 +1687,20 @@
 
 
 
+        </script>
+        <script>
+            function myFunction(id) {
+                /* Get the text field */
+                var copyText = document.getElementById("myInput" + id);
+
+                /* Select the text field */
+
+                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                /* Copy the text inside the text field */
+                navigator.clipboard.writeText(copyText.value);
+
+            }
         </script>
 
 </body>
