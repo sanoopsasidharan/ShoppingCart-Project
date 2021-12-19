@@ -560,9 +560,9 @@ router.get('/checkout', verifyLogin, async (req, res) => {
 })
 
 // check Coupon 
-router.post('/checkCoupon', async (req, res) => {
+router.post('/checkCoupon',verifyLogin, async (req, res) => {
   console.log(req.body);
-  offerAndCouponHelpers.checkingVaildCoupone(req.body.cpCode,req.body.total).then((response) => {
+  offerAndCouponHelpers.checkingVaildCoupone(req.body.cpCode,req.body.total,req.session.user._id).then((response) => {
     
     res.json(response)
   })
@@ -596,11 +596,11 @@ router.post('/addAddressCheckout', verifyLogin, (req, res) => {
   // })
 })
 
-router.post('/placeOrders', async (req, res) => {
+router.post('/placeOrders',verifyLogin, async (req, res) => {
   var obj = req.body
   console.log('place order req.body');
   console.log(req.body);
-  var couponeValue = await offerAndCouponHelpers.checkCouponVaild(req.body.couponCD)
+  var couponeValue = await offerAndCouponHelpers.checkCouponVaild(req.body.couponCD,req.session.user._id)
 
   let products = await cartHelpers.getCartProductList(req.body.userId)
   let totalPrice = await cartHelpers.getTotalAmount(req.body.userId)

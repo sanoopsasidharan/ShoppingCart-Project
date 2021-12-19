@@ -12,6 +12,7 @@ module.exports = {
     doSignup: (userData) => {
         return new Promise(async (resolve, reject) => {
 
+            userData.copArray = []
             console.log(userData.email);
             userData.password = await crypto.createHmac('sha256', userData.password).update('hellos').digest('hex');
             db.get().collection(collection.userCollection).findOne({ $or: [{ number: userData.number }, { email: userData.email }] }).then((findNumber) => {

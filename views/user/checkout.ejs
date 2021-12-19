@@ -410,7 +410,7 @@
 
                                                                     <div>
                                                                         <input type="text" name="couponCD" value=""
-                                                                            id="couponValue" >
+                                                                            id="couponValue" hidden>
                                                                     </div>
 
                                                                     <% if(total.OfferTotal===total.OrginalPrice ){ %>
@@ -737,8 +737,9 @@
                                                         style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;"
                                                         type="text" name="cpCode" id=""
                                                         placeholder="Enter Coupon Code ...">
-                                                    <p id="couponErorr" style="color: red;"> </p>
-                                                    <button style="margin-top: 10px; border-radius: 5px;"
+                                                    <p id="couponErorr" style=" margin-top: 20px;"> </p>
+                                                    <p id="couponSucess" style=" margin-top: 20px;"> </p>
+                                                    <button style="margin-top: 0px; border-radius: 5px;"
                                                         class="btn btn-mini btn-primary" type="submit">Submit</button>
 
                                     </form>
@@ -1248,6 +1249,8 @@
             document.getElementById('coupon-discount').style.display = 'none'
             document.getElementById('coupon-discount-amount').style.display = 'none'
             document.querySelector('#couponErorr').innerHTML = ''
+            let orginalPrice = document.querySelector('.coupon-total').innerText
+
 
             $('#apply-coupons').submit((num) => {
                 num.preventDefault()
@@ -1263,20 +1266,30 @@
                             document.getElementById('couponValue').value = response.coupone.code
 
                             document.querySelector('#couponErorr').innerHTML = ''
+                            document.querySelector('#couponSucess').style.display='block'
+                            document.querySelector('#couponSucess').style.color = "green";
+                            document.querySelector('#couponSucess').innerHTML = 'Coupon add'
+                            let orginalPrice = document.querySelector('.coupon-total').innerText
 
                             document.querySelector(".coupon-total").innerHTML = '₹ ' + response.applycoupon
 
                             var toatalPrice = document.getElementById("total-price").innerText
 
                         } else if (response.useed) {
+                            document.querySelector('#couponSucess').style.display='none'
+                            document.querySelector(".coupon-total").innerHTML = orginalPrice
                             document.getElementById('coupon-discount').style.display = 'none'
                             document.getElementById('coupon-discount-amount').style.display = 'none'
+                            document.querySelector('#couponErorr').style.color = "red";
                             document.querySelector('#couponErorr').innerHTML = 'already use this coupon'
                             document.getElementById('couponValue').value = ''
                         } else {
+                            document.querySelector('#couponSucess').style.display='none'
+                            document.querySelector(".coupon-total").innerHTML = orginalPrice
                             document.getElementById('couponValue').value = ''
                             document.getElementById('coupon-discount').style.display = 'none'
                             document.getElementById('coupon-discount-amount').style.display = 'none'
+                            document.querySelector('#couponErorr').style.color = "red";
                             document.querySelector('#couponErorr').innerHTML = 'invalid coupon code'
 
                         }

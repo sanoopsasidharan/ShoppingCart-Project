@@ -158,9 +158,12 @@ module.exports = {
             }
         })
     },
-    checkingVaildCoupone: (cpCode,total) => {
+    checkingVaildCoupone: (cpCode, total,userId) => {
+        console.log(userId);
         return new Promise(async (resolve, reject) => {
-            let userUseCoupone = await db.get().collection(collection.userCollection).findOne({ couponeId: cpCode })
+            let userUseCoupone = await db.get().collection(collection.userCollection).findOne({_id:objectId(userId),copArray:cpCode})
+            // .findOne({$and:[{_id:objectId(userId)},{ copArray: [cpCode] }]})
+            
             console.log(userUseCoupone);
             if (userUseCoupone) {
                 resolve({ useed: true })
@@ -168,8 +171,8 @@ module.exports = {
                 var coupone = await db.get().collection(collection.couponCollection).findOne({ code: cpCode })
                 if (coupone) {
                     console.log(coupone);
-                    var applycoupon = Math.round (total - (total * coupone.percentage)/100)
-                    resolve({ status: true, coupone,applycoupon })
+                    var applycoupon = Math.round(total - (total * coupone.percentage) / 100)
+                    resolve({ status: true, coupone, applycoupon })
                 } else {
 
                     resolve({ status: false })
@@ -179,17 +182,34 @@ module.exports = {
 
         })
     },
-    checkCouponVaild: (code) => {
-        return new Promise(async(resolve, reject) => {
-            var coupone = await db.get().collection(collection.couponCollection).findOne({code:code})
-            if(coupone){
-                resolve(coupone)
-            }else{
+    checkCouponVaild: (code, userId) => {
+        return new Promise(async (resolve, reject) => {
+            var coupone = await db.get().collection(collection.couponCollection).findOne({ code: code })
+
+            if (coupone) {
+                if (coupone.couponQuantity > 0) {
+                    var insert = await db.get().collection(collection.userCollection).updateOne({ _id: objectId(userId) }, { $push: { copArray: coupone.code } })
+                    console.log(coupone.couponQuantity);
+
+                    if (insert) {
+                        CpQuantity= coupone.couponQuantity - 1
+                        var couponQuantity = await db.get().collection(collection.couponCollection).updateOne({_id:objectId(coupone._id)},{$set:{couponQuantity:CpQuantity}})
+                        if(CpQuantity <= 0){
+                            var deleteCoupon = await db.get().collection(collection.couponCollection).deleteOne({_id:objectId(coupone._id)})
+                        }
+                    }
+                    resolve(coupone)
+
+                } else {
+                    var deleteCoupon = await db.get().collection(collection.couponCollection).deleteOne({_id:objectId(coupone._id)})
+                    resolve(null)
+                }
+                
+            } else {
                 resolve(null)
             }
         })
 
     }
-
 
 }
