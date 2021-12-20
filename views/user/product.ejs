@@ -190,6 +190,20 @@
                                             <div class="ec-pro-image-outer">
                                                 <a href="/productdetails?id=<%= product[i]._id %>">
                                                     <div class="ec-pro-image">
+
+                                                        <% if( product[i].proOfferPercentage>0 ||product[i].cateOfferPercentage>0){ %>
+                                                            <% if( product[i].proOfferPercentage > product[i].cateOfferPercentage){ %>
+                                                               
+                                                                <span class="percentage" style="user-select: auto;"><%= product[i].proOfferPercentage %> %</span>
+                                                                <% } else{ %> 
+                                                                    <span class="percentage" style="user-select: auto;"><%= product[i].proOfferPercentage %> %</span>
+                                                                    
+                                                                    <% } %>
+                                                        
+                                                          <% } else{ %>  
+                                                            
+                                                         <% } %>
+                                                        
                                                         <a href="product-left-sidebar.html" class="image">
                                                             <img class="main-image"
                                                                 src="/productimage/image1/<%=product[i]._id%>_1.jpg"
@@ -244,13 +258,27 @@
                                                 <i class="ecicon eci-star fill"></i>
                                                 <i class="ecicon eci-star"></i>
                                             </div> -->
-                                                <!-- <div  class="ec-pro-list-desc" style="text-align: center;align-items: center;">
-                                                    <%= product[i].productdiscription %>
-                                                </div> -->
+                                                <div  class="ec-pro-list-desc" style="text-align: center;align-items: center;">
+                                                   
+
+                                                   
+                                                     
+                                                </div>
                                                 <span style="display: flex;justify-content: space-around;"
                                                     class="ec-price">
+                                                    <% if( product[i].proOfferPercentage>0 ||product[i].cateOfferPercentage>0){ %>
+                                                        <span class="old-price">Rs <%= product[i].price %></span>
+                                                        <% if( product[i].proOfferPercentage > product[i].cateOfferPercentage){ %>
 
-                                                    <span class="new-price">Rs <%= product[i].price %></span>
+                                                            <span class="new-price">Rs <%= Math.round (product[i].price * 0.01*(100-product[i].proOfferPercentage)) %></span>
+                                                            <% } else{ %> 
+                                                                <span class="new-price">Rs <%= Math.round (product[i].price * 0.01*(100-product[i].cateOfferPercentage)) %></span>
+                                                                <% } %>
+                                                    
+                                                      <% } else{ %>  
+                                                        <span class="new-price">Rs <%= product[i].price %></span>
+                                                     <% } %>
+                                                    <!-- <span class="new-price">Rs <%= product[i].price %></span> -->
                                                     <span>
                                                         <!-- <p><%= product[i]._id %></p> -->
                                                         <a href="/buyNowCheckOut?id=<%= product[i]._id %>"

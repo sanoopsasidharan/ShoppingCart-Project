@@ -352,7 +352,7 @@ router.post('/addNewcategoryOffer',(req,res)=>{
 // delete category offer 
 router.post('/deleteCategoryOffer',(req,res)=>{
     console.log(req.body.offerId);
-    offerAndCouponHelpers.deleteCategoryOffer(req.body.offerId).then((response)=>{
+    offerAndCouponHelpers.deleteCategoryOffer(req.body.offerId,req.body.catename).then((response)=>{
         console.log(response);
         res.json(response)
     }).catch((err)=>{

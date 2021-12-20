@@ -35,6 +35,7 @@ module.exports = {
     showAllCategoryOffer: () => {
         return new Promise(async (resolve, reject) => {
             var alloffers = await db.get().collection(collection.categoryOfferCollecion).find().toArray()
+            console.log(alloffers);
             if (alloffers) {
                 resolve(alloffers)
             } else {
@@ -42,11 +43,18 @@ module.exports = {
             }
         })
     },
-    deleteCategoryOffer: (cateOfferId) => {
+    deleteCategoryOffer: (cateOfferId,cateName) => {
         return new Promise((resolve, reject) => {
             db.get().collection(collection.categoryOfferCollecion).deleteOne({ _id: objectId(cateOfferId) }).then((response) => {
-                resolve({ status: true })
-                reject({ status: false })
+                db.get().collection(collection.productCollection)
+                .updateMany({ cateOfferId: cateOfferId }, { $set: { cateOfferId: '', cateOfferPercentage: 0, cateOfferExdate: '' } }).then((response) => {
+                    db.get().collection(collection.categoryCollection).updateOne({category:cateName},{$set:{cateOffer:''}})
+                     
+                    resolve({ status: true })
+                    reject({ status: false })
+                })
+                // resolve({ status: true })
+                // reject({ status: false })
             })
         })
     },

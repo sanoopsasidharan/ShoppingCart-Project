@@ -184,6 +184,7 @@
                                                     <tr>
                                                         <th scope="col">Offer Name</th>
                                                         <th scope="col">Expiry date</th>
+                                                        <th scope="col">Category</th>
                                                         <th scope="col">Percentage</th>
                                                         <th scope="col"> action</th>
                                                     </tr>
@@ -198,14 +199,18 @@
                                                                 <%= allOffers[i].expirydate %>
                                                             </td>
                                                             <td>
+                                                                <%= allOffers[i].category %>
+                                                            </td>
+                                                            <td>
                                                                 <%= allOffers[i].percentage %>
                                                             </td>
+                                                           
 
                                                             <td>
                                                                 <div>
-                                                                    <a class="btn btn-outline-info" href="">Edit</a>
+                                                                    <!-- <a class="btn btn-outline-info" href="">Edit</a> -->
                                                                     <button type="button" class="btn btn-outline-danger"
-                                                                        onclick="deleterOffer('<%= allOffers[i]._id %>')">Delete</button>
+                                                                        onclick='deleterOffer("<%= allOffers[i]._id %>","<%= allOffers[i].category %>")'>Delete</button>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -458,7 +463,8 @@
                 }
             })
         })
-        function deleterOffer(offerId) {
+        function deleterOffer(offerId,catename) {
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't delete this!",
@@ -471,7 +477,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         url: "/admin/deleteCategoryOffer",
-                        data: { offerId: offerId },
+                        data: { offerId: offerId ,catename:catename},
                         method: 'post',
                         success: (response) => {
                             if (response.status) {

@@ -62,7 +62,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Add address</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -117,7 +117,13 @@
                             <input type="text" name="userId" value="<%=user._id%>" id="" hidden>
 
                             <div style="display: flex; justify-content: right; width: 100%; padding-top: 10px;">
-                                <button class="btn btn btn-primary " type="submit">Submit</button>
+                                <button id="submitbtn" class="btn btn btn-primary " type="submit">Submit</button>
+
+                                <div id="spinninerId" style="    margin-top: 16px;margin-right: 20px; background-color:rgb(10, 20, 153) ;" class="spinner-grow spinner-grow-md" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                  </div>
+
+                                  
                             </div>
 
                         </form>
@@ -264,7 +270,8 @@
                                                         <th scope="col">City</th>
                                                         <th scope="col">Edit</th>
                                                         <th scope="col">Delete</th>
-
+                                                        
+                                                          
 
                                                     </tr>
 
@@ -813,8 +820,12 @@
     <!-- Main Js -->
     <script src="assets/js/main.js"></script>
     <script>
+         $('#spinninerId').hide();
         $('#add-Address').submit((num) => {
             num.preventDefault()
+            
+            $('#submitbtn').hide();
+            $('#spinninerId').show();
             $.ajax({
                 url: '/addAddressCheckout',
                 data: $('#add-Address').serialize(),
@@ -828,8 +839,7 @@
                         timer: 1500
                     })
                     location.reload();
-                    // $("#addressList").load(location.href + " #addressList");
-                    // $("#form-address").load(location.href + " #form-address");
+                   
                 }
             })
         })

@@ -12,6 +12,16 @@ let fs = require('fs')
 const dotenv = require("dotenv");
 dotenv.config();
 
+// paypal 
+const paypal = require('paypal-rest-sdk');
+
+paypal.configure({
+  'mode': 'sandbox', //sandbox or live
+  'client_id': 'AUDAZeJeCHZavTHiIJqPPaYC-Vu1BagBcz8KIUCIP3vYb5Lj9V6M6Wrw-3XNzCX6DeikBPp81G8ktuS1',
+  'client_secret': 'EKKgX7c9-nO1_81Sm39LJZlMI8HAslRbj6fWxDNnJlG9Yd2pZChVxo8tt_LjNQ60ZkWaaeZIMmHmpHlp'
+});
+
+
 var logo = false
 var blocked = false
 
@@ -48,6 +58,7 @@ router.get('/', async (req, res,) => {
   }
 
   var allProducts = await productHelpers.getAllProducts()
+  console.log(allProducts);
   var banner = await bannerHelper.getAllBanner()
   await categoryHelpers.showAllCategorysubcate().then((result) => {
 
@@ -560,10 +571,10 @@ router.get('/checkout', verifyLogin, async (req, res) => {
 })
 
 // check Coupon 
-router.post('/checkCoupon',verifyLogin, async (req, res) => {
+router.post('/checkCoupon', verifyLogin, async (req, res) => {
   console.log(req.body);
-  offerAndCouponHelpers.checkingVaildCoupone(req.body.cpCode,req.body.total,req.session.user._id).then((response) => {
-    
+  offerAndCouponHelpers.checkingVaildCoupone(req.body.cpCode, req.body.total, req.session.user._id).then((response) => {
+
     res.json(response)
   })
 })
@@ -596,20 +607,20 @@ router.post('/addAddressCheckout', verifyLogin, (req, res) => {
   // })
 })
 
-router.post('/placeOrders',verifyLogin, async (req, res) => {
+router.post('/placeOrders', verifyLogin, async (req, res) => {
   var obj = req.body
   console.log('place order req.body');
   console.log(req.body);
-  var couponeValue = await offerAndCouponHelpers.checkCouponVaild(req.body.couponCD,req.session.user._id)
+  var couponeValue = await offerAndCouponHelpers.checkCouponVaild(req.body.couponCD, req.session.user._id)
 
   let products = await cartHelpers.getCartProductList(req.body.userId)
   let totalPrice = await cartHelpers.getTotalAmount(req.body.userId)
   let address = await userHelpers.getOneAddress(req.body.adderssId, req.session.user._id)
   if (couponeValue) {
-  //  var sampletotal = await totalPrice.OfferTotal-couponeValue.percentage 
-   var sampletotal = Math.round (totalPrice.OfferTotal - (totalPrice.OfferTotal * couponeValue.percentage)/100)
-   console.log(sampletotal);
-   totalPrice.OfferTotal= sampletotal
+    //  var sampletotal = await totalPrice.OfferTotal-couponeValue.percentage 
+    var sampletotal = Math.round(totalPrice.OfferTotal - (totalPrice.OfferTotal * couponeValue.percentage) / 100)
+    console.log(sampletotal);
+    totalPrice.OfferTotal = sampletotal
   }
   //  console.log(req.body['paymentmethod']==='COD');
   if (req.body['paymentmethod'] === "COD") {
@@ -819,6 +830,92 @@ router.post('/savePropic', verifyLogin, (req, res) => {
   res.redirect('/userProfile')
 
 })
+
+// paypal 
+router.get('/paypal', (req, res) => {
+  res.render('user/paypal', { admin: 4 })
+})
+
+router.post('/pay', (req, res) => {
+  const create_payment_json = {
+    "intent": "sale",
+    "payer": {
+      "payment_method": "paypal"
+    },
+    "redirect_urls": {
+      "return_url": "http://localhost:3000/success?color1=red&color2=blue",
+      "cancel_url": "http://localhost:3000/cancel"
+    },
+    "transactions": [{
+      "item_list": {
+        "items": [{
+          "name": "Red Sox Hat",
+          "sku": "001",
+          "price": "9.00",
+          "currency": "USD",
+          "quantity": 1
+        }]
+      },
+      "amount": {
+        "currency": "USD",
+        "total": "9.00"
+      },
+      "description": "Hat for the best team ever"
+    }]
+  };
+
+  paypal.payment.create(create_payment_json, function (error, payment) {
+    if (error) {
+      throw error;
+    } else {
+      for (let i = 0; i < payment.links.length; i++) {
+        if (payment.links[i].rel === 'approval_url') {
+          res.redirect(payment.links[i].href);
+        }
+      }
+    }
+  });
+
+});
+
+// sucess page in paypal
+
+
+router.get('/success', (req, res) => {
+  console.log(req.query.color1);
+  console.log(req.query.color2);
+  const payerId = req.query.PayerID;
+  const paymentId = req.query.paymentId;
+
+  const execute_payment_json = {
+    "payer_id": payerId,
+    "transactions": [{
+      "amount": {
+        "currency": "USD",
+        "total": "9.00"
+      }
+    }]
+  };
+
+  paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
+    if (error) {
+      console.log(error.response);
+      throw error;
+    } else {
+      console.log(JSON.stringify(payment));
+      res.redirect('/orders-success')
+    }
+  });
+});
+
+
+
+
+// cancel page in paypal
+router.get('/cancel', (req, res) => res.send('Cancelled'));
+
+
+
 
 
 

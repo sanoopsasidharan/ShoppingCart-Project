@@ -207,25 +207,14 @@
                         <table>
                             <tr>
                                 <th>Coupon Name</th>
-                                <th>Coupon Expiry date</th>
-                                <th>Coupon Percentage</th>
-                                <th>Minimum price</th>
-                                <th>Coupons code</th>
+                                
                             </tr>
                             <% for(var i=0; i < coupons.length; i++) { %>
                                 <tr>
                                     <td>
                                         <%= coupons[i].couponName %>
                                     </td>
-                                    <td>
-                                        <%= coupons[i].couponExDate %>
-                                    </td>
-                                    <td>
-                                        <%= coupons[i].couponAmount %>
-                                    </td>
-                                    <td>
-                                        <%= coupons[i].minimumPrice %>
-                                    </td>
+                                    
                                     <td>
                                         <div style="display: flex;">
 
@@ -239,7 +228,7 @@
                                 <% } %>
                         </table>
                         <% } else{ %>
-                            <h1>bar</h1>
+                            <h5>no </h5>
                             <% } %>
 
                 </div>
@@ -419,7 +408,7 @@
 
                                                     <button type="button" class="btn" data-bs-toggle="modal"
                                                         data-bs-target="#exampleModalCoupon">
-                                                        Available coupons
+                                                        Wallet
                                                     </button>
                                                     <br>
                                                     <button type="button" class="btn bg-danger text-white"

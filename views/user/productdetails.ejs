@@ -335,8 +335,20 @@
                                         </div> -->
                                         <div class="ec-single-price-stoke">
                                             <div class="ec-single-price">
+                                                <% if( product.proOfferPercentage>0 ||product.cateOfferPercentage>0){ %>
+                                                    <span class="old-price">Rs <%= product.price %></span>
+                                                    <% if( product.proOfferPercentage > product.cateOfferPercentage){ %>
+
+                                                        <span class="new-price">Rs <%= Math.round (product.price * 0.01*(100-product.proOfferPercentage)) %></span>
+                                                        <% } else{ %> 
+                                                            <span class="new-price">Rs <%= Math.round (product.price * 0.01*(100-product.cateOfferPercentage)) %></span>
+                                                            <% } %>
+                                                
+                                                  <% } else{ %>  
+                                                    <span class="new-price">Rs <%= product.price %></span>
+                                                 <% } %>
                                                 <!-- <span class="ec-single-ps-title">As low as</span> -->
-                                                <span class="new-price">₹ <%= product.price %></span>
+                                                <!-- <span class="new-price">₹ <%= product.price %></span> -->
                                             </div>
                                             <div class="ec-single-stoke">
                                                 <span class="ec-single-ps-title">IN STOCK :&nbsp;&nbsp;<span

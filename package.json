@@ -19,6 +19,7 @@
     "http-errors": "~1.6.3",
     "mongodb": "^4.1.4",
     "morgan": "~1.9.1",
+    "paypal-rest-sdk": "^1.8.1",
     "razorpay": "^2.8.0",
     "twilio": "^3.71.1",
     "uuid": "^3.4.0"
