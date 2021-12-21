@@ -313,7 +313,10 @@
                                                         <tbody>
                                                             <% for(var j=0; j<addresss.length; j++) {%>
                                                                 <tr>
-                                                                    <td><span> <input onchange="changeAddress('<%= addresss[j].address.addresId%>')" id="addressId" style="width: 17px!important;"
+                                                                    <td><span> <input
+                                                                                onchange="changeAddress('<%= addresss[j].address.addresId%>')"
+                                                                                id="addressId"
+                                                                                style="width: 17px!important;"
                                                                                 name="adderssId"
                                                                                 value="<%= addresss[j].address.addresId%>"
                                                                                 type="radio" checked></span></td>
@@ -452,10 +455,10 @@
 
 
                                         <form action="/paypal" method="post">
-                                            <input type="text" name="addressId" id="addressIdPaypal">
-                                            <input type="text" name="couponCD" id="couponCD">
-                                            <input type="text" name="paymentmethod" value="ONLINE" id="">
-                                            <button type="submit" class="btn btn-info">buy</button>
+                                            <input type="text" name="addressId" id="addressIdPaypal" hidden>
+                                            <input type="text" name="couponCD" id="couponCD" hidden>
+                                            <input type="text" name="paymentmethod" value="ONLINE" id="" hidden>
+                                            <button type="submit" class="btn btn-info">paypal</button>
                                         </form>
 
                                         <!-- <div class="container">
@@ -699,6 +702,7 @@
                                 <h3 class="ec-sidebar-title">Coupon</h3>
                             </div>
                             <div class="ec-sb-block-content">
+
                                 <div style="display: flex; justify-content: center;">
 
 
@@ -735,6 +739,19 @@
                                             <% } %>
 
 
+                                </div>
+                                <div>
+                                    <h3>wallet</h3>
+                                    <form>
+                                        <input type="text" name="refarralamount" value="<%= userProfil.refarralamount %>" id="">
+                                       <div style="display: flex;justify-content: space-between;" >
+                                           <div style="display: flex;justify-content: center; margin: 10px;">
+                                            <h3><%= userProfil.refarralamount %></h3>
+                                           </div>
+                                        <button style="margin-top: 0px; border-radius: 5px;"
+                                                        class="btn btn-mini btn-primary" type="submit">applie</button>
+                                       </div>
+                                    </form>
                                 </div>
                                 <div>
                                     <h3 class="ec-sidebar-title">Apply offer</h3>
@@ -1303,16 +1320,13 @@
 
             // address
             let address = document.getElementById('addressId').value
-            document.getElementById('addressIdPaypal').value=address
-            alert(address)
-            
+            document.getElementById('addressIdPaypal').value = address
 
-        
+
 
             // address onchage function 
-            function changeAddress(addressId){
-                document.getElementById('addressIdPaypal').value=addressId
-                alert(addressId)
+            function changeAddress(addressId) {
+                document.getElementById('addressIdPaypal').value = addressId
             }
             // end of paypal
 
@@ -1332,7 +1346,7 @@
                     method: 'post',
                     success: (response) => {
                         if (response.status) {
-                            document.getElementById('couponCD').value=response.coupone.code
+                            document.getElementById('couponCD').value = response.coupone.code
 
 
                             document.getElementById('coupon-discount').style.display = 'block'
@@ -1351,7 +1365,7 @@
                             var toatalPrice = document.getElementById("total-price").innerText
 
                         } else if (response.useed) {
-                            document.getElementById('couponCD').value=''
+                            document.getElementById('couponCD').value = ''
 
 
                             document.querySelector('#couponSucess').style.display = 'none'
@@ -1362,7 +1376,7 @@
                             document.querySelector('#couponErorr').innerHTML = 'already use this coupon'
                             document.getElementById('couponValue').value = ''
                         } else {
-                            document.getElementById('couponCD').value=''
+                            document.getElementById('couponCD').value = ''
 
 
                             document.querySelector('#couponSucess').style.display = 'none'

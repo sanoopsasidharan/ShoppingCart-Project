@@ -140,6 +140,14 @@ router.post('/signup', (req, res) => {
   })
 })
 
+// checking for refferal code 
+router.post('/checking-refferal',(req,res)=>{
+  console.log(req.body.code);
+  userHelpers.findRefferalCode(req.body.code).then((resp)=>{
+    res.json(resp)
+  })
+})
+
 
 // product list
 router.get('/product', async (req, res) => {
@@ -565,8 +573,9 @@ router.get('/checkout', verifyLogin, async (req, res) => {
   let addresss = await userHelpers.showAllAddress(req.session.user._id)
   console.log(addresss);
   let coupons = await offerAndCouponHelpers.AvailableCoupons()
+  let userProfil = await userHelpers.userDetails(req.session.user._id)
 
-  res.render('user/checkout', { admin: 0, user, result, cartCount, addresss, total, coupons })
+  res.render('user/checkout', { admin: 0, user, result, cartCount,userProfil, addresss, total, coupons })
 
 })
 

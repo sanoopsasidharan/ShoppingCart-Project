@@ -340,6 +340,28 @@
 <!------ Include the above in your HEAD tag ---------->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -357,27 +379,43 @@
     <form id="siginup_form">
       <h1 class="h1Tag">SignUp</h1>
 
-      <input type="text" id="login" class="fadeIn second" name="name" placeholder="name" maxlength="15" />
+      <input type="text" id="login" class="fadeIn second" name="name" placeholder="Name" maxlength="15" />
       <div class="invalid-feedback" id="name-Text">enter your Name</div>
 
-      <input type="text" id="mailValidation" class="fadeIn third" name="email" placeholder="email">
+      <input type="text" id="mailValidation" class="fadeIn third" name="email" placeholder="Email">
       <div class="invalid-feedback" id="mail-type"> Enter email address </div>
 
       <input type="text" id="numberValidation" class="fadeIn third" name="number" placeholder="Phone" maxlength="10" />
       <div class="invalid-feedback" id="text-Number">Enter your phone number </div>
 
-      <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" maxlength="15">
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" maxlength="15">
       <div class="invalid-feedback" id="password-Text">password</div>
 
-      <a style="padding: 15px;" href="/login">you have already an account !</a>
+      <input type="text" name="usedRefferalCode" id="referralCodeOrginal" hidden>
+
+      <div style="display: flex; justify-content: center;">
+        <button style="padding: 15px; color: rgb(0,123,255);" onclick="showReffrealform()" type="button" id="show-reffreal-form">Referral</button>
+        <button style="padding: 15px; color: red;" onclick="hideReffrealform()" type="button" id="hide-reffreal-form">Cancel</button>
+      </div>
+      
+
+      <a style=" margin-top: 10 px; margin-bottom: 15px;" href="/login">you have already an account !</a>
 
       <input style="margin: 0; padding: 10px;" type="submit" id="login" class="fadeIn fourth" value="SignUp">
-      
 
-      
+
+
       <p style="color:red;" id="erorrMessage"></p>
 
     </form>
+    <div class="mt-4" id="reffeal_form_div">
+      <form id="refferal_from">
+        <input type="text" name="code" placeholder="Referral code" id="">
+        <p class="mt-3" id="coupone-error-message"></p>
+        <!-- <div class="invalid-feedback" id="refferal-error">refferal</div> -->
+        <button style="background-color: rgb(86,186,237);color: rgb(255, 255, 255); margin-top: 10px; margin-bottom: 15px;" class="btn" type="submit">check</button>
+      </form>
+    </div>
 
 
   </div>
@@ -386,6 +424,45 @@
   crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script> -->
+
+<script>
+  // refferal coupon 
+  document.getElementById('reffeal_form_div').style.display = 'none'
+  document.getElementById('hide-reffreal-form').style.display = 'none'
+
+  function showReffrealform() {
+    document.getElementById('reffeal_form_div').style.display = 'block'
+    document.getElementById('show-reffreal-form').style.display = 'none'
+    document.getElementById('hide-reffreal-form').style.display = 'block'
+  }
+
+  function hideReffrealform() {
+    document.getElementById('reffeal_form_div').style.display = 'none'
+    document.getElementById('show-reffreal-form').style.display = 'block'
+    document.getElementById('hide-reffreal-form').style.display = 'none'
+  }
+  // refferal coupon end
+  $('#refferal_from').submit((e)=>{
+    e.preventDefault();
+    $.ajax({
+      url:'/checking-refferal',
+      data:$('#refferal_from').serialize(),
+      method:'post',
+      success:(response)=>{
+        if(response.status){ 
+          document.getElementById('referralCodeOrginal').value=response.CpId
+          document.getElementById('coupone-error-message').style.color='green'
+          document.getElementById('coupone-error-message').innerHTML='applied referral code'
+        }else{
+          document.getElementById('referralCodeOrginal').value=''
+          document.getElementById('coupone-error-message').style.color='red'
+          document.getElementById('coupone-error-message').innerHTML='sorry invalid referral code'
+        }
+      }
+    })
+  })
+  
+</script>
 <script>
   var nameValidated = false;
   var phoneValidated = false;

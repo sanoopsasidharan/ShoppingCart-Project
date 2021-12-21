@@ -24,7 +24,34 @@ module.exports = {
                 if (findNumber) {
                     resolve({ status: false })
                 } else {
-                    db.get().collection(collection.userCollection).insertOne(userData).then(() => {
+                    db.get().collection(collection.userCollection).insertOne(userData).then(async(userResponse) => {
+                        console.log(userResponse.insertedId)
+                        var newUserId =''+userResponse.insertedId
+                        let addreObj = {
+                            user: objectId(newUserId),
+                            address: [{
+                                addresId: new objectId(),
+                                name: userData.name,
+                                number: userData.number,
+                                userId: userData.newUserId
+                            }]
+                        }
+                        await db.get().collection(collection.addressCollection).insertOne(addreObj)
+                        if(userData.usedRefferalCode !=''){
+                            let reffPerson = await db.get().collection(collection.userCollection).findOne({refarralcode:userData.usedRefferalCode})
+                            if(reffPerson){
+                                var wallet = reffPerson.refarralamount
+                                wallet = wallet+100
+                                console.log(wallet);
+                                console.log('wallet');
+                             var updateWallet = await db.get().collection(collection.userCollection).updateOne({refarralcode:userData.usedRefferalCode},{$set:{refarralamount:wallet}})
+                             var updateNewuserWallet = await db.get().collection(collection.userCollection).updateOne({_id:objectId(newUserId)},{$set:{refarralamount:50}})
+                             console.log(updateNewuserWallet);
+                             console.log(updateWallet);
+
+                            }
+
+                        }       
                         resolve({ status: true })
                     })
                 }
@@ -177,10 +204,12 @@ module.exports = {
                     {
                         $push: { address: newAddress }
                     }).then((response) => {
+                        console.log(response);
                         resolve()
                     })
             } else {
                 await db.get().collection(collection.addressCollection).insertOne(addreObj).then((response) => {
+                    console.log(response);
                     resolve()
                 })
             }
@@ -429,6 +458,17 @@ module.exports = {
            }else{
                resolve()
            }
+        })
+    },
+    // find refferal coupon 
+    findRefferalCode:(CpId)=>{
+        return new Promise(async(resolve,reject)=>{
+          var respons = await  db.get().collection(collection.userCollection).findOne({refarralcode:CpId})
+            if(respons){
+                resolve({status:true,CpId})
+            }else{
+                resolve({status:false})
+            }
         })
     }
 
