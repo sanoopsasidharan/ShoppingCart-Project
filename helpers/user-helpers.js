@@ -8,10 +8,15 @@ const { rejects } = require('assert');
 const { response } = require('express');
 const { v4: uuidv4 } = require('uuid');
 
+var cc = require('coupon-code');
+
 module.exports = {
     doSignup: (userData) => {
         return new Promise(async (resolve, reject) => {
-
+            let code = cc.generate();
+            userData.refarralcode = code
+            userData.refarralamount = 0
+            userData.pic =false
             userData.copArray = []
             console.log(userData.email);
             userData.password = await crypto.createHmac('sha256', userData.password).update('hellos').digest('hex');
@@ -236,8 +241,7 @@ module.exports = {
             // .find({"_id" : {"$in" : [ObjectId("55880c251df42d0466919268")]}});
             // .find({user:objectId(userId)}).toArray()
             // .aggregate([{$match:{user:objectId(userId),addresId:objectId(addressId)}}])
-            console.log(addres);
-            console.log('it is address');
+
             if (addres) {
                 resolve(addres);
             } else {
@@ -414,6 +418,17 @@ module.exports = {
 
             })
         
+        })
+    },
+    // change user profile status 
+    changePic:(id)=>{
+        return new Promise(async(resolve,reject)=>{
+           let change = await  db.get().collection(collection.userCollection).updateOne({_id:objectId(id)},{$set:{pic:true}})
+           if(change){
+               resolve()
+           }else{
+               resolve()
+           }
         })
     }
 

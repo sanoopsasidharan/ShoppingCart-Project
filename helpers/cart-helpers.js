@@ -390,13 +390,14 @@ module.exports={
             }
         })
     },
-    placeOrderOnline:(order,products,total,addres)=>{
+    placeOrderOnline:(order,products,total,addres,userID)=>{
         return new Promise((resolve,reject)=>{
+            console.log('its placeOrderOnline');
             let status=order.paymentmethod==='COD'?'placed':'onlinePending'
             let orderObj={
                 deliveryDetails:addres[0].address
                 ,
-                userId:objectId(order.userId),
+                userId:objectId(userID),
                 paymentmethod:order.paymentmethod,
                 products:products,
                 totalamount:total,
@@ -405,7 +406,9 @@ module.exports={
             }
 
             db.get().collection(collection.orderCollection).insertOne(orderObj).then((response)=>{
+                console.log(response);
                 resolve(response.insertedId)
+                
             })
 
         })

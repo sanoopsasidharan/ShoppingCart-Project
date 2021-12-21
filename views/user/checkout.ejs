@@ -313,7 +313,7 @@
                                                         <tbody>
                                                             <% for(var j=0; j<addresss.length; j++) {%>
                                                                 <tr>
-                                                                    <td><span> <input style="width: 17px!important;"
+                                                                    <td><span> <input onchange="changeAddress('<%= addresss[j].address.addresId%>')" id="addressId" style="width: 17px!important;"
                                                                                 name="adderssId"
                                                                                 value="<%= addresss[j].address.addresId%>"
                                                                                 type="radio" checked></span></td>
@@ -361,7 +361,13 @@
                                                 <input style="width: 17px!important;" name="paymentmethod"
                                                     value="ONLINE" type="radio">
                                                 <label for="">ONLINE</label>
+                                                <input style="width: 17px!important;" name="paymentmethod"
+                                                    value="PAYPAL" type="radio">
+                                                <label for="">PAYPAL</label>
                                             </div>
+
+                                            <div id="paypal_button"></div>
+
                                             <input type="text" name="userId" value="<%=user._id%>" id="" hidden>
 
 
@@ -442,6 +448,14 @@
                                                 <button class="btn btn btn-primary Flat-right"
                                                     type="submit">Checkout</button>
                                             </div>
+                                        </form>
+
+
+                                        <form action="/paypal" method="post">
+                                            <input type="text" name="addressId" id="addressIdPaypal">
+                                            <input type="text" name="couponCD" id="couponCD">
+                                            <input type="text" name="paymentmethod" value="ONLINE" id="">
+                                            <button type="submit" class="btn btn-info">buy</button>
                                         </form>
 
                                         <!-- <div class="container">
@@ -1240,11 +1254,69 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
 
+        <!-- paypal scriopt -->
+
+        <!-- <script
+            src="https://www.paypal.com/sdk/js?client-id=AUDAZeJeCHZavTHiIJqPPaYC-Vu1BagBcz8KIUCIP3vYb5Lj9V6M6Wrw-3XNzCX6DeikBPp81G8ktuS1&components=buttons"></script>
+        <script>
+            paypal.Buttons({
+                style: {
+                    layout: 'vertical',
+                    color: 'blue',
+                    shape: 'rect',
+                    label: 'paypal'
+                }
+            }).render('#paypal_button');
+
+            paypal.Buttons({
+                createOrder: function (data, actions) {
+                    // Set up the transaction
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: '0.01'
+                            }
+                        }]
+                    });
+                }
+            }).render('#paypal-button-container');
+            paypal.Buttons({
+                createSubscription: function (data, actions) {
+                    return actions.subscription.create({
+                        'plan_id': 'P-2UF78835G6983425GLSM44MA'
+                    });
+                },
+
+                onApprove: function (data, actions) {
+                    alert('You have successfully created subscription ' + data.subscriptionID);
+                }
+            }).render('#paypal-button-container');
+        </script> -->
+
+        <!-- End of paypal -->
         <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script>
+            // paypal 
+
+            // address
+            let address = document.getElementById('addressId').value
+            document.getElementById('addressIdPaypal').value=address
+            alert(address)
+            
+
+        
+
+            // address onchage function 
+            function changeAddress(addressId){
+                document.getElementById('addressIdPaypal').value=addressId
+                alert(addressId)
+            }
+            // end of paypal
+
+
 
             document.getElementById('coupon-discount').style.display = 'none'
             document.getElementById('coupon-discount-amount').style.display = 'none'
@@ -1260,13 +1332,16 @@
                     method: 'post',
                     success: (response) => {
                         if (response.status) {
+                            document.getElementById('couponCD').value=response.coupone.code
+
+
                             document.getElementById('coupon-discount').style.display = 'block'
                             document.getElementById('coupon-discount-amount').style.display = 'block'
                             document.getElementById('coupon-discount-amount').innerHTML = response.coupone.percentage + '%'
                             document.getElementById('couponValue').value = response.coupone.code
 
                             document.querySelector('#couponErorr').innerHTML = ''
-                            document.querySelector('#couponSucess').style.display='block'
+                            document.querySelector('#couponSucess').style.display = 'block'
                             document.querySelector('#couponSucess').style.color = "green";
                             document.querySelector('#couponSucess').innerHTML = 'Coupon add'
                             let orginalPrice = document.querySelector('.coupon-total').innerText
@@ -1276,7 +1351,10 @@
                             var toatalPrice = document.getElementById("total-price").innerText
 
                         } else if (response.useed) {
-                            document.querySelector('#couponSucess').style.display='none'
+                            document.getElementById('couponCD').value=''
+
+
+                            document.querySelector('#couponSucess').style.display = 'none'
                             document.querySelector(".coupon-total").innerHTML = orginalPrice
                             document.getElementById('coupon-discount').style.display = 'none'
                             document.getElementById('coupon-discount-amount').style.display = 'none'
@@ -1284,7 +1362,10 @@
                             document.querySelector('#couponErorr').innerHTML = 'already use this coupon'
                             document.getElementById('couponValue').value = ''
                         } else {
-                            document.querySelector('#couponSucess').style.display='none'
+                            document.getElementById('couponCD').value=''
+
+
+                            document.querySelector('#couponSucess').style.display = 'none'
                             document.querySelector(".coupon-total").innerHTML = orginalPrice
                             document.getElementById('couponValue').value = ''
                             document.getElementById('coupon-discount').style.display = 'none'

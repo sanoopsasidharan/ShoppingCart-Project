@@ -142,9 +142,21 @@ module.exports={
                 $set:{
                     status:'placed'
                 }
-            }).then(()=>{
+            }).then((res)=>{
+                console.log(res);
                 resolve()
             })
+        })
+    },
+    sucessPaypal:(userId)=>{
+        return new Promise((resolve,reject)=>{
+           var nullcart = db.get().collection(collection.cartCollection).updateOne({user:objectId(userId)},{$set:{products:[]}})
+           console.log(nullcart);
+           if(nullcart){
+               resolve()
+           }else{
+               resolve()
+           }
         })
     }
     
