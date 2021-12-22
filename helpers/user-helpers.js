@@ -470,6 +470,14 @@ module.exports = {
                 resolve({status:false})
             }
         })
+    },
+    useWalletamount:(userId,amount)=>{
+        return new Promise(async(resolve,reject)=>{
+            let changeWalletAmount = await  db.get().collection(collection.userCollection).updateOne({_id:objectId(userId)},{$set:{refarralamount:amount}})
+            console.log('changeWalletAmount');
+            console.log(changeWalletAmount);
+            resolve(changeWalletAmount)
+        })
     }
 
 

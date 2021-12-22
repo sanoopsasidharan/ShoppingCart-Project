@@ -363,10 +363,8 @@
                                                 <label for="">COD</label>
                                                 <input style="width: 17px!important;" name="paymentmethod"
                                                     value="ONLINE" type="radio">
-                                                <label for="">ONLINE</label>
-                                                <input style="width: 17px!important;" name="paymentmethod"
-                                                    value="PAYPAL" type="radio">
-                                                <label for="">PAYPAL</label>
+                                                <label for="">Razorpay</label>
+
                                             </div>
 
                                             <div id="paypal_button"></div>
@@ -420,7 +418,10 @@
                                                                     <div>
                                                                         <input type="text" name="couponCD" value=""
                                                                             id="couponValue" hidden>
+                                                                        <input type="text" name="wallet"
+                                                                            id="walletInputId" hidden>
                                                                     </div>
+
 
                                                                     <% if(total.OfferTotal===total.OrginalPrice ){ %>
                                                                         <div class="ec-checkout-summary-total">
@@ -429,6 +430,9 @@
                                                                                 class="text-right coupon-total">₹
                                                                                 <%= total.OrginalPrice %>
                                                                             </span>
+                                                                            <input type="text"
+                                                                                value="<%= total.OrginalPrice %>"
+                                                                                class="priceOftotal" id="" hidden>
                                                                         </div>
                                                                         <% } else{ %>
                                                                             <div class="ec-checkout-summary-total">
@@ -436,7 +440,11 @@
                                                                                     Amount</span>
                                                                                 <span class="text-right coupon-total">₹
                                                                                     <%= total.OfferTotal %>
+                                                                                        
                                                                                 </span>
+                                                                                <input type="text"
+                                                                                    value="<%= total.OfferTotal %>"
+                                                                                    class="priceOftotal" id="" hidden>
                                                                             </div>
                                                                             <% } %>
 
@@ -458,6 +466,8 @@
                                             <input type="text" name="addressId" id="addressIdPaypal" hidden>
                                             <input type="text" name="couponCD" id="couponCD" hidden>
                                             <input type="text" name="paymentmethod" value="ONLINE" id="" hidden>
+                                            <input type="text" name="wallet" id="walletpaypalId">
+                                            <input type="text" name="userId" value="<%=user._id%>" id="">
                                             <button type="submit" class="btn btn-info">paypal</button>
                                         </form>
 
@@ -699,59 +709,41 @@
 
                         <div class="ec-sidebar-block">
                             <div class="ec-sb-title">
-                                <h3 class="ec-sidebar-title">Coupon</h3>
+                                <h3 class="ec-sidebar-title">Wallet</h3>
                             </div>
                             <div class="ec-sb-block-content">
 
-                                <div style="display: flex; justify-content: center;">
 
+                                <div>
 
-                                    <% if(coupons.length> 0){ %>
-                                        <table>
+                                    <form id="applie-wallet">
+                                        <input type="text" name="refarralamount" id="wallet_Amount"
+                                            value="<%= userProfil.refarralamount %>" id="" hidden>
 
-                                            <% for(var i=0; i < coupons.length; i++) { %>
-                                                <tr>
-                                                    <td>
-                                                        <span style="color: black;">
-                                                            <%= coupons[i].couponName %>
-                                                        </span> &nbsp; &nbsp; &nbsp; <span style="color: black;">
-                                                            <%= coupons[i].couponAmount %>
-                                                        </span>
-                                                    </td>
-
-                                                    <td>
-                                                        <div style="display: flex;">
-
-                                                            <input style="border: 0px;width: 180px;" type="text"
-                                                                value="<%= coupons[i].code %>"
-                                                                id="myInput<%= coupons[i]._id %>" disabled="disabled">
-                                                            <button type="button"
-                                                                onclick="myFunction('<%= coupons[i]._id %>')">Copy</button>
-
-                                                        </div>
-                                                    </td>
-
-                                                </tr>
-                                                <% } %>
-                                        </table>
+                                        <div style="display: flex;justify-content: space-between; margin: 10px;">
+                                            <% if(userProfil.refarralamount ){ %>
+                                                <div>
+                                                    <h3>
+                                                        <%= userProfil.refarralamount %>
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <button onclick="applieWallet('<%= userProfil.refarralamount %>')"
+                                                        style="margin-top: 0px; border-radius: 5px;"
+                                                        class="btn btn-mini btn-primary" type="submit">applie</button>
+                                                </div>
+                                        </div>
                                         <% } else{ %>
-                                            <h1>bar</h1>
+                                            <h5 style="color: red; margin: 10px;">Wallet is empty</h5>
+
                                             <% } %>
 
-
-                                </div>
-                                <div>
-                                    <h3>wallet</h3>
-                                    <form>
-                                        <input type="text" name="refarralamount" value="<%= userProfil.refarralamount %>" id="">
-                                       <div style="display: flex;justify-content: space-between;" >
-                                           <div style="display: flex;justify-content: center; margin: 10px;">
-                                            <h3><%= userProfil.refarralamount %></h3>
-                                           </div>
-                                        <button style="margin-top: 0px; border-radius: 5px;"
-                                                        class="btn btn-mini btn-primary" type="submit">applie</button>
-                                       </div>
+                                                <div
+                                                    style="display:flex; justify-content: center; margin-bottom: 25px;">
+                                                    <p style="color: green;" id="sucess-message"></p>
+                                                </div>
                                     </form>
+
                                 </div>
                                 <div>
                                     <h3 class="ec-sidebar-title">Apply offer</h3>
@@ -1316,6 +1308,41 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script>
+
+            // wallet
+
+            let walletVale = document.getElementById('wallet_Amount').value
+            function applieWallet(walletamount) {
+                
+                var totalPrice = parseInt(document.querySelector('.priceOftotal').value)
+                var walletAmount = parseInt(document.getElementById('wallet_Amount').value)
+
+                var totalsum = totalPrice - walletAmount
+                if(totalsum <= 0){
+                    document.querySelector('.coupon-total').innerHTML=0
+                }else{
+                    document.querySelector('.coupon-total').innerHTML=totalsum
+                }
+
+                document.getElementById('sucess-message').innerHTML = 'Wallet applied'
+                document.getElementById('walletInputId').value = walletamount
+                document.getElementById('walletpaypalId').value = walletamount
+
+                alert(ss)
+            }
+
+            $('#applie-wallet').submit((sub) => {
+                sub.preventDefault()
+                $.ajax({
+                    url: '/useWallet',
+                    data: $('#applie-wallet').serialize(),
+                    method: 'post',
+                    success: (response) => {
+                        alert(response)
+                    }
+                })
+            })
+            // wallet end
             // paypal 
 
             // address
@@ -1432,6 +1459,8 @@
                                 location.href = '/orders-success';
 
                             })
+                        } else if (response.valueZero) {
+                            alert('sorry you can no choose razerpay')
                         } else {
                             razorpayPayment(response)
                         }

@@ -17,8 +17,8 @@ const paypal = require('paypal-rest-sdk');
 
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
-  'client_id': 'AUDAZeJeCHZavTHiIJqPPaYC-Vu1BagBcz8KIUCIP3vYb5Lj9V6M6Wrw-3XNzCX6DeikBPp81G8ktuS1',
-  'client_secret': 'EKKgX7c9-nO1_81Sm39LJZlMI8HAslRbj6fWxDNnJlG9Yd2pZChVxo8tt_LjNQ60ZkWaaeZIMmHmpHlp'
+  'client_id': process.env.client_id,
+  'client_secret':process.env.client_secret
 });
 
 
@@ -141,9 +141,9 @@ router.post('/signup', (req, res) => {
 })
 
 // checking for refferal code 
-router.post('/checking-refferal',(req,res)=>{
+router.post('/checking-refferal', (req, res) => {
   console.log(req.body.code);
-  userHelpers.findRefferalCode(req.body.code).then((resp)=>{
+  userHelpers.findRefferalCode(req.body.code).then((resp) => {
     res.json(resp)
   })
 })
@@ -575,7 +575,7 @@ router.get('/checkout', verifyLogin, async (req, res) => {
   let coupons = await offerAndCouponHelpers.AvailableCoupons()
   let userProfil = await userHelpers.userDetails(req.session.user._id)
 
-  res.render('user/checkout', { admin: 0, user, result, cartCount,userProfil, addresss, total, coupons })
+  res.render('user/checkout', { admin: 0, user, result, cartCount, userProfil, addresss, total, coupons })
 
 })
 
@@ -586,6 +586,11 @@ router.post('/checkCoupon', verifyLogin, async (req, res) => {
 
     res.json(response)
   })
+})
+
+// user wallet 
+router.post('/useWallet', (req, res) => {
+  console.log(req.body);
 })
 
 // ajax place order
@@ -631,25 +636,51 @@ router.post('/placeOrders', verifyLogin, async (req, res) => {
     console.log(sampletotal);
     totalPrice.OfferTotal = sampletotal
   }
+
+
+
+  if (req.body.wallet != '') {
+
+    var walletBalance = totalPrice.OfferTotal - req.body.wallet
+    if (walletBalance <= 0) {
+       console.log("walletBalance <= 0");
+      totalPrice.OfferTotal = 0
+      walletBalance = Math.abs(walletBalance)
+      console.log(walletBalance);
+     await userHelpers.useWalletamount(req.session.user._id,walletBalance)
+    } else {
+      console.log("walletBalance + 0");
+      totalPrice.OfferTotal = totalPrice.OfferTotal - req.body.wallet
+        walletBalance = 0
+        await userHelpers.useWalletamount(req.session.user._id,walletBalance)
+    }
+  }
+  console.log(totalPrice.OfferTotal);
   //  console.log(req.body['paymentmethod']==='COD');
+
   if (req.body['paymentmethod'] === "COD") {
     await cartHelpers.placeOrder(req.body, products, totalPrice.OfferTotal, address).then((orderId) => {
     })
     res.json({ CODsuccess: true })
-  } else if (req.body['paymentmethod'] === "ONLINE") {
-    await cartHelpers.placeOrderOnline(req.body, products, totalPrice.OfferTotal, address,req.session.user._id).then((orderId) => {
-      orderHelpers.generateRazorpay(orderId, totalPrice.OfferTotal).then((response) => {
-        res.json(response)
+  } else {
+    if(totalPrice.OfferTotal != 0){
+      await cartHelpers.placeOrderOnline(req.body, products, totalPrice.OfferTotal, address,req.session.user._id).then((orderId) => {
+        orderHelpers.generateRazorpay(orderId, totalPrice.OfferTotal).then((response) => {
+          res.json(response)
+        })
+      })
+    }else{
+    req.body.paymentmethod ='COD'
+     cartHelpers.placeOrder(req.body, products, totalPrice.OfferTotal, address).then((orderId) => {
+       res.json({ CODsuccess: true })
       })
 
-    })
-  } else {
-
-  }
+    }
+  } 
 })
 
 // paypal payment 
-router.post('/paypal',verifyLogin,async(req, res) => {
+router.post('/paypal', verifyLogin, async (req, res) => {
   console.log('start paypal');
 
   let products = await cartHelpers.getCartProductList(req.session.user._id)
@@ -664,14 +695,31 @@ router.post('/paypal',verifyLogin,async(req, res) => {
     console.log(sampletotal);
     totalPrice.OfferTotal = sampletotal
   }
+    if (req.body.wallet != '') {
+
+    var walletBalance = totalPrice.OfferTotal - req.body.wallet
+    if (walletBalance <= 0) {
+       console.log("walletBalance <= 0");
+      totalPrice.OfferTotal = 0
+      walletBalance = Math.abs(walletBalance)
+      console.log(walletBalance);
+     await userHelpers.useWalletamount(req.session.user._id,walletBalance)
+    } else {
+      console.log("walletBalance + 0");
+      totalPrice.OfferTotal = totalPrice.OfferTotal - req.body.wallet
+        walletBalance = 0
+        await userHelpers.useWalletamount(req.session.user._id,walletBalance)
+    }
+  }
   console.log(req.body);
   console.log(products);
   console.log(totalPrice);
   console.log(address);
-  var orderId 
-  await cartHelpers.placeOrderOnline(req.body, products, totalPrice.OfferTotal, address,req.session.user._id).then((orderId)=>{
+  var orderId
+  if(totalPrice.OfferTotal != 0){
+  await cartHelpers.placeOrderOnline(req.body, products, totalPrice.OfferTotal, address, req.session.user._id).then((orderId) => {
     console.log(orderId);
-    orderId =''+orderId
+    orderId = '' + orderId
     console.log(orderId);
 
     const create_payment_json = {
@@ -680,7 +728,7 @@ router.post('/paypal',verifyLogin,async(req, res) => {
         "payment_method": "paypal"
       },
       "redirect_urls": {
-        "return_url": "http://localhost:3000/success?price="+totalPrice.OfferTotal+"&orderId="+orderId,
+        "return_url": "http://localhost:3000/success?price=" + totalPrice.OfferTotal + "&orderId=" + orderId,
         "cancel_url": "http://localhost:3000/checkout"
       },
       "transactions": [{
@@ -700,7 +748,7 @@ router.post('/paypal',verifyLogin,async(req, res) => {
         "description": "Hat for the best team ever"
       }]
     };
-  
+
     paypal.payment.create(create_payment_json, function (error, payment) {
       if (error) {
         throw error;
@@ -712,19 +760,25 @@ router.post('/paypal',verifyLogin,async(req, res) => {
         }
       }
     });
-    
+
   })
- 
+}else{
+  req.body.paymentmethod ='COD'
+     cartHelpers.placeOrder(req.body, products, totalPrice.OfferTotal, address).then((orderId) => {
+      res.redirect('/orders-success')
+      })
+}
+
 
 });
 
 // sucess page in paypal
 
 
-router.get('/success',verifyLogin,(req, res) => {
+router.get('/success', verifyLogin, (req, res) => {
   var orderId = req.query.orderId
   console.log(orderId);
-  var price = req.query.price 
+  var price = req.query.price
   const payerId = req.query.PayerID;
   const paymentId = req.query.paymentId;
 
@@ -744,8 +798,8 @@ router.get('/success',verifyLogin,(req, res) => {
       throw error;
     } else {
       console.log(JSON.stringify(payment));
-      orderHelpers.sucessPaypal(req.session.user._id).then(()=>{
-        orderHelpers.OnlinePaymentChangeStatus(orderId).then(()=>{
+      orderHelpers.sucessPaypal(req.session.user._id).then(() => {
+        orderHelpers.OnlinePaymentChangeStatus(orderId).then(() => {
           res.redirect('/orders-success')
         })
       })
@@ -947,7 +1001,7 @@ router.post('/deleteUserAddress', (req, res) => {
 
 // add profile pic
 router.post('/savePropic', verifyLogin, async (req, res) => {
- var changePic = await userHelpers.changePic(req.session.user._id)
+  var changePic = await userHelpers.changePic(req.session.user._id)
   let image1 = req.body.image1
   let path1 = './public/productimage/image2/' + req.session.user._id + '_1.jpg'
   let img1 = image1.replace(/^data:([A-Za-z+/]+);base64,/, "")

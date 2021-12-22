@@ -205,20 +205,20 @@
                 <div class="modal-body">
                     <div style="display: flex;justify-content: space-around;margin-top: 10px;margin-bottom: 15px;">
                         <h5>wallet ammount</h5>
-                        <h5>₹ <%= user.refarralamount %></h5>
+                        <h5>₹ <%= userProfil.refarralamount %></h5>
                     </div>
                     
                         <table>
                                 <tr>
                                   
                                     <td>
-                                        <%= user.refarralcode %>
+                                        <%= userProfil.refarralcode %>
                                     </td>
                                     
                                     <td>
                                         <div style="display: flex;">
-                                            <input style="border: 0px;" type="text" value="<%= user.refarralcode %>" id="myInput<%= user.refarralcode %>" disabled="disabled" hidden>
-                                            <button type="button" onclick="myFunction('<%= user.refarralcode %>')">Copy</button>
+                                            <input style="border: 0px;" type="text" value="<%= userProfil.refarralcode %>" id="myInput<%= userProfil.refarralcode %>" disabled="disabled" hidden>
+                                            <button type="button" onclick="myFunction('<%= userProfil.refarralcode %>')">Copy</button>
                                         </div>
                                     </td>    
                                 </tr>
