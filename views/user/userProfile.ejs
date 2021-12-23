@@ -205,27 +205,30 @@
                 <div class="modal-body">
                     <div style="display: flex;justify-content: space-around;margin-top: 10px;margin-bottom: 15px;">
                         <h5>wallet ammount</h5>
-                        <h5>₹ <%= userProfil.refarralamount %></h5>
+                        <h5>₹ <%= userProfil.refarralamount %>
+                        </h5>
                     </div>
-                    
-                        <table>
-                                <tr>
-                                  
-                                    <td>
-                                        <%= userProfil.refarralcode %>
-                                    </td>
-                                    
-                                    <td>
-                                        <div style="display: flex;">
-                                            <input style="border: 0px;" type="text" value="<%= userProfil.refarralcode %>" id="myInput<%= userProfil.refarralcode %>" disabled="disabled" hidden>
-                                            <button type="button" onclick="myFunction('<%= userProfil.refarralcode %>')">Copy</button>
-                                        </div>
-                                    </td>    
-                                </tr>
-                        </table>
-                        <div class="mt-4" style="display: flex; justify-content: center;">
-                            <p>give your friends up to 100rs when they sign in your reffreal code</p>
-                        </div>
+
+                    <table>
+                        <tr>
+
+                            <td>
+                                <%= userProfil.refarralcode %>
+                            </td>
+
+                            <td>
+                                <div style="display: flex;">
+                                    <input style="border: 0px;" type="text" value="<%= userProfil.refarralcode %>"
+                                        id="myInput<%= userProfil.refarralcode %>" disabled="disabled" hidden>
+                                    <button type="button"
+                                        onclick="myFunction('<%= userProfil.refarralcode %>')">Copy</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="mt-4" style="display: flex; justify-content: center;">
+                        <p>give your friends up to 100rs when they sign in your reffreal code</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -355,36 +358,43 @@
 
                                                 <div class="text-center">
                                                     <% if( userProfil.pic ){ %>
-                                                        <img style="width: 280px; margin-bottom: 20px;" id="checkpreview4"                            
-                                                        src="/productimage/image2/<%=user._id%>_1.jpg" class="rounded">
-                                                      <% } else{ %> 
-                                                        <img style="width: 280px; margin-bottom: 20px;" id="checkpreview4"                            
-                                                        src="assets/images/whatsapp/profile_01.jpg" class="rounded">
-                                                     <% } %>
-                                                    
+                                                        <img style="width: 280px; margin-bottom: 20px;"
+                                                            id="checkpreview4"
+                                                            src="/productimage/image2/<%=user._id%>_1.jpg"
+                                                            class="rounded">
+                                                        <% } else{ %>
+                                                            <img style="width: 280px; margin-bottom: 20px;"
+                                                                id="checkpreview4"
+                                                                src="assets/images/whatsapp/profile_01.jpg"
+                                                                class="rounded">
+                                                            <% } %>
 
-                                                    <p style="color: black; cursor: pointer;" onclick="profileEdit()"
-                                                        id="picEdit">edit</p>
-                                                    <p style="color: rgb(255, 0, 0); cursor: pointer;"
-                                                        onclick="cancelProfileEdit()" id="cancelProfileEdit">cancel</p>
 
-                                                    <form method="post" enctype="multipart/form-data"
-                                                        action="/savePropic">
-                                                        <div class="row" style="display: flex;padding: 40px;">
-                                                            <div class="col-md-8">
-                                                                <input style="line-height: 1 !important;" type="file"
-                                                                    id="image1"
-                                                                    accept="image/gif, image/jpeg, image/png"
-                                                                    required />
-                                                                <textarea name="image1" id="imageValue1" cols="30"
-                                                                    rows="10" hidden></textarea>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <button id="savepropicbtn" class="btn btn-primary"
-                                                                    type="submit">save</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                                                <p style="color: black; cursor: pointer;"
+                                                                    onclick="profileEdit()" id="picEdit">edit</p>
+                                                                <p style="color: rgb(255, 0, 0); cursor: pointer;"
+                                                                    onclick="cancelProfileEdit()"
+                                                                    id="cancelProfileEdit">cancel</p>
+
+                                                                <form method="post" enctype="multipart/form-data"
+                                                                    action="/savePropic">
+                                                                    <div class="row"
+                                                                        style="display: flex;padding: 40px;">
+                                                                        <div class="col-md-8">
+                                                                            <input style="line-height: 1 !important;"
+                                                                                type="file" id="image1"
+                                                                                accept="image/gif, image/jpeg, image/png"
+                                                                                required />
+                                                                            <textarea name="image1" id="imageValue1"
+                                                                                cols="30" rows="10" hidden></textarea>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <button id="savepropicbtn"
+                                                                                class="btn btn-primary"
+                                                                                type="submit">save</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
                                                 </div>
 
 
@@ -1142,11 +1152,23 @@
     </script>
     <script>
         function myFunction(id) {
-          var copyText = document.getElementById("myInput"+id);
-          copyText.setSelectionRange(0, 99999);
-          navigator.clipboard.writeText(copyText.value);
+            var copyText = document.getElementById("myInput" + id);
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1000,
+                
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'copy to keybord'
+            })
         }
-        </script>
+    </script>
 
 
 </body>
