@@ -651,6 +651,16 @@ router.post('/addAddressCheckout', verifyLogin, (req, res) => {
 
   // })
 })
+// single check out page payment
+router.post('/productBuy',async(req,res)=>{
+  console.log(req.body);
+  if (req.body.priceId != '') {
+    totalPrice = await  productHelpers.findProduct(req.body.priceId)
+   }else{
+      totalPrice = await cartHelpers.getTotalAmount(req.body.userId)
+   }
+})
+
 
 router.post('/placeOrders', verifyLogin, async (req, res) => {
   var obj = req.body
@@ -883,6 +893,28 @@ router.post('/buyNowCheckOut', (req, res) => {
 
   console.log(req.body);
   console.log('called buy now checkoutssssssssssssssssss');
+
+})
+
+// single product chechout page
+router.get('/singleProductcheckout',verifyLogin,async(req,res)=>{
+ 
+  let user = req.session.user
+
+  var result;
+  categoryHelpers.showAllCategorysubcate().then((results) => {
+    result = results
+  })
+  let cartCount = await cartHelpers.getCartCount(req.session.user._id)
+
+  let addresss = await userHelpers.showAllAddress(req.session.user._id)
+  let userProfil = await userHelpers.userDetails(req.session.user._id)
+  await productHelpers.findProduct(req.query.id).then((total) => {
+    console.log(total);
+    res.render('user/singleProductCheckout', { admin: 0,user, result, cartCount,userProfil, addresss, total })
+  })
+
+
 
 })
 

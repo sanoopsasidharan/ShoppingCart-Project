@@ -1,0 +1,1588 @@
+<!--========================================================= 
+    Item Name: Ekka - Ecommerce HTML Template.
+    Author: ashishmaraviya
+    Version: 2.0
+    Copyright 2021-2022
+	Author URI: https://themeforest.net/user/ashishmaraviya
+ ============================================================-->
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from loopinfosol.in/themeforest/ekka-html-v2/ekka-html/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Nov 2021 19:16:41 GMT -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <title>Ekka - Ecommerce HTML Template.</title>
+    <meta name="keywords"
+        content="apparel, catalog, clean, ecommerce, ecommerce HTML, electronics, fashion, html eCommerce, html store, minimal, multipurpose, multipurpose ecommerce, online store, responsive ecommerce template, shops" />
+    <meta name="description" content="Best ecommerce html template for single and multi vendor store.">
+    <meta name="author" content="ashishmaraviya">
+
+    <!-- site Favicon -->
+    <link rel="icon" href="assets/images/favicon/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="assets/images/favicon/favicon.png" />
+    <meta name="msapplication-TileImage" content="assets/images/favicon/favicon.png" />
+
+    <!-- css Icon Font -->
+    <link rel="stylesheet" href="assets/css/vendor/ecicons.min.css" />
+
+    <!-- css All Plugins Files -->
+    <link rel="stylesheet" href="assets/css/plugins/animate.css" />
+    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/countdownTimer.css" />
+    <link rel="stylesheet" href="assets/css/plugins/slick.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/nouislider.css" />
+    <link rel="stylesheet" href="assets/css/plugins/bootstrap.css" />
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+
+    <!-- Background css -->
+    <link rel="stylesheet" id="bg-switcher-css" href="assets/css/backgrounds/bg-4.css">
+
+    <style>
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #f2f2f200;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f225;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body class="checkout_page">
+    <div id="ec-overlay"><span class="loader_img"></span></div>
+
+    <!-- Header start  -->
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New address</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div id="add-address-form" class="ec-check-bill-form">
+                        <form action="" id="checkout-form">
+                            <span class="ec-bill-wrap ec-bill-half">
+                                <label>First Name*</label>
+                                <input id="fname" type="text" name="name" placeholder="Enter your Name">
+                                <div class="invalid-feedback text-danger mb-3" id="name-Text">enter
+                                    your Name</div>
+                            </span>
+
+                            <span class="ec-bill-wrap ec-bill-half">
+                                <label>Number*</label>
+                                <input id="numberValidation" type="text" name="number" placeholder="Enter your Number"
+                                    maxlength="10" />
+                                <div class="invalid-feedback text-danger mb-3" id="text-Number">
+                                    Enter your phone number </div>
+                            </span>
+                            <span class="ec-bill-wrap">
+                                <label>Address</label>
+                                <input type="text" id="address" name="address" placeholder="Address Line 1" />
+                                <div class="invalid-feedback text-danger mb-3" id="address-Text">
+                                    enter your Name</div>
+                            </span>
+                            <span class="ec-bill-wrap">
+                                <label>Location</label>
+                                <input id="location" type="text" name="location" placeholder=" current location" />
+                                <div class="invalid-feedback text-danger mb-3" id="location-Text">
+                                    enter your location</div>
+                            </span>
+                            <span class="ec-bill-wrap">
+                                <label>City</label>
+                                <input id="city" type="text" name="City" placeholder=" current city" />
+                                <div class="invalid-feedback text-danger mb-3" id="city-Text">enter
+                                    your city</div>
+                            </span>
+                            <span class="ec-bill-wrap ec-bill-half">
+                                <label>Post Code</label>
+                                <input type="text" id="pinValidation" name="pincode" placeholder="Pin code" />
+                                <div class="invalid-feedback text-danger mb-3" id="text-pin">Enter
+                                    your pin </div>
+                            </span>
+                            <span class="ec-bill-wrap">
+                                <label>state</label>
+                                <input id="state" type="text" name="state" placeholder="state" />
+                                <div class="invalid-feedback text-danger mb-3" id="state-Text">Enter
+                                    your state </div>
+                            </span>
+                            <button class="btn btn btn-primary Flat-right" type="submit">Submit</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End  -->
+
+    <!-- ekka Cart Start -->
+    <div class="ec-side-cart-overlay"></div>
+    <div id="ec-side-cart" class="ec-side-cart">
+        <div class="ec-cart-inner">
+            <div class="ec-cart-top">
+                <div class="ec-cart-title">
+                    <span class="cart_title">My Cart</span>
+                    <button class="ec-close">×</button>
+                </div>
+                <ul class="eccart-pro-items">
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="assets/images/product-image/6_1.jpg" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
+                            <span class="cart-price"><span>$76.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="assets/images/product-image/12_1.jpg" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">Women Leather Shoes</a>
+                            <span class="cart-price"><span>$64.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidekka_pro_img"><img
+                                src="assets/images/product-image/3_1.jpg" alt="product"></a>
+                        <div class="ec-pro-content">
+                            <a href="product-left-sidebar.html" class="cart_pro_title">Girls Nylon Purse</a>
+                            <span class="cart-price"><span>$59.00</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                            </div>
+                            <a href="javascript:void(0)" class="remove">×</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ec-cart-bottom">
+                <div class="cart-sub-total">
+                    <table class="table cart-table">
+                        <tbody>
+                            <tr>
+                                <td class="text-left">Sub-Total :</td>
+                                <td class="text-right">$300.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">VAT (20%) :</td>
+                                <td class="text-right">$60.00</td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">Total :</td>
+                                <td class="text-right primary-color">$360.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cart_btn">
+                    <a href="cart.html" class="btn btn-primary">View Cart</a>
+                    <a href="checkout.html" class="btn btn-secondary">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ekka Cart End -->
+
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">Checkout</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Checkout</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Ec breadcrumb end -->
+
+    <!-- Ec checkout page -->
+
+
+    <!-- New Product Start -->
+
+
+    <section class="ec-page-content section-space-p">
+        <div class="container">
+            <div class="row">
+                <div class="ec-checkout-leftside col-lg-8 col-md-12 ">
+                    <!-- checkout content Start -->
+                    <div class="ec-checkout-content">
+                        <div class="ec-checkout-inner">
+                            <div class="ec-checkout-wrap ">
+                                <div class="ec-checkout-block ec-check-new">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div style="display: flex;">
+                                            <h3 class="ec-checkout-title">Address</h3>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                            + address
+                                        </button>
+                                    </div>
+                                    <div class="ec-check-block-content">
+                                        <form action="" id="placeOder-form">
+                                            <!-- <div id="allAddress" class=" ">
+                                                <% for(var j=0; j<addresss.length; j++) {%>
+                                                    <table class="">
+                                                        <tr>
+                                                            <input style="width: 17px!important;" name="adderssId"
+                                                                value="<%= addresss[j]._id%>" type="radio" checked>
+                                                            <td>
+                                                                <b>
+                                                                    <%= addresss[j].name%>
+                                                                </b><br>
+                                                                <b>
+                                                                    <%= addresss[j].number%>
+                                                                </b><br>
+                                                                <b>
+                                                                    <%= addresss[j].address%>
+                                                                </b><br>
+                                                                <b>
+                                                                    <%= addresss[j].state%>
+                                                                </b><br>
+                                                                <br>
+                                                            </td>
+
+                                                        </tr>
+                                                    </table>
+                                                    <%}%>
+                                            </div> -->
+
+
+                                            <div id="allAddress"
+                                                style=" overflow: scroll; height: 250px; width: 100%; margin-top: 20px;"
+                                                class="ec-vendor-card-body">
+                                                <div class="ec-vendor-card-table">
+                                                    <table id="customers"
+                                                        style="border: 1px solid black; border-radius: 20px;"
+                                                        class="table ec-table">
+
+                                                        <tbody>
+                                                            <% for(var j=0; j<addresss.length; j++) {%>
+                                                                <tr>
+                                                                    <td><span> <input
+                                                                                onchange="changeAddress('<%= addresss[j].address.addresId%>')"
+                                                                                id="addressId"
+                                                                                style="width: 17px!important;"
+                                                                                name="adderssId"
+                                                                                value="<%= addresss[j].address.addresId%>"
+                                                                                type="radio" checked></span></td>
+                                                                    <td><span>
+                                                                            <%= addresss[j].address.name%>
+
+                                                                        </span></td>
+                                                                    <td><span>
+
+                                                                            <%= addresss[j].address.location%>
+                                                                        </span></td>
+                                                                    <td><span>
+
+                                                                            <%= addresss[j].address.pincode%>
+
+                                                                        </span></td>
+
+                                                                    <td><span>
+                                                                            <%= addresss[j].address.number%>
+                                                                        </span></td>
+                                                                    <td><span>
+                                                                            <%= addresss[j].address.address%>
+                                                                        </span></td>
+                                                                    <td><span>
+                                                                            <%= addresss[j].address.state%>
+                                                                        </span></td>
+                                                                    <td><span>
+                                                                            <%= addresss[j].address.City%>
+                                                                        </span></td>
+                                                                </tr>
+                                                                <%}%>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div>
+                                                <h3 class="mt-4">Payment method</h3>
+
+                                                <input style="width: 17px!important;" name="paymentmethod" value="COD"
+                                                    type="radio" checked>
+                                                <label for="">COD</label>
+                                                <input style="width: 17px!important;" name="paymentmethod"
+                                                    value="ONLINE" type="radio">
+                                                <label for="">Razorpay</label>
+
+                                            </div>
+
+                                            <div id="paypal_button"></div>
+
+                                            <input type="text" name="userId" value="<%=user._id%>" id="" hidden>
+
+
+                                            <div class="ec-sidebar-block">
+                                                <div class="ec-sb-title">
+
+                                                    <h3 class="ec-sidebar-title mt-4">Summary</h3>
+                                                </div>
+                                                <div class="ec-sb-block-content">
+                                                    <div class="ec-checkout-summary">
+
+                                                        <% if(total.OfferTotal===total.OrginalPrice ){ %>
+
+                                                            <div>
+                                                                <span class="text-left">Product price</span>
+                                                                <span class="text-right">₹ <%= total.OrginalPrice %>
+                                                                </span>
+
+                                                            </div>
+                                                            <% } else{ %>
+                                                                <div>
+                                                                    <span class="text-left">Product price</span>
+                                                                    <span class="text-right">₹ <%= total.OrginalPrice %>
+                                                                    </span>
+                                                                </div>
+                                                                <div>
+                                                                    <span class="text-left">payable price</span>
+                                                                    <span class="text-right text-success">₹ <%=
+                                                                            total.OfferTotal %>
+                                                                    </span>
+                                                                </div>
+
+                                                                <% } %>
+
+
+                                                                    <div>
+                                                                        <span class="text-left">Delivery Charges</span>
+                                                                        <span class="text-right">₹ 00.00</span>
+                                                                    </div>
+                                                                    <div>
+                                                                        <span id="coupon-discount"
+                                                                            class="text-left">Coupan Discount</span>
+                                                                        <span id="coupon-discount-amount"
+                                                                            class="text-right"> </span>
+                                                                    </div>
+
+                                                                    <div>
+                                                                        <input type="text" name="couponCD" value=""
+                                                                            id="couponValue" hidden>
+                                                                        <input type="text" name="wallet"
+                                                                            id="walletInputId" hidden>
+                                                                    </div>
+                                                                    <div>
+                                                                        
+                                                                        <input type="text" name="priceId"
+                                                                            id="price-Id-buy-inp" hidden>
+                                                                    </div>
+
+
+                                                                    <% if(total.OfferTotal===total.OrginalPrice ){ %>
+                                                                        <div class="ec-checkout-summary-total">
+                                                                            <span class="text-left">Total Amount</span>
+                                                                            <span id="total-price"
+                                                                                class="text-right coupon-total">₹
+                                                                                <%= total.OrginalPrice %>
+                                                                            </span>
+                                                                            <input type="text"
+                                                                                value="<%= total.OrginalPrice %>"
+                                                                                class="priceOftotal" id="" hidden>
+                                                                        </div>
+                                                                        <% } else{ %>
+                                                                            <div class="ec-checkout-summary-total">
+                                                                                <span class="text-left">Total
+                                                                                    Amount</span>
+                                                                                <span class="text-right coupon-total">₹
+                                                                                    <%= total.OfferTotal %>
+
+                                                                                </span>
+                                                                                <input type="text"
+                                                                                    value="<%= total.OfferTotal %>"
+                                                                                    class="priceOftotal" id="" hidden>
+                                                                            </div>
+                                                                            <% } %>
+
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-4" style="display: flex; justify-content: end;">
+                                                <button class="btn btn btn-primary Flat-right"
+                                                    type="submit">Checkout</button>
+                                            </div>
+                                        </form>
+
+
+                                        <form action="/paypal" method="post">
+                                            <input type="text" name="addressId" id="addressIdPaypal" hidden>
+                                            <input type="text" name="couponCD" id="couponCD" hidden>
+                                            <input type="text" name="paymentmethod" value="ONLINE" id="" hidden>
+                                            <input type="text" name="wallet" id="walletpaypalId" hidden>
+                                            <input type="text" name="userId" value="<%=user._id%>" id="" hidden>
+
+                                            <div>
+                                                <button type="submit"
+                                                    style="width: 100%; color: white; background-color: rgb(0,112,186); margin-top: 26px; height: 52px; border-radius:4px ;"
+                                                    class="btn">paypal</button>
+                                                <div style="display: flex; justify-content: center; margin-top: 10px;">
+                                                    <p><span style="font-family: 'Fira Sans', sans-serif;">password
+                                                            By</span> &nbsp;<span><img style="width: 50px;"
+                                                                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAxcHgiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAxMDEgMzIiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaW5ZTWluIG1lZXQiIHhtbG5zPSJodHRwOiYjeDJGOyYjeDJGO3d3dy53My5vcmcmI3gyRjsyMDAwJiN4MkY7c3ZnIj48cGF0aCBmaWxsPSIjMDAzMDg3IiBkPSJNIDEyLjIzNyAyLjggTCA0LjQzNyAyLjggQyAzLjkzNyAyLjggMy40MzcgMy4yIDMuMzM3IDMuNyBMIDAuMjM3IDIzLjcgQyAwLjEzNyAyNC4xIDAuNDM3IDI0LjQgMC44MzcgMjQuNCBMIDQuNTM3IDI0LjQgQyA1LjAzNyAyNC40IDUuNTM3IDI0IDUuNjM3IDIzLjUgTCA2LjQzNyAxOC4xIEMgNi41MzcgMTcuNiA2LjkzNyAxNy4yIDcuNTM3IDE3LjIgTCAxMC4wMzcgMTcuMiBDIDE1LjEzNyAxNy4yIDE4LjEzNyAxNC43IDE4LjkzNyA5LjggQyAxOS4yMzcgNy43IDE4LjkzNyA2IDE3LjkzNyA0LjggQyAxNi44MzcgMy41IDE0LjgzNyAyLjggMTIuMjM3IDIuOCBaIE0gMTMuMTM3IDEwLjEgQyAxMi43MzcgMTIuOSAxMC41MzcgMTIuOSA4LjUzNyAxMi45IEwgNy4zMzcgMTIuOSBMIDguMTM3IDcuNyBDIDguMTM3IDcuNCA4LjQzNyA3LjIgOC43MzcgNy4yIEwgOS4yMzcgNy4yIEMgMTAuNjM3IDcuMiAxMS45MzcgNy4yIDEyLjYzNyA4IEMgMTMuMTM3IDguNCAxMy4zMzcgOS4xIDEzLjEzNyAxMC4xIFoiPjwvcGF0aD48cGF0aCBmaWxsPSIjMDAzMDg3IiBkPSJNIDM1LjQzNyAxMCBMIDMxLjczNyAxMCBDIDMxLjQzNyAxMCAzMS4xMzcgMTAuMiAzMS4xMzcgMTAuNSBMIDMwLjkzNyAxMS41IEwgMzAuNjM3IDExLjEgQyAyOS44MzcgOS45IDI4LjAzNyA5LjUgMjYuMjM3IDkuNSBDIDIyLjEzNyA5LjUgMTguNjM3IDEyLjYgMTcuOTM3IDE3IEMgMTcuNTM3IDE5LjIgMTguMDM3IDIxLjMgMTkuMzM3IDIyLjcgQyAyMC40MzcgMjQgMjIuMTM3IDI0LjYgMjQuMDM3IDI0LjYgQyAyNy4zMzcgMjQuNiAyOS4yMzcgMjIuNSAyOS4yMzcgMjIuNSBMIDI5LjAzNyAyMy41IEMgMjguOTM3IDIzLjkgMjkuMjM3IDI0LjMgMjkuNjM3IDI0LjMgTCAzMy4wMzcgMjQuMyBDIDMzLjUzNyAyNC4zIDM0LjAzNyAyMy45IDM0LjEzNyAyMy40IEwgMzYuMTM3IDEwLjYgQyAzNi4yMzcgMTAuNCAzNS44MzcgMTAgMzUuNDM3IDEwIFogTSAzMC4zMzcgMTcuMiBDIDI5LjkzNyAxOS4zIDI4LjMzNyAyMC44IDI2LjEzNyAyMC44IEMgMjUuMDM3IDIwLjggMjQuMjM3IDIwLjUgMjMuNjM3IDE5LjggQyAyMy4wMzcgMTkuMSAyMi44MzcgMTguMiAyMy4wMzcgMTcuMiBDIDIzLjMzNyAxNS4xIDI1LjEzNyAxMy42IDI3LjIzNyAxMy42IEMgMjguMzM3IDEzLjYgMjkuMTM3IDE0IDI5LjczNyAxNC42IEMgMzAuMjM3IDE1LjMgMzAuNDM3IDE2LjIgMzAuMzM3IDE3LjIgWiI+PC9wYXRoPjxwYXRoIGZpbGw9IiMwMDMwODciIGQ9Ik0gNTUuMzM3IDEwIEwgNTEuNjM3IDEwIEMgNTEuMjM3IDEwIDUwLjkzNyAxMC4yIDUwLjczNyAxMC41IEwgNDUuNTM3IDE4LjEgTCA0My4zMzcgMTAuOCBDIDQzLjIzNyAxMC4zIDQyLjczNyAxMCA0Mi4zMzcgMTAgTCAzOC42MzcgMTAgQyAzOC4yMzcgMTAgMzcuODM3IDEwLjQgMzguMDM3IDEwLjkgTCA0Mi4xMzcgMjMgTCAzOC4yMzcgMjguNCBDIDM3LjkzNyAyOC44IDM4LjIzNyAyOS40IDM4LjczNyAyOS40IEwgNDIuNDM3IDI5LjQgQyA0Mi44MzcgMjkuNCA0My4xMzcgMjkuMiA0My4zMzcgMjguOSBMIDU1LjgzNyAxMC45IEMgNTYuMTM3IDEwLjYgNTUuODM3IDEwIDU1LjMzNyAxMCBaIj48L3BhdGg+PHBhdGggZmlsbD0iIzAwOWNkZSIgZD0iTSA2Ny43MzcgMi44IEwgNTkuOTM3IDIuOCBDIDU5LjQzNyAyLjggNTguOTM3IDMuMiA1OC44MzcgMy43IEwgNTUuNzM3IDIzLjYgQyA1NS42MzcgMjQgNTUuOTM3IDI0LjMgNTYuMzM3IDI0LjMgTCA2MC4zMzcgMjQuMyBDIDYwLjczNyAyNC4zIDYxLjAzNyAyNCA2MS4wMzcgMjMuNyBMIDYxLjkzNyAxOCBDIDYyLjAzNyAxNy41IDYyLjQzNyAxNy4xIDYzLjAzNyAxNy4xIEwgNjUuNTM3IDE3LjEgQyA3MC42MzcgMTcuMSA3My42MzcgMTQuNiA3NC40MzcgOS43IEMgNzQuNzM3IDcuNiA3NC40MzcgNS45IDczLjQzNyA0LjcgQyA3Mi4yMzcgMy41IDcwLjMzNyAyLjggNjcuNzM3IDIuOCBaIE0gNjguNjM3IDEwLjEgQyA2OC4yMzcgMTIuOSA2Ni4wMzcgMTIuOSA2NC4wMzcgMTIuOSBMIDYyLjgzNyAxMi45IEwgNjMuNjM3IDcuNyBDIDYzLjYzNyA3LjQgNjMuOTM3IDcuMiA2NC4yMzcgNy4yIEwgNjQuNzM3IDcuMiBDIDY2LjEzNyA3LjIgNjcuNDM3IDcuMiA2OC4xMzcgOCBDIDY4LjYzNyA4LjQgNjguNzM3IDkuMSA2OC42MzcgMTAuMSBaIj48L3BhdGg+PHBhdGggZmlsbD0iIzAwOWNkZSIgZD0iTSA5MC45MzcgMTAgTCA4Ny4yMzcgMTAgQyA4Ni45MzcgMTAgODYuNjM3IDEwLjIgODYuNjM3IDEwLjUgTCA4Ni40MzcgMTEuNSBMIDg2LjEzNyAxMS4xIEMgODUuMzM3IDkuOSA4My41MzcgOS41IDgxLjczNyA5LjUgQyA3Ny42MzcgOS41IDc0LjEzNyAxMi42IDczLjQzNyAxNyBDIDczLjAzNyAxOS4yIDczLjUzNyAyMS4zIDc0LjgzNyAyMi43IEMgNzUuOTM3IDI0IDc3LjYzNyAyNC42IDc5LjUzNyAyNC42IEMgODIuODM3IDI0LjYgODQuNzM3IDIyLjUgODQuNzM3IDIyLjUgTCA4NC41MzcgMjMuNSBDIDg0LjQzNyAyMy45IDg0LjczNyAyNC4zIDg1LjEzNyAyNC4zIEwgODguNTM3IDI0LjMgQyA4OS4wMzcgMjQuMyA4OS41MzcgMjMuOSA4OS42MzcgMjMuNCBMIDkxLjYzNyAxMC42IEMgOTEuNjM3IDEwLjQgOTEuMzM3IDEwIDkwLjkzNyAxMCBaIE0gODUuNzM3IDE3LjIgQyA4NS4zMzcgMTkuMyA4My43MzcgMjAuOCA4MS41MzcgMjAuOCBDIDgwLjQzNyAyMC44IDc5LjYzNyAyMC41IDc5LjAzNyAxOS44IEMgNzguNDM3IDE5LjEgNzguMjM3IDE4LjIgNzguNDM3IDE3LjIgQyA3OC43MzcgMTUuMSA4MC41MzcgMTMuNiA4Mi42MzcgMTMuNiBDIDgzLjczNyAxMy42IDg0LjUzNyAxNCA4NS4xMzcgMTQuNiBDIDg1LjczNyAxNS4zIDg1LjkzNyAxNi4yIDg1LjczNyAxNy4yIFoiPjwvcGF0aD48cGF0aCBmaWxsPSIjMDA5Y2RlIiBkPSJNIDk1LjMzNyAzLjMgTCA5Mi4xMzcgMjMuNiBDIDkyLjAzNyAyNCA5Mi4zMzcgMjQuMyA5Mi43MzcgMjQuMyBMIDk1LjkzNyAyNC4zIEMgOTYuNDM3IDI0LjMgOTYuOTM3IDIzLjkgOTcuMDM3IDIzLjQgTCAxMDAuMjM3IDMuNSBDIDEwMC4zMzcgMy4xIDEwMC4wMzcgMi44IDk5LjYzNyAyLjggTCA5Ni4wMzcgMi44IEMgOTUuNjM3IDIuOCA5NS40MzcgMyA5NS4zMzcgMy4zIFoiPjwvcGF0aD48L3N2Zz4"
+                                                                alt=""></span></p>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                        <!-- <div class="container">
+                                            <div class="row">
+                                               <form action="">
+                                               
+                                                    <% for(var j=0; j<addresss.length; j++) {%>
+                                                        <table class="">
+                                                            <tr>
+                                                                    <input style="width: 17px!important;" name="adderssId" value="<%= addresss[j]._id%>" type="radio" >
+                                                                <td>
+                                                                    <b><%= addresss[j].name%></b><br>
+                                                                    <b><%= addresss[j].number%></b><br>
+                                                                    <b><%= addresss[j].address%></b><br>
+                                                                    <b><%= addresss[j].location%></b><br>
+                                                                    <b><%= addresss[j].pincode%></b><br>
+                                                                    <b><%= addresss[j].state%></b><br>
+                                                                    <br>
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                        </table>
+                                                        <%}%>
+
+                                              
+                                                <div class="col-md-4">
+                                                    <div style="width: 100%; height: 30px; background-color:blue;"></div>
+                                                </div>
+                                               </form>
+                                            </div>
+
+                                        </div> -->
+                                        <!-- <div class="">
+                                            <div id="allAddress" class=" col-12">
+                                                    <% for(var j=0; j<addresss.length; j++) {%>
+                                                    <table class="">
+                                                        <tr>
+                                                                <input style="width: 17px!important;" name="adderssId" value="<%= addresss[j]._id%>" type="radio" >
+                                                            <td>
+                                                                <b><%= addresss[j].name%></b><br>
+                                                                <b><%= addresss[j].number%></b><br>
+                                                                <b><%= addresss[j].address%></b><br>
+                                                                <b><%= addresss[j].location%></b><br>
+                                                                <b><%= addresss[j].pincode%></b><br>
+                                                                <b><%= addresss[j].state%></b><br>
+                                                                <br>
+                                                            </td>
+                                                            
+                                                        </tr>
+                                                    </table>
+                                                    <%}%>
+                                            </div>
+                                            <div class="ec-sidebar-block  col-12">
+                                                <div class="ec-sb-title">
+                                                    <h3 class="ec-sidebar-title">Summary</h3>
+                                                </div>
+                                                <div class="ec-sb-block-content">
+                                                    <div class="ec-checkout-summary">
+                                                        <div>
+                                                            <span class="text-left">Sub-Total</span>
+                                                            <span class="text-right">₹ <%= total %></span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-left">Delivery Charges</span>
+                                                            <span class="text-right">$80.00</span>
+                                                        </div>
+                                                        <div>
+                                                            <span class="text-left">Coupan Discount</span>
+                                                            <span class="text-right"><a class="ec-checkout-coupan">Apply Coupan</a></span>
+                                                        </div>
+                                                        <div class="ec-checkout-coupan-content">
+                                                            <form class="ec-checkout-coupan-form" name="ec-checkout-coupan-form"
+                                                                method="post" action="#">
+                                                                <input class="ec-coupan" type="text" required=""
+                                                                    placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                                                                <button class="ec-coupan-btn button btn-primary" type="submit"
+                                                                    name="subscribe" value="">Apply</button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="ec-checkout-summary-total">
+                                                            <span class="text-left">Total Amount</span>
+                                                            <span class="text-right">₹ <%= total %></span>
+                                                        </div>
+                                                    </div>
+                    
+                                                    
+                                                </div>
+                                            </div>
+    
+
+
+                                        </div> -->
+                                        <!-- <div id="allAddress">
+                                            <div>
+                                                <% for(var j=0; j<addresss.length; j++) {%>
+                                                <table class="">
+                                                    <tr>
+        
+                                                            <input style="width: 17px!important;" name="adderssId" value="<%= addresss[j]._id%>" type="radio" >
+                                                        
+                                                        <td>
+                                                            
+                                                            <b><%= addresss[j].name%></b><br>
+                                                            <b><%= addresss[j].number%></b><br>
+                                                            <b><%= addresss[j].address%></b><br>
+                                                            <b><%= addresss[j].location%></b><br>
+                                                            <b><%= addresss[j].pincode%></b><br>
+                                                            <b><%= addresss[j].state%></b><br>
+                                                            <br>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                </table>
+                                                <%}%>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="ec-sidebar-block">
+                                            <div class="ec-sb-title">
+                                                <h3 class="ec-sidebar-title">Summary</h3>
+                                            </div>
+                                            <div class="ec-sb-block-content">
+                                                <div class="ec-checkout-summary">
+                                                    <div>
+                                                        <span class="text-left">Sub-Total</span>
+                                                        <span class="text-right">₹ <%= total %></span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="text-left">Delivery Charges</span>
+                                                        <span class="text-right">$80.00</span>
+                                                    </div>
+                                                    <div>
+                                                        <span class="text-left">Coupan Discount</span>
+                                                        <span class="text-right"><a class="ec-checkout-coupan">Apply Coupan</a></span>
+                                                    </div>
+                                                    <div class="ec-checkout-coupan-content">
+                                                        <form class="ec-checkout-coupan-form" name="ec-checkout-coupan-form"
+                                                            method="post" action="#">
+                                                            <input class="ec-coupan" type="text" required=""
+                                                                placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                                                            <button class="ec-coupan-btn button btn-primary" type="submit"
+                                                                name="subscribe" value="">Apply</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="ec-checkout-summary-total">
+                                                        <span class="text-left">Total Amount</span>
+                                                        <span class="text-right">₹ <%= total %></span>
+                                                    </div>
+                                                </div>
+                
+                                                
+                                            </div>
+                                        </div> -->
+
+                                        <!-- <div class="ec-new-btn"><a href="#" class="btn btn-primary">Continue</a></div> -->
+
+                                    </div>
+                                </div>
+
+
+                                <!-- <div class="ec-checkout-block ec-check-fname">
+                                    <h3 class="ec-checkout-title">Returning Customer</h3>
+                                    <div class="ec-check-login-form">
+                                        <form action="#" method="post">
+                                            <span class="ec-check-login-wrap">
+                                                <label>Email Address</label>
+                                                <input type="text" name="name" placeholder="Enter your email address"
+                                                    required />
+                                            </span>
+                                            <span class="ec-check-login-wrap">
+                                                <label>Password</label>
+                                                <input type="password" name="password" placeholder="Enter your password"
+                                                    required />
+                                            </span>
+
+                                            <span class="ec-check-login-wrap ec-check-login-btn">
+                                                <button class="btn btn-primary" type="submit">Login</button>
+                                                <a class="ec-check-login-fp" href="#">Forgot Password?</a>
+                                            </span>
+                                        </form>
+                                    </div>
+                                </div> -->
+
+                            </div>
+
+                            <!-- <span class="ec-check-order-btn">
+                                <a class="btn btn-primary" >Place Order</a>
+                            </span> -->
+                        </div>
+                    </div>
+                    <!--cart content End -->
+                </div>
+
+                <!-- Sidebar Area Start -->
+                <div class="ec-checkout-rightside col-lg-4 col-md-12">
+                    <!-- <div class="ec-sidebar-wrap">
+                      
+                        <div class="ec-sidebar-block">
+                            <div class="ec-sb-title">
+                                <h3 class="ec-sidebar-title">Summary</h3>
+                            </div>
+                            <div class="ec-sb-block-content">
+                                <div class="ec-checkout-summary">
+                                    <div>
+                                        <span class="text-left">Sub-Total</span>
+                                        <span class="text-right">₹ <%= total %></span>
+                                    </div>
+                                    <div>
+                                        <span class="text-left">Delivery Charges</span>
+                                        <span class="text-right">$80.00</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-left">Coupan Discount</span>
+                                        <span class="text-right"><a class="ec-checkout-coupan">Apply Coupan</a></span>
+                                    </div>
+                                    <div class="ec-checkout-coupan-content">
+                                        <form class="ec-checkout-coupan-form" name="ec-checkout-coupan-form"
+                                            method="post" action="#">
+                                            <input class="ec-coupan" type="text" required=""
+                                                placeholder="Enter Your Coupan Code" name="ec-coupan" value="">
+                                            <button class="ec-coupan-btn button btn-primary" type="submit"
+                                                name="subscribe" value="">Apply</button>
+                                        </form>
+                                    </div>
+                                    <div class="ec-checkout-summary-total">
+                                        <span class="text-left">Total Amount</span>
+                                        <span class="text-right">₹ <%= total %></span>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                       
+                    </div> -->
+
+
+                    <div class="ec-sidebar-wrap ec-check-pay-img-wrap">
+
+                        <div class="ec-sidebar-block">
+                            <div class="ec-sb-title">
+                                <h3 class="ec-sidebar-title">Wallet</h3>
+                            </div>
+                            <div class="ec-sb-block-content">
+
+
+                                <div>
+
+                                    <form id="applie-wallet">
+                                        <input type="text" name="refarralamount" id="wallet_Amount"
+                                            value="<%= userProfil.refarralamount %>" id="" hidden>
+
+                                        <div style="display: flex;justify-content: space-between; margin: 10px;">
+                                            <% if(userProfil.refarralamount ){ %>
+                                                <div>
+                                                    <h3>
+                                                        <%= userProfil.refarralamount %>
+                                                    </h3>
+                                                </div>
+                                                <div>
+                                                    <button onclick="applieWallet('<%= userProfil.refarralamount %>')"
+                                                        style="margin-top: 0px; border-radius: 5px;"
+                                                        class="btn btn-mini btn-primary" type="submit">applie</button>
+                                                </div>
+                                        </div>
+                                        <% } else{ %>
+                                            <h5 style="color: red; margin: 10px;">Wallet is empty</h5>
+
+                                            <% } %>
+
+                                                <div
+                                                    style="display:flex; justify-content: center; margin-bottom: 25px;">
+                                                    <p style="color: green;" id="sucess-message"></p>
+                                                </div>
+                                    </form>
+
+                                </div>
+                                <div>
+                                    <h3 class="ec-sidebar-title">Apply offer</h3>
+                                    <form id="apply-coupons">
+                                        <% if(total.OfferTotal===total.OrginalPrice ){ %>
+                                            <input type="text" value="<%= total.OrginalPrice %>" name="total" id=""
+                                                hidden>
+                                            <% } else{ %>
+                                                <input type="text" name="total" value="<%= total.OfferTotal %>" id=""
+                                                    hidden>
+                                                <% } %>
+
+                                                    <input
+                                                        style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;"
+                                                        type="text" name="cpCode" id=""
+                                                        placeholder="Enter Coupon Code ...">
+                                                    <p id="couponErorr" style=" margin-top: 20px;"> </p>
+                                                    <p id="couponSucess" style=" margin-top: 20px;"> </p>
+                                                    <button
+                                                        style="margin-top: 0px; border-radius: 5px; font-family: 'Fira Sans', sans-serif;"
+                                                        class="btn btn-mini btn-primary" type="submit">Submit</button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Product end -->
+
+    <!-- Footer Start -->
+    <footer class="ec-footer section-space-mt">
+        <div class="footer-container">
+            <div class="footer-offer">
+                <div class="container">
+                    <div class="row">
+                        <div class="text-center footer-off-msg">
+                            <span>Win a contest! Get this limited-editon</span><a href="#" target="_blank">View
+                                Detail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-top section-space-footer-p">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-3 ec-footer-contact">
+                            <div class="ec-footer-widget">
+                                <div class="ec-footer-logo"><a href="#"><img src="assets/images/logo/footer-logo.png"
+                                            alt=""><img class="dark-footer-logo" src="assets/images/logo/dark-logo.png"
+                                            alt="Site Logo" style="display: none;" /></a></div>
+                                <h4 class="ec-footer-heading">Contact us</h4>
+                                <div class="ec-footer-links">
+                                    <ul class="align-items-center">
+                                        <li class="ec-footer-link">71 Pilgrim Avenue Chevy Chase, east california.</li>
+                                        <li class="ec-footer-link"><span>Call Us:</span><a href="tel:+440123456789">+44
+                                                0123 456 789</a></li>
+                                        <li class="ec-footer-link"><span>Email:</span><a
+                                                href="https://loopinfosol.in/cdn-cgi/l/email-protection#acc9d4cdc1dcc0c9ecc9cf81c9c1cdc5c082cfc3c1"><span
+                                                    class="__cf_email__"
+                                                    data-cfemail="82a9e7fae3eff2eee7c2e7e1afe7efe3ebeeace1edef">[email&#160;protected]</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-2 ec-footer-info">
+                            <div class="ec-footer-widget">
+                                <h4 class="ec-footer-heading">Information</h4>
+                                <div class="ec-footer-links">
+                                    <ul class="align-items-center">
+                                        <li class="ec-footer-link"><a href="about-us.html">About us</a></li>
+                                        <li class="ec-footer-link"><a href="faq.html">FAQ</a></li>
+                                        <li class="ec-footer-link"><a href="#">Delivery Information</a></li>
+                                        <li class="ec-footer-link"><a href="contact-us.html">Contact us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-2 ec-footer-account">
+                            <div class="ec-footer-widget">
+                                <h4 class="ec-footer-heading">Account</h4>
+                                <div class="ec-footer-links">
+                                    <ul class="align-items-center">
+                                        <li class="ec-footer-link"><a href="#">My Account</a></li>
+                                        <li class="ec-footer-link"><a href="track-order.html">Order History</a></li>
+                                        <li class="ec-footer-link"><a href="#">Wish List</a></li>
+                                        <li class="ec-footer-link"><a href="#">Specials</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-2 ec-footer-service">
+                            <div class="ec-footer-widget">
+                                <h4 class="ec-footer-heading">Services</h4>
+                                <div class="ec-footer-links">
+                                    <ul class="align-items-center">
+                                        <li class="ec-footer-link"><a href="#">Discount Returns</a></li>
+                                        <li class="ec-footer-link"><a href="#">Policy & policy </a></li>
+                                        <li class="ec-footer-link"><a href="#">Customer Service</a></li>
+                                        <li class="ec-footer-link"><a href="terms-condition.html">Term & condition</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-3 ec-footer-news">
+                            <div class="ec-footer-widget">
+                                <h4 class="ec-footer-heading">Newsletter</h4>
+                                <div class="ec-footer-links">
+                                    <ul class="align-items-center">
+                                        <li class="ec-footer-link">Get instant updates about our new products and
+                                            special promos!</li>
+                                    </ul>
+                                    <div class="ec-subscribe-form">
+                                        <form id="ec-newsletter-form" name="ec-newsletter-form" method="post"
+                                            action="#">
+                                            <div id="ec_news_signup" class="ec-form">
+                                                <input class="ec-email" type="email" required=""
+                                                    placeholder="Enter your email here..." name="ec-email" value="" />
+                                                <button id="ec-news-btn" class="button btn-primary" type="submit"
+                                                    name="subscribe" value=""><i class="ecicon eci-paper-plane-o"
+                                                        aria-hidden="true"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <!-- Footer social Start -->
+                        <div class="col text-left footer-bottom-left">
+                            <div class="footer-bottom-social">
+                                <span class="social-text text-upper">Follow us on:</span>
+                                <ul class="mb-0">
+                                    <li class="list-inline-item"><a class="hdr-facebook" href="#"><i
+                                                class="ecicon eci-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a class="hdr-twitter" href="#"><i
+                                                class="ecicon eci-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a class="hdr-instagram" href="#"><i
+                                                class="ecicon eci-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a class="hdr-linkedin" href="#"><i
+                                                class="ecicon eci-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Footer social End -->
+                        <!-- Footer Copyright Start -->
+                        <div class="col text-center footer-copy">
+                            <div class="footer-bottom-copy ">
+                                <div class="ec-copy">Copyright © 2021-2022 <a class="site-name text-upper"
+                                        href="#">ekka<span>.</span></a>. All Rights Reserved</div>
+                            </div>
+                        </div>
+                        <!-- Footer Copyright End -->
+                        <!-- Footer payment -->
+                        <div class="col footer-bottom-right">
+                            <div class="footer-bottom-payment d-flex justify-content-end">
+                                <div class="payment-link">
+                                    <img src="assets/images/icons/payment.png" alt="">
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Footer payment -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="ec_quickview_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="btn-close qty_close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12 col-xs-12">
+                            <!-- Swiper -->
+                            <div class="qty-product-cover">
+                                <div class="qty-slide">
+                                    <img class="img-responsive" src="assets/images/product-image/3_1.jpg" alt="">
+                                </div>
+                                <div class="qty-slide">
+                                    <img class="img-responsive" src="assets/images/product-image/3_2.jpg" alt="">
+                                </div>
+                                <div class="qty-slide">
+                                    <img class="img-responsive" src="assets/images/product-image/3_3.jpg" alt="">
+                                </div>
+                                <div class="qty-slide">
+                                    <img class="img-responsive" src="assets/images/product-image/3_4.jpg" alt="">
+                                </div>
+                                <div class="qty-slide">
+                                    <img class="img-responsive" src="assets/images/product-image/3_5.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="qty-nav-thumb">
+                                <div class="qty-slide">
+                                    <img class="img-responsive" src="assets/images/product-image/3_1.jpg" alt="">
+                                </div>
+                                <div class="qty-slide">
+                                    <img class="img-responsive" src="assets/images/product-image/3_2.jpg" alt="">
+                                </div>
+                                <div class="qty-slide">
+                                    <img class="img-responsive" src="assets/images/product-image/3_3.jpg" alt="">
+                                </div>
+                                <div class="qty-slide">
+                                    <img class="img-responsive" src="assets/images/product-image/3_4.jpg" alt="">
+                                </div>
+                                <div class="qty-slide">
+                                    <img class="img-responsive" src="assets/images/product-image/3_5.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-sm-12 col-xs-12">
+                            <div class="quickview-pro-content">
+                                <h5 class="ec-quick-title"><a href="product-left-sidebar.html">Handbag leather purse for
+                                        women</a>
+                                </h5>
+                                <div class="ec-quickview-rating">
+                                    <i class="ecicon eci-star fill"></i>
+                                    <i class="ecicon eci-star fill"></i>
+                                    <i class="ecicon eci-star fill"></i>
+                                    <i class="ecicon eci-star fill"></i>
+                                    <i class="ecicon eci-star"></i>
+                                </div>
+
+                                <div class="ec-quickview-desc">Lorem Ipsum is simply dummy text of the printing and
+                                    typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
+                                    since the 1500s,</div>
+                                <div class="ec-quickview-price">
+                                    <span class="old-price">$100.00</span>
+                                    <span class="new-price">$80.00</span>
+                                </div>
+
+                                <div class="ec-pro-variation">
+                                    <div class="ec-pro-variation-inner ec-pro-variation-color">
+                                        <span>Color</span>
+                                        <div class="ec-pro-color">
+                                            <ul class="ec-opt-swatch">
+                                                <li><span style="background-color:#696d62;"></span></li>
+                                                <li><span style="background-color:#d73808;"></span></li>
+                                                <li><span style="background-color:#577023;"></span></li>
+                                                <li><span style="background-color:#2ea1cd;"></span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="ec-pro-variation-inner ec-pro-variation-size ec-pro-size">
+                                        <span>Size</span>
+                                        <div class="ec-pro-variation-content">
+                                            <ul class="ec-opt-size">
+                                                <li class="active"><a href="#" class="ec-opt-sz"
+                                                        data-tooltip="Small">S</a></li>
+                                                <li><a href="#" class="ec-opt-sz" data-tooltip="Medium">M</a></li>
+                                                <li><a href="#" class="ec-opt-sz" data-tooltip="Large">X</a></li>
+                                                <li><a href="#" class="ec-opt-sz" data-tooltip="Extra Large">XL</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ec-quickview-qty">
+                                    <div class="qty-plus-minus">
+                                        <input class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                    </div>
+                                    <div class="ec-quickview-cart ">
+                                        <button class="btn btn-primary"><img src="assets/images/icons/cart.svg"
+                                                class="svg_img pro_svg" alt="" /> Add To Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal end -->
+
+    <!-- Footer navigation panel for responsive display -->
+    <div class="ec-nav-toolbar">
+        <div class="container">
+            <div class="ec-nav-panel">
+                <div class="ec-nav-panel-icons">
+                    <a href="#ec-mobile-menu" class="navbar-toggler-btn ec-header-btn ec-side-toggle"><img
+                            src="assets/images/icons/menu.svg" class="svg_img header_svg" alt="" /></a>
+                </div>
+                <div class="ec-nav-panel-icons">
+                    <a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle"><img
+                            src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /><span
+                            class="ec-cart-noti ec-header-count cart-count-lable">3</span></a>
+                </div>
+                <div class="ec-nav-panel-icons">
+                    <a href="index.html" class="ec-header-btn"><img src="assets/images/icons/home.svg"
+                            class="svg_img header_svg" alt="icon" /></a>
+                </div>
+                <div class="ec-nav-panel-icons">
+                    <a href="wishlist.html" class="ec-header-btn"><img src="assets/images/icons/wishlist.svg"
+                            class="svg_img header_svg" alt="icon" /><span class="ec-cart-noti">4</span></a>
+                </div>
+                <div class="ec-nav-panel-icons">
+                    <a href="login.html" class="ec-header-btn"><img src="assets/images/icons/user.svg"
+                            class="svg_img header_svg" alt="icon" /></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Footer navigation panel for responsive display end -->
+
+    <!-- Recent Purchase Popup  -->
+
+    <!-- Recent Purchase Popup end -->
+
+    <!-- Cart Floating Button -->
+    <div class="ec-cart-float">
+        <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+            <div class="header-icon"><img src="assets/images/icons/cart.svg" class="svg_img header_svg" alt="" /></div>
+            <span class="ec-cart-count cart-count-lable">3</span>
+        </a>
+    </div>
+    <!-- Cart Floating Button end -->
+
+    <!-- Whatsapp -->
+
+    <!-- Whatsapp end -->
+
+    <!-- Feature tools -->
+    <div class="ec-tools-sidebar-overlay"></div>
+    <div class="ec-tools-sidebar">
+        <div class="tool-title">
+            <h3>Features</h3>
+        </div>
+        <a href="#" class="ec-tools-sidebar-toggle in-out">
+            <img alt="icon" src="assets/images/common/settings.png" />
+        </a>
+        <div class="ec-tools-detail">
+            <div class="ec-tools-sidebar-content ec-change-color ec-color-desc">
+                <h3>Color Scheme</h3>
+                <ul class="bg-panel">
+                    <li class="active" data-color="01"><a href="#" class="colorcode1"></a></li>
+                    <li data-color="02"><a href="#" class="colorcode2"></a></li>
+                    <li data-color="03"><a href="#" class="colorcode3"></a></li>
+                    <li data-color="04"><a href="#" class="colorcode4"></a></li>
+                    <li data-color="05"><a href="#" class="colorcode5"></a></li>
+                </ul>
+            </div>
+            <div class="ec-tools-sidebar-content">
+                <h3>Backgroung</h3>
+                <ul class="bg-panel">
+                    <li class="bg"><a class="back-bg-1" id="bg-1">Background-1</a></li>
+                    <li class="bg"><a class="back-bg-2" id="bg-2">Background-2</a></li>
+                    <li class="bg"><a class="back-bg-3" id="bg-3">Background-3</a></li>
+                    <li class="bg"><a class="back-bg-4" id="bg-4">Default</a></li>
+                </ul>
+            </div>
+            <div class="ec-tools-sidebar-content">
+                <h3>Full Screen mode</h3>
+                <div class="ec-fullscreen-mode">
+                    <div class="ec-fullscreen-switch">
+                        <div class="ec-fullscreen-btn">Mode</div>
+                        <div class="ec-fullscreen-on">On</div>
+                        <div class="ec-fullscreen-off">Off</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ec-tools-sidebar-content">
+                <h3>Dark mode</h3>
+                <div class="ec-change-mode">
+                    <div class="ec-mode-switch">
+                        <div class="ec-mode-btn">Mode</div>
+                        <div class="ec-mode-on">On</div>
+                        <div class="ec-mode-off">Off</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ec-tools-sidebar-content">
+                <h3>RTL mode</h3>
+                <div class="ec-change-rtl">
+                    <div class="ec-rtl-switch">
+                        <div class="ec-rtl-btn">Rtl</div>
+                        <div class="ec-rtl-on">On</div>
+                        <div class="ec-rtl-off">Off</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ec-tools-sidebar-content">
+                <h3>Clear local storage</h3>
+                <a class="clear-cach" href="javascript:void(0)">Clear Cache & Default</a>
+            </div>
+        </div>
+    </div>
+    <!-- Feature tools end -->
+
+    <!-- Vendor JS -->
+    <script data-cfasync="false"
+        src="https://loopinfosol.in/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/vendor/popper.min.js"></script>
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
+
+    <!--Plugins JS-->
+    <script src="assets/js/plugins/swiper-bundle.min.js"></script>
+    <script src="assets/js/plugins/countdownTimer.min.js"></script>
+    <script src="assets/js/plugins/scrollup.js"></script>
+    <script src="assets/js/plugins/jquery.zoom.min.js"></script>
+    <script src="assets/js/plugins/slick.min.js"></script>
+    <script src="assets/js/plugins/infiniteslidev2.js"></script>
+    <script src="assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/plugins/jquery.sticky-sidebar.js"></script>
+
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Main Js -->
+    <script src="assets/js/vendor/index.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+<script>
+
+
+    var nameValidated = false;
+    var phoneValidated = false;
+    var addressValidated = false;
+    var locationValidated = false;
+    var pinValidated = false;
+    var cityValidated = false;
+    var stateValidated = false;
+
+
+    $("#fname").keyup(function () {
+        if ($("#fname").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+            $("#name-Text").show();
+            $("#name-Text").text(" ");
+            nameValidated = true;
+        } else {
+            $("#name-Text").show();
+            $("#name-Text").text("Invalid name! try again");
+            $("#name-Text").css("class", "invalid-feedback");
+            nameValidated = false;
+        }
+        $("#fname").keypress(function (num) {
+            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                num.preventDefault();
+            }
+        });
+        if ($("#fname").val().length < 3) {
+            $("#name-Text").show();
+            $("#name-Text").text("Name should have type morethan 3 characters");
+            $("#name-Text").css("class", "invalid-feedback");
+            nameValidated = false;
+        }
+    });
+    $("#fname").blur(function () {
+        if ($("#fname").val() == "") {
+            $("#name-Text").show();
+            $("#name-Text").text("Name should not be empty!");
+            $("#name-Text").css("class", "invalid-feedback");
+            nameValidated = false;
+        }
+    });
+
+
+    $("#numberValidation").keypress(function (num) {
+        return num.charCode >= 48 && num.charCode <= 57;
+    });
+    $("#numberValidation").keyup(function () {
+        if ($("#numberValidation").val().match(/^\d+$/)) {
+            $("#text-Number").show();
+            $("#text-Number").text(" ");
+            phoneValidated = true;
+        }
+        if ($("#numberValidation").val().length < 10) {
+            $("#text-Number").show();
+            $("#text-Number").text("Phone number should be 10 digits!");
+            $("#text-Number").css("class", "invalid-feedback");
+            phoneValidated = false;
+        }
+    });
+
+    $("#numberValidation").blur(function () {
+        if ($("#numberValidation").val() == "") {
+            $("#text-Number").show();
+            $("#text-Number").text("Phone number is required!");
+            $("#text-Number").css("class", "invalid-feedback");
+            phoneValidated = false;
+        }
+    });
+
+
+    $("#address").keyup(function () {
+        if ($("#address").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+            $("#address-Text").show();
+            $("#address-Text").text(" ");
+            addressValidated = true;
+        } else {
+            $("#address-Text").show();
+            $("#address-Text").text("Invalid Address! try again");
+            $("#address-Text").css("class", "invalid-feedback");
+            addressValidated = false;
+        }
+        $("#address").keypress(function (num) {
+            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                num.preventDefault();
+            }
+        });
+        if ($("#address").val().length < 3) {
+            $("#address-Text").show();
+            $("#address-Text").text("Address should have type morethan 3 characters");
+            $("#address-Text").css("class", "invalid-feedback");
+            addressValidated = false;
+        }
+    });
+    $("#address").blur(function () {
+        if ($("#address").val() == "") {
+            $("#address-Text").show();
+            $("#address-Text").text("Address should not be empty!");
+            $("#address-Text").css("class", "invalid-feedback");
+            addressValidated = false;
+        }
+    });
+
+    $("#location").keyup(function () {
+        if ($("#location").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+            $("#location-Text").show();
+            $("#location-Text").text(" ");
+            locationValidated = true;
+        } else {
+            $("#location-Text").show();
+            $("#location-Text").text("Invalid location! try again");
+            $("#location-Text").css("class", "invalid-feedback");
+            locationValidated = false;
+        }
+        $("#location").keypress(function (num) {
+            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                num.preventDefault();
+            }
+        });
+        if ($("#location").val().length < 3) {
+            $("#location-Text").show();
+            $("#location-Text").text("location should have type morethan 3 characters");
+            $("#location-Text").css("class", "invalid-feedback");
+            locationValidated = false;
+        }
+    });
+    $("#location").blur(function () {
+        if ($("#location").val() == "") {
+            $("#location-Text").show();
+            $("#location-Text").text("location should not be empty!");
+            $("#location-Text").css("class", "invalid-feedback");
+            locationValidated = false;
+        }
+    });
+
+    $("#city").keyup(function () {
+        if ($("#city").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+            $("#city-Text").show();
+            $("#city-Text").text(" ");
+            cityValidated = true;
+        } else {
+            $("#city-Text").show();
+            $("#city-Text").text("Invalid city! try again");
+            $("#city-Text").css("class", "invalid-feedback");
+            cityValidated = false;
+        }
+        $("#city").keypress(function (num) {
+            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                num.preventDefault();
+            }
+        });
+        if ($("#city").val().length < 3) {
+            $("#city-Text").show();
+            $("#city-Text").text("city should have type morethan 3 characters");
+            $("#city-Text").css("class", "invalid-feedback");
+            cityValidated = false;
+        }
+    });
+    $("#city").blur(function () {
+        if ($("#city").val() == "") {
+            $("#city-Text").show();
+            $("#city-Text").text("city should not be empty!");
+            $("#city-Text").css("class", "invalid-feedback");
+            cityValidated = false;
+        }
+    });
+
+
+
+    $("#pinValidation").keypress(function (num) {
+        return num.charCode >= 48 && num.charCode <= 57;
+    });
+    $("#pinValidation").keyup(function () {
+        if ($("#pinValidation").val().match(/^\d+$/)) {
+            $("#text-pin").show();
+            $("#text-pin").text(" ");
+            pinValidated = true;
+        }
+        if ($("#pinValidation").val().length < 6) {
+            $("#text-pin").show();
+            $("#text-pin").text("pin should be 6 digits!");
+            $("#text-pin").css("class", "invalid-feedback");
+            pinValidated = false;
+        }
+    });
+
+    $("#pinValidation").blur(function () {
+        if ($("#pinValidation").val() == "") {
+            $("#text-pin").show();
+            $("#text-pin").text("Pin is required!");
+            $("#text-pin").css("class", "invalid-feedback");
+            pinValidated = false;
+        }
+    });
+
+
+
+
+
+
+    $("#state").keyup(function () {
+        if ($("#state").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+            $("#state-Text").show();
+            $("#state-Text").text(" ");
+            stateValidated = true;
+        } else {
+            $("#state-Text").show();
+            $("#state-Text").text("Invalid city! try again");
+            $("#state-Text").css("class", "invalid-feedback");
+            stateValidated = false;
+        }
+        $("#state").keypress(function (num) {
+            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                num.preventDefault();
+            }
+        });
+        if ($("#state").val().length < 3) {
+            $("#state-Text").show();
+            $("#state-Text").text("city should have type morethan 3 characters");
+            $("#state-Text").css("class", "invalid-feedback");
+            stateValidated = false;
+        }
+    });
+    $("#state").blur(function () {
+        if ($("#state").val() == "") {
+            $("#state-Text").show();
+            $("#state-Text").text("city should not be empty!");
+            $("#state-Text").css("class", "invalid-feedback");
+            stateValidated = false;
+        }
+    });
+
+
+
+    $("#checkout-form").submit(function (num) {
+        if ($("#fname").val() == "" || $("#numberValidation").val() == "" ||
+            $("#address").val() == "" || $("#location").val() == "" || $("#city").val() == ""
+            || $("#pinValidation").val() == "" || $("#state").val() == "") {
+            // alert("please fill the form properly");
+            Swal.fire(
+                'Unknown error !',
+                'please fill the form properly',
+                'warning'
+            )
+        }
+        if ($("#fname").val() == "" && $("#numberValidation").val() == ""
+            && $("#address").val() == "" && $("#location").val() == "" && $("#city").val() == ""
+            && $("#pinValidation").val() == "" && $("#state").val() == "") {
+            num.preventDefault();
+            console.log('com in if');
+            $("#name-Text").show();
+            $("#text-Number").show();
+            $("#address-Text").show();
+            $("#location-Text").show();
+            $("#city-Text").show();
+            $("#text-pin").show();
+            $("#state-Text").show();
+        } else if (
+            nameValidated &&
+            phoneValidated &&
+            addressValidated &&
+            locationValidated &&
+            pinValidated &&
+            cityValidated &&
+            stateValidated
+
+        ) {
+            num.preventDefault();
+            $.ajax({
+                url: '/addAddressCheckout',
+                method: 'post',
+                data: $('#checkout-form').serialize(),
+                success: (response) => {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Your address has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    $("#allAddress").load(location.href + " #allAddress");
+                    $("#add-address-form").load(location.href + " #add-address-form");
+
+
+                }
+            })
+
+            //   $.ajax({
+            //     url: '/signup',
+            //     data: $('#siginup_form').serialize(),
+            //     method: 'post',
+            //     success: (response) => {
+            //       if (response.status) {
+            //         location.href = '/login'
+            //       } else {
+            //         document.getElementById('erorrMessage').innerHTML = "sorry change your number"
+            //       }
+            //     }
+            //   })
+
+        } else {
+            num.preventDefault();
+        }
+    });
+
+    $('#placeOder-form').submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            url: '/productBuy',
+            method: 'post',
+            data: $('#placeOder-form').serialize(),
+            success: (response) => {
+                if (response.CODsuccess) {
+
+                    Swal.fire({
+                        title: 'congratulation',
+                        text: "Your order placed successfully",
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33'
+                    }).then((result) => {
+                        location.href = '/orders-success';
+
+                    })
+                } else if (response.valueZero) {
+                    alert('sorry you can no choose razerpay')
+                } else {
+                    razorpayPayment(response)
+                }
+            }
+        })
+    })
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_7WV3qsRAPRaDgs", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "Ekka",
+            "description": "Test Transaction",
+            "image": "assets/images/favicon/favicon.png",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the previous step
+            "handler": function (response) {
+                // alert(response.razorpay_payment_id);
+                // alert(response.razorpay_order_id);
+                // alert(response.razorpay_signature)
+
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": " sanoop sasidharan",
+                "email": "sanoopsanu122@gmail.com",
+                "contact": "9567946906"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+
+    }
+    function verifyPayment(Payment, order) {
+        $.ajax({
+            url: '/verifyPayment',
+            data: {
+                Payment,
+                order
+            },
+            method: 'post',
+            success: (response) => {
+
+                if (response.status) {
+                    location.href = '/orders-success';
+                } else {
+                    alert('payment failed')
+                }
+            }
+        })
+    }
+
+</script>
+
+<!-- Mirrored from loopinfosol.in/themeforest/ekka-html-v2/ekka-html/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Nov 2021 19:16:48 GMT -->
+
+</html>

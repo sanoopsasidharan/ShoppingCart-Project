@@ -125,8 +125,24 @@ module.exports = {
     findProduct: (proId) => {
         return new Promise(async (resolve, reject) => {
             var product = await db.get().collection(collection.productCollection).aggregate([{ $match: { _id: objectId(proId) } }]).toArray();
-            if (product) {
-                resolve(product)
+            if (product.length >0 ) {
+                let OfferTotal = 0
+               console.log(product[0].price);
+                    if (product[0].proOfferPercentage > 0 || product[0].cateOfferPercentage > 0) {
+                        if (product[0].proOfferPercentage > product[0].cateOfferPercentage) {
+                            OfferTotal += Math.round(product[0].price *  0.01 * (100 - product[0].proOfferPercentage))
+
+                        } else {
+                            OfferTotal += Math.round(cartItems[s].product.price *  0.01 * (100 - product[0].cateOfferPercentage))
+                        }
+                    } else {
+
+                        OfferTotal += product[0].price
+                    }
+                    var OrginalPrice =  product[0].price
+
+                    resolve({ OrginalPrice, OfferTotal })
+            
             } else {
                 resolve(null)
             }
