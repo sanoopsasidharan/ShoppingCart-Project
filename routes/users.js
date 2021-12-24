@@ -18,7 +18,7 @@ const paypal = require('paypal-rest-sdk');
 paypal.configure({
   'mode': 'sandbox', //sandbox or live
   'client_id': process.env.client_id,
-  'client_secret':process.env.client_secret
+  'client_secret': process.env.client_secret
 });
 
 
@@ -417,18 +417,18 @@ router.post('/otp', (req, res) => {
 
 
 // registration otp
-router.post('/registationOtpchecking',(req,res)=>{
+router.post('/registationOtpchecking', (req, res) => {
   console.log(req.body);
   var number = req.body.number
   client.verify.services(serviceID)
-          .verifications
-          .create({ to: `+91${number}`, channel: 'sms' })
-          .then(verification => console.log(verification.status));
-          res.json({status:true})
+    .verifications
+    .create({ to: `+91${number}`, channel: 'sms' })
+    .then(verification => console.log(verification.status));
+  res.json({ status: true })
 })
 
 // registration sucess otp
-router.post('/registration-sucess-otp',(req,res)=>{
+router.post('/registration-sucess-otp', (req, res) => {
   console.log(req.body);
   var code = req.body.code
   var Number = req.body.number
@@ -651,21 +651,141 @@ router.post('/addAddressCheckout', verifyLogin, (req, res) => {
 
   // })
 })
+
+
 // single check out page payment
-router.post('/productBuy',async(req,res)=>{
-  console.log(req.body);
-  if (req.body.priceId != '') {
-    totalPrice = await  productHelpers.findProduct(req.body.priceId)
-   }else{
-      totalPrice = await cartHelpers.getTotalAmount(req.body.userId)
-   }
+router.post('/productBuy', verifyLogin, async (req, res) => {
+  console.log("/productBuy");
+  console.log(req.body.productId);
+
+  var singleProduct = true;
+
+  let totalPrice = await productHelpers.findProduct(req.body.productId)
+  console.log(totalPrice);
+  let product = await cartHelpers.getProduct(req.body.productId)
+  let address = await userHelpers.getOneAddress(req.body.adderssId, req.session.user._id)
+
+  if (req.body['paymentmethod'] === "COD") {
+    await cartHelpers.placeOrder(req.body, product, totalPrice.OfferTotal, address, singleProduct).then((orderId) => {
+    })
+    res.json({ CODsuccess: true })
+  } else {
+    if (totalPrice.OfferTotal != 0) {
+      await cartHelpers.placeOrderOnline(req.body, product, totalPrice.OfferTotal, address, req.session.user._id).then((orderId) => {
+        orderHelpers.generateRazorpay(orderId, totalPrice.OfferTotal, req.session.user).then((response) => {
+          console.log(response.user);
+          res.json(response)
+        })
+      })
+    } else {
+      req.body.paymentmethod = 'COD'
+      cartHelpers.placeOrder(req.body, product, totalPrice.OfferTotal, address, singleProduct).then((orderId) => {
+        res.json({ CODsuccess: true })
+      })
+
+    }
+  }
+
 })
+
+// single product paypal 
+router.post('/singleProductPaypal', verifyLogin, async (req, res) => {
+  console.log('start single product in paypal');
+  console.log(req.body);
+  let totalPrice = await productHelpers.findProduct(req.body.productId)
+  console.log(totalPrice);
+  let product = await cartHelpers.getProduct(req.body.productId)
+
+  let address = await userHelpers.getOneAddress(req.body.addressId, req.session.user._id)
+
+
+
+  if (req.body.wallet != '') {
+
+    var walletBalance = totalPrice.OfferTotal - req.body.wallet
+    if (walletBalance <= 0) {
+      console.log("walletBalance <= 0");
+      totalPrice.OfferTotal = 0
+      walletBalance = Math.abs(walletBalance)
+      console.log(walletBalance);
+      await userHelpers.useWalletamount(req.session.user._id, walletBalance)
+    } else {
+      console.log("walletBalance + 0");
+      totalPrice.OfferTotal = totalPrice.OfferTotal - req.body.wallet
+      walletBalance = 0
+      await userHelpers.useWalletamount(req.session.user._id, walletBalance)
+    }
+  }
+  console.log(req.body);
+  console.log(product);
+  console.log(totalPrice);
+  console.log(address);
+  var orderId
+  if (totalPrice.OfferTotal != 0) {
+    await cartHelpers.placeOrderOnline(req.body, product, totalPrice.OfferTotal, address, req.session.user._id).then((orderId) => {
+      console.log(orderId);
+      orderId = '' + orderId
+      var singleProduct = true
+      console.log(orderId);
+
+      const create_payment_json = {
+        "intent": "sale",
+        "payer": {
+          "payment_method": "paypal"
+        },
+        "redirect_urls": {
+          "return_url": "http://localhost:3000/success?price=" + totalPrice.OfferTotal + "&orderId=" + orderId+"&singleProduct="+singleProduct,
+          "cancel_url": "http://localhost:3000/checkout"
+        },
+        "transactions": [{
+          "item_list": {
+            "items": [{
+              "name": "Red Sox Hat",
+              "sku": "001",
+              "price": totalPrice.OfferTotal,
+              "currency": "USD",
+              "quantity": 1
+            }]
+          },
+          "amount": {
+            "currency": "USD",
+            "total": totalPrice.OfferTotal
+          },
+          "description": "Hat for the best team ever"
+        }]
+      };
+
+      paypal.payment.create(create_payment_json, function (error, payment) {
+        if (error) {
+          throw error;
+        } else {
+          for (let i = 0; i < payment.links.length; i++) {
+            if (payment.links[i].rel === 'approval_url') {
+              res.redirect(payment.links[i].href);
+            }
+          }
+        }
+      });
+
+    })
+  } else {
+    req.body.paymentmethod = 'COD'
+    cartHelpers.placeOrder(req.body, product, totalPrice.OfferTotal, address).then((orderId) => {
+      res.redirect('/orders-success')
+    })
+  }
+})
+
+
 
 
 router.post('/placeOrders', verifyLogin, async (req, res) => {
   var obj = req.body
   console.log('place order req.body');
   console.log(req.body);
+
+  var singleProduct = false
+
   var couponeValue = await offerAndCouponHelpers.checkCouponVaild(req.body.couponCD, req.session.user._id)
 
   let products = await cartHelpers.getCartProductList(req.body.userId)
@@ -684,40 +804,40 @@ router.post('/placeOrders', verifyLogin, async (req, res) => {
 
     var walletBalance = totalPrice.OfferTotal - req.body.wallet
     if (walletBalance <= 0) {
-       console.log("walletBalance <= 0");
+      console.log("walletBalance <= 0");
       totalPrice.OfferTotal = 0
       walletBalance = Math.abs(walletBalance)
       console.log(walletBalance);
-     await userHelpers.useWalletamount(req.session.user._id,walletBalance)
+      await userHelpers.useWalletamount(req.session.user._id, walletBalance)
     } else {
       console.log("walletBalance + 0");
       totalPrice.OfferTotal = totalPrice.OfferTotal - req.body.wallet
-        walletBalance = 0
-        await userHelpers.useWalletamount(req.session.user._id,walletBalance)
+      walletBalance = 0
+      await userHelpers.useWalletamount(req.session.user._id, walletBalance)
     }
   }
   console.log(totalPrice.OfferTotal);
   //  console.log(req.body['paymentmethod']==='COD');
 
   if (req.body['paymentmethod'] === "COD") {
-    await cartHelpers.placeOrder(req.body, products, totalPrice.OfferTotal, address).then((orderId) => {
+    await cartHelpers.placeOrder(req.body, products, totalPrice.OfferTotal, address, singleProduct).then((orderId) => {
     })
     res.json({ CODsuccess: true })
   } else {
-    if(totalPrice.OfferTotal != 0){
-      await cartHelpers.placeOrderOnline(req.body, products, totalPrice.OfferTotal, address,req.session.user._id).then((orderId) => {
-        orderHelpers.generateRazorpay(orderId, totalPrice.OfferTotal).then((response) => {
+    if (totalPrice.OfferTotal != 0) {
+      await cartHelpers.placeOrderOnline(req.body, products, totalPrice.OfferTotal, address, req.session.user._id).then((orderId) => {
+        orderHelpers.generateRazorpay(orderId, totalPrice.OfferTotal, req.session.user).then((response) => {
           res.json(response)
         })
       })
-    }else{
-    req.body.paymentmethod ='COD'
-     cartHelpers.placeOrder(req.body, products, totalPrice.OfferTotal, address).then((orderId) => {
-       res.json({ CODsuccess: true })
+    } else {
+      req.body.paymentmethod = 'COD'
+      cartHelpers.placeOrder(req.body, products, totalPrice.OfferTotal, address, singleProduct).then((orderId) => {
+        res.json({ CODsuccess: true })
       })
 
     }
-  } 
+  }
 })
 
 // paypal payment 
@@ -736,20 +856,20 @@ router.post('/paypal', verifyLogin, async (req, res) => {
     console.log(sampletotal);
     totalPrice.OfferTotal = sampletotal
   }
-    if (req.body.wallet != '') {
+  if (req.body.wallet != '') {
 
     var walletBalance = totalPrice.OfferTotal - req.body.wallet
     if (walletBalance <= 0) {
-       console.log("walletBalance <= 0");
+      console.log("walletBalance <= 0");
       totalPrice.OfferTotal = 0
       walletBalance = Math.abs(walletBalance)
       console.log(walletBalance);
-     await userHelpers.useWalletamount(req.session.user._id,walletBalance)
+      await userHelpers.useWalletamount(req.session.user._id, walletBalance)
     } else {
       console.log("walletBalance + 0");
       totalPrice.OfferTotal = totalPrice.OfferTotal - req.body.wallet
-        walletBalance = 0
-        await userHelpers.useWalletamount(req.session.user._id,walletBalance)
+      walletBalance = 0
+      await userHelpers.useWalletamount(req.session.user._id, walletBalance)
     }
   }
   console.log(req.body);
@@ -757,58 +877,59 @@ router.post('/paypal', verifyLogin, async (req, res) => {
   console.log(totalPrice);
   console.log(address);
   var orderId
-  if(totalPrice.OfferTotal != 0){
-  await cartHelpers.placeOrderOnline(req.body, products, totalPrice.OfferTotal, address, req.session.user._id).then((orderId) => {
-    console.log(orderId);
-    orderId = '' + orderId
-    console.log(orderId);
+  if (totalPrice.OfferTotal != 0) {
+    await cartHelpers.placeOrderOnline(req.body, products, totalPrice.OfferTotal, address, req.session.user._id).then((orderId) => {
+      console.log(orderId);
+      orderId = '' + orderId
+      var singleProduct = false
+      console.log(orderId);
 
-    const create_payment_json = {
-      "intent": "sale",
-      "payer": {
-        "payment_method": "paypal"
-      },
-      "redirect_urls": {
-        "return_url": "http://localhost:3000/success?price=" + totalPrice.OfferTotal + "&orderId=" + orderId,
-        "cancel_url": "http://localhost:3000/checkout"
-      },
-      "transactions": [{
-        "item_list": {
-          "items": [{
-            "name": "Red Sox Hat",
-            "sku": "001",
-            "price": totalPrice.OfferTotal,
+      const create_payment_json = {
+        "intent": "sale",
+        "payer": {
+          "payment_method": "paypal"
+        },
+        "redirect_urls": {
+          "return_url": "http://localhost:3000/success?price=" + totalPrice.OfferTotal + "&orderId=" + orderId+"&singleProduct="+singleProduct,
+          "cancel_url": "http://localhost:3000/checkout"
+        },
+        "transactions": [{
+          "item_list": {
+            "items": [{
+              "name": "Red Sox Hat",
+              "sku": "001",
+              "price": totalPrice.OfferTotal,
+              "currency": "USD",
+              "quantity": 1
+            }]
+          },
+          "amount": {
             "currency": "USD",
-            "quantity": 1
-          }]
-        },
-        "amount": {
-          "currency": "USD",
-          "total": totalPrice.OfferTotal
-        },
-        "description": "Hat for the best team ever"
-      }]
-    };
+            "total": totalPrice.OfferTotal
+          },
+          "description": "Hat for the best team ever"
+        }]
+      };
 
-    paypal.payment.create(create_payment_json, function (error, payment) {
-      if (error) {
-        throw error;
-      } else {
-        for (let i = 0; i < payment.links.length; i++) {
-          if (payment.links[i].rel === 'approval_url') {
-            res.redirect(payment.links[i].href);
+      paypal.payment.create(create_payment_json, function (error, payment) {
+        if (error) {
+          throw error;
+        } else {
+          for (let i = 0; i < payment.links.length; i++) {
+            if (payment.links[i].rel === 'approval_url') {
+              res.redirect(payment.links[i].href);
+            }
           }
         }
-      }
-    });
+      });
 
-  })
-}else{
-  req.body.paymentmethod ='COD'
-     cartHelpers.placeOrder(req.body, products, totalPrice.OfferTotal, address).then((orderId) => {
+    })
+  } else {
+    req.body.paymentmethod = 'COD'
+    cartHelpers.placeOrder(req.body, products, totalPrice.OfferTotal, address).then((orderId) => {
       res.redirect('/orders-success')
-      })
-}
+    })
+  }
 
 
 });
@@ -817,6 +938,7 @@ router.post('/paypal', verifyLogin, async (req, res) => {
 
 
 router.get('/success', verifyLogin, (req, res) => {
+  var singleproduct = req.query.singleProduct
   var orderId = req.query.orderId
   console.log(orderId);
   var price = req.query.price
@@ -839,7 +961,8 @@ router.get('/success', verifyLogin, (req, res) => {
       throw error;
     } else {
       console.log(JSON.stringify(payment));
-      orderHelpers.sucessPaypal(req.session.user._id).then(() => {
+
+      orderHelpers.sucessPaypal(req.session.user._id,singleproduct).then(() => {
         orderHelpers.OnlinePaymentChangeStatus(orderId).then(() => {
           res.redirect('/orders-success')
         })
@@ -897,10 +1020,10 @@ router.post('/buyNowCheckOut', (req, res) => {
 })
 
 // single product chechout page
-router.get('/singleProductcheckout',verifyLogin,async(req,res)=>{
- 
-  let user = req.session.user
+router.get('/singleProductcheckout', verifyLogin, async (req, res) => {
 
+  let user = req.session.user
+  let proId = req.query.id
   var result;
   categoryHelpers.showAllCategorysubcate().then((results) => {
     result = results
@@ -911,7 +1034,7 @@ router.get('/singleProductcheckout',verifyLogin,async(req,res)=>{
   let userProfil = await userHelpers.userDetails(req.session.user._id)
   await productHelpers.findProduct(req.query.id).then((total) => {
     console.log(total);
-    res.render('user/singleProductCheckout', { admin: 0,user, result, cartCount,userProfil, addresss, total })
+    res.render('user/singleProductCheckout', { admin: 0, user, result, cartCount, userProfil, addresss, total, proId })
   })
 
 

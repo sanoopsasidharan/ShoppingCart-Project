@@ -95,7 +95,7 @@ module.exports={
             }
         })
     },
-    generateRazorpay:(orderId,totalPrice)=>{
+    generateRazorpay:(orderId,totalPrice,user)=>{
         return new Promise((resolve,reject)=>{
 
             var options = {
@@ -110,7 +110,7 @@ module.exports={
                   }else{
                     console.log('new order id',order);
                     
-                    resolve(order)
+                    resolve({order,user})
 
                   }
                   
@@ -148,15 +148,24 @@ module.exports={
             })
         })
     },
-    sucessPaypal:(userId)=>{
-        return new Promise((resolve,reject)=>{
-           var nullcart = db.get().collection(collection.cartCollection).updateOne({user:objectId(userId)},{$set:{products:[]}})
-           console.log(nullcart);
-           if(nullcart){
-               resolve()
-           }else{
-               resolve()
-           }
+    sucessPaypal:(userId,singleproduct)=>{
+        return new Promise(async(resolve,reject)=>{
+            console.log(singleproduct);
+            if(singleproduct==='true'){
+                console.log(' in side of nota single product cart ');
+                resolve()
+            }else{
+                console.log(' in side of remove cart ');
+                var nullcart = await db.get().collection(collection.cartCollection).updateOne({user:objectId(userId)},{$set:{products:[]}})
+                console.log(nullcart);
+                resolve()
+            }
+
+        //    if(nullcart){
+        //        resolve()
+        //    }else{
+        //        resolve()
+        //    }
         })
     }
     

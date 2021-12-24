@@ -124,26 +124,32 @@ module.exports = {
     },
     findProduct: (proId) => {
         return new Promise(async (resolve, reject) => {
-            var product = await db.get().collection(collection.productCollection).aggregate([{ $match: { _id: objectId(proId) } }]).toArray();
-            if (product.length >0 ) {
-                let OfferTotal = 0
-               console.log(product[0].price);
-                    if (product[0].proOfferPercentage > 0 || product[0].cateOfferPercentage > 0) {
-                        if (product[0].proOfferPercentage > product[0].cateOfferPercentage) {
-                            OfferTotal += Math.round(product[0].price *  0.01 * (100 - product[0].proOfferPercentage))
+            var product = await db.get().collection(collection.productCollection).findOne({_id:objectId(proId)})
+            console.log(product);
+            if (product) {
+            
+                var OfferTotal = 0
+                    if (product.proOfferPercentage > 0 || product.cateOfferPercentage > 0) {
+                        
+                        if (product.proOfferPercentage > product.cateOfferPercentage) {
+                            OfferTotal += Math.round(product.price *  0.01 * (100 - product.proOfferPercentage))
 
+                           
                         } else {
-                            OfferTotal += Math.round(cartItems[s].product.price *  0.01 * (100 - product[0].cateOfferPercentage))
+                          
+                            OfferTotal += Math.round(product.price *  0.01 * (100 - product.cateOfferPercentage))
                         }
                     } else {
+                       
 
-                        OfferTotal += product[0].price
+                        OfferTotal += product.price
                     }
-                    var OrginalPrice =  product[0].price
+                    var OrginalPrice =  product.price
 
-                    resolve({ OrginalPrice, OfferTotal })
+                    resolve({OrginalPrice,OfferTotal})
             
             } else {
+                console.log('-0');
                 resolve(null)
             }
 

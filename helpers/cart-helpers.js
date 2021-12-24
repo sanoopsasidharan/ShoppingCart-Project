@@ -277,7 +277,7 @@ module.exports = {
 
         })
     },
-    placeOrder: (order, products, total, addres) => {
+    placeOrder: (order, products, total, addres,singleProduct) => {
         return new Promise((resolve, reject) => {
             let status = order.paymentmethod === 'COD' ? 'placed' : 'pending'
             let orderObj = {
@@ -300,7 +300,11 @@ module.exports = {
 
             db.get().collection(collection.orderCollection).insertOne(orderObj).then((response) => {
                 // db.get().collection(collection.cartCollection).deleteOne({user:objectId(order.userId)})
-                db.get().collection(collection.cartCollection).updateOne({ user: objectId(order.userId) }, { $set: { products: [] } })
+                if(singleProduct==false){
+                    
+                    db.get().collection(collection.cartCollection).updateOne({ user: objectId(order.userId) }, { $set: { products: [] } })
+                }
+              
                 console.log('insert oreder response', response.insertedId);
                 resolve(response.insertedId)
             })
@@ -308,11 +312,32 @@ module.exports = {
         })
 
     },
+    getProduct: (proId) => {
+        return new Promise(async (resolve, reject) => {
+            var product = await db.get().collection(collection.productCollection).findOne({ _id: objectId(proId) })
+
+            if (product) {
+                var obj = {
+                    item: product._id,
+                    quantity: 1
+                }
+            
+                var arry=[obj]
+                
+                resolve(arry)
+            } else {
+                resolve(null)
+            }
+        })
+    }
+
+    ,
     getCartProductList: (userId) => {
         return new Promise(async (resolve, reject) => {
             let cart = await db.get().collection(collection.cartCollection).findOne({ user: objectId(userId) })
             if (cart) {
 
+                console.log(cart.products);
                 resolve(cart.products)
             } else {
                 resolve(null)

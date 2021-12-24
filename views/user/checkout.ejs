@@ -424,6 +424,7 @@
                                                                         <input type="text" name="wallet"
                                                                             id="walletInputId" hidden>
                                                                     </div>
+                                                                  
 
 
                                                                     <% if(total.OfferTotal===total.OrginalPrice ){ %>
@@ -1471,12 +1472,13 @@
                         } else if (response.valueZero) {
                             alert('sorry you can no choose razerpay')
                         } else {
-                            razorpayPayment(response)
+                            razorpayPayment(response.order,response.user)
                         }
                     }
                 })
             })
-            function razorpayPayment(order) {
+            function razorpayPayment(order,user) {
+                
                 var options = {
                     "key": "rzp_test_7WV3qsRAPRaDgs", // Enter the Key ID generated from the Dashboard
                     "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -1493,9 +1495,9 @@
                         verifyPayment(response, order)
                     },
                     "prefill": {
-                        "name": " sanoop sasidharan",
-                        "email": "sanoopsanu122@gmail.com",
-                        "contact": "9567946906"
+                        "name":user.name,
+                        "email": user.email,
+                        "contact":user.number
                     },
                     "notes": {
                         "address": "Razorpay Corporate Office"
