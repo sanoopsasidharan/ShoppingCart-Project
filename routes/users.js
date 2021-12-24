@@ -376,7 +376,6 @@ router.post('/otp', (req, res) => {
 
     if (result.isactive) {
       if (result.number) {
-
         client.verify.services(serviceID)
           .verifications
           .create({ to: `+91${result.number}`, channel: 'sms' })
@@ -415,6 +414,38 @@ router.post('/otp', (req, res) => {
 //     res.json({status:false})
 //   })
 // })
+
+
+// registration otp
+router.post('/registationOtpchecking',(req,res)=>{
+  console.log(req.body);
+  var number = req.body.number
+  client.verify.services(serviceID)
+          .verifications
+          .create({ to: `+91${number}`, channel: 'sms' })
+          .then(verification => console.log(verification.status));
+          res.json({status:true})
+})
+
+// registration sucess otp
+router.post('/registration-sucess-otp',(req,res)=>{
+  console.log(req.body);
+  var code = req.body.code
+  var Number = req.body.number
+  client.verify.services(serviceID)
+    .verificationChecks
+    .create({ to: `+91${Number}`, code: code })
+    .then(verification_check => {
+      console.log(verification_check.status)
+      if (verification_check.valid) {
+        res.json({ status: true })
+      } else {
+
+        res.json({ status: false })
+      }
+    });
+})
+
 
 
 router.post('/sucessotp', (req, res) => {
