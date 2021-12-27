@@ -422,9 +422,9 @@
 
                                                                     <div>
                                                                         <input type="text" name="couponCD" value=""
-                                                                            id="couponValue" hidden>
+                                                                            id="couponValue">
                                                                         <input type="text" name="wallet"
-                                                                            id="walletInputId" hidden>
+                                                                            id="walletInputId">
                                                                     </div>
                                                                     <div>
 
@@ -1204,6 +1204,41 @@
 </body>
 <script>
 
+    let walletVale = document.getElementById('wallet_Amount').value
+    function applieWallet(walletamount) {
+
+        var totalPrice = parseInt(document.querySelector('.priceOftotal').value)
+        var walletAmount = parseInt(document.getElementById('wallet_Amount').value)
+
+        var totalsum = totalPrice - walletAmount
+        if (totalsum <= 0) {
+            document.querySelector('.coupon-total').innerHTML = 0
+        } else {
+            document.querySelector('.coupon-total').innerHTML = totalsum
+        }
+
+        document.getElementById('sucess-message').innerHTML = 'Wallet applied'
+        document.getElementById('walletInputId').value = walletamount
+        document.getElementById('walletpaypalId').value = walletamount
+
+        alert(ss)
+    }
+
+    $('#applie-wallet').submit((sub) => {
+        sub.preventDefault()
+        $.ajax({
+            url: '/useWallet',
+            data: $('#applie-wallet').serialize(),
+            method: 'post',
+            success: (response) => {
+                alert(response)
+            }
+        })
+    })
+
+
+
+
     let address = document.getElementById('addressId').value
     document.getElementById('addressIdPaypal').value = address
 
@@ -1213,7 +1248,68 @@
     function changeAddress(addressId) {
         document.getElementById('addressIdPaypal').value = addressId
     }
-            // end of paypal
+    // end of paypal
+
+    document.getElementById('coupon-discount').style.display = 'none'
+    document.getElementById('coupon-discount-amount').style.display = 'none'
+    document.querySelector('#couponErorr').innerHTML = ''
+    let orginalPrice = document.querySelector('.coupon-total').innerText
+
+
+    $('#apply-coupons').submit((num) => {
+        num.preventDefault()
+        $.ajax({
+            url: '/checkCoupon',
+            data: $('#apply-coupons').serialize(),
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    document.getElementById('couponCD').value = response.coupone.code
+
+
+                    document.getElementById('coupon-discount').style.display = 'block'
+                    document.getElementById('coupon-discount-amount').style.display = 'block'
+                    document.getElementById('coupon-discount-amount').innerHTML = response.coupone.percentage + '%'
+                    document.getElementById('couponValue').value = response.coupone.code
+
+                    document.querySelector('#couponErorr').innerHTML = ''
+                    document.querySelector('#couponSucess').style.display = 'block'
+                    document.querySelector('#couponSucess').style.color = "green";
+                    document.querySelector('#couponSucess').innerHTML = 'Coupon add'
+                    let orginalPrice = document.querySelector('.coupon-total').innerText
+
+                    document.querySelector(".coupon-total").innerHTML = '₹ ' + response.applycoupon
+
+                    var toatalPrice = document.getElementById("total-price").innerText
+
+                } else if (response.useed) {
+                    document.getElementById('couponCD').value = ''
+
+
+                    document.querySelector('#couponSucess').style.display = 'none'
+                    document.querySelector(".coupon-total").innerHTML = orginalPrice
+                    document.getElementById('coupon-discount').style.display = 'none'
+                    document.getElementById('coupon-discount-amount').style.display = 'none'
+                    document.querySelector('#couponErorr').style.color = "red";
+                    document.querySelector('#couponErorr').innerHTML = 'already use this coupon'
+                    document.getElementById('couponValue').value = ''
+                } else {
+                    document.getElementById('couponCD').value = ''
+
+
+                    document.querySelector('#couponSucess').style.display = 'none'
+                    document.querySelector(".coupon-total").innerHTML = orginalPrice
+                    document.getElementById('couponValue').value = ''
+                    document.getElementById('coupon-discount').style.display = 'none'
+                    document.getElementById('coupon-discount-amount').style.display = 'none'
+                    document.querySelector('#couponErorr').style.color = "red";
+                    document.querySelector('#couponErorr').innerHTML = 'invalid coupon code'
+
+                }
+
+            }
+        })
+    })
 
 
 </script>
@@ -1586,11 +1682,13 @@
 
     }
     function verifyPayment(Payment, order) {
+        var singleProduct = true
         $.ajax({
             url: '/verifyPayment',
             data: {
                 Payment,
-                order
+                order,
+                singleProduct
             },
             method: 'post',
             success: (response) => {

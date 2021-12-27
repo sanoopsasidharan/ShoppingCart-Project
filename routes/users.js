@@ -665,6 +665,35 @@ router.post('/productBuy', verifyLogin, async (req, res) => {
   let product = await cartHelpers.getProduct(req.body.productId)
   let address = await userHelpers.getOneAddress(req.body.adderssId, req.session.user._id)
 
+  var couponeValue = await offerAndCouponHelpers.checkCouponVaild(req.body.couponCD, req.session.user._id)
+
+
+
+  if (couponeValue) {
+    //  var sampletotal = await totalPrice.OfferTotal-couponeValue.percentage 
+    var sampletotal = Math.round(totalPrice.OfferTotal - (totalPrice.OfferTotal * couponeValue.percentage) / 100)
+    console.log(sampletotal);
+    totalPrice.OfferTotal = sampletotal
+  }
+
+  if (req.body.wallet != '') {
+
+    var walletBalance = totalPrice.OfferTotal - req.body.wallet
+    if (walletBalance <= 0) {
+      console.log("walletBalance <= 0");
+      totalPrice.OfferTotal = 0
+      walletBalance = Math.abs(walletBalance)
+      console.log(walletBalance);
+      await userHelpers.useWalletamount(req.session.user._id, walletBalance)
+    } else {
+      console.log("walletBalance + 0");
+      totalPrice.OfferTotal = totalPrice.OfferTotal - req.body.wallet
+      walletBalance = 0
+      await userHelpers.useWalletamount(req.session.user._id, walletBalance)
+    }
+  }
+
+
   if (req.body['paymentmethod'] === "COD") {
     await cartHelpers.placeOrder(req.body, product, totalPrice.OfferTotal, address, singleProduct).then((orderId) => {
     })
@@ -697,6 +726,17 @@ router.post('/singleProductPaypal', verifyLogin, async (req, res) => {
   let product = await cartHelpers.getProduct(req.body.productId)
 
   let address = await userHelpers.getOneAddress(req.body.addressId, req.session.user._id)
+
+  var couponeValue = await offerAndCouponHelpers.checkCouponVaild(req.body.couponCD, req.session.user._id)
+
+
+
+  if (couponeValue) {
+    //  var sampletotal = await totalPrice.OfferTotal-couponeValue.percentage 
+    var sampletotal = Math.round(totalPrice.OfferTotal - (totalPrice.OfferTotal * couponeValue.percentage) / 100)
+    console.log(sampletotal);
+    totalPrice.OfferTotal = sampletotal
+  }
 
 
 

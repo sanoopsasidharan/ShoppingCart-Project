@@ -434,9 +434,22 @@ router.get('/bannerManagement',verifyLogin,(req,res)=>{
 })
 
 // add new banner 
-router.post('/addBanner',(req,res)=>{
+router.post('/addBanner',async(req,res)=>{
     console.log(req.body);
     bannerHelpers.addBanner(req.body).then((response)=>{
+        console.log(response);
+        var id = ''+response.insertedId
+
+        console.log('id');
+         console.log(id);
+       
+        let image1 = req.body.image2_b64
+        console.log(image1);
+        let path1 = './public/productimage/image2/' +id+ '_1.jpg'
+        let img2 = image1.replace(/^data:([A-Za-z+/]+);base64,/, "")
+        fs.writeFileSync(path1, img2, { encoding: 'base64' })
+    
+
         res.redirect('/admin/bannerManagement')
     }).catch((response)=>{
         res.redirect('/admin/bannerManagement')

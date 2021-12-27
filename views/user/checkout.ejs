@@ -1511,11 +1511,13 @@
 
             }
             function verifyPayment(Payment, order) {
+                var singleProduct = false
                 $.ajax({
                     url: '/verifyPayment',
                     data: {
                         Payment,
-                        order
+                        order,
+                        singleProduct
                     },
                     method: 'post',
                     success: (response) => {

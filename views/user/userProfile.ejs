@@ -137,18 +137,23 @@
                     <form id="editUserProfile">
 
                         <label for="" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" value="<%= userProfil.name %>">
+                        <input id="namevalidationpro" type="text" class="form-control" name="name"
+                            value="<%= userProfil.name %>">
+                        <div class="invalid-feedback" id="nameerror">enter your Name</div>
 
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
                         <input type="email" name="email" value="<%= userProfil.email %>" class="form-control"
-                            id="exampleInputEmail1" aria-describedby="emailHelp">
+                            id="mailvalidationpro" aria-describedby="emailHelp">
+                        <div class="invalid-feedback" id="maileerror"> Enter email address </div>
 
                         <label for="" class="form-label">Number</label>
-                        <input type="text" class="form-control" name="number" value="<%= userProfil.number %>">
-
+                        <input type="text" id="numbervalidationpro" class="form-control" name="number"
+                            value="<%= userProfil.number %>">
+                        <div class="invalid-feedback" id="number-error">Enter your phone number </div>
 
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                        <input type="password" name="password" class="form-control"  id="password">
+                        <div class="invalid-feedback" id="passworderror">Text a message</div>
 
 
                         <div style="display: flex; justify-content: right; margin-top: 20px;">
@@ -965,6 +970,11 @@
     <script src="https://kit.fontawesome.com/4f9ff9a3d7.js" crossorigin="anonymous"></script>
     <!-- Material Dashboard CSS -->
 
+    <!-- validation cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+
 
     <script src="https://unpkg.com/dropzone"></script>
     <script src="https://unpkg.com/cropperjs"></script>
@@ -1160,7 +1170,7 @@
                 position: 'top-end',
                 showConfirmButton: false,
                 timer: 1000,
-                
+
             })
 
             Toast.fire({
@@ -1168,6 +1178,144 @@
                 title: 'copy to keybord'
             })
         }
+    </script>
+    <script>
+        var nameValidated = false;
+        var phoneValidated = false;
+        var emailValidated = false;
+        var messageValidated = false;
+
+
+        $("#namevalidationpro").keyup(function () {
+            if ($("#namevalidationpro").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#nameerror").show();
+                $("#nameerror").text(" ");
+                nameValidated = true;
+            } else {
+                $("#nameerror").show();
+                $("#nameerror").text("Invalid name! try again");
+                $("#nameerror").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+            $("#namevalidationpro").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#namevalidationpro").val().length < 3) {
+                $("#nameerror").show();
+                $("#nameerror").text("Name should have type morethan 3 characters");
+                $("#nameerror").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+        });
+        $("#namevalidationpro").blur(function () {
+            if ($("#namevalidationpro").val() == "") {
+                $("#nameerror").show();
+                $("#nameerror").text("Name should not be empty!");
+                $("#nameerror").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+        });
+
+
+        $("#numbervalidationpro").keypress(function (num) {
+            return num.charCode >= 48 && num.charCode <= 57;
+        });
+        $("#numbervalidationpro").keyup(function () {
+            if ($("#numbervalidationpro").val().match(/^\d+$/)) {
+                $("#number-error").show();
+                $("#number-error").text(" ");
+                phoneValidated = true;
+            }
+            if ($("#numbervalidationpro").val().length < 10 || $("#numbervalidationpro").val().length > 10) {
+                $("#number-error").show();
+                $("#number-error").text("Phone number should be 10 digits!");
+                $("#number-error").css("class", "invalid-feedback");
+                phoneValidated = false;
+            }
+        });
+
+        $("#numbervalidationpro").blur(function () {
+            if ($("#numbervalidationpro").val() == "") {
+                $("#number-error").show();
+                $("#number-error").text("Phone number is required!");
+                $("#number-error").css("class", "invalid-feedback");
+                phoneValidated = false;
+            }
+        });
+
+        $("#mailvalidationpro").keyup(function () {
+            if ($("#mailvalidationpro").val().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                $("#maileerror").text(" ");
+                $("#maileerror").show();
+                emailValidated = true;
+            } else {
+                $("#maileerror").show();
+                $("#maileerror").text("Invalid email address");
+                $("#maileerror").css("class", "invalid-feedback");
+                emailValidated = false;
+            }
+        });
+        $("#mailvalidationpro").blur(function () {
+            if ($("#mailvalidationpro").val() == "") {
+                $("#maileerror").show();
+                $("#maileerror").text("Must enter email");
+                $("#maileerror").css("class", "invalid-feedback");
+                emailValidated = false;
+            }
+        });
+
+
+        $("#password").keyup(function () {
+            if ($("#password").val().length < 3) {
+                $("#passworderror").show();
+                $("#passworderror").text("Message length must be written morethan 20 characters");
+                $("#passworderror").css("class", "invalid-feedback");
+                messageValidated = false;
+            } else {
+                $("#passworderror").show();
+                $("#passworderror").text(" ");
+                messageValidated = true;
+            }
+            if ($("#password").val() == "") {
+                $("#passworderror").show();
+                $("#passworderror").text("You must leave a message ");
+                $("#passworderror").css("class", "invalid-feedback");
+                messageValidated = false;
+            }
+        });
+
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+
+
+
+
+        $("#editUserProfile").submit(function (num) {
+            if ($("#namevalidationpro").val() == "" || $("#numbervalidationpro").val() == "" || $("#mailvalidationpro").val() == "" || $("#password").val() == "") {
+                alert("please fill the form properly");
+            }
+            if ($("#namevalidationpro").val() == "" && $("#numbervalidationpro").val() == "" && $("#mailvalidationpro").val() == "" && $("#password").val() == "") {
+                num.preventDefault();
+                $("#nameerror").show();
+                $("#number-error").show();
+                $("#maileerror").show();
+                $("#passworderror").show();
+            } else if (
+                nameValidated &&
+                phoneValidated &&
+                emailValidated &&
+                messageValidated
+            ) {
+                num.preventDefault();
+               
+            } else {
+                num.preventDefault();
+            }
+        });
+
     </script>
 
 

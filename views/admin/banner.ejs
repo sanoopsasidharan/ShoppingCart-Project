@@ -26,6 +26,11 @@
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  		<link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+		<link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
+
 
 </head>
 
@@ -89,17 +94,32 @@
                                                         <input id="offer-description" name="offerDescription" type="text"
                                                             class="form-control">
                                                     </div>
+                                                    
                                                    
                                                 
                                                 </div>
 
                                                 <div class="col-sm-6">
 
-
                                                     <div>
-                                                        <img src="" alt="">
-                                                        <input type="file" name="" id="">
+                                                        <div class="col-md-2 col-sm-2">
+                                                        
+                                                            <div class="fileinput fileinput-new text-center">
+                                                                <div class="fileinput-new thumbnail">
+                                                                    <img src="../../assets/img/image_placeholder.jpg" id="chekPreview2" alt="">
+                                                
+                                                                </div>
+                                                                <div>
+                                                                    <span class="btn btn-rose btn-round btn-file">
+                                                                        
+                                                                        <input type="file" id="image2" accept="image/gif, image/jpeg, image/png" required />
+                                                                        <textarea name="image2_b64" id="imageValue2" cols="30" rows="10" hidden></textarea>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
+
                                                    
                                                 </div>
                                             </div>
@@ -294,6 +314,144 @@
     <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
 
     <script src="assets/js/app.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/4f9ff9a3d7.js" crossorigin="anonymous"></script>
+  <!-- Material Dashboard CSS -->
+
+  
+	<script src="https://unpkg.com/dropzone"></script>
+		<script src="https://unpkg.com/cropperjs"></script>
+
+
+
+
+<!-- Button trigger modal -->
+
+<style>
+    .preview {
+        overflow: hidden;
+        width: 160px;
+        height: 160px;
+        margin: 10px;
+        border: 1px solid red;
+    }
+
+    .modal-lg {
+        max-width: 1000px !important;
+    }
+</style>
+
+
+<!-- Modal 1-->
+
+<!-- Modal  1 end-->
+
+
+
+<!-- Modal 2-->
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img src="" id="sampleImage2" />
+                        </div>
+                        <div class="col-md-4">
+                            <div class="preview" id="preview2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" id="crop2" class="btn btn-primary">Crop</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal  2 end-->
+
+
+<!-- Modal 3-->
+
+<!-- Modal  3 end-->
+
+
+<!-- Modal  4 end-->
+
+
+<script>
+    $('document').ready(function() {
+//modal1 and image 1
+    
+//modal1 and image 1 end
+
+//modal2 and image 2
+    var image2 = document.getElementById('sampleImage2');
+    var modal2 = $('#modal2');
+    var cropper2;
+
+    $('#image2').change(function (event) {
+        var files = event.target.files;
+
+        var done = function (url) {
+            image2.src = url;
+            modal2.modal('show');
+        };
+
+        if (files && files.length > 0) {
+            reader = new FileReader();
+            reader.onload = function (event) {
+                done(reader.result);
+            };
+            reader.readAsDataURL(files[0]);
+        }
+    });
+
+    modal2.on('shown.bs.modal', function () {
+        cropper2 = new Cropper(image2, {
+            aspectRatio: 8 / 5,
+            viewMode: 1,
+            preview: '#preview2'
+        });
+    }).on('hidden.bs.modal', function () {
+        cropper2.destroy();
+        cropper2 = null;
+    });
+
+    $('#crop2').click(function () {
+        canvas = cropper2.getCroppedCanvas({
+            width: 800,
+            height: 200
+        });
+
+        canvas.toBlob(function (blob) {
+            url = URL.createObjectURL(blob);
+            var reader = new FileReader();
+            reader.readAsDataURL(blob);
+            reader.onloadend = function () {
+                var base64data = reader.result;
+                modal2.modal('hide');
+                $("#imageValue2").val(base64data)
+                $('#chekPreview2').attr('src', base64data);
+            };
+        });
+    });
+
+    });
+
+</script>
 
     
     

@@ -67,7 +67,7 @@
                 </div>
                 <div class="modal-body">
                     <div id="form-address" class="ec-check-bill-form">
-                        <form action="" id="add-Address">
+                        <form action="" id="checkout-form">
                             <span class="ec-bill-wrap ec-bill-half">
                                 <label>First Name*</label>
                                 <input id="fname" type="text" name="name" placeholder="Enter your Name">
@@ -119,11 +119,13 @@
                             <div style="display: flex; justify-content: right; width: 100%; padding-top: 10px;">
                                 <button id="submitbtn" class="btn btn btn-primary " type="submit">Submit</button>
 
-                                <div id="spinninerId" style="    margin-top: 16px;margin-right: 20px; background-color:rgb(10, 20, 153) ;" class="spinner-grow spinner-grow-md" role="status">
+                                <div id="spinninerId"
+                                    style="    margin-top: 16px;margin-right: 20px; background-color:rgb(10, 20, 153) ;"
+                                    class="spinner-grow spinner-grow-md" role="status">
                                     <span class="visually-hidden">Loading...</span>
-                                  </div>
+                                </div>
 
-                                  
+
                             </div>
 
                         </form>
@@ -270,8 +272,8 @@
                                                         <th scope="col">City</th>
                                                         <th scope="col">Edit</th>
                                                         <th scope="col">Delete</th>
-                                                        
-                                                          
+
+
 
                                                     </tr>
 
@@ -598,7 +600,7 @@
     <!-- Footer navigation panel for responsive display end -->
 
     <!-- Recent Purchase Popup  -->
-    
+
     <!-- Recent Purchase Popup end -->
 
     <!-- Cart Floating Button -->
@@ -723,7 +725,7 @@
         </div>
         <!--/ End Floating Panel Container -->
         <!-- Start Right Floating Button-->
-        
+
         <!--/ End Right Floating Button-->
     </div>
     <!-- Whatsapp end -->
@@ -820,10 +822,12 @@
     <!-- Main Js -->
     <script src="assets/js/main.js"></script>
     <script>
-         $('#spinninerId').hide();
+        $('#spinninerId').hide();
+
+
         $('#add-Address').submit((num) => {
             num.preventDefault()
-            
+
             $('#submitbtn').hide();
             $('#spinninerId').show();
             $.ajax({
@@ -839,7 +843,7 @@
                         timer: 1500
                     })
                     location.reload();
-                   
+
                 }
             })
         })
@@ -857,8 +861,8 @@
                     $.ajax({
                         url: '/deleteUserAddress',
                         data: {
-                            _id:_id,
-                            addressId:addressId
+                            _id: _id,
+                            addressId: addressId
                         },
                         method: 'post',
                         success: (response) => {
@@ -869,7 +873,7 @@
                                     'success'
                                 )
                                 $("#addressList").load(location.href + " #addressList");
-                            }else{
+                            } else {
                                 alert('somthing error')
                             }
                         }
@@ -881,6 +885,312 @@
             // alert(addressId)
         }
 
+
+        var nameValidated = false;
+        var phoneValidated = false;
+        var addressValidated = false;
+        var locationValidated = false;
+        var pinValidated = false;
+        var cityValidated = false;
+        var stateValidated = false;
+
+
+        $("#fname").keyup(function () {
+            if ($("#fname").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#name-Text").show();
+                $("#name-Text").text(" ");
+                nameValidated = true;
+            } else {
+                $("#name-Text").show();
+                $("#name-Text").text("Invalid name! try again");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+            $("#fname").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#fname").val().length < 3) {
+                $("#name-Text").show();
+                $("#name-Text").text("Name should have type morethan 3 characters");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+        });
+        $("#fname").blur(function () {
+            if ($("#fname").val() == "") {
+                $("#name-Text").show();
+                $("#name-Text").text("Name should not be empty!");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+        });
+
+
+        $("#numberValidation").keypress(function (num) {
+            return num.charCode >= 48 && num.charCode <= 57;
+        });
+        $("#numberValidation").keyup(function () {
+            if ($("#numberValidation").val().match(/^\d+$/)) {
+                $("#text-Number").show();
+                $("#text-Number").text(" ");
+                phoneValidated = true;
+            }
+            if ($("#numberValidation").val().length < 10) {
+                $("#text-Number").show();
+                $("#text-Number").text("Phone number should be 10 digits!");
+                $("#text-Number").css("class", "invalid-feedback");
+                phoneValidated = false;
+            }
+        });
+
+        $("#numberValidation").blur(function () {
+            if ($("#numberValidation").val() == "") {
+                $("#text-Number").show();
+                $("#text-Number").text("Phone number is required!");
+                $("#text-Number").css("class", "invalid-feedback");
+                phoneValidated = false;
+            }
+        });
+
+
+        $("#address").keyup(function () {
+            if ($("#address").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#address-Text").show();
+                $("#address-Text").text(" ");
+                addressValidated = true;
+            } else {
+                $("#address-Text").show();
+                $("#address-Text").text("Invalid Address! try again");
+                $("#address-Text").css("class", "invalid-feedback");
+                addressValidated = false;
+            }
+            $("#address").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#address").val().length < 3) {
+                $("#address-Text").show();
+                $("#address-Text").text("Address should have type morethan 3 characters");
+                $("#address-Text").css("class", "invalid-feedback");
+                addressValidated = false;
+            }
+        });
+        $("#address").blur(function () {
+            if ($("#address").val() == "") {
+                $("#address-Text").show();
+                $("#address-Text").text("Address should not be empty!");
+                $("#address-Text").css("class", "invalid-feedback");
+                addressValidated = false;
+            }
+        });
+
+        $("#location").keyup(function () {
+            if ($("#location").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#location-Text").show();
+                $("#location-Text").text(" ");
+                locationValidated = true;
+            } else {
+                $("#location-Text").show();
+                $("#location-Text").text("Invalid location! try again");
+                $("#location-Text").css("class", "invalid-feedback");
+                locationValidated = false;
+            }
+            $("#location").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#location").val().length < 3) {
+                $("#location-Text").show();
+                $("#location-Text").text("location should have type morethan 3 characters");
+                $("#location-Text").css("class", "invalid-feedback");
+                locationValidated = false;
+            }
+        });
+        $("#location").blur(function () {
+            if ($("#location").val() == "") {
+                $("#location-Text").show();
+                $("#location-Text").text("location should not be empty!");
+                $("#location-Text").css("class", "invalid-feedback");
+                locationValidated = false;
+            }
+        });
+
+        $("#city").keyup(function () {
+            if ($("#city").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#city-Text").show();
+                $("#city-Text").text(" ");
+                cityValidated = true;
+            } else {
+                $("#city-Text").show();
+                $("#city-Text").text("Invalid city! try again");
+                $("#city-Text").css("class", "invalid-feedback");
+                cityValidated = false;
+            }
+            $("#city").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#city").val().length < 3) {
+                $("#city-Text").show();
+                $("#city-Text").text("city should have type morethan 3 characters");
+                $("#city-Text").css("class", "invalid-feedback");
+                cityValidated = false;
+            }
+        });
+        $("#city").blur(function () {
+            if ($("#city").val() == "") {
+                $("#city-Text").show();
+                $("#city-Text").text("city should not be empty!");
+                $("#city-Text").css("class", "invalid-feedback");
+                cityValidated = false;
+            }
+        });
+
+
+
+        $("#pinValidation").keypress(function (num) {
+            return num.charCode >= 48 && num.charCode <= 57;
+        });
+        $("#pinValidation").keyup(function () {
+            if ($("#pinValidation").val().match(/^\d+$/)) {
+                $("#text-pin").show();
+                $("#text-pin").text(" ");
+                pinValidated = true;
+            }
+            if ($("#pinValidation").val().length < 6) {
+                $("#text-pin").show();
+                $("#text-pin").text("pin should be 6 digits!");
+                $("#text-pin").css("class", "invalid-feedback");
+                pinValidated = false;
+            }
+        });
+
+        $("#pinValidation").blur(function () {
+            if ($("#pinValidation").val() == "") {
+                $("#text-pin").show();
+                $("#text-pin").text("Pin is required!");
+                $("#text-pin").css("class", "invalid-feedback");
+                pinValidated = false;
+            }
+        });
+
+
+
+
+
+
+        $("#state").keyup(function () {
+            if ($("#state").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#state-Text").show();
+                $("#state-Text").text(" ");
+                stateValidated = true;
+            } else {
+                $("#state-Text").show();
+                $("#state-Text").text("Invalid city! try again");
+                $("#state-Text").css("class", "invalid-feedback");
+                stateValidated = false;
+            }
+            $("#state").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#state").val().length < 3) {
+                $("#state-Text").show();
+                $("#state-Text").text("city should have type morethan 3 characters");
+                $("#state-Text").css("class", "invalid-feedback");
+                stateValidated = false;
+            }
+        });
+        $("#state").blur(function () {
+            if ($("#state").val() == "") {
+                $("#state-Text").show();
+                $("#state-Text").text("city should not be empty!");
+                $("#state-Text").css("class", "invalid-feedback");
+                stateValidated = false;
+            }
+        });
+
+
+
+        $("#checkout-form").submit(function (num) {
+            if ($("#fname").val() == "" || $("#numberValidation").val() == "" ||
+                $("#address").val() == "" || $("#location").val() == "" || $("#city").val() == ""
+                || $("#pinValidation").val() == "" || $("#state").val() == "") {
+                // alert("please fill the form properly");
+                Swal.fire(
+                    'Unknown error !',
+                    'please fill the form properly',
+                    'warning'
+                )
+            }
+            if ($("#fname").val() == "" && $("#numberValidation").val() == ""
+                && $("#address").val() == "" && $("#location").val() == "" && $("#city").val() == ""
+                && $("#pinValidation").val() == "" && $("#state").val() == "") {
+                num.preventDefault();
+                console.log('com in if');
+                $("#name-Text").show();
+                $("#text-Number").show();
+                $("#address-Text").show();
+                $("#location-Text").show();
+                $("#city-Text").show();
+                $("#text-pin").show();
+                $("#state-Text").show();
+            } else if (
+                nameValidated &&
+                phoneValidated &&
+                addressValidated &&
+                locationValidated &&
+                pinValidated &&
+                cityValidated &&
+                stateValidated
+
+            ) {
+                num.preventDefault();
+                $('#submitbtn').hide();
+                $('#spinninerId').show();
+                $.ajax({
+                    url: '/addAddressCheckout',
+                    method: 'post',
+                    data: $('#checkout-form').serialize(),
+                    success: (response) => {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Your address has been saved',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        location.reload();
+                        // $("#allAddress").load(location.href + " #allAddress");
+                        // $("#add-address-form").load(location.href + " #add-address-form");
+
+
+                    }
+                })
+
+                //   $.ajax({
+                //     url: '/signup',
+                //     data: $('#siginup_form').serialize(),
+                //     method: 'post',
+                //     success: (response) => {
+                //       if (response.status) {
+                //         location.href = '/login'
+                //       } else {
+                //         document.getElementById('erorrMessage').innerHTML = "sorry change your number"
+                //       }
+                //     }
+                //   })
+
+            } else {
+                num.preventDefault();
+            }
+        });
 
     </script>
 

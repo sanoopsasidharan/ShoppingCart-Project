@@ -125,8 +125,14 @@ module.exports={
             // console.log(hmac.digest('hex'));
             hmac=hmac.digest('hex')
             if(hmac===details['Payment[razorpay_signature]']){
-                db.get().collection(collection.cartCollection).updateOne({user:objectId(userId)},{$set:{products:[]}})
-                resolve()
+                console.log(details.singleProduct);
+                if(details.singleProduct==='false'){
+                    console.log('false');
+                    db.get().collection(collection.cartCollection).updateOne({user:objectId(userId)},{$set:{products:[]}})
+                    resolve()
+                }else{
+                    resolve()
+                }
             }else{
                 reject()
             }
