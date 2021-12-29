@@ -27,9 +27,14 @@
     <!-- App Css-->
     <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <link href="/assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-  		<link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
-		<link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+    <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
+
+    <!-- validation cdn -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 
 </head>
@@ -47,7 +52,7 @@
         <!-- ========== Left Sidebar Start ========== -->
 
         <!-- Left Sidebar End -->
-       
+
 
 
         <!-- ============================================================== -->
@@ -70,19 +75,21 @@
                                     <div style="display: flex; flex-direction: column;">
 
                                     </div>
-                                   
+
                                 </div>
                                 <div class="card-body">
                                     <div class="text-center mt-4">
-                                        <form  action="/admin/addBanner"
+                                        <form onsubmit="return fromSubmit()" action="/admin/addBanner"
                                             enctype="multipart/form-data" method="POST">
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="mb-3">
                                                         <label for="productname">Offer head</label>
-                                                        <input id="offerHead" name="offerHead" type="text"
+                                                        <input id="nameValidation" name="offerHead" type="text"
                                                             maxlength="20" class="form-control">
-                                                       
+                                                        <div class="invalid-feedback" id="name-Text">enter your Name
+                                                        </div>
+
                                                     </div>
                                                     <!-- <div class="mb-3">
                                                         <label for="manufacturerbrand">Small Head</label>
@@ -91,36 +98,59 @@
                                                     </div> -->
                                                     <div class="mb-3">
                                                         <label for="productname">Offer description</label>
-                                                        <input id="offer-description" name="offerDescription" type="text"
-                                                            class="form-control">
+                                                        <input id="messageValidation" name="offerDescription"
+                                                            type="text" class="form-control">
+                                                        <div class="invalid-feedback" id="msg-text">enter your Name
+                                                        </div>
                                                     </div>
-                                                    
-                                                   
-                                                
+                                                    <div class="mb-3">
+                                                        <label for="basicpill-email-input" class="form-label">Categorys
+                                                        </label>
+                                                        <select id="categoryid" name='category'
+                                                            class="form-control select2">
+                                                            <% for(var i=0; i< categorys.length; i++) {%>
+                                                                <option value="<%= categorys[i].category %>">
+                                                                    <%= categorys[i].category %>
+                                                                </option>
+                                                                <% } %>
+                                                        </select>
+                                                    </div>
+
+
+
+
+
                                                 </div>
 
                                                 <div class="col-sm-6">
 
                                                     <div>
                                                         <div class="col-md-2 col-sm-2">
-                                                        
+
                                                             <div class="fileinput fileinput-new text-center">
                                                                 <div class="fileinput-new thumbnail">
-                                                                    <img src="../../assets/img/image_placeholder.jpg" id="chekPreview2" alt="">
-                                                
+                                                                    <img src="../../assets/img/image_placeholder.jpg"
+                                                                        id="chekPreview2" alt="">
+                                                                        <div class="invalid-feedback" id="image-text">please choose <picture></picture>
+                                                                        </div>
+                                                                    
+
                                                                 </div>
                                                                 <div>
                                                                     <span class="btn btn-rose btn-round btn-file">
-                                                                        
-                                                                        <input type="file" id="image2" accept="image/gif, image/jpeg, image/png" required />
-                                                                        <textarea name="image2_b64" id="imageValue2" cols="30" rows="10" hidden></textarea>
+
+                                                                        <input type="file" id="image2"
+                                                                           
+                                                                            onchange="show(this)"   required />
+                                                                        <textarea name="image2_b64" id="imageValue2"
+                                                                            cols="30" rows="10" hidden></textarea>
                                                                     </span>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
 
-                                                   
+
                                                 </div>
                                             </div>
 
@@ -131,6 +161,8 @@
                                                 <button type="button"
                                                     class="btn btn-secondary waves-effect waves-light">Cancel</button>
                                             </div>
+                                           
+                                    
                                         </form>
                                     </div>
                                 </div>
@@ -315,146 +347,248 @@
 
     <script src="assets/js/app.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="https://kit.fontawesome.com/4f9ff9a3d7.js" crossorigin="anonymous"></script>
-  <!-- Material Dashboard CSS -->
-
-  
-	<script src="https://unpkg.com/dropzone"></script>
-		<script src="https://unpkg.com/cropperjs"></script>
+    <script src="https://kit.fontawesome.com/4f9ff9a3d7.js" crossorigin="anonymous"></script>
+    <!-- Material Dashboard CSS -->
 
 
+    <script src="https://unpkg.com/dropzone"></script>
+    <script src="https://unpkg.com/cropperjs"></script>
+
+    <!-- validation cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+
+    <script>
+        function show(input) {
+            debugger;
+            var validExtensions = ['jpg', 'png'];
+            var fileName = input.files[0].name;
+            var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+            if ($.inArray(fileNameExt, validExtensions) == -1) {
+                input.type = ''
+                input.type = 'file'
+                $('#chekPreview2').attr('src', "");
+                alert("Only these file types are accepted : " + validExtensions.join(', '));
+            }
+            else {
+                if (input.files && input.files[0]) {
+                    var filerdr = new FileReader();
+                    filerdr.onload = function (e) {
+                        $('#chekPreview2').attr('src', e.target.result);
+                    }
+                    imagevalidation =true
+                    $("#image-text").hide();
+                    filerdr.readAsDataURL(input.files[0]);
+                }
+            }
+        }
+    </script>
+
+    <script>
+        var imagevalidation = false
+        var nameValidated = false
+        var messageValidated = false
+        $("#nameValidation").keyup(function () {
+            if ($("#nameValidation").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#name-Text").show();
+                $("#name-Text").text(" ");
+                nameValidated = true;
+            } else {
+                $("#name-Text").show();
+                $("#name-Text").text("Invalid Offer head! try again");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+            $("#nameValidation").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#nameValidation").val().length < 3) {
+                $("#name-Text").show();
+                $("#name-Text").text("Offer head should have type morethan 3 characters");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+        });
+        $("#nameValidation").blur(function () {
+            if ($("#nameValidation").val() == "") {
+                $("#name-Text").show();
+                $("#name-Text").text("Offer head should not be empty!");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+        });
+
+        $("#messageValidation").keyup(function () {
+            if ($("#messageValidation").val().length < 10) {
+                $("#msg-text").show();
+                $("#msg-text").text("description length must be written morethan 10 characters");
+                $("#msg-text").css("class", "invalid-feedback");
+                messageValidated = false;
+            } else {
+                $("#msg-text").show();
+                $("#msg-text").text(" ");
+                messageValidated = true;
+            }
+            if ($("#messageValidation").val() == "") {
+                $("#msg-text").show();
+                $("#msg-text").text("You must leave a description ");
+                $("#msg-text").css("class", "invalid-feedback");
+                messageValidated = false;
+            }
+        });
+
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+        function fromSubmit() {
+            if (nameValidated == false || messageValidated == false || imagevalidation == false) {
+                $("#name-Text").show();
+                $("#msg-text").show();
+                $("#image-text").show();
+
+                alert(' please full fill form')
+                return false
+            }
+
+        }
+    </script>
 
 
-<!-- Button trigger modal -->
-
-<style>
-    .preview {
-        overflow: hidden;
-        width: 160px;
-        height: 160px;
-        margin: 10px;
-        border: 1px solid red;
-    }
-
-    .modal-lg {
-        max-width: 1000px !important;
-    }
-</style>
 
 
-<!-- Modal 1-->
+    <!-- Button trigger modal -->
 
-<!-- Modal  1 end-->
+    <style>
+        .preview {
+            overflow: hidden;
+            width: 160px;
+            height: 160px;
+            margin: 10px;
+            border: 1px solid red;
+        }
+
+        .modal-lg {
+            max-width: 1000px !important;
+        }
+    </style>
+
+
+    <!-- Modal 1-->
+
+    <!-- Modal  1 end-->
 
 
 
-<!-- Modal 2-->
-<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="img-container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <img src="" id="sampleImage2" />
-                        </div>
-                        <div class="col-md-4">
-                            <div class="preview" id="preview2"></div>
+    <!-- Modal 2-->
+    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="img-container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <img src="" id="sampleImage2" />
+                            </div>
+                            <div class="col-md-4">
+                                <div class="preview" id="preview2"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
+                <div class="modal-footer">
 
-                <button type="button" id="crop2" class="btn btn-primary">Crop</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="crop2" class="btn btn-primary">Crop</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Modal  2 end-->
+    <!-- Modal  2 end-->
 
 
-<!-- Modal 3-->
+    <!-- Modal 3-->
 
-<!-- Modal  3 end-->
-
-
-<!-- Modal  4 end-->
+    <!-- Modal  3 end-->
 
 
-<script>
-    $('document').ready(function() {
-//modal1 and image 1
-    
-//modal1 and image 1 end
+    <!-- Modal  4 end-->
 
-//modal2 and image 2
-    var image2 = document.getElementById('sampleImage2');
-    var modal2 = $('#modal2');
-    var cropper2;
 
-    $('#image2').change(function (event) {
-        var files = event.target.files;
+    <script>
+        $('document').ready(function () {
+            //modal1 and image 1
 
-        var done = function (url) {
-            image2.src = url;
-            modal2.modal('show');
-        };
+            //modal1 and image 1 end
 
-        if (files && files.length > 0) {
-            reader = new FileReader();
-            reader.onload = function (event) {
-                done(reader.result);
-            };
-            reader.readAsDataURL(files[0]);
-        }
-    });
+            //modal2 and image 2
+            var image2 = document.getElementById('sampleImage2');
+            var modal2 = $('#modal2');
+            var cropper2;
 
-    modal2.on('shown.bs.modal', function () {
-        cropper2 = new Cropper(image2, {
-            aspectRatio: 8 / 5,
-            viewMode: 1,
-            preview: '#preview2'
+            $('#image2').change(function (event) {
+                var files = event.target.files;
+
+                var done = function (url) {
+                    image2.src = url;
+                    modal2.modal('show');
+                };
+
+                if (files && files.length > 0) {
+                    reader = new FileReader();
+                    reader.onload = function (event) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+            modal2.on('shown.bs.modal', function () {
+                cropper2 = new Cropper(image2, {
+                    aspectRatio: 8 / 5,
+                    viewMode: 1,
+                    preview: '#preview2'
+                });
+            }).on('hidden.bs.modal', function () {
+                cropper2.destroy();
+                cropper2 = null;
+            });
+
+            $('#crop2').click(function () {
+                canvas = cropper2.getCroppedCanvas({
+                    width: 800,
+                    height: 200
+                });
+
+                canvas.toBlob(function (blob) {
+                    url = URL.createObjectURL(blob);
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function () {
+                        var base64data = reader.result;
+                        modal2.modal('hide');
+                        $("#imageValue2").val(base64data)
+                        $('#chekPreview2').attr('src', base64data);
+                    };
+                });
+            });
+
         });
-    }).on('hidden.bs.modal', function () {
-        cropper2.destroy();
-        cropper2 = null;
-    });
 
-    $('#crop2').click(function () {
-        canvas = cropper2.getCroppedCanvas({
-            width: 800,
-            height: 200
-        });
+    </script>
 
-        canvas.toBlob(function (blob) {
-            url = URL.createObjectURL(blob);
-            var reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = function () {
-                var base64data = reader.result;
-                modal2.modal('hide');
-                $("#imageValue2").val(base64data)
-                $('#chekPreview2').attr('src', base64data);
-            };
-        });
-    });
 
-    });
 
-</script>
-
-    
-    
 
 </body>
 

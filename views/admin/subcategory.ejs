@@ -100,17 +100,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="row mb-2">
-                                        <div class="col-sm-4">
-                                            <div class="search-box me-2 mb-2 d-inline-block">
-                                                <div class="position-relative">
-                                                    <input type="text" class="form-control" placeholder="Search...">
-                                                    <i class="bx bx-search-alt search-icon"></i>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                    </div>
 
                                     <div class="table-responsive">
                                         <table class="table align-middle table-nowrap">
@@ -172,7 +162,11 @@
                                                                                         <input
                                                                                             class="form-control select2"
                                                                                             type="text"
-                                                                                            name="subcategory" id="">
+                                                                                            name="subcategory"
+                                                                                            id="nameValidation">
+                                                                                        <div class="invalid-feedback"
+                                                                                            id="name-Text">enter your
+                                                                                            Name</div>
                                                                                         <input type="text"
                                                                                             name="categoryname"
                                                                                             value="<%= result.category %>"
@@ -382,6 +376,13 @@
     <script src="assets/js/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- validation cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+
     <script>
         function subDelete(cateId, subcateName) {
 
@@ -423,28 +424,10 @@
 
 
         }
-        function addNewSubcategory(d) {
-            alert(d)
-        }
-        $('#addNewSubcategory').submit((e) => {
-            e.preventDefault()
-            $.ajax({
-                url: '/admin/subcategory',
-                data: $('#addNewSubcategory').serialize(),
-                method: 'post',
-                success: (response) => {
-                    if (response.status) {
-                        location.reload()
-                    } else {
-                        Swal.fire(
-                            'Already exists',
-                            'Change the Subcategory name',
-                            'error'
-                        )
-                    }
-                }
-            })
-        })
+        $(function () {
+            $("#datepicker").datepicker({ minDate: 0 });
+        });
+
         //     $('#exampleModal').on('show.bs.modal', function (event) {
         //     var myVal = $(event.relatedTarget).attr('data-val');
         //     console.log(myVal)
@@ -458,6 +441,75 @@
         //     console.log(myVal1)
         //     $(this).find("#test1").val(myVal1); 
         // });
+
+
+        var nameValidated = false
+        $("#nameValidation").keyup(function () {
+            if ($("#nameValidation").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#name-Text").show();
+                $("#name-Text").text(" ");
+                nameValidated = true;
+            } else {
+                $("#name-Text").show();
+                $("#name-Text").text("Invalid name! try again");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+            $("#nameValidation").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#nameValidation").val().length < 3) {
+                $("#name-Text").show();
+                $("#name-Text").text("Name should have type morethan 3 characters");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+        });
+        $("#nameValidation").blur(function () {
+            if ($("#nameValidation").val() == "") {
+                $("#name-Text").show();
+                $("#name-Text").text("Name should not be empty!");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+        });
+        $("#addNewSubcategory").submit(function (num) {
+            if ($("#nameValidation").val() == "") {
+                alert("please fill the form properly");
+            }
+            if ($("#nameValidation").val() == "") {
+                num.preventDefault();
+                $("#name-Text").show();
+
+            } else if (
+                nameValidated
+
+            ) {
+                num.preventDefault();
+                $.ajax({
+                    url: '/admin/subcategory',
+                    data: $('#addNewSubcategory').serialize(),
+                    method: 'post',
+                    success: (response) => {
+                        if (response.status) {
+                            location.reload()
+                        } else {
+                            Swal.fire(
+                                'Already exists',
+                                'Change the Subcategory name',
+                                'error'
+                            )
+                        }
+                    }
+                })
+
+
+            } else {
+                num.preventDefault();
+            }
+        });
 
 
 

@@ -45,6 +45,75 @@
 
         <!-- Left Sidebar End -->
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">+ coupon</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="add-new-coupon">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="basicpill-firstname-input" class="form-label">Coupon Name</label>
+                                        <input onkeyup="namevalidation()" type="text" name="couponName"
+                                            class="form-control" id="basicpill-firstname-input">
+                                        <div class="invalid-feedback" id="name-Text">enter your Name</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="basicpill-lastname-input" class="form-label">Coupon Expiry
+                                            date</label>
+
+                                        <input name="couponExDate" type="date" class="form-control" id="date1">
+                                      
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="basicpill-phoneno-input" class="form-label">Coupon
+                                            percentage</label>
+                                        <input type="text" name="percentage" class="form-control"
+                                            id="basicpill-phoneno-input">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="basicpill-phoneno-input" class="form-label">Coupon quantity</label>
+                                        <input type="text" name="couponQuantity" class="form-control"
+                                            id="coupon-quantity">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label for="basicpill-phoneno-input" class="form-label">minimum price</label>
+                                        <input type="text" name="minimumPrice" class="form-control" id="minimum-price">
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div style="display: flex; justify-content: right;">
+                                <button type="submit" class="btn btn-dark waves-effect waves-light">submit</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
 
 
         <!-- ============================================================== -->
@@ -59,123 +128,21 @@
 
                     <!-- end page title -->
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title mb-0">Add New Coupon </h4>
-                                </div>
-                                <div class="card-body">
-                                    <div id="basic-pills-wizard" class="twitter-bs-wizard">
-                                        <ul class="twitter-bs-wizard-nav">
-                                            <li class="nav-item">
-                                                <a href="#seller-details" class="nav-link" data-toggle="tab">
-                                                    <!-- <div class="step-icon" data-bs-toggle="tooltip" data-bs-placement="top" title="Seller Details">
-                                                            <i class="bx bx-list-ul"></i>
-                                                        </div> -->
-                                                </a>
-                                            </li>
 
-                                        </ul>
-                                        <!-- wizard-nav -->
-
-                                        <div class="tab-content twitter-bs-wizard-tab-content">
-                                            <div class="tab-pane" id="seller-details">
-                                                <!-- <div class="text-center mb-4">
-                                                        <h5>Seller Details</h5>
-                                                        <p class="card-title-desc">Fill all information below</p>
-                                                    </div> -->
-                                                <form id="add-new-coupon">
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="mb-3">
-                                                                <label for="basicpill-firstname-input"
-                                                                    class="form-label">Coupon Name</label>
-                                                                <input type="text" name="couponName"
-                                                                    class="form-control" id="basicpill-firstname-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="mb-3">
-                                                                <label for="basicpill-lastname-input"
-                                                                    class="form-label">Coupon Expiry date</label>
-                                                                
-                                                                <input  name="couponExDate"
-                                                                    class="form-control" id="txtstartdate">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="mb-3">
-                                                                <label for="basicpill-phoneno-input"
-                                                                    class="form-label">Coupon percentage</label>
-                                                                <input type="text" name="percentage"
-                                                                    class="form-control" id="basicpill-phoneno-input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="mb-3">
-                                                                <label for="basicpill-phoneno-input"
-                                                                    class="form-label">Coupon quantity</label>
-                                                                <input type="text" name="couponQuantity"
-                                                                    class="form-control" id="coupon-quantity">
-                                                            </div>
-                                                        </div>
-                                                        <!-- <div class="col-lg-6">
-                                                            <div class="mb-3">
-                                                                <label for="basicpill-phoneno-input"
-                                                                    class="form-label">Coupon code</label>
-                                                                <input type="text" name="couponCode"
-                                                                    class="form-control" id="basicpill-phoneno-input">
-                                                            </div>
-                                                        </div> -->
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="mb-3">
-                                                                <label for="basicpill-phoneno-input"
-                                                                    class="form-label">minimum price</label>
-                                                                <input type="text" name="minimumPrice"
-                                                                    class="form-control" id="minimum-price">
-                                                            </div>
-                                                        </div>
-
-
-
-                                                    </div>
-                                                    <div style="display: flex; justify-content: right;">
-                                                        <button type="submit"
-                                                            class="btn btn-dark waves-effect waves-light">submit</button>
-                                                    </div>
-                                                </form>
-
-                                            </div>
-                                            <!-- tab pane -->
-
-                                            <!-- tab pane -->
-
-                                            <!-- tab pane -->
-                                        </div>
-                                        <!-- end tab content -->
-                                    </div>
-                                </div>
-                                <!-- end card body -->
-                            </div>
-                            <!-- end card -->
-                        </div>
-                        <!-- end col -->
-                    </div>
                     <!-- end row -->
 
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
-                                <div class="card-header">
+                                <div style="display: flex; justify-content: space-between;" class="card-header">
                                     <h4 class="card-title mb-0">show all Coupons</h4>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        + Coupon
+                                    </button>
                                 </div>
                                 <div class="card-body">
+
 
                                     <div id="" class="table-responsive">
                                         <% if(coupons.length> 0){ %>
@@ -445,25 +412,45 @@
     <script src="assets/js/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-   
-    
+
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
+
+    <!-- validation cdn -->
+    <script>
+
+        // var today = new Date();
+        // var dd = String(today.getDate()).padStart(2, '0');
+        // var mm = String(today.getMonth() + 1).padStart(2, '0');
+        // var yyyy = today.getFullYear();
+
+        // today = yyyy + '-' + mm + '-' + dd;
+        // $('#date1').attr('max', today);
+        // $('#date2').attr('max', today);
+        // document.getElementById('date1').onchange = e => {
+        //     value = e.target.value
+
+        //     $('#date2').attr('min', value);
+        // }
+
+    </script>
 
 
 
 
     <script>
-        
+      
 
-        $("#txtstartdate").datepicker({
-            minDate: 0,
-            onSelect: function (date) {
-                $("#txtenddate").datepicker('option', 'minDate', date);
-                
-            }
-        });
 
-        $("#txtenddate").datepicker({});
+        // $("#txtstartdate").datepicker({
+        //     minDate: 0,
+        //     onSelect: function (date) {
+        //         $("#txtenddate").datepicker('option', 'minDate', date);
+
+        //     }
+        // });
+
+        // $("#txtenddate").datepicker({});
 
 
 

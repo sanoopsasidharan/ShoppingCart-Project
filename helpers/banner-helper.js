@@ -22,5 +22,13 @@ module.exports = {
                resolve(null)
            }
         })
-    } 
+    },
+    showCategorys:()=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.categoryCollection).find().toArray().then((categorys)=>{
+                resolve(categorys)
+                reject(null)
+            })
+        })
+    }
 }

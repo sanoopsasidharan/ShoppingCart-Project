@@ -430,7 +430,12 @@ router.post('/delete-coupon',(req,res)=>{
 
 // banner management
 router.get('/bannerManagement',verifyLogin,(req,res)=>{
-    res.render('admin/banner',{admin:1})
+console.log('dsaj;jkfajkljlkjlkajlkjl');
+bannerHelpers.showCategorys().then((categorys)=>{
+    res.render('admin/banner',{admin:1,categorys})
+}).catch((res)=>{
+    res.redirect('/admin/home')
+})
 })
 
 // add new banner 
