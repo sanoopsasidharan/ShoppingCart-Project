@@ -340,8 +340,8 @@
                                                             <div>
                                                                 <span class="btn btn-rose btn-round btn-file">
                                                                     <!-- <span class="fileinput-new">Select image</span> -->
-                                                                    <input type="file" id="image1"
-                                                                        accept="image/gif, image/jpeg, image/png"
+                                                                    <input type="file" onchange="show1(this)" id="image1"
+                                                                        
                                                                         required />
                                                                     <textarea name="image1" id="imageValue1" cols="30"
                                                                         rows="10" hidden></textarea>
@@ -363,7 +363,7 @@
                                                                 <span class="btn btn-rose btn-round btn-file">
                                                                     <!-- <span class="fileinput-new">Select image</span> -->
                                                                     <input type="file" id="image2"
-                                                                        accept="image/gif, image/jpeg, image/png"
+                                                                    onchange="show2(this)"
                                                                         required />
                                                                     <textarea name="image2" id="imageValue2" cols="30"
                                                                         rows="10" hidden></textarea>
@@ -384,7 +384,7 @@
                                                                 <span class="btn btn-rose btn-round btn-file">
                                                                     <!-- <span class="fileinput-new">Select image</span> -->
                                                                     <input type="file" id="image3"
-                                                                        accept="image/gif, image/jpeg, image/png"
+                                                                    onchange="show3(this)"
                                                                         required />
                                                                     <textarea name="image3" id="imageValue3" cols="30"
                                                                         rows="10" hidden></textarea>
@@ -693,6 +693,96 @@
 
 <script src="https://unpkg.com/dropzone"></script>
 <script src="https://unpkg.com/cropperjs"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function show1(input) {
+        debugger;
+        var validExtensions = ['jpg', 'png'];
+        var fileName = input.files[0].name;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+        if ($.inArray(fileNameExt, validExtensions) == -1) {
+            input.type = ''
+            input.type = 'file'
+            $('#chekPreview1').attr('src', "");
+            Swal.fire(
+                '',
+                'Only these file types are accepted  ' + validExtensions.join(', '),
+                'question'
+            )
+            // alert("Only these file types are accepted : " + validExtensions.join(', '));
+        }
+        else {
+            if (input.files && input.files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    $('#chekPreview1').attr('src', e.target.result);
+                }
+                imagevalidation = true
+                $("#image-text").hide();
+                filerdr.readAsDataURL(input.files[0]);
+            }
+        }
+    }
+    function show2(input) {
+        debugger;
+        var validExtensions = ['jpg', 'png'];
+        var fileName = input.files[0].name;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+        if ($.inArray(fileNameExt, validExtensions) == -1) {
+            input.type = ''
+            input.type = 'file'
+            $('#chekPreview2').attr('src', "");
+            Swal.fire(
+                '',
+                'Only these file types are accepted  ' + validExtensions.join(', '),
+                'question'
+            )
+            // alert("Only these file types are accepted : " + validExtensions.join(', '));
+        }
+        else {
+            if (input.files && input.files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    $('#chekPreview2').attr('src', e.target.result);
+                }
+                imagevalidation = true
+                $("#image-text").hide();
+                filerdr.readAsDataURL(input.files[0]);
+            }
+        }
+    }
+    function show3(input) {
+        debugger;
+        var validExtensions = ['jpg', 'png'];
+        var fileName = input.files[0].name;
+        var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+        if ($.inArray(fileNameExt, validExtensions) == -1) {
+            input.type = ''
+            input.type = 'file'
+            $('#chekPreview3').attr('src', "");
+            Swal.fire(
+                '',
+                'Only these file types are accepted  ' + validExtensions.join(', '),
+                'question'
+            )
+            // alert("Only these file types are accepted : " + validExtensions.join(', '));
+        }
+        else {
+            if (input.files && input.files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    $('#chekPreview3').attr('src', e.target.result);
+                }
+                imagevalidation = true
+                $("#image-text").hide();
+                filerdr.readAsDataURL(input.files[0]);
+            }
+        }
+    }
+</script>
+
 
 <script>
     var nameValidated = false;

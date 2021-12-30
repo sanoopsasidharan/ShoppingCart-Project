@@ -16,6 +16,7 @@ var addProductPopup = false;
 var addSuccussProduct = false;
 
 // session midleware of admin
+
 const verifyLogin=(req,res,next)=>{
     if(req.session.adminlogged){
       next()
@@ -124,6 +125,10 @@ router.get('/editproduct',verifyLogin,async(req,res)=>{
 
 // post edit product
 router.post('/editproduct/:id',(req,res)=>{
+    console.log(req.params.id);
+    console.log('req.params.id');
+    console.log(req.body);
+    console.log('req.body');
     
         productHelpers.afterEditProduct(req.params.id,req.body).then((response)=>{
             console.log(response);

@@ -422,15 +422,15 @@
 
                                                                     <div>
                                                                         <input type="text" name="couponCD" value=""
-                                                                            id="couponValue">
+                                                                            id="couponValue" hidden>
                                                                         <input type="text" name="wallet"
-                                                                            id="walletInputId">
+                                                                            id="walletInputId" hidden>
                                                                     </div>
                                                                     <div>
 
                                                                         <input type="text" value="<%= proId %>"
                                                                             name="productId"
-                                                                            id="productId-original-inp">
+                                                                            id="productId-original-inp" hidden>
                                                                     </div>
 
 
@@ -474,12 +474,12 @@
 
 
                                         <form action="/singleProductPaypal" method="post">
-                                            <input type="text" name="addressId" id="addressIdPaypal">
-                                            <input type="text" name="couponCD" id="couponCD">
-                                            <input type="text" name="paymentmethod" value="ONLINE" id="">
-                                            <input type="text" name="wallet" id="walletpaypalId">
-                                            <input type="text" name="userId" value="<%=user._id%>" id="">
-                                            <input type="text" value="<%= proId %>" name="productId"
+                                            <input type="text" name="addressId" id="addressIdPaypal" hidden>
+                                            <input type="text" name="couponCD" id="couponCD" hidden>
+                                            <input type="text" name="paymentmethod" value="ONLINE" id="" hidden>
+                                            <input type="text" name="wallet" id="walletpaypalId" hidden>
+                                            <input type="text" name="userId" value="<%=user._id%>" id="" hidden>
+                                            <input type="text" value="<%= proId %>" name="productId" hidden
                                                 id="productId-Id-buy-inp">
 
                                             <div>

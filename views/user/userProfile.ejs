@@ -49,6 +49,10 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
     <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
+
+    <!-- validation cdn -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         .preview {
             overflow: hidden;
@@ -152,7 +156,7 @@
                         <div class="invalid-feedback" id="number-error">Enter your phone number </div>
 
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" name="password" class="form-control"  id="password">
+                        <input type="password" name="password" class="form-control" id="password">
                         <div class="invalid-feedback" id="passworderror">Text a message</div>
 
 
@@ -180,11 +184,14 @@
                     <form id="edit-password-form">
                         <input type="text" value=" <%= userProfil._id %>" name="userId" hidden>
                         <label for="" class="form-label">Old password</label>
-                        <input type="password" class="form-control" name="password">
+                        <input type="password" class="form-control" id="password0" name="password">
+                        <div class="invalid-feedback m-2" id="pass0error">enter password</div>
                         <label for="" class="form-label">New password</label>
-                        <input type="password" class="form-control" name="newPassword">
+                        <input type="password" class="form-control" id="password1" name="newPassword">
+                        <div class="invalid-feedback m-2" id="pass1error">enter new password</div>
                         <label for="" class="form-label">repeat password</label>
-                        <input type="password" class="form-control" name="repeatPassword">
+                        <input type="password" class="form-control" id="password2" name="repeatPassword">
+                        <div class="invalid-feedback m-2" id="pass2error">enter repeat password</div>
 
                         <div style="display: flex; justify-content:right;">
                             <button type="submit" class="btn btn-primary mt-4">Save</button>
@@ -980,6 +987,10 @@
     <script src="https://unpkg.com/cropperjs"></script>
 
     <script>
+
+    </script>
+
+    <script>
         $('#editUserProfile').submit((num) => {
             num.preventDefault()
             $.ajax({
@@ -1027,44 +1038,188 @@
         //     })
         // })
 
-
-        $('#edit-password-form').submit((num) => {
-            num.preventDefault()
-            $.ajax({
-                url: '/userEditPassword',
-                data: $('#edit-password-form').serialize(),
-                method: 'post',
-                success: (response) => {
-                    if (response.status) {
-                        Swal.fire({
-                            title: 'Password saved',
-                            icon: 'success',
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'ok'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                location.reload()
-                            }
-                        })
-                    } else if (response.erorr) {
-                        Swal.fire(
-                            '',
-                            'sorry not match both password',
-                            'warning'
-                        )
-
-                    } else {
-                        Swal.fire(
-                            '',
-                            'old password not match',
-                            'warning'
-                        )
-
-                    }
+        let password0 = false
+        let password1 = false
+        let password2 = false
+        $("#password0").keyup(function () {
+            if ($("#password0").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#pass0error").show();
+                $("#pass0error").text(" ");
+                password0 = true;
+            } else {
+                $("#pass0error").show();
+                $("#pass0error").text("Invalid password! try again");
+                $("#pass0error").css("class", "invalid-feedback");
+                password0 = false;
+            }
+            $("#password0").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
                 }
+            });
+            if ($("#password0").val().length < 3) {
+                $("#pass0error").show();
+                $("#pass0error").text("password should have type morethan 3 characters");
+                $("#pass0error").css("class", "invalid-feedback");
+                password0 = false;
+            }
+        });
+        $("#password0").blur(function () {
+            if ($("#password0").val() == "") {
+                $("#pass0error").show();
+                $("#pass0error").text("password should not be empty!");
+                $("#pass0error").css("class", "invalid-feedback");
+                password0 = false;
+            }
+        });
 
-            })
-        })
+
+        $("#password1").keyup(function () {
+            if ($("#password1").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#pass1error").show();
+                $("#pass1error").text(" ");
+                password1 = true;
+            } else {
+                $("#pass1error").show();
+                $("#pass1error").text("Invalid password! try again");
+                $("#pass1error").css("class", "invalid-feedback");
+                password1 = false;
+            }
+            $("#password1").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#password1").val().length < 3) {
+                $("#pass1error").show();
+                $("#pass1error").text("password should have type morethan 3 characters");
+                $("#pass1error").css("class", "invalid-feedback");
+                password1 = false;
+            }
+        });
+        $("#password1").blur(function () {
+            if ($("#password1").val() == "") {
+                $("#pass1error").show();
+                $("#pass1error").text("password should not be empty!");
+                $("#pass1error").css("class", "invalid-feedback");
+                password1 = false;
+            }
+        });
+
+        $("#password2").keyup(function () {
+            if ($("#password2").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#pass2error").show();
+                $("#pass2error").text(" ");
+                password2 = true;
+            } else {
+                $("#pass2error").show();
+                $("#pass2error").text("Invalid password! try again");
+                $("#pass2error").css("class", "invalid-feedback");
+                password2 = false;
+            }
+            $("#password2").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#password2").val().length < 3) {
+                $("#pass2error").show();
+                $("#pass2error").text("password should have type morethan 3 characters");
+                $("#pass2error").css("class", "invalid-feedback");
+                password2 = false;
+            }
+        });
+        $("#password2").blur(function () {
+            if ($("#password2").val() == "") {
+                $("#pass2error").show();
+                $("#pass2error").text("password should not be empty!");
+                $("#pass2error").css("class", "invalid-feedback");
+                password2 = false;
+            }
+        });
+
+
+        $("#edit-password-form").submit(function (num) {
+            if ($("#password0").val() == "" || $("#password1").val() == "" || $("#password2").val() == "") {
+                Swal.fire(
+                    '',
+                    'please fill the form',
+                    'question'
+                )
+            }
+            if ($("#password0").val() == "" || $("#password1").val() == "" || $("#password2").val() == "") {
+                num.preventDefault();
+                $("#pass0error").show();
+                $("#pass1error").show();
+                $("#pass2error").show();
+            } else if (
+                password0 &&
+                password1 &&
+                password2
+            ) {
+                num.preventDefault();
+                
+                $.ajax({
+                    url: '/userEditPassword',
+                    data: $('#edit-password-form').serialize(),
+                    method: 'post',
+                    success: (response) => {
+                        if (response.status) {
+                            Swal.fire({
+                                title: 'Password saved',
+                                icon: 'success',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'ok'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload()
+                                }
+                            })
+                        } else if (response.erorr) {
+                            Swal.fire(
+                                '',
+                                'sorry not match both password',
+                                'warning'
+                            )
+                        } else {
+                            Swal.fire(
+                                '',
+                                'old password not match',
+                                'warning'
+                            )
+                        }
+                    }
+                })
+            } else {
+                num.preventDefault();
+            }
+        });
+
+
+
+
+
+
+        // $('#edit-password-form').submit((num) => {
+        //     num.preventDefault()
+        //     var pass0 = document.getElementById('password0').value
+        //     var pass1 = document.getElementById('password1').value
+        //     var pass2 = document.getElementById('password2').value
+            
+        //     if (password0 == false) {
+        //         Swal.fire(
+        //             '',
+        //             'please fill the form',
+        //             'question'
+        //         )
+        //         $("#pass0error").show();
+        //     } else {
+                
+
+        //     }
+
+
+        // })
         document.getElementById('image1').style.display = 'none'
         document.getElementById('savepropicbtn').style.display = 'none'
         function profileEdit() {
@@ -1310,7 +1465,10 @@
                 messageValidated
             ) {
                 num.preventDefault();
-               
+
+
+                
+
             } else {
                 num.preventDefault();
             }

@@ -131,17 +131,17 @@
                                                                 <div class="fileinput-new thumbnail">
                                                                     <img src="../../assets/img/image_placeholder.jpg"
                                                                         id="chekPreview2" alt="">
-                                                                        <div class="invalid-feedback" id="image-text">please choose <picture></picture>
-                                                                        </div>
-                                                                    
+                                                                    <div class="invalid-feedback" id="image-text">please
+                                                                        choose <picture></picture>
+                                                                    </div>
+
 
                                                                 </div>
                                                                 <div>
                                                                     <span class="btn btn-rose btn-round btn-file">
 
                                                                         <input type="file" id="image2"
-                                                                           
-                                                                            onchange="show(this)"   required />
+                                                                            onchange="show(this)" required />
                                                                         <textarea name="image2_b64" id="imageValue2"
                                                                             cols="30" rows="10" hidden></textarea>
                                                                     </span>
@@ -161,8 +161,8 @@
                                                 <button type="button"
                                                     class="btn btn-secondary waves-effect waves-light">Cancel</button>
                                             </div>
-                                           
-                                    
+
+
                                         </form>
                                     </div>
                                 </div>
@@ -353,6 +353,7 @@
 
     <script src="https://unpkg.com/dropzone"></script>
     <script src="https://unpkg.com/cropperjs"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- validation cdn -->
     <script src="https://code.jquery.com/jquery-3.6.0.js"
@@ -369,7 +370,12 @@
                 input.type = ''
                 input.type = 'file'
                 $('#chekPreview2').attr('src', "");
-                alert("Only these file types are accepted : " + validExtensions.join(', '));
+                Swal.fire(
+                    '',
+                    'Only these file types are accepted  ' + validExtensions.join(', '),
+                    'question'
+                )
+                // alert("Only these file types are accepted : " + validExtensions.join(', '));
             }
             else {
                 if (input.files && input.files[0]) {
@@ -377,7 +383,7 @@
                     filerdr.onload = function (e) {
                         $('#chekPreview2').attr('src', e.target.result);
                     }
-                    imagevalidation =true
+                    imagevalidation = true
                     $("#image-text").hide();
                     filerdr.readAsDataURL(input.files[0]);
                 }
@@ -447,13 +453,17 @@
             if (nameValidated == false || messageValidated == false || imagevalidation == false) {
                 $("#name-Text").show();
                 $("#msg-text").show();
-                $("#image-text").show();
+                // $("#image-text").show();
 
-                alert(' please full fill form')
-                return false
+                    Swal.fire(
+                        '',
+                        'please fill the form',
+                        'question'
+                    )
+                    return false
+                }
+
             }
-
-        }
     </script>
 
 
@@ -526,64 +536,64 @@
 
 
     <script>
-        $('document').ready(function () {
-            //modal1 and image 1
+            $('document').ready(function () {
+                //modal1 and image 1
 
-            //modal1 and image 1 end
+                //modal1 and image 1 end
 
-            //modal2 and image 2
-            var image2 = document.getElementById('sampleImage2');
-            var modal2 = $('#modal2');
-            var cropper2;
+                //modal2 and image 2
+                var image2 = document.getElementById('sampleImage2');
+                var modal2 = $('#modal2');
+                var cropper2;
 
-            $('#image2').change(function (event) {
-                var files = event.target.files;
+                $('#image2').change(function (event) {
+                    var files = event.target.files;
 
-                var done = function (url) {
-                    image2.src = url;
-                    modal2.modal('show');
-                };
-
-                if (files && files.length > 0) {
-                    reader = new FileReader();
-                    reader.onload = function (event) {
-                        done(reader.result);
+                    var done = function (url) {
+                        image2.src = url;
+                        modal2.modal('show');
                     };
-                    reader.readAsDataURL(files[0]);
-                }
-            });
 
-            modal2.on('shown.bs.modal', function () {
-                cropper2 = new Cropper(image2, {
-                    aspectRatio: 8 / 5,
-                    viewMode: 1,
-                    preview: '#preview2'
-                });
-            }).on('hidden.bs.modal', function () {
-                cropper2.destroy();
-                cropper2 = null;
-            });
-
-            $('#crop2').click(function () {
-                canvas = cropper2.getCroppedCanvas({
-                    width: 800,
-                    height: 200
+                    if (files && files.length > 0) {
+                        reader = new FileReader();
+                        reader.onload = function (event) {
+                            done(reader.result);
+                        };
+                        reader.readAsDataURL(files[0]);
+                    }
                 });
 
-                canvas.toBlob(function (blob) {
-                    url = URL.createObjectURL(blob);
-                    var reader = new FileReader();
-                    reader.readAsDataURL(blob);
-                    reader.onloadend = function () {
-                        var base64data = reader.result;
-                        modal2.modal('hide');
-                        $("#imageValue2").val(base64data)
-                        $('#chekPreview2').attr('src', base64data);
-                    };
+                modal2.on('shown.bs.modal', function () {
+                    cropper2 = new Cropper(image2, {
+                        aspectRatio: 8 / 5,
+                        viewMode: 1,
+                        preview: '#preview2'
+                    });
+                }).on('hidden.bs.modal', function () {
+                    cropper2.destroy();
+                    cropper2 = null;
                 });
-            });
 
-        });
+                $('#crop2').click(function () {
+                    canvas = cropper2.getCroppedCanvas({
+                        width: 800,
+                        height: 200
+                    });
+
+                    canvas.toBlob(function (blob) {
+                        url = URL.createObjectURL(blob);
+                        var reader = new FileReader();
+                        reader.readAsDataURL(blob);
+                        reader.onloadend = function () {
+                            var base64data = reader.result;
+                            modal2.modal('hide');
+                            $("#imageValue2").val(base64data)
+                            $('#chekPreview2').attr('src', base64data);
+                        };
+                    });
+                });
+
+            });
 
     </script>
 

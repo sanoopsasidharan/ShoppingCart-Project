@@ -1,314 +1,333 @@
 <!doctype html>
 <html lang="en">
 
-    
+
 <!-- Mirrored from themesbrand.com/dason/layouts/default/ecommerce-add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Nov 2021 10:58:50 GMT -->
+
 <head>
-        
-        <meta charset="utf-8" />
-        <title>Add Product | Dason - Admin & Dashboard Template</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesbrand" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-        <!-- select2 css -->
-        <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <title>Add Product | Dason - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-        <!-- dropzone css -->
-        <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+    <!-- select2 css -->
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 
-        <!-- preloader css -->
-        <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
+    <!-- dropzone css -->
+    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
 
-        <!-- Bootstrap Css -->
-        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-        <style>
-            .preview {
-                overflow: hidden;
-                width: 160px;
-                height: 160px;
-                margin: 10px;
-                border: 1px solid red;
-            }
-        
-            .modal-lg {
-                max-width: 1000px !important;
-            }
-        </style>
+    <!-- preloader css -->
+    <link rel="stylesheet" href="assets/css/preloader.min.css" type="text/css" />
 
-    </head>
+    <!-- Bootstrap Css -->
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <style>
+        .preview {
+            overflow: hidden;
+            width: 160px;
+            height: 160px;
+            margin: 10px;
+            border: 1px solid red;
+        }
 
-    <body data-topbar="dark">
+        .modal-lg {
+            max-width: 1000px !important;
+        }
+    </style>
+
+</head>
+
+<body data-topbar="dark">
 
     <!-- <body data-layout="horizontal"> -->
 
-        <!-- Begin page -->
-        <div id="layout-wrapper">
+    <!-- Begin page -->
+    <div id="layout-wrapper">
 
-            
-            
 
-            <!-- ========== Left Sidebar Start ========== -->
-            <!-- Modal 1-->
-<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="img-container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <img src="" id="sampleImage1" />
+
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <!-- Modal 1-->
+        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="col-md-4">
-                        <div class="preview" id="preview1"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-
-            <button type="button" id="crop1" class="btn btn-primary">Crop</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-        </div>
-    </div>
-</div>
-</div>
-<!-- Modal  1 end-->
-
-
-
-<!-- Modal 2-->
-<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="img-container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <img src="" id="sampleImage2" />
-                    </div>
-                    <div class="col-md-4">
-                        <div class="preview" id="preview2"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-
-            <button type="button" id="crop2" class="btn btn-primary">Crop</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-        </div>
-    </div>
-</div>
-</div>
-<!-- Modal  2 end-->
-
-
-<!-- Modal 3-->
-<div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="img-container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <img src="" id="sampleImage3" />
-                    </div>
-                    <div class="col-md-4">
-                        <div class="preview" id="preview3"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-
-            <button type="button" id="crop3" class="btn btn-primary">Crop</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-        </div>
-    </div>
-</div>
-</div>
-<!-- Modal  3 end-->
-
-<!-- Modal 4-->
-<div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="img-container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <img src="" id="sampleImage4" />
-                    </div>
-                    <div class="col-md-4">
-                        <div class="preview" id="preview4"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-
-            <button type="button" id="crop4" class="btn btn-primary">Crop</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-
-        </div>
-    </div>
-</div>
-</div>
-<!-- Modal  4 end-->
-            
-            <!-- Left Sidebar End -->
-
-            
-
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="main-content">
-
-                <div class="page-content">
-                    <div class="container-fluid">
-
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0 font-size-18">Add Product</h4>
-
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
-                                            <li class="breadcrumb-item active">Add Product</li>
-                                        </ol>
-                                    </div>
-
+                    <div class="modal-body">
+                        <div class="img-container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="" id="sampleImage1" />
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="preview" id="preview1"></div>
                                 </div>
                             </div>
                         </div>
-                        <!-- end page title -->
+                    </div>
+                    <div class="modal-footer">
 
-                        
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Basic Information</h4>
-                                        <p class="card-title-desc">Fill all information below</p>
-                                    </div>
-                                    <div class="card-body">
-                                        <form onsubmit="return fromSubmit()" action="/admin/editproduct/<%= product._id %>" enctype="multipart/form-data" method="POST" >
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <div class="mb-3">
-                                                        <label for="productname">product Name</label>
-                                                        <input id="productName" name="productname" value="<%= product.productname %>" type="text" class="form-control" >
-                                                        <div class="invalid-feedback" id="name-Text">enter your Name</div>
-                                                    </div>
-                                                    <!-- <div class="mb-3">
+                        <button type="button" id="crop1" class="btn btn-primary">Crop</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal  1 end-->
+
+
+
+        <!-- Modal 2-->
+        <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="img-container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="" id="sampleImage2" />
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="preview" id="preview2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" id="crop2" class="btn btn-primary">Crop</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal  2 end-->
+
+
+        <!-- Modal 3-->
+        <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="img-container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="" id="sampleImage3" />
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="preview" id="preview3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" id="crop3" class="btn btn-primary">Crop</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal  3 end-->
+
+        <!-- Modal 4-->
+        <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Crop Image Here</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="img-container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <img src="" id="sampleImage4" />
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="preview" id="preview4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="button" id="crop4" class="btn btn-primary">Crop</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal  4 end-->
+
+        <!-- Left Sidebar End -->
+
+
+
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0 font-size-18">Add Product</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+                                        <li class="breadcrumb-item active">Add Product</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Basic Information</h4>
+                                    <p class="card-title-desc">Fill all information below</p>
+                                </div>
+                                <div class="card-body">
+                                    <form onsubmit="return fromSubmit()" action="/admin/editproduct/<%= product._id %>"
+                                        enctype="multipart/form-data" method="POST">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="mb-3">
+                                                    <label for="productname">product Name</label>
+                                                    <input id="productName" name="productname"
+                                                        value="<%= product.productname %>" type="text"
+                                                        class="form-control">
+                                                    <div class="invalid-feedback" id="name-Text">enter your Name</div>
+                                                </div>
+                                                <!-- <div class="mb-3">
                                                         <label for="manufacturername">Manufacturer Name</label>
                                                         <input id="manufacturername" name="manufacturername" value="<%= product.manufacturername %>" type="text" class="form-control" required>
                                                     </div> -->
-                                                    <div class="mb-3">
-                                                        <label for="manufacturerbrand"> Brand</label>
-                                                        <input id="manufacturerbrand" name="manufacturerbrand" value="<%= product.manufacturerbrand %>" type="text" class="form-control" >
-                                                        <div class="invalid-feedback" id="manufacturerbrand-Text">enter your
-                                                            Name</div>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="productname">Product quantity</label>
-                                                        <input id="quantity" name="quantity" type="text" value="<%= product.quantity %>" class="form-control" >
-                                                        <div class="invalid-feedback" id="text-quantity">Enter your phone
-                                                            number </div>
-                                                    </div>
-                                                    <div class="mb-3">
+                                                <div class="mb-3">
+                                                    <label for="manufacturerbrand"> Brand</label>
+                                                    <input id="manufacturerbrand" name="manufacturerbrand"
+                                                        value="<%= product.manufacturerbrand %>" type="text"
+                                                        class="form-control">
+                                                    <div class="invalid-feedback" id="manufacturerbrand-Text">enter your
+                                                        Name</div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="productname">Product quantity</label>
+                                                    <input id="quantity" name="quantity" type="text"
+                                                        value="<%= product.quantity %>" class="form-control">
+                                                    <div class="invalid-feedback" id="text-quantity">Enter your phone
+                                                        number </div>
+                                                </div>
+                                                <!-- <div class="mb-3">
                                                         <label for="productname">Product tag</label>
-                                                        <input id="tag" name="tag" value="" type="text" class="form-control">
+                                                        <input id="tag" name="tag" value="<%= product.quantity %>" type="text" class="form-control">
                                                         <div class="invalid-feedback" id="tag-Text">Enter your phone number
                                                         </div>
-                                                    </div>
-                                                    
-                                                    <div class="mb-3">
-                                                        <label for="price">Price</label>
-                                                        <input id="price" name="price" value="<%= product.price %>" type="text" class="form-control" >
-                                                        <div class="invalid-feedback" id="text-price">Enter your phone
-                                                            number </div>
-                                                    </div>
+                                                    </div> -->
+
+                                                <div class="mb-3">
+                                                    <label for="price">Price</label>
+                                                    <input id="price" name="price" value="<%= product.price %>"
+                                                        type="text" class="form-control">
+                                                    <div class="invalid-feedback" id="text-price">Enter your phone
+                                                        number </div>
                                                 </div>
-        
-                                                <div class="col-sm-6">
-                                                    <div class="mb-3">
-                                                        <label class="control-label"><%= product.category %></label>
-                                                        <select onchange="getsubcat()" id="categoryid" name='category' class="form-control">
-                                                
-                                                            <% for(var i=0; i< response.length; i++) {%>
-                                                            <option value="<%= response[i].category %>"><%= response[i].category %></option>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <!-- <div class="mb-3">
+                                                    <label class="control-label">
+                                                        <%= product.category %>
+                                                    </label>
+                                                    <select onchange="getsubcat()" id="categoryid" 
+                                                        class="form-control">
+
+                                                        <% for(var i=0; i< response.length; i++) {%>
+                                                            
+                                                            <option value="<%= response[i].category %>">
+                                                                <%= response[i].category %>
+                                                            </option>
                                                             <% } %>
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="control-label"><%= product.subcategory %></label>
-        
-                                                        <select class="select2 form-control select2-multiple" name="subcategory" id="chage-subcategory">
-                                                            <% if(response.subcategory){ %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="control-label"></label>
+
+                                                    <select class="select2 form-control select2-multiple"
+                                                        name="subcategory" id="chage-subcategory"
+                                                        data-placeholder="Choose ...">
+                                                        <% if(response.subcategory){ %>
                                                             <% for(var i=0; i< response.length; i++) {%>
                                                                 <option value="<%= response[i].subcategory[i] %>">
                                                                     <%= response[i].subcategory[i] %>
                                                                 </option>
                                                                 <% } %>
-                                                                <% } else{ %>  
-                                                                 
-                                                                    <% } %>
+                                                                    <% } else{ %>
 
-                                                            
-                                                        </select>
-        
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label for="productdesc">Product Description</label>
-                                                        <input id="description" name="productdiscription" value="<%= product.productdiscription %>" type="text" rows="5" class="form-control" >
-                                                        <div class="invalid-feedback" id="msg-text">Text a message</div>
-                                                        <!-- <textarea class="form-control" id="productdesc" rows="5"></textarea> -->
-                                                    </div>
-                                                   
+                                                                        <% } %>
 
-<!--                                               
+                                                    </select>
+
+                                                    
+
+                                                </div> -->
+                                                <div class="mb-3">
+                                                    <label for="productdesc">Product Description</label>
+                                                    <input id="description" name="productdiscription"
+                                                        value="<%= product.productdiscription %>" type="text" rows="5"
+                                                        class="form-control">
+                                                    <div class="invalid-feedback" id="msg-text">Text a message</div>
+                                                    <!-- <textarea class="form-control" id="productdesc" rows="5"></textarea> -->
+                                                </div>
+
+
+                                                <!--                                               
                                                             <div class="mb-3" style="display: flex;" >
                                                                 <div class="fallback">
                                                                     <input name="file1" onchange="editimage0(event)" value="/productimage/image1/<%=product._id%>_1.jpg" type="file">
@@ -329,87 +348,101 @@ aria-hidden="true">
                                                                     <img style=" width: 20%;" src="/productimage/image1/<%=product._id%>_3.jpg" alt="" id="edit-image2"  class="img-fluid mx-auto d-block"required>   
                                                                 </div>                                               
                                                             </div>  -->
-                                                            <div class="mb-3">
-                                                        
-                                                        
-                                                
-                                                                <!-- cropper image1 -->
-                                                                <div class="col-md-2 col-sm-2">
-                                                                    <!-- <h4 class="title"> Image 1</h4> -->
-                                                                    <div class="fileinput fileinput-new text-center">
-                                                                        <div class="fileinput-new thumbnail">
-                                                                            <img style="width: 70px;" src="/productimage/image1/<%=product._id%>_1.jpg" id="chekPreview1" alt="...">
-                                                        
-                                                                        </div>
-                                                                        <div>
-                                                                            <span class="btn btn-rose btn-round btn-file">
-                                                                                <!-- <span class="fileinput-new">Select image</span> -->
-                                                                                <input type="file" id="image1" accept="image/gif, image/jpeg, image/png"  />
-                                                                                <textarea name="image1" id="imageValue1" cols="30" rows="10" hidden></textarea>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- cropper image 2 -->
-                                                        
-                                                                <div class="col-md-2 col-sm-2">
-                                                                    <!-- <h4 class="title"> Image 2</h4> -->
-                                                                    <div class="fileinput fileinput-new text-center">
-                                                                        <div class="fileinput-new thumbnail">
-                                                                            <img style="width: 70px;" src="/productimage/image1/<%=product._id%>_2.jpg" id="chekPreview2" alt="...">
-                                                        
-                                                                        </div>
-                                                                        <div>
-                                                                            <span class="btn btn-rose btn-round btn-file">
-                                                                                <!-- <span class="fileinput-new">Select image</span> -->
-                                                                                <input type="file" id="image2" accept="image/gif, image/jpeg, image/png"  />
-                                                                                <textarea name="image2" id="imageValue2" cols="30" rows="10" hidden></textarea>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- copper image 3 -->
-                                                                <div class="col-md-2 col-sm-2">
-                                                                    <!-- <h4 class="title"> Image 3</h4> -->
-                                                                    <div class="fileinput fileinput-new text-center">
-                                                                        <div class="fileinput-new thumbnail">
-                                                                            <img style="width: 70px;" src="/productimage/image1/<%=product._id%>_3.jpg" id="chekPreview3" alt="...">
-                                                        
-                                                                        </div>
-                                                                        <div>
-                                                                            <span class="btn btn-rose btn-round btn-file">
-                                                                                <!-- <span class="fileinput-new">Select image</span> -->
-                                                                                <input type="file" id="image3" accept="image/gif, image/jpeg, image/png"  />
-                                                                                <textarea name="image3" id="imageValue3" cols="30" rows="10" hidden></textarea>
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-        
-                                                                
-            
+                                                <div class="mb-3">
+
+
+
+                                                    <!-- cropper image1 -->
+                                                    <div class="col-md-2 col-sm-2">
+                                                        <!-- <h4 class="title"> Image 1</h4> -->
+                                                        <div class="fileinput fileinput-new text-center">
+                                                            <div class="fileinput-new thumbnail">
+                                                                <img style="width: 70px;"
+                                                                    src="/productimage/image1/<%=product._id%>_1.jpg"
+                                                                    id="chekPreview1" >
+
                                                             </div>
-                                                  
-                                                  
-                                                    
-                                                        
-                                                    
-                                                    
-                                                   
+                                                            <div>
+                                                                <span class="btn btn-rose btn-round btn-file">
+                                                                    <!-- <span class="fileinput-new">Select image</span> -->
+                                                                    <input type="file" id="image1"
+                                                                    onchange="show1(this)" />
+                                                                    <textarea name="image1" id="imageValue1" cols="30"
+                                                                        rows="10" hidden></textarea>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- cropper image 2 -->
+
+                                                    <div class="col-md-2 col-sm-2">
+                                                        <!-- <h4 class="title"> Image 2</h4> -->
+                                                        <div class="fileinput fileinput-new text-center">
+                                                            <div class="fileinput-new thumbnail">
+                                                                <img style="width: 70px;"
+                                                                    src="/productimage/image1/<%=product._id%>_2.jpg"
+                                                                    id="chekPreview2" >
+
+                                                            </div>
+                                                            <div>
+                                                                <span class="btn btn-rose btn-round btn-file">
+                                                                    <!-- <span class="fileinput-new">Select image</span> -->
+                                                                    <input type="file" id="image2"
+                                                                    onchange="show2(this)" />
+                                                                    <textarea name="image2" id="imageValue2" cols="30"
+                                                                        rows="10" hidden></textarea>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- copper image 3 -->
+                                                    <div class="col-md-2 col-sm-2">
+                                                        <!-- <h4 class="title"> Image 3</h4> -->
+                                                        <div class="fileinput fileinput-new text-center">
+                                                            <div class="fileinput-new thumbnail">
+                                                                <img style="width: 70px;"
+                                                                    src="/productimage/image1/<%=product._id%>_3.jpg"
+                                                                    id="chekPreview3" >
+
+                                                            </div>
+                                                            <div>
+                                                                <span class="btn btn-rose btn-round btn-file">
+                                                                    <!-- <span class="fileinput-new">Select image</span> -->
+                                                                    <input type="file" id="image3"
+                                                                    onchange="show3(this)" />
+                                                                    <textarea name="image3" id="imageValue3" cols="30"
+                                                                        rows="10" hidden></textarea>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
                                                 </div>
+
+
+
+
+
+
+
                                             </div>
-        
-                                            <div class="d-flex flex-wrap gap-2">
-                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
-                                                <button type="button" class="btn btn-secondary waves-effect waves-light">Cancel</button>
-                                            </div>
-                                        </form>
-        
-                                    </div>
+                                        </div>
+
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <button type="submit" class="btn btn-primary waves-effect waves-light">Save
+                                                Changes</button>
+                                            <button type="button"
+                                                class="btn btn-secondary waves-effect waves-light">Cancel</button>
+                                        </div>
+                                    </form>
+
                                 </div>
-                                
-                                <!-- file uploads -->
-<!-- 
+                            </div>
+
+                            <!-- file uploads -->
+                            <!-- 
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title mb-0">Product Images</h4>
@@ -431,8 +464,8 @@ aria-hidden="true">
                                     </div>
 
                                 </div> end card -->
-        
-                                <!-- <div class="card">
+
+                            <!-- <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">Meta Data</h4>
                                         <p class="card-title-desc">Fill all information below</p>
@@ -468,647 +501,735 @@ aria-hidden="true">
         
                                     </div>
                                 </div> -->
-                            </div>
-                        </div>
-                        <!-- end row -->
-                        
-                    </div> <!-- container-fluid -->
-                </div>
-                <!-- End Page-content -->
-
-                
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © Dason.
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="text-sm-end d-none d-sm-block">
-                                    Design & Develop by <a href="#!" class="text-decoration-underline">Themesbrand</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                </footer>
+                    <!-- end row -->
+
+                </div> <!-- container-fluid -->
             </div>
-            <!-- end main content-->
+            <!-- End Page-content -->
 
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Dason.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Develop by <a href="#!" class="text-decoration-underline">Themesbrand</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-        <!-- END layout-wrapper -->
+        <!-- end main content-->
 
-        
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div data-simplebar class="h-100">
-                <div class="rightbar-title d-flex align-items-center bg-dark p-3">
+    </div>
+    <!-- END layout-wrapper -->
 
-                    <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
 
-                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                        <i class="mdi mdi-close noti-icon"></i>
-                    </a>
+    <!-- Right Sidebar -->
+    <div class="right-bar">
+        <div data-simplebar class="h-100">
+            <div class="rightbar-title d-flex align-items-center bg-dark p-3">
+
+                <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
+
+                <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                    <i class="mdi mdi-close noti-icon"></i>
+                </a>
+            </div>
+
+            <!-- Settings -->
+            <hr class="m-0" />
+
+            <div class="p-4">
+                <h6 class="mb-3">Layout</h6>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout" id="layout-vertical" value="vertical">
+                    <label class="form-check-label" for="layout-vertical">Vertical</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout" id="layout-horizontal"
+                        value="horizontal">
+                    <label class="form-check-label" for="layout-horizontal">Horizontal</label>
                 </div>
 
-                <!-- Settings -->
-                <hr class="m-0" />
+                <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
 
-                <div class="p-4">
-                    <h6 class="mb-3">Layout</h6>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout"
-                            id="layout-vertical" value="vertical">
-                        <label class="form-check-label" for="layout-vertical">Vertical</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout"
-                            id="layout-horizontal" value="horizontal">
-                        <label class="form-check-label" for="layout-horizontal">Horizontal</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2">Layout Mode</h6>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-mode"
-                            id="layout-mode-light" value="light">
-                        <label class="form-check-label" for="layout-mode-light">Light</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-mode"
-                            id="layout-mode-dark" value="dark">
-                        <label class="form-check-label" for="layout-mode-dark">Dark</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-width"
-                            id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
-                        <label class="form-check-label" for="layout-width-fuild">Fluid</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-width"
-                            id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed'),document.body.setAttribute('data-sidebar-size', 'sm')">
-                        <label class="form-check-label" for="layout-width-boxed">Boxed</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-position"
-                            id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
-                        <label class="form-check-label" for="layout-position-fixed">Fixed</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-position"
-                            id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
-                        <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="topbar-color"
-                            id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
-                        <label class="form-check-label" for="topbar-color-light">Light</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="topbar-color"
-                            id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
-                        <label class="form-check-label" for="topbar-color-dark">Dark</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
-
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-size"
-                            id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
-                        <label class="form-check-label" for="sidebar-size-default">Default</label>
-                    </div>
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-size"
-                            id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
-                        <label class="form-check-label" for="sidebar-size-compact">Compact</label>
-                    </div>
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-size"
-                            id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
-                        <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
-
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-color"
-                            id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
-                        <label class="form-check-label" for="sidebar-color-light">Light</label>
-                    </div>
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-color"
-                            id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
-                        <label class="form-check-label" for="sidebar-color-dark">Dark</label>
-                    </div>
-                    <div class="form-check sidebar-setting">
-                        <input class="form-check-input" type="radio" name="sidebar-color"
-                            id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
-                        <label class="form-check-label" for="sidebar-color-brand">Brand</label>
-                    </div>
-
-                    <h6 class="mt-4 mb-3 pt-2">Direction</h6>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-direction"
-                            id="layout-direction-ltr" value="ltr">
-                        <label class="form-check-label" for="layout-direction-ltr">LTR</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="layout-direction"
-                            id="layout-direction-rtl" value="rtl">
-                        <label class="form-check-label" for="layout-direction-rtl">RTL</label>
-                    </div>
-
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-mode" id="layout-mode-light"
+                        value="light">
+                    <label class="form-check-label" for="layout-mode-light">Light</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-mode" id="layout-mode-dark" value="dark">
+                    <label class="form-check-label" for="layout-mode-dark">Dark</label>
                 </div>
 
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
+                <h6 class="mt-4 mb-3 pt-2">Layout Width</h6>
 
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-width" id="layout-width-fuild"
+                        value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
+                    <label class="form-check-label" for="layout-width-fuild">Fluid</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-width" id="layout-width-boxed"
+                        value="boxed"
+                        onchange="document.body.setAttribute('data-layout-size', 'boxed'),document.body.setAttribute('data-sidebar-size', 'sm')">
+                    <label class="form-check-label" for="layout-width-boxed">Boxed</label>
+                </div>
 
-        <!-- JAVASCRIPT -->
-        <script src="assets/libs/jquery/jquery.min.js"></script>
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
-        <script src="assets/libs/feather-icons/feather.min.js"></script>
-        <!-- pace js -->
-        <script src="assets/libs/pace-js/pace.min.js"></script>
+                <h6 class="mt-4 mb-3 pt-2">Layout Position</h6>
 
-        <!-- select 2 plugin -->
-        <script src="assets/libs/select2/js/select2.min.js"></script>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-position" id="layout-position-fixed"
+                        value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
+                    <label class="form-check-label" for="layout-position-fixed">Fixed</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-position" id="layout-position-scrollable"
+                        value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
+                    <label class="form-check-label" for="layout-position-scrollable">Scrollable</label>
+                </div>
 
-        <!-- dropzone plugin -->
-        <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+                <h6 class="mt-4 mb-3 pt-2">Topbar Color</h6>
 
-        <!-- init js -->
-        <script src="assets/js/pages/ecommerce-select2.init.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.js"
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="topbar-color" id="topbar-color-light"
+                        value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
+                    <label class="form-check-label" for="topbar-color-light">Light</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="topbar-color" id="topbar-color-dark" value="dark"
+                        onchange="document.body.setAttribute('data-topbar', 'dark')">
+                    <label class="form-check-label" for="topbar-color-dark">Dark</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Size</h6>
+
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-size" id="sidebar-size-default"
+                        value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
+                    <label class="form-check-label" for="sidebar-size-default">Default</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-size" id="sidebar-size-compact"
+                        value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
+                    <label class="form-check-label" for="sidebar-size-compact">Compact</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-size" id="sidebar-size-small"
+                        value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
+                    <label class="form-check-label" for="sidebar-size-small">Small (Icon View)</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2 sidebar-setting">Sidebar Color</h6>
+
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-color" id="sidebar-color-light"
+                        value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
+                    <label class="form-check-label" for="sidebar-color-light">Light</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-color" id="sidebar-color-dark"
+                        value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
+                    <label class="form-check-label" for="sidebar-color-dark">Dark</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-color" id="sidebar-color-brand"
+                        value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
+                    <label class="form-check-label" for="sidebar-color-brand">Brand</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">Direction</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-direction" id="layout-direction-ltr"
+                        value="ltr">
+                    <label class="form-check-label" for="layout-direction-ltr">LTR</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-direction" id="layout-direction-rtl"
+                        value="rtl">
+                    <label class="form-check-label" for="layout-direction-rtl">RTL</label>
+                </div>
+
+            </div>
+
+        </div> <!-- end slimscroll-menu-->
+    </div>
+    <!-- /Right-bar -->
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/node-waves/waves.min.js"></script>
+    <script src="assets/libs/feather-icons/feather.min.js"></script>
+    <!-- pace js -->
+    <script src="assets/libs/pace-js/pace.min.js"></script>
+
+    <!-- select 2 plugin -->
+    <script src="assets/libs/select2/js/select2.min.js"></script>
+
+    <!-- dropzone plugin -->
+    <script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+
+    <!-- init js -->
+    <script src="assets/js/pages/ecommerce-select2.init.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
 
 
-        <script src="assets/js/app.js"></script>
-        <script>
-            function editimage0(event){
-                document.getElementById('edit-image0').src=URL.createObjectURL(event.target.files[0])
+    <script src="assets/js/app.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function show1(input) {
+            debugger;
+            var validExtensions = ['jpg', 'png'];
+            var fileName = input.files[0].name;
+            var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+            if ($.inArray(fileNameExt, validExtensions) == -1) {
+                input.type = ''
+                input.type = 'file'
+                $('#chekPreview1').attr('src', "");
+                Swal.fire(
+                    '',
+                    'Only these file types are accepted  ' + validExtensions.join(', '),
+                    'question'
+                )
+                // alert("Only these file types are accepted : " + validExtensions.join(', '));
             }
-            function editimage1(event){
-                document.getElementById('edit-image1').src=URL.createObjectURL(event.target.files[0])
+            else {
+                if (input.files && input.files[0]) {
+                    var filerdr = new FileReader();
+                    filerdr.onload = function (e) {
+                        $('#chekPreview1').attr('src', e.target.result);
+                    }
+                    imagevalidation = true
+                    $("#image-text").hide();
+                    filerdr.readAsDataURL(input.files[0]);
+                }
             }
-            function editimage2(event){
-                document.getElementById('edit-image2').src=URL.createObjectURL(event.target.files[0])
+        }
+        function show2(input) {
+            debugger;
+            var validExtensions = ['jpg', 'png'];
+            var fileName = input.files[0].name;
+            var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+            if ($.inArray(fileNameExt, validExtensions) == -1) {
+                input.type = ''
+                input.type = 'file'
+                $('#chekPreview2').attr('src', "");
+                Swal.fire(
+                    '',
+                    'Only these file types are accepted  ' + validExtensions.join(', '),
+                    'question'
+                )
+                // alert("Only these file types are accepted : " + validExtensions.join(', '));
             }
-            function editimage3(event){
-                document.getElementById('edit-image3').src=URL.createObjectURL(event.target.files[0])
+            else {
+                if (input.files && input.files[0]) {
+                    var filerdr = new FileReader();
+                    filerdr.onload = function (e) {
+                        $('#chekPreview2').attr('src', e.target.result);
+                    }
+                    imagevalidation = true
+                    $("#image-text").hide();
+                    filerdr.readAsDataURL(input.files[0]);
+                }
             }
-            
-        </script>
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-         <script>
-             function getsubcat(){
-                 let category = $('#categoryid').val()
-                 $.ajax({
-                     url:'/admin/ajaxaddproduct',
-                     method:'post',
-                     data:{subcat:category},
-                     success:(datas)=>{
-                         console.log('success ajax response'+datas);
-                         $('#chage-subcategory').find('option').remove()
-                         for(var i =0;i < datas.length;i++){
-                             $('#chage-subcategory').append('<option>'+datas[i]+'</option>')
-                         }
-                        
-                     }
-                 })
-             }
-         </script>
-<script>
-    var nameValidated 
-    var brandValidation 
-    var quantityValidation 
-    var tagValidated 
-    var priceValidation 
-    var descriptionVaildate 
-
-
-    $("#productName").keyup(function () {
-        if ($("#productName").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-            $("#name-Text").show();
-            $("#name-Text").text(" ");
-            nameValidated = true;
-        } else {
-            $("#name-Text").show();
-            $("#name-Text").text("Invalid Product Name! try again");
-            $("#name-Text").css("class", "invalid-feedback");
-            nameValidated = false;
         }
-        $("#productName").keypress(function (num) {
-            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                num.preventDefault();
+        function show3(input) {
+            debugger;
+            var validExtensions = ['jpg', 'png'];
+            var fileName = input.files[0].name;
+            var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+            if ($.inArray(fileNameExt, validExtensions) == -1) {
+                input.type = ''
+                input.type = 'file'
+                $('#chekPreview3').attr('src', "");
+                Swal.fire(
+                    '',
+                    'Only these file types are accepted  ' + validExtensions.join(', '),
+                    'question'
+                )
+                // alert("Only these file types are accepted : " + validExtensions.join(', '));
             }
-        });
-        if ($("#productName").val().length < 3) {
-            $("#name-Text").show();
-            $("#name-Text").text("Product Name should have type morethan 3 characters");
-            $("#name-Text").css("class", "invalid-feedback");
-            nameValidated = false;
-        }
-    });
-    $("#productName").blur(function () {
-        if ($("#nameValidation").val() == "") {
-            $("#name-Text").show();
-            $("#name-Text").text("Product Name should not be empty!");
-            $("#name-Text").css("class", "invalid-feedback");
-            nameValidated = false;
-        }
-    });
-
-
-    $("#manufacturerbrand").keyup(function () {
-        if ($("#manufacturerbrand").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-            $("#manufacturerbrand-Text").show();
-            $("#manufacturerbrand-Text").text(" ");
-            brandValidation = true;
-        } else {
-            $("#manufacturerbrand-Text").show();
-            $("#manufacturerbrand-Text").text("Invalid Brand Name! try again");
-            $("#manufacturerbrand-Text").css("class", "invalid-feedback");
-            brandValidation = false;
-        }
-        $("#manufacturerbrand").keypress(function (num) {
-            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                num.preventDefault();
+            else {
+                if (input.files && input.files[0]) {
+                    var filerdr = new FileReader();
+                    filerdr.onload = function (e) {
+                        $('#chekPreview3').attr('src', e.target.result);
+                    }
+                    imagevalidation = true
+                    $("#image-text").hide();
+                    filerdr.readAsDataURL(input.files[0]);
+                }
             }
-        });
-        if ($("#manufacturerbrand").val().length < 3) {
-            $("#manufacturerbrand-Text").show();
-            $("#manufacturerbrand-Text").text("Brand Name should have type morethan 3 characters");
-            $("#manufacturerbrand-Text").css("class", "invalid-feedback");
-            brandValidation = false;
         }
-    });
-    $("#manufacturerbrand").blur(function () {
-        if ($("#manufacturerbrand").val() == "") {
-            $("#manufacturerbrand-Text").show();
-            $("#manufacturerbrand-Text").text("Brand Name should not be empty!");
-            $("#manufacturerbrand-Text").css("class", "invalid-feedback");
-            brandValidation = false;
+    </script>
+    <script>
+        function editimage0(event) {
+            document.getElementById('edit-image0').src = URL.createObjectURL(event.target.files[0])
         }
-    });
+        function editimage1(event) {
+            document.getElementById('edit-image1').src = URL.createObjectURL(event.target.files[0])
+        }
+        function editimage2(event) {
+            document.getElementById('edit-image2').src = URL.createObjectURL(event.target.files[0])
+        }
+        function editimage3(event) {
+            document.getElementById('edit-image3').src = URL.createObjectURL(event.target.files[0])
+        }
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        function getsubcat() {
+            let category = $('#categoryid').val()
+            $.ajax({
+                url: '/admin/ajaxaddproduct',
+                method: 'post',
+                data: { subcat: category },
+                success: (datas) => {
+                    console.log('success ajax response' + datas);
+                    $('#chage-subcategory').find('option').remove()
+                    for (var i = 0; i < datas.length; i++) {
+                        $('#chage-subcategory').append('<option>' + datas[i] + '</option>')
+                    }
+
+                }
+            })
+        }
+    </script>
+    <script>
+        var nameValidated
+        var brandValidation
+        var quantityValidation
+        var tagValidated
+        var priceValidation
+        var descriptionVaildate
 
 
-    $("#quantity").keypress(function (num) {
-        return num.charCode >= 48 && num.charCode <= 57;
-    });
-    $("#quantity").keyup(function () {
-        if ($("#quantity").val().match(/^\d+$/)) {
-            $("#text-quantity").show();
-            $("#text-quantity").text(" ");
-            quantityValidation = true;
-        }
-        if ($("#quantity").val().length < 1) {
-            $("#text-quantity").show();
-            $("#text-quantity").text("quantity MoreThan 1");
-            $("#text-quantity").css("class", "invalid-feedback");
-            quantityValidation = false;
-        }
-    });
-
-    $("#quantity").blur(function () {
-        if ($("#quantity").val() == "") {
-            $("#text-quantity").show();
-            $("#text-quantity").text("quantity is required!");
-            $("#text-quantity").css("class", "invalid-feedback");
-            quantityValidation = false;
-        }
-    });
-
-    $("#tag").keyup(function () {
-        if ($("#tag").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
-            $("#tag-Text").show();
-            $("#tag-Text").text(" ");
-            tagValidated = true;
-        } else {
-            $("#tag-Text").show();
-            $("#tag-Text").text("Invalid quantity! try again");
-            $("#tag-Text").css("class", "invalid-feedback");
-            tagValidated = false;
-        }
-        $("#tag").keypress(function (num) {
-            if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
-                num.preventDefault();
+        $("#productName").keyup(function () {
+            if ($("#productName").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#name-Text").show();
+                $("#name-Text").text(" ");
+                nameValidated = true;
+            } else {
+                $("#name-Text").show();
+                $("#name-Text").text("Invalid Product Name! try again");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
+            $("#productName").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#productName").val().length < 3) {
+                $("#name-Text").show();
+                $("#name-Text").text("Product Name should have type morethan 3 characters");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
             }
         });
-        if ($("#tag").val().length < 3) {
-            $("#tag-Text").show();
-            $("#tag-Text").text("Tag Name should have type morethan 3 characters");
-            $("#tag-Text").css("class", "invalid-feedback");
-            tagValidated = false;
-        }
-    });
-    $("#tag").blur(function () {
-        if ($("#tag").val() == "") {
-            $("#tag-Text").show();
-            $("#tag-Text").text("Tag Name should not be empty!");
-            $("#tag-Text").css("class", "invalid-feedback");
-            tagValidated = false;
-        }
-    });
-
-
-    $("#price").keypress(function (num) {
-        return num.charCode >= 48 && num.charCode <= 57;
-    });
-    $("#price").keyup(function () {
-        if ($("#price").val().match(/^\d+$/)) {
-            $("#text-price").show();
-            $("#text-price").text(" ");
-            priceValidation = true;
-        }
-        if ($("#price").val().length < 1) {
-            $("#text-price").show();
-            $("#text-price").text("Price MoreThan 1");
-            $("#text-price").css("class", "invalid-feedback");
-            priceValidation = false;
-        }
-    });
-
-    $("#price").blur(function () {
-        if ($("#price").val() == "") {
-            $("#text-price").show();
-            $("#text-price").text("price is required!");
-            $("#text-price").css("class", "invalid-feedback");
-            priceValidation = false;
-        }
-    });
-
-    $("#description").keyup(function () {
-        if ($("#description").val().length < 5) {
-            $("#msg-text").show();
-            $("#msg-text").text("description length must be written morethan 5 characters");
-            $("#msg-text").css("class", "invalid-feedback");
-            descriptionVaildate = false;
-        } else {
-            $("#msg-text").show();
-            $("#msg-text").text(" ");
-            descriptionVaildate = true;
-        }
-        if ($("#description").val() == "") {
-            $("#msg-text").show();
-            $("#msg-text").text("You must leave a description ");
-            $("#msg-text").css("class", "invalid-feedback");
-            descriptionVaildate = false;
-        }
-    });
-
-
-
-
-
-
-    function fromSubmit() {
-        if(nameValidated == false ){
-            $("#name-Text").show();
-            alert(' please full fill form')
-            return false
-        }
-        if(descriptionVaildate == false){
-            $("#msg-text").show();
-            alert(' please full fill form')
-            return false
-        }
-        if(brandValidation == false){
-            $("#manufacturerbrand-Text").show();
-            alert(' please full fill form')
-            return false
-        }
-        if(quantityValidation == false){
-            $("#text-quantity").show();
-            alert(' please full fill form')
-            return false
-        }
-
-        if(tagValidated == false){
-            $("#tag-Text").show();
-            alert(' please full fill form')
-            return false
-        }
-        if(priceValidation == false){
-            $("#text-price").show();
-            alert(' please full fill form')
-            return false
-        }
-
-
-    }
-</script>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="https://kit.fontawesome.com/4f9ff9a3d7.js" crossorigin="anonymous"></script>
-<!-- Material Dashboard CSS -->
-<link href="/assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-        <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
-      <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet"/>
-
-  <script src="https://unpkg.com/dropzone"></script>
-      <script src="https://unpkg.com/cropperjs"></script>
-
-
-<script>
-    $('document').ready(function() {
-//modal1 and image 1
-    var image1 = document.getElementById('sampleImage1');
-    var modal1 = $('#modal1');
-    var cropper1;
-
-    $('#image1').change(function (event) {
-        var files = event.target.files;
-
-        var done = function (url) {
-            image1.src = url;
-            modal1.modal('show');
-        };
-
-        if (files && files.length > 0) {
-            reader = new FileReader();
-            reader.onload = function (event) {
-                done(reader.result);
-            };
-            reader.readAsDataURL(files[0]);
-        }
-    });
-
-    modal1.on('shown.bs.modal', function () {
-        cropper1 = new Cropper(image1, {
-            aspectRatio: 7/8,
-            viewMode: 1,
-            preview: '#preview1'
-        });
-    }).on('hidden.bs.modal', function () {
-        cropper1.destroy();
-        cropper1 = null;
-    });
-
-    $('#crop1').click(function () {
-        canvas = cropper1.getCroppedCanvas({
-            minWidth: 256,
-                minHeight: 256,
-                maxWidth: 4096,
-                maxHeight: 4096,
-                fillColor: '#fff',
-                imageSmoothingEnabled: true,
-                imageSmoothingQuality: 'high',
+        $("#productName").blur(function () {
+            if ($("#nameValidation").val() == "") {
+                $("#name-Text").show();
+                $("#name-Text").text("Product Name should not be empty!");
+                $("#name-Text").css("class", "invalid-feedback");
+                nameValidated = false;
+            }
         });
 
-        canvas.toBlob(function (blob) {
-            url = URL.createObjectURL(blob);
-            var reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = function () {
-                var base64data = reader.result;
-                modal1.modal('hide');
-                $("#imageValue1").val(base64data)
-                $('#chekPreview1').attr('src', base64data);
-            };
+
+        $("#manufacturerbrand").keyup(function () {
+            if ($("#manufacturerbrand").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#manufacturerbrand-Text").show();
+                $("#manufacturerbrand-Text").text(" ");
+                brandValidation = true;
+            } else {
+                $("#manufacturerbrand-Text").show();
+                $("#manufacturerbrand-Text").text("Invalid Brand Name! try again");
+                $("#manufacturerbrand-Text").css("class", "invalid-feedback");
+                brandValidation = false;
+            }
+            $("#manufacturerbrand").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#manufacturerbrand").val().length < 3) {
+                $("#manufacturerbrand-Text").show();
+                $("#manufacturerbrand-Text").text("Brand Name should have type morethan 3 characters");
+                $("#manufacturerbrand-Text").css("class", "invalid-feedback");
+                brandValidation = false;
+            }
         });
-    });
-//modal1 and image 1 end
+        $("#manufacturerbrand").blur(function () {
+            if ($("#manufacturerbrand").val() == "") {
+                $("#manufacturerbrand-Text").show();
+                $("#manufacturerbrand-Text").text("Brand Name should not be empty!");
+                $("#manufacturerbrand-Text").css("class", "invalid-feedback");
+                brandValidation = false;
+            }
+        });
 
-//modal2 and image 2
-    var image2 = document.getElementById('sampleImage2');
-    var modal2 = $('#modal2');
-    var cropper2;
 
-    $('#image2').change(function (event) {
-        var files = event.target.files;
+        $("#quantity").keypress(function (num) {
+            return num.charCode >= 48 && num.charCode <= 57;
+        });
+        $("#quantity").keyup(function () {
+            if ($("#quantity").val().match(/^\d+$/)) {
+                $("#text-quantity").show();
+                $("#text-quantity").text(" ");
+                quantityValidation = true;
+            }
+            if ($("#quantity").val().length < 1) {
+                $("#text-quantity").show();
+                $("#text-quantity").text("quantity MoreThan 1");
+                $("#text-quantity").css("class", "invalid-feedback");
+                quantityValidation = false;
+            }
+        });
 
-        var done = function (url) {
-            image2.src = url;
-            modal2.modal('show');
-        };
+        $("#quantity").blur(function () {
+            if ($("#quantity").val() == "") {
+                $("#text-quantity").show();
+                $("#text-quantity").text("quantity is required!");
+                $("#text-quantity").css("class", "invalid-feedback");
+                quantityValidation = false;
+            }
+        });
 
-        if (files && files.length > 0) {
-            reader = new FileReader();
-            reader.onload = function (event) {
-                done(reader.result);
-            };
-            reader.readAsDataURL(files[0]);
+        $("#tag").keyup(function () {
+            if ($("#tag").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#tag-Text").show();
+                $("#tag-Text").text(" ");
+                tagValidated = true;
+            } else {
+                $("#tag-Text").show();
+                $("#tag-Text").text("Invalid quantity! try again");
+                $("#tag-Text").css("class", "invalid-feedback");
+                tagValidated = false;
+            }
+            $("#tag").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#tag").val().length < 3) {
+                $("#tag-Text").show();
+                $("#tag-Text").text("Tag Name should have type morethan 3 characters");
+                $("#tag-Text").css("class", "invalid-feedback");
+                tagValidated = false;
+            }
+        });
+        $("#tag").blur(function () {
+            if ($("#tag").val() == "") {
+                $("#tag-Text").show();
+                $("#tag-Text").text("Tag Name should not be empty!");
+                $("#tag-Text").css("class", "invalid-feedback");
+                tagValidated = false;
+            }
+        });
+
+
+        $("#price").keypress(function (num) {
+            return num.charCode >= 48 && num.charCode <= 57;
+        });
+        $("#price").keyup(function () {
+            if ($("#price").val().match(/^\d+$/)) {
+                $("#text-price").show();
+                $("#text-price").text(" ");
+                priceValidation = true;
+            }
+            if ($("#price").val().length < 1) {
+                $("#text-price").show();
+                $("#text-price").text("Price MoreThan 1");
+                $("#text-price").css("class", "invalid-feedback");
+                priceValidation = false;
+            }
+        });
+
+        $("#price").blur(function () {
+            if ($("#price").val() == "") {
+                $("#text-price").show();
+                $("#text-price").text("price is required!");
+                $("#text-price").css("class", "invalid-feedback");
+                priceValidation = false;
+            }
+        });
+
+        $("#description").keyup(function () {
+            if ($("#description").val().length < 5) {
+                $("#msg-text").show();
+                $("#msg-text").text("description length must be written morethan 5 characters");
+                $("#msg-text").css("class", "invalid-feedback");
+                descriptionVaildate = false;
+            } else {
+                $("#msg-text").show();
+                $("#msg-text").text(" ");
+                descriptionVaildate = true;
+            }
+            if ($("#description").val() == "") {
+                $("#msg-text").show();
+                $("#msg-text").text("You must leave a description ");
+                $("#msg-text").css("class", "invalid-feedback");
+                descriptionVaildate = false;
+            }
+        });
+
+
+
+
+
+
+        function fromSubmit() {
+            if (nameValidated == false) {
+                $("#name-Text").show();
+                alert(' please full fill form')
+                return false
+            }
+            if (descriptionVaildate == false) {
+                $("#msg-text").show();
+                alert(' please full fill form')
+                return false
+            }
+            if (brandValidation == false) {
+                $("#manufacturerbrand-Text").show();
+                alert(' please full fill form')
+                return false
+            }
+            if (quantityValidation == false) {
+                $("#text-quantity").show();
+                alert(' please full fill form')
+                return false
+            }
+
+            if (tagValidated == false) {
+                $("#tag-Text").show();
+                alert(' please full fill form')
+                return false
+            }
+            if (priceValidation == false) {
+                $("#text-price").show();
+                alert(' please full fill form')
+                return false
+            }
+
+
         }
-    });
+    </script>
 
-    modal2.on('shown.bs.modal', function () {
-        cropper2 = new Cropper(image2, {
-            aspectRatio: 7/8,
-            viewMode: 1,
-            preview: '#preview2'
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/4f9ff9a3d7.js" crossorigin="anonymous"></script>
+    <!-- Material Dashboard CSS -->
+    <link href="/assets/css/material-dashboard.min.css?v=2.1.0" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+    <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
+
+    <script src="https://unpkg.com/dropzone"></script>
+    <script src="https://unpkg.com/cropperjs"></script>
+
+
+    <script>
+        $('document').ready(function () {
+            //modal1 and image 1
+            var image1 = document.getElementById('sampleImage1');
+            var modal1 = $('#modal1');
+            var cropper1;
+
+            $('#image1').change(function (event) {
+                var files = event.target.files;
+
+                var done = function (url) {
+                    image1.src = url;
+                    modal1.modal('show');
+                };
+
+                if (files && files.length > 0) {
+                    reader = new FileReader();
+                    reader.onload = function (event) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+            modal1.on('shown.bs.modal', function () {
+                cropper1 = new Cropper(image1, {
+                    aspectRatio: 7 / 8,
+                    viewMode: 1,
+                    preview: '#preview1'
+                });
+            }).on('hidden.bs.modal', function () {
+                cropper1.destroy();
+                cropper1 = null;
+            });
+
+            $('#crop1').click(function () {
+                canvas = cropper1.getCroppedCanvas({
+                    minWidth: 256,
+                    minHeight: 256,
+                    maxWidth: 4096,
+                    maxHeight: 4096,
+                    fillColor: '#fff',
+                    imageSmoothingEnabled: true,
+                    imageSmoothingQuality: 'high',
+                });
+
+                canvas.toBlob(function (blob) {
+                    url = URL.createObjectURL(blob);
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function () {
+                        var base64data = reader.result;
+                        modal1.modal('hide');
+                        $("#imageValue1").val(base64data)
+                        $('#chekPreview1').attr('src', base64data);
+                    };
+                });
+            });
+            //modal1 and image 1 end
+
+            //modal2 and image 2
+            var image2 = document.getElementById('sampleImage2');
+            var modal2 = $('#modal2');
+            var cropper2;
+
+            $('#image2').change(function (event) {
+                var files = event.target.files;
+
+                var done = function (url) {
+                    image2.src = url;
+                    modal2.modal('show');
+                };
+
+                if (files && files.length > 0) {
+                    reader = new FileReader();
+                    reader.onload = function (event) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+            modal2.on('shown.bs.modal', function () {
+                cropper2 = new Cropper(image2, {
+                    aspectRatio: 7 / 8,
+                    viewMode: 1,
+                    preview: '#preview2'
+                });
+            }).on('hidden.bs.modal', function () {
+                cropper2.destroy();
+                cropper2 = null;
+            });
+
+            $('#crop2').click(function () {
+                canvas = cropper2.getCroppedCanvas({
+                    minWidth: 256,
+                    minHeight: 256,
+                    maxWidth: 4096,
+                    maxHeight: 4096,
+                    fillColor: '#fff',
+                    imageSmoothingEnabled: true,
+                    imageSmoothingQuality: 'high',
+                });
+
+                canvas.toBlob(function (blob) {
+                    url = URL.createObjectURL(blob);
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function () {
+                        var base64data = reader.result;
+                        modal2.modal('hide');
+                        $("#imageValue2").val(base64data)
+                        $('#chekPreview2').attr('src', base64data);
+                    };
+                });
+            });
+            //image 2 and modal 2 end
+
+
+            //modal3 and image 3 start
+            var image3 = document.getElementById('sampleImage3');
+            var modal3 = $('#modal3');
+            var cropper3;
+
+            $('#image3').change(function (event) {
+                var files = event.target.files;
+
+                var done = function (url) {
+                    image3.src = url;
+                    modal3.modal('show');
+                };
+
+                if (files && files.length > 0) {
+                    reader = new FileReader();
+                    reader.onload = function (event) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+            modal3.on('shown.bs.modal', function () {
+                cropper3 = new Cropper(image3, {
+                    aspectRatio: 7 / 8,
+                    viewMode: 1,
+                    preview: '#preview3'
+                });
+            }).on('hidden.bs.modal', function () {
+                cropper3.destroy();
+                cropper3 = null;
+            });
+
+            $('#crop3').click(function () {
+                canvas = cropper3.getCroppedCanvas({
+                    minWidth: 256,
+                    minHeight: 256,
+                    maxWidth: 4096,
+                    maxHeight: 4096,
+                    fillColor: '#fff',
+                    imageSmoothingEnabled: true,
+                    imageSmoothingQuality: 'high',
+                });
+
+                canvas.toBlob(function (blob) {
+                    url = URL.createObjectURL(blob);
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function () {
+                        var base64data = reader.result;
+                        modal3.modal('hide');
+                        $("#imageValue3").val(base64data)
+                        $('#chekPreview3').attr('src', base64data);
+                    };
+                });
+            });
+            //image 3 and modal 3 end
+
         });
-    }).on('hidden.bs.modal', function () {
-        cropper2.destroy();
-        cropper2 = null;
-    });
 
-    $('#crop2').click(function () {
-        canvas = cropper2.getCroppedCanvas({
-            minWidth: 256,
-                minHeight: 256,
-                maxWidth: 4096,
-                maxHeight: 4096,
-                fillColor: '#fff',
-                imageSmoothingEnabled: true,
-                imageSmoothingQuality: 'high',
-        });
+    </script>
 
-        canvas.toBlob(function (blob) {
-            url = URL.createObjectURL(blob);
-            var reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = function () {
-                var base64data = reader.result;
-                modal2.modal('hide');
-                $("#imageValue2").val(base64data)
-                $('#chekPreview2').attr('src', base64data);
-            };
-        });
-    });
-//image 2 and modal 2 end
-
-
-//modal3 and image 3 start
-    var image3 = document.getElementById('sampleImage3');
-    var modal3 = $('#modal3');
-    var cropper3;
-
-    $('#image3').change(function (event) {
-        var files = event.target.files;
-
-        var done = function (url) {
-            image3.src = url;
-            modal3.modal('show');
-        };
-
-        if (files && files.length > 0) {
-            reader = new FileReader();
-            reader.onload = function (event) {
-                done(reader.result);
-            };
-            reader.readAsDataURL(files[0]);
-        }
-    });
-
-    modal3.on('shown.bs.modal', function () {
-        cropper3 = new Cropper(image3, {
-            aspectRatio: 7/8,
-            viewMode: 1,
-            preview: '#preview3'
-        });
-    }).on('hidden.bs.modal', function () {
-        cropper3.destroy();
-        cropper3 = null;
-    });
-
-    $('#crop3').click(function () {
-        canvas = cropper3.getCroppedCanvas({
-            minWidth: 256,
-                minHeight: 256,
-                maxWidth: 4096,
-                maxHeight: 4096,
-                fillColor: '#fff',
-                imageSmoothingEnabled: true,
-                imageSmoothingQuality: 'high',
-        });
-
-        canvas.toBlob(function (blob) {
-            url = URL.createObjectURL(blob);
-            var reader = new FileReader();
-            reader.readAsDataURL(blob);
-            reader.onloadend = function () {
-                var base64data = reader.result;
-                modal3.modal('hide');
-                $("#imageValue3").val(base64data)
-                $('#chekPreview3').attr('src', base64data);
-            };
-        });
-    });
-//image 3 and modal 3 end
-
-    });
-
-</script>
-
-    </body>
+</body>
 
 <!-- Mirrored from themesbrand.com/dason/layouts/default/ecommerce-add-product.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 01 Nov 2021 10:58:52 GMT -->
+
 </html>

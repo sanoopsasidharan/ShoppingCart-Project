@@ -59,9 +59,9 @@
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="basicpill-firstname-input" class="form-label">Coupon Name</label>
-                                        <input onkeyup="namevalidation()" type="text" name="couponName"
-                                            class="form-control" id="basicpill-firstname-input">
-                                        <div class="invalid-feedback" id="name-Text">enter your Name</div>
+                                        <input type="text" name="couponName"
+                                            class="form-control" id="nameval">
+                                        <div class="invalid-feedback" id="name-Text"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -69,8 +69,8 @@
                                         <label for="basicpill-lastname-input" class="form-label">Coupon Expiry
                                             date</label>
 
-                                        <input name="couponExDate" type="date" class="form-control" id="date1">
-                                      
+                                        <input name="couponExDate" type="date" class="form-control" id="Cexpirydate">
+
                                     </div>
                                 </div>
                             </div>
@@ -80,15 +80,15 @@
                                     <div class="mb-3">
                                         <label for="basicpill-phoneno-input" class="form-label">Coupon
                                             percentage</label>
-                                        <input type="text" name="percentage" class="form-control"
-                                            id="basicpill-phoneno-input">
+                                        <input type="number" name="percentage" class="form-control"
+                                            id="basicpill-phoneno-input" min="1" max="99" onKeyPress="if(this.value.length==2) return false;">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="basicpill-phoneno-input" class="form-label">Coupon quantity</label>
-                                        <input type="text" name="couponQuantity" class="form-control"
-                                            id="coupon-quantity">
+                                        <input type="number" name="couponQuantity" class="form-control"
+                                            id="coupon-quantity" min="1" max="99" onKeyPress="if(this.value.length==2) return false;" >
                                     </div>
                                 </div>
 
@@ -96,8 +96,8 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="mb-3">
-                                        <label for="basicpill-phoneno-input" class="form-label">minimum price</label>
-                                        <input type="text" name="minimumPrice" class="form-control" id="minimum-price">
+                                       
+                                        <input type="number" name="minimumPrice" class="form-control" id="minimum-price" hidden>
                                     </div>
                                 </div>
 
@@ -152,7 +152,7 @@
                                                         <th scope="col">Coupon Name</th>
                                                         <th scope="col">Coupon Expiry date</th>
                                                         <th scope="col">Coupon Percentage</th>
-                                                        <th scope="col">Minimum price</th>
+                                                       
                                                         <th scope="col">code </th>
                                                         <th scope="col">Coupon quantity</th>
                                                         <th scope="col"> action</th>
@@ -173,9 +173,7 @@
                                                             <td>
                                                                 <%= coupons[i].code %>
                                                             </td>
-                                                            <td>
-                                                                <%= coupons[i].minimumPrice %>
-                                                            </td>
+                                                            
                                                             <td>
                                                                 <%= coupons[i].couponQuantity %>
                                                             </td>
@@ -414,9 +412,37 @@
 
 
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
+    <!-- validation cdn -->
 
     <!-- validation cdn -->
+    
+    <script>
+
+    </script>
+    
+    <script>
+
+    //     var today = new Date();
+    //     var day = today.getDate()+1
+    //     var month =today.getMonth()
+    //     var year = today.getFullYear()
+    //    var mindate = year+'-'+month+'-'+day
+    //    $('#Cexpirydate').attr('min', mindate);
+
+        var today = new Date();
+        var dd = String(today.getDate()+1).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        todays = yyyy + '-' + mm + '-' + dd;
+        $('#Cexpirydate').attr('min', todays);
+        document.getElementById('date1').onchange = e => {
+            value = e.target.value
+            $('#Cexpirydate').attr('min', value);
+        }
+
+      
+    </script>
+
     <script>
 
         // var today = new Date();
@@ -439,24 +465,21 @@
 
 
     <script>
-      
-
-
-        // $("#txtstartdate").datepicker({
-        //     minDate: 0,
-        //     onSelect: function (date) {
-        //         $("#txtenddate").datepicker('option', 'minDate', date);
-
-        //     }
-        // });
-
-        // $("#txtenddate").datepicker({});
-
 
 
         $('#add-new-coupon').submit((num) => {
             num.preventDefault()
-            $.ajax({
+            if($('#nameval').val()=='' || $('#basicpill-phoneno-input').val()=='' || $('#Cexpirydate').val()=='' || $('#coupon-quantity').val()=='' ){
+                Swal.fire(
+                    '',
+                    'please fill the form',
+                    'question'
+                )
+                return;
+            }
+            if($('#nameval').val() !='' && $('#basicpill-phoneno-input').val() !='' & $('#Cexpirydate').val() !='' && $('#coupon-quantity').val() !='' ){
+         
+                $.ajax({
                 url: '/admin/add-new-coupon',
                 data: $('#add-new-coupon').serialize(),
                 method: 'post',
@@ -466,7 +489,10 @@
                     }
                 }
             })
+            }
+            
         })
+
         function deleteCoupon(couponId) {
             Swal.fire({
                 title: 'Are you sure?',
