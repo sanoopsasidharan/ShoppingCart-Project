@@ -55,11 +55,26 @@ router.get('/home',verifyLogin,(req,res)=>{
 
 // show all product of admin side
 router.get('/product',verifyLogin,async(req,res)=>{
+
+    let {page}=req.query;
+    if(!page) page=1;
+
+
     let AllProductOffers = await offerAndCouponHelpers.getAllProductOffers()
     console.log(AllProductOffers);
-   await productHelpers.getAllProducts().then((products)=>{
-    res.render('admin/product',{admin:1,products,AllProductOffers})
+   await productHelpers.getAllProductsAdmin(page).then((products)=>{
+    res.render('admin/product',{admin:1,products:products.products,AllProductOffers, count:products.count})
   
+    })
+})
+
+// product search 
+router.post('/productSearch',verifyLogin,async(req,res)=>{
+    let {page}=req.query;
+    if(!page) page=1;
+    let AllProductOffers = await offerAndCouponHelpers.getAllProductOffers()
+   await productHelpers.searchedProduct(req.body.proname,page).then((products)=>{
+        res.render('admin/product',{admin:1,products:products.products,AllProductOffers, count:products.count})
     })
 })
 

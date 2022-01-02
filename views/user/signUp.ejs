@@ -380,6 +380,8 @@
 
     <form id="siginup_form">
       <h1 class="h1Tag">SignUp</h1>
+      <input type="text" id="numberValidation" class="fadeIn third" name="number" placeholder="Phone" maxlength="10" />
+      <div class="invalid-feedback" id="text-Number">Enter your phone number </div>
 
       <input type="text" id="login" class="fadeIn second" name="name" placeholder="Name" maxlength="15" />
       <div class="invalid-feedback" id="name-Text">enter your Name</div>
@@ -387,8 +389,7 @@
       <input type="text" id="mailValidation" class="fadeIn third" name="email" placeholder="Email">
       <div class="invalid-feedback" id="mail-type"> Enter email address </div>
 
-      <input type="text" id="numberValidation" class="fadeIn third" name="number" placeholder="Phone" maxlength="10" />
-      <div class="invalid-feedback" id="text-Number">Enter your phone number </div>
+      
 
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" maxlength="15">
       <div class="invalid-feedback" id="password-Text">password</div>
@@ -430,11 +431,11 @@
           <h1 class="m-5">OTP validation</h1>
         </div>
         <div style="display: flex; justify-content: space-around;">
-          <p id="timer"></p>
+          <!-- <p id="timer"></p> -->
           <p style="color: red; cursor: pointer;" onclick="retryOTP()">Retry</p>
         </div>
         <input type="text" name="number" placeholder="Number" id="Otpnumber">
-        <input type="text" name="code" placeholder="Otp" id="">
+        <input type="text" maxlength="4" name="code" placeholder="Otp" id="otp-input">
 
         <input style="margin: 0; padding: 10px;" type="submit" class="fadeIn fourth" value="Sent">
       </form>
@@ -449,7 +450,9 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script> -->
 
-<script>
+<!-- <script>
+
+
 
   let timerOn = true;
 
@@ -470,11 +473,11 @@
     }
 
     if (!timerOn) {
-      // Do validate stuff here
+     
       return;
     }
 
-    // Do timeout stuff here
+    
     Swal.fire({
       title: 'Timeout for otp',
       text: "You won't resent OTP !",
@@ -492,10 +495,13 @@
   }
 
   timer(120);
-</script>
+</script> -->
 
 
 <script>
+  $("#otp-input").keypress(function (num) {
+    return num.charCode >= 48 && num.charCode <= 57;
+  });
 
   document.getElementById('otpform').style.display = 'none'
 

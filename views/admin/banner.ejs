@@ -129,7 +129,7 @@
 
                                                             <div class="fileinput fileinput-new text-center">
                                                                 <div class="fileinput-new thumbnail">
-                                                                    <img src="../../assets/img/image_placeholder.jpg"
+                                                                    <img style="width: 300px;" src="../../assets/img/image_placeholder.jpg"
                                                                         id="chekPreview2" alt="">
                                                                     <div class="invalid-feedback" id="image-text">please
                                                                         choose <picture></picture>
@@ -576,8 +576,15 @@
 
                 $('#crop2').click(function () {
                     canvas = cropper2.getCroppedCanvas({
-                        width: 800,
-                        height: 200
+                        minWidth: 256,
+                minHeight: 256,
+                maxWidth: 4096,
+                maxHeight: 4096,
+                fillColor: '#fff',
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high',
+                        // width: 800,
+                        // height: 200
                     });
 
                     canvas.toBlob(function (blob) {

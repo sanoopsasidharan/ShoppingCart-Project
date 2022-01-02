@@ -103,12 +103,20 @@
             <div class="page-content">
                 <div class="container-fluid">
 
+                    <div style="display: flex; justify-content: right; margin-right: 20px; margin-bottom: 10px;">
+                        <form action="/admin/productSearch" method="post">
+                            <input type="text" style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;" name="proname" id="">
+                            <button  class="btn btn-mini btn-primary" >Search</button>
+                        </form>
+                        
+                    </div>
 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div style="overflow-y: scroll;" class="card-body">
-                                    <% if(products){ %>
+                                
+                                    <% if(products.length){ %>
                                         <table class="table">
                                             <thead>
                                                 <tr>
@@ -156,7 +164,10 @@
 
                                         </table>
                                         <% } else{ %>
-                                            <h1>no Product</h1>
+                                            <div style="display: flex; justify-content: center; color: red;">
+                                                <h1 style="margin: 2%;">Empty Product</h1>
+                                            </div>
+                                            
                                             <% } %>
 
 
@@ -166,10 +177,17 @@
                     </div>
 
                     <div>
-                        <div class="table-responsive">
-
-
-                        </div>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <% let pageNu=1 %>
+                                <% for(let i=1;i<= Math.ceil(count/5);i++){ %>
+                                    <li class="page-item"><a class="page-link" href="/admin/product?page=<%=pageNu%>"><%= pageNu %></a></li>
+                                    <% pageNu++; %>
+                                <%}%>
+                              
+                              
+                            </ul>
+                          </nav>
                     </div>
 
                     <!-- start page title -->

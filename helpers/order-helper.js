@@ -88,8 +88,10 @@ module.exports={
     changeOrderStatus:(orderId,statusName)=>{
         return new Promise(async(resolve,reject)=>{
             var changedstatus=await db.get().collection(collection.orderCollection).updateOne({_id:objectId(orderId)},{$set:{status:statusName}})
+            var orderStatus = await db.get().collection(collection.orderCollection).findOne({_id:objectId(orderId)})
+            console.log(orderStatus);
             if(changedstatus){
-                resolve({status:true})
+                resolve({status:true,orderStatus})
             }else{
                 resolve(null)
             }

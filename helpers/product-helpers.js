@@ -16,10 +16,10 @@ module.exports = {
             category: data.category,
             subcategory: data.subcategory,
             productdiscription: data.productdiscription,
-            cateOfferPercentage:0,
-            proOfferPercentage:0,
-            proOffer:false,
-            cateOffer:false
+            cateOfferPercentage: 0,
+            proOfferPercentage: 0,
+            proOffer: false,
+            cateOffer: false
         }
 
         console.log(data);
@@ -32,7 +32,7 @@ module.exports = {
     },
     getAllProducts: () => {
         return new Promise(async (resolve, reject) => {
-            let products = await db.get().collection('product').find().sort({_id:-1}).toArray()
+            let products = await db.get().collection('product').find().sort({ _id: -1 }).toArray();
             if (products) {
                 resolve(products)
             } else {
@@ -40,7 +40,31 @@ module.exports = {
             }
 
         })
+    }, getAllProductsAdmin: (page) => {
+        return new Promise(async (resolve, reject) => {
+            let products = await db.get().collection('product').find().skip(page * 5 - 5).limit(5).sort({ _id: -1 }).toArray();
+            let count = await db.get().collection("product").find().count();
+            if (products) {
+                resolve({ products, count })
+            } else {
+                response(null)
+            }
+
+        })
     },
+    searchedProduct:(proName,page)=>{
+        return new Promise(async(resolve,reject)=>{
+            let products = await db.get().collection('product').find({ productname: { $regex: proName } }).skip(page * 5 - 5).limit(5).sort({ _id: -1 }).toArray();
+            let count = await db.get().collection("product").find({ productname: { $regex: proName } }).count();
+            if (products) {
+                resolve({ products, count })
+            } else {
+                response(null)
+            }
+
+        })
+    }
+    ,
     deleteProduct: (proId) => {
         return new Promise(async (resolve, reject) => {
             await db.get().collection('product').deleteOne({ _id: objectId(proId) }).then((response) => {
@@ -124,30 +148,30 @@ module.exports = {
     },
     findProduct: (proId) => {
         return new Promise(async (resolve, reject) => {
-            var product = await db.get().collection(collection.productCollection).findOne({_id:objectId(proId)})
+            var product = await db.get().collection(collection.productCollection).findOne({ _id: objectId(proId) })
             console.log(product);
             if (product) {
-            
+
                 var OfferTotal = 0
-                    if (product.proOfferPercentage > 0 || product.cateOfferPercentage > 0) {
-                        
-                        if (product.proOfferPercentage > product.cateOfferPercentage) {
-                            OfferTotal += Math.round(product.price *  0.01 * (100 - product.proOfferPercentage))
+                if (product.proOfferPercentage > 0 || product.cateOfferPercentage > 0) {
 
-                           
-                        } else {
-                          
-                            OfferTotal += Math.round(product.price *  0.01 * (100 - product.cateOfferPercentage))
-                        }
+                    if (product.proOfferPercentage > product.cateOfferPercentage) {
+                        OfferTotal += Math.round(product.price * 0.01 * (100 - product.proOfferPercentage))
+
+
                     } else {
-                       
 
-                        OfferTotal += product.price
+                        OfferTotal += Math.round(product.price * 0.01 * (100 - product.cateOfferPercentage))
                     }
-                    var OrginalPrice =  product.price
+                } else {
 
-                    resolve({OrginalPrice,OfferTotal})
-            
+
+                    OfferTotal += product.price
+                }
+                var OrginalPrice = product.price
+
+                resolve({ OrginalPrice, OfferTotal })
+
             } else {
                 console.log('-0');
                 resolve(null)
@@ -177,16 +201,16 @@ module.exports = {
             }
         })
     },
-    filterProductInPrice:(minimum,maximum)=>{
-        return new Promise(async(resolve,reject)=>{
-         let product =await db.get().collection(collection.productCollection)
-         .aggregate([{$match:{$and:[{price:{$gte:minimum}},{price:{$lte:maximum}}]}}]).toArray()
-         console.log(product);
-         if(product){
-             resolve(product)
-         }else{
-             resolve(null)
-         }
+    filterProductInPrice: (minimum, maximum) => {
+        return new Promise(async (resolve, reject) => {
+            let product = await db.get().collection(collection.productCollection)
+                .aggregate([{ $match: { $and: [{ price: { $gte: minimum } }, { price: { $lte: maximum } }] } }]).toArray()
+            console.log(product);
+            if (product) {
+                resolve(product)
+            } else {
+                resolve(null)
+            }
         })
     }
 
