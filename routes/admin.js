@@ -46,7 +46,10 @@ router.post('/',(req,res)=>{
 // home page of admin
 router.get('/home',verifyLogin,(req,res)=>{
     if(req.session.adminlogged){
-        res.render('admin/home',{admin:1})
+         userHelpers.getAllusers().then((users)=>{
+
+             res.render('admin/home',{admin:1,users})
+         })
     }else{
         res.redirect('/admin/')
     }
@@ -229,9 +232,11 @@ router.post('/unblockuser',async(req,res)=>{
 
 // list of all orders in admin side
 router.get('/orders',verifyLogin,async(req,res)=>{
-   await orderHelpers.getAllOrders().then((allOrders)=>{
+    let {page}=req.query;
+    if(!page) page=1;
+   await orderHelpers.getAllOrders(page).then((allOrders)=>{
        console.log(allOrders);
-        res.render('admin/OrderList',{admin:1,allOrders})
+        res.render('admin/orders',{admin:1,allOrders:allOrders.allOrders,count:allOrders.count})
     })
 })
 
@@ -247,6 +252,14 @@ router.post('/changeStatus',async(req,res)=>{
    await orderHelpers.changeOrderStatus(req.body.orderId,req.body.upsateStatus).then((response)=>{
        res.json(response)
    })
+})
+
+// admin search orders 
+router.post('/searchorders',verifyLogin,async(req,res)=>{
+    console.log(req.body);
+    var allOrders = await orderHelpers.searchOrders(req.body.orderName)
+    console.log(allOrders);
+    res.render('admin/orders',{admin:1,allOrders})
 })
 
 // category management 
@@ -323,11 +336,21 @@ router.get('/salesReport',verifyLogin,(req,res)=>{
         res.render('admin/salesReport',{admin:1,orders})  
     })
 })
-router.get('/salesReportSorting',(req,res)=>{
+router.get('/salesReportSorting',verifyLogin,(req,res)=>{
     console.log(req.query.type);
     salesHelpers.getReportData(req.query.type   ).then((orders)=>{
         res.render('admin/salesReport',{admin:1,orders}) 
     })
+})
+
+// sort sales report in two dates
+router.post('/sortSalesReport',verifyLogin,(req,res)=>{
+    // console.log(req.body);
+    // console.log(req.body.startingDate);
+    //        console.log(req.body.endDate);
+  salesHelpers.sortSalesReportDate(req.body.startingDate,req.body.endDate).then((orders)=>{
+    res.render('admin/salesReport',{admin:1,orders})
+  })
 })
 
 
@@ -340,12 +363,13 @@ router.get('/chart',(req,res)=>{
 router.post('/getGraphResponse',async(req,res)=>{
     console.log('getGraphResponse');
 
+    var users = await userHelpers.showalluserCount()
     var statusData =await salesHelpers.getOrdersStatus()
    var ProductItemsCount = await productHelpers.totalProductCount()
    var revanu = await salesHelpers.totalRevanu()
    var totalcompleteSales = await salesHelpers.totalOrderCompletedCound()
     await salesHelpers.getWeeklyUsers().then((values)=>{
-        res.json({values,statusData,ProductItemsCount,revanu,totalcompleteSales})
+        res.json({values,statusData,ProductItemsCount,revanu,totalcompleteSales,users})
     })
 })
 

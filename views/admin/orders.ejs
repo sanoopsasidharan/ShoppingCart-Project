@@ -51,12 +51,28 @@
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                                     <h4 class="mb-sm-0 font-size-18">Orders</h4>
 
-                                    <div class="page-title-right">
+
+                                    <div class="col-sm-4">
+                                        <div  class="search-box me-2 mb-2 d-inline-block">
+                                            <div class="position-relative">
+                                               
+                                                    <form action="/admin/searchorders" method="post">
+                                                        <div style="display: flex;">
+                                                            <input type="text" class="form-control" name="orderName" placeholder="Search...">
+                                                            <button style="margin-left: 15px; border-radius: 20px;" class=" btn btn-primary">Search</button>
+                                                        </div>
+                                                    </form>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
                                             <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
                                             <li class="breadcrumb-item active">Orders</li>
                                         </ol>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                             </div>
@@ -68,14 +84,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row mb-2">
-                                            <div class="col-sm-4">
-                                                <div class="search-box me-2 mb-2 d-inline-block">
-                                                    <div class="position-relative">
-                                                        <input type="text" class="form-control" placeholder="Search...">
-                                                        <i class="bx bx-search-alt search-icon"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <!-- <div class="col-sm-8">
                                                 <div class="text-sm-end">
                                                     <button type="button" class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2"><i class="mdi mdi-plus me-1"></i> Add New Order</button>
@@ -90,12 +99,12 @@
                                                     <tr>
                                                         
                                                         <th class="align-middle">Order ID</th>
-                                                        <th class="align-middle">User ID</th>
+                                                        <th class="align-middle">User</th>
                                                         <th class="align-middle">Date</th>
                                                         <th class="align-middle">Total</th>
                                                         <th class="align-middle">Order Status</th>
-                                                        <!-- <th class="align-middle">Payment Method</th> -->
-                                                        <th class="align-middle">View Details</th>
+                                                        <th class="align-middle">Payment Method</th>
+                                                       
                                                         <th class="align-middle">Change Status</th>
                                                     </tr>
                                                 </thead>
@@ -107,7 +116,7 @@
                                                             <tr>
                                                                 
                                                                 <td><a href="javascript: void(0);" class="text-body fw-bold"><%= allOrders[i]._id%></a> </td>
-                                                                <td><%= allOrders[i].userId%></td>
+                                                                <td> <%= allOrders[i].deliveryDetails.name%></td>
                                                                 <td>
                                                                     <%= allOrders[i].date.getDate()%><span>/</span><%= allOrders[i].date.getMonth()%><span>/</span><%= allOrders[i].date.getFullYear()%> <span> || </span> <%= allOrders[i].date.getHours()%> <span>:</span><%= allOrders[i].date.getMinutes()%>
                                                                 </td>
@@ -117,15 +126,16 @@
                                                                 <td id="status<%= allOrders[i]._id%>">
                                                                     <span class="badge badge-pill badge-soft-danger font-size-12"><%= allOrders[i].status%></span>
                                                                 </td>
-                                                                <!-- <td>
-                                                                    <i class="fab fa-cc-visa me-1"></i> Visa
-                                                                </td> -->
                                                                 <td>
-                                                                    <!-- Button trigger modal -->
+                                                                   
+                                                                    <%= allOrders[i].paymentmethod%>
+                                                                </td>
+                                                                <!-- <td>
+                                                                   
                                                                     <button type="button" class="btn btn-primary btn-sm btn-rounded" data-bs-toggle="modal" data-bs-target=".orderdetailsModal">
                                                                         View Details
                                                                     </button>
-                                                                </td>
+                                                                </td> -->
                                                                 
                                                                 <td>
                                                                     <% if(allOrders[i].status==='Cancelled' || allOrders[i].status==='Completed'){ %>
@@ -188,6 +198,19 @@
                                                    
                                                 </tbody>
                                             </table>
+                                        </div>
+                                        <div>
+                                            <nav aria-label="Page navigation example">
+                                                <ul class="pagination">
+                                                    <% let pageNu=1 %>
+                                                    <% for(let i=1;i<= Math.ceil(count/20);i++){ %>
+                                                        <li class="page-item"><a class="page-link" href="/admin/orders?page=<%=pageNu%>"><%= pageNu %></a></li>
+                                                        <% pageNu++; %>
+                                                    <%}%>
+                                                  
+                                                  
+                                                </ul>
+                                              </nav>
                                         </div>
                                         <!-- <ul class="pagination pagination-rounded justify-content-end mb-2">
                                             <li class="page-item disabled">

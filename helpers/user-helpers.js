@@ -118,7 +118,7 @@ module.exports = {
     },
     getAllusers: () => {
         return new Promise(async (resolve, reject) => {
-            let users = await db.get().collection(collection.userCollection).find().toArray()
+            let users = await db.get().collection(collection.userCollection).find().sort({_id:-1}).toArray()
 
             resolve(users)
 
@@ -477,6 +477,16 @@ module.exports = {
             console.log('changeWalletAmount');
             console.log(changeWalletAmount);
             resolve(changeWalletAmount)
+        })
+    },
+    showalluserCount:()=>{
+        return new Promise(async(resolve,reject)=>{
+           var count = await db.get().collection(collection.userCollection).find().toArray()
+           if(count.length){
+               resolve(count.length)
+           }else{
+               resolve(null)
+           }
         })
     }
 

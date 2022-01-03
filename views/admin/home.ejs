@@ -57,7 +57,7 @@
                                     </div>
 
                                     <div class="flex-shrink-0 text-end dash-widget">
-                                        <div id="mini-chart1"  class="apex-charts">
+                                        <div id="mini-chart1" class="apex-charts">
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                     <div class="flex-grow-1">
                                         <span class="text-muted mb-3 lh-1 d-block text-truncate">Completed Orders</span>
                                         <h4 class="mb-3">
-                                            <span id="completedOrder" class="counter-value" >0</span>
+                                            <span id="completedOrder" class="counter-value">0</span>
                                         </h4>
                                         <div class="text-nowrap">
                                             <!-- <span class="badge bg-soft-success text-success">+ $2.8k</span> -->
@@ -115,19 +115,19 @@
                         </div><!-- end card -->
                     </div><!-- end col -->
 
-                    <!-- <div class="col-xl-3 col-md-6">
-                        
+                    <div class="col-xl-3 col-md-6">
+
                         <div class="card card-h-100">
-                           
+
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div class="flex-grow-1">
-                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">Order Delivery</span>
+                                        <span class="text-muted mb-3 lh-1 d-block text-truncate">User count</span>
                                         <h4 class="mb-3">
-                                            <span class="counter-value" data-target="18.34">0</span>%
+                                            <span id="user-count" class="counter-value" data-target="">0</span>
                                         </h4>
                                         <div class="text-nowrap">
-                                            <span  class="badge bg-soft-success text-success">+5.32%</span>
+                                            <span class="badge bg-soft-success text-success">+5.32%</span>
                                             <span class="ms-1 text-muted font-size-13">Since last week</span>
                                         </div>
                                     </div>
@@ -137,10 +137,73 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
-                    </div> -->
+                    </div>
                 </div>
+
+                <!-- user list -->
+                <div style="padding: 0;" class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Number</th>
+                                                    <th>Email</th>
+                                                    <th>action</th>
+                                                    
+
+                                                </tr>
+                                            </thead>
+
+
+                                            <tbody>
+                                                <% for(var i=0; i < 5; i++) { %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= users[i].name %>
+                                                        </td>
+                                                        <td>
+                                                            <%= users[i].number %>
+                                                        </td>
+                                                        <td>
+                                                            <%= users[i].email %>
+                                                        </td>
+                                                        <% if(users[i].isactive){ %>
+                                                            <td id="blockUser">
+                                                                <button class="btn btn-warning"
+                                                                    onclick="blockUser('<%= users[i]._id %>')">Block</button>
+                                                            </td>
+                                                            <% } else{ %>
+                                                                <td id="unBlockUser">
+                                                                    <button class="btn btn-info"
+                                                                        onclick="unBlockUser('<%= users[i]._id %>')">UnBlock</button>
+                                                                </td>
+                                                                <% } %>
+                                                    </tr>
+                                                    <% } %>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div> <!-- end row -->
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- end of user list -->
 
                 <div class="row">
                     <div class="col-xl-8">
@@ -289,7 +352,8 @@
 
                                 <h6 style="display: flex;justify-content: center; padding: 15px;">Order Status</h6>
                                 <canvas id="myChart1" width="400" height="400"></canvas>
-                                <!-- <div class="d-flex flex-wrap align-items-center mb-4">
+
+                                <div class="d-flex flex-wrap align-items-center mt-3 mb-4">
                                     <h5 class="card-title me-2">Sales by Locations</h5>
                                     <div class="ms-auto">
                                         <div class="dropdown">
@@ -333,7 +397,7 @@
                                             style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="85">
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
                             <!-- end card body -->
                         </div>
@@ -344,7 +408,7 @@
                 <!-- end row-->
 
                 <div class="row">
-                    <!-- <div class="col-xl-3">
+                    <div class="col-xl-3">
                         <div class="card">
                             <div class="card-header align-items-center d-flex">
                                 <h4 class="card-title mb-0 flex-grow-1">Customer List</h4>
@@ -534,10 +598,10 @@
                             
                         </div>
                         
-                    </div> -->
+                    </div>
                     <!-- end col -->
 
-                    <!-- <div class="col-xl-5">
+                    <div class="col-xl-5">
                         <div class="card">
                             <div class="card-header align-items-center d-flex">
                                 <h4 class="card-title mb-0 flex-grow-1">Selling Products</h4>
@@ -779,10 +843,10 @@
                             
                         </div>
                         
-                    </div> -->
+                    </div>
                     <!-- end col -->
 
-                    <!-- <div class="col-xl-4">
+                    <div class="col-xl-4">
                         <div class="card">
                             <div class="card-header align-items-center d-flex">
                                 <h4 class="card-title mb-0 flex-grow-1">Chat</h4>
@@ -1072,8 +1136,8 @@
                             </div>
                         </div>
                        
-                    </div> -->
-                   
+                    </div>
+
                 </div>
             </div>
             <!-- container-fluid -->
@@ -1110,22 +1174,25 @@
                     success: (response) => {
                         data = response.values
                         statusD = response.salesReport
-                        document.getElementById('totalproctItems').innerHTML=response.ProductItemsCount
-                        if(response.revanu){
-                            document.getElementById('totalRevanuOfWeek').innerHTML=response.revanu[0].total
+                        document.getElementById('totalproctItems').innerHTML = response.ProductItemsCount
+                        if (response.revanu) {
+                            document.getElementById('totalRevanuOfWeek').innerHTML = response.revanu[0].total
                         }
-                        if(response.totalcompleteSales){
-                            
-                            document.getElementById('completedOrder').innerHTML=response.totalcompleteSales[0].count
+                        if (response.totalcompleteSales) {
+
+                            document.getElementById('completedOrder').innerHTML = response.totalcompleteSales[0].count
                         }
-                       
+                        if (response.users) {
+                            document.getElementById('user-count').innerHTML = response.users
+                        }
+
 
                         var cancel = response.statusData.cancel
                         var pending = response.statusData.pending
                         var process = response.statusData.process
                         var complete = response.statusData.complete
                         var shipping = response.statusData.shipping
-                        console.log(cancel,pending,process,complete,shipping);
+                        console.log(cancel, pending, process, complete, shipping);
 
                         // data.shift();
                         const ctx = document.getElementById('myChart').getContext('2d');
@@ -1185,7 +1252,7 @@
                                     borderColor: "yellow",
                                     backgroundColor: 'yellow'
                                 }
-                            ]
+                                ]
                             },
                             options: {
                                 scales: {
@@ -1205,9 +1272,35 @@
 
 
 
-        <script>
-           
-        </script>
+<script>
+    function blockUser(userId){
+        var  check = confirm("are you sure to block");
+        if(check){
+            $.ajax({
+           url:'/admin/blockuser',
+           data:{userId:userId},
+           method:'post',
+           success:(response)=>{
+               if(response.status){
+                location.reload()
+               }
+           }
+       })
+        } 
+    }
+    function unBlockUser(userId){
+        $.ajax({
+            url:'/admin/unblockuser',
+            data:{userId:userId},
+            method:'post',
+            success:(response)=>{
+                if(response.status){
+                    location.reload()
+                }
+            }
+        })
+    }
+</script>
 
 </body>
 

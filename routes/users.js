@@ -737,7 +737,8 @@ router.post('/singleProductPaypal', verifyLogin, async (req, res) => {
     console.log(sampletotal);
     totalPrice.OfferTotal = sampletotal
   }
-
+//  conveted in to us in inr
+// var payplaAmount = Math.round(totalPrice.OfferTotal*0.01368)
 
 
   if (req.body.wallet != '') {

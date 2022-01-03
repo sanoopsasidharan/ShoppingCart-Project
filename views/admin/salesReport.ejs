@@ -43,6 +43,31 @@
             
 
             <!-- ========== Left Sidebar Start ========== -->
+            <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sort Sales report</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           <div >
+            <form onsubmit="return fromSubmit()" action="/admin/sortSalesReport" method="post">
+                <label class="mt-2" for="">start date</label>
+                <input style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;" class="col-12" type="datetime-local" name="startingDate" id="Cexpirydate">
+                <label class="mt-2" for=""> end date</label>
+                <input style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;" class="col-12" type="datetime-local" onchange="maxdate()" name="endDate" id="max_date">
+               
+                <div  style="display: flex; justify-content: right;">
+                    <button class="btn btn-primary mt-3">sort</button>
+                </div>
+            </form>
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
             
             <!-- Left Sidebar End -->
 
@@ -578,6 +603,7 @@
                                             provides the based framework upon which plug-ins can built.
                                         </p> -->
                                     </div>
+
                                     <div class="card-body">
                                         <!-- <select style="background-color: white; border: 0px;" onchange="datesReport()" id="sortReport">
                                             <option value="Daily">Daily</option>
@@ -594,58 +620,43 @@
                                         <a  href="/admin/salesReportSorting?type=Weekly" class="btn bg-secondary text-light m-1 mt-2 mb-3">Weekly</a>
                                         <a  href="/admin/salesReportSorting?type=Monthly" class="btn bg-secondary text-light m-1 mt-2 mb-3">Monthly</a>
                                         <a  href="/admin/salesReportSorting?type=Yearly" class="btn bg-secondary text-light m-1 mt-2 mb-3">Yearly</a>
+                                        <button type="button" class="btn bg-secondary text-light m-1 mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">sort</button>
+
+                                        <% if(orders){ %>
+                                            <table  id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
+                                            
+                                                <thead>
+                                                <tr>
+                                                    <th>Order ID</th>
+                                                    <th>Date</th>
+                                                    <th>Payment method</th>
+                                                    <th>Total</th>
+                                                    <th>Status</th>
+                                                 
+                                                </tr>
+                                                </thead>
+                                                
+            
+            
+                                                <tbody>
+                                                    <% for(var i=0; i < orders.length; i++) { %>
+                                                <tr>
+                                                    <td><%= orders[i]._id%></td>
+                                                    <td>
+                                                        <%= orders[i].date.getDate()%><span>/</span><%= orders[i].date.getMonth()%><span>/</span><%= orders[i].date.getFullYear()%> <span> || </span> <%= orders[i].date.getHours()%> <span>:</span><%= orders[i].date.getMinutes()%>
+                                                    </td>
+                                                    <td><%= orders[i].paymentmethod%></td>
+                                                    <td><%= orders[i].totalamount%></td>
+                                                    <td><%= orders[i].status%></td>
+                                                </tr>
+                                                <% } %>
+                                                </tbody>
+                                            </table>
+                                          <% } else{ %>  
+                                            <h1> Empty orders</h1>
+                                         <% } %>
                                         
-                                        <table  id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
-                                            
-                                            <thead>
-                                            <tr>
-                                                <th>Order ID</th>
-                                                <th>Date</th>
-                                                <th>Payment method</th>
-                                                <th>Total</th>
-                                                <th>Status</th>
-                                                <!-- <th>Salary</th> -->
-                                            </tr>
-                                            </thead>
-                                            
-        
-        
-                                            <tbody>
-                                                <% for(var i=0; i < orders.length; i++) { %>
-                                            <tr>
-                                                <td><%= orders[i]._id%></td>
-                                                <td>
-                                                    <%= orders[i].date.getDate()%><span>/</span><%= orders[i].date.getMonth()%><span>/</span><%= orders[i].date.getFullYear()%> <span> || </span> <%= orders[i].date.getHours()%> <span>:</span><%= orders[i].date.getMinutes()%>
-                                                </td>
-                                                <td><%= orders[i].paymentmethod%></td>
-                                                <td><%= orders[i].totalamount%></td>
-                                                <td><%= orders[i].status%></td>
-                                                <!-- <td><%= orders[i]._id%></td> -->
-                                            </tr>
-                                            <% } %>
-
-                                            <!-- <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                <td>63</td>
-                                                <td>2011/07/25</td>
-                                                <td>$170,750</td>
-                                            </tr>
-                                            
-                                            
-                                            <tr>
-                                                <td>Donna Snider</td>
-                                                <td>Customer Support</td>
-                                                <td>New York</td>
-                                                <td>27</td>
-                                                <td>2011/01/25</td>
-                                                <td>$112,000</td>
-                                            </tr>
-                                             -->
-
-                                            </tbody>
-                                        </table>
+                                        
                                     </div>
                                 </div>
                                 <!-- end cardaa -->
@@ -846,6 +857,7 @@
         <script src="assets/js/pages/datatables.init.js"></script>    
 
         <script src="assets/js/app.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         
         <script>
             // function datesReport(){
@@ -861,6 +873,69 @@
             //         }
             //     })
             // }
+        </script>
+        <script>
+            function fromSubmit(){
+
+                var minidate =  document.getElementById('Cexpirydate').value
+                var maxdate =  document.getElementById('max_date').value
+                if(minidate > maxdate){
+                    Swal.fire(
+                        '',
+                        'please consider start date lessthan end date ',
+                        'question'
+                    )
+                    return false
+                    
+                }
+                if($('#Cexpirydate').val()=='' || $('#max_date').val() == ''){
+                    Swal.fire(
+                        '',
+                        'please fill the form',
+                        'question'
+                    )
+                    return false
+                }
+            }
+
+
+
+
+        
+            // function maxdate(){
+            //     var minidate =  document.getElementById('Cexpirydate').value
+            //     var maxdate =  document.getElementById('max_date').value
+            // }
+           
+            $(function (){
+                let dtToday = new Date();
+                let month = dtToday.getMonth() +1;
+                let day = dtToday.getDate() -1;
+                let year = dtToday.getFullYear();
+                if (month < 10 )
+                    month = '0' + month.toString();
+
+                if (day < 10)
+                    day = '0'+ day.toString();
+                
+                let maxDate = year + '-' + month + '-'+ day + 'T'+ '00:00'
+                $('#Cexpirydate').attr('max',maxDate)
+            })
+            $(function (){
+                let dtToday = new Date();
+                let month = dtToday.getMonth() +1;
+                let day = dtToday.getDate() -1;
+                let year = dtToday.getFullYear();
+                if (month < 10 )
+                    month = '0' + month.toString();
+
+                if (day < 10)
+                    day = '0'+ day.toString();
+                
+                let maxDate = year + '-' + month + '-'+ day + 'T'+ '00:00'
+                $('#max_date').attr('max',maxDate)
+            })
+
         </script>
         
 

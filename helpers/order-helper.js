@@ -74,11 +74,12 @@ module.exports={
         })
     },
     // show all orders in admin
-    getAllOrders:()=>{
+    getAllOrders:(page)=>{
         return new Promise(async(resolve,reject)=>{
-            var allOrders = await db.get().collection(collection.orderCollection).find( { status: { $ne: 'onlinePending' } }).sort({date: -1}).toArray()
+            var allOrders = await db.get().collection(collection.orderCollection).find( { status: { $ne: 'onlinePending' } }).skip(page * 20 - 20).limit(20).sort({date: -1}).toArray()
+            let count = await db.get().collection(collection.orderCollection).find({ status: { $ne: 'onlinePending' } }).count();
             if(allOrders){
-                resolve(allOrders)
+                resolve({allOrders,count})
             }else{
                 resolve(null)
             }
@@ -88,10 +89,8 @@ module.exports={
     changeOrderStatus:(orderId,statusName)=>{
         return new Promise(async(resolve,reject)=>{
             var changedstatus=await db.get().collection(collection.orderCollection).updateOne({_id:objectId(orderId)},{$set:{status:statusName}})
-            var orderStatus = await db.get().collection(collection.orderCollection).findOne({_id:objectId(orderId)})
-            console.log(orderStatus);
             if(changedstatus){
-                resolve({status:true,orderStatus})
+                resolve({status:true})
             }else{
                 resolve(null)
             }
@@ -174,6 +173,17 @@ module.exports={
         //    }else{
         //        resolve()
         //    }
+        })
+    },
+    searchOrders:(oredername)=>{
+        return new Promise (async(resolve,reject)=>{
+           var res =await db.get().collection(collection.orderCollection).find({"deliveryDetails.name": { $regex: oredername }}).toArray();
+           console.log(res);
+           if(res.length >0){
+               resolve(res)
+           }else{
+               resolve(null)
+           }
         })
     }
     
