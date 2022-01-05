@@ -504,6 +504,22 @@ module.exports = {
                 reject({status:false})
             })
         })
+    },
+    getUserStatusBlockOrnot:()=>{
+        return new Promise(async(resolve,rejects)=>{
+          var isactiveTrue =await  db.get().collection(collection.userCollection).find({isactive:true}).count()
+          var isactivefales = await db.get().collection(collection.userCollection).find({isactive:false}).count()
+          
+
+          if( isactiveTrue ){
+              resolve({isactiveTrue,isactivefales})
+          }else{
+            isactiveTrue = 0
+            isactivefales= 0
+            resolve({isactiveTrue,isactivefales})
+          }
+
+        })
     }
 
 

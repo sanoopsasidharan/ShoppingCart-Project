@@ -363,6 +363,8 @@ router.get('/chart',(req,res)=>{
 
 router.post('/getGraphResponse',async(req,res)=>{
     console.log('getGraphResponse');
+    var userStatus = await userHelpers.getUserStatusBlockOrnot()
+    console.log(userStatus);
     var category = await categoryHelpers.findCategoryProductCount()
     var users = await userHelpers.showalluserCount()
     var statusData =await salesHelpers.getOrdersStatus()
@@ -371,7 +373,7 @@ router.post('/getGraphResponse',async(req,res)=>{
    var totalcompleteSales = await salesHelpers.totalOrderCompletedCound()
    var cancelSales = await salesHelpers.cancelTotalOrders()
     await salesHelpers.getWeeklyUsers().then((values)=>{
-        res.json({values,statusData,ProductItemsCount,revanu,totalcompleteSales,users,cancelSales,category})
+        res.json({values,statusData,ProductItemsCount,revanu,totalcompleteSales,users,cancelSales,category,userStatus})
     })
 })
 

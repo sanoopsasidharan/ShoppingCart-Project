@@ -353,7 +353,7 @@
                         </div>
                     </div>
                 </div>
-              
+
                 <div class="ec-shop-rightside col-lg-9 col-md-12">
                     <div class="ec-vendor-dashboard-card ec-vendor-setting-card">
                         <div class="ec-vendor-card-body">
@@ -361,8 +361,9 @@
                                 <div class="col-md-12">
                                     <div class="ec-vendor-block-profile">
                                         <div style="display: flex; justify-content: right; margin-bottom: 20px;">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Edit Profile</button>
-                                          </div>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal"> Edit Profile</button>
+                                        </div>
 
 
                                         <!-- user profile show  -->
@@ -388,8 +389,8 @@
 
                                                                 <div style="display: flex; justify-content: center;">
                                                                     <button onclick="profileEdit()"
-                                                                        class="btn btn-primary"
-                                                                        id="picEdit">Edit Pic</button>
+                                                                        class="btn btn-primary" id="picEdit">Edit
+                                                                        Pic</button>
                                                                     <button onclick="cancelProfileEdit()"
                                                                         id="cancelProfileEdit"
                                                                         class="btn btn-danger">Cancel</button>
@@ -402,9 +403,9 @@
                                                                     <div class="row"
                                                                         style="display: flex;padding: 40px;">
                                                                         <div class="col-md-8">
-                                                                            <input style="line-height: 1 !important;"
+                                                                            <input style="line-height: 1 !important;" onchange="show(this)"
                                                                                 type="file" id="image1"
-                                                                                accept="image/gif, image/jpeg, image/png"
+                                                                               
                                                                                 required />
                                                                             <textarea name="image1" id="imageValue1"
                                                                                 cols="30" rows="10" hidden></textarea>
@@ -469,7 +470,7 @@
                                             </div>
                                         </div> -->
 
-                                       
+
 
 
                                     </div>
@@ -994,6 +995,37 @@
 
     <script>
 
+    </script>
+
+    <script>
+        function show(input) {
+            debugger;
+            var validExtensions = ['jpg', 'png'];
+            var fileName = input.files[0].name;
+            var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);
+            if ($.inArray(fileNameExt, validExtensions) == -1) {
+                input.type = ''
+                input.type = 'file'
+                $('#checkpreview4').attr('src', "");
+                Swal.fire(
+                    '',
+                    'Only these file types are accepted  ' + validExtensions.join(', '),
+                    'question'
+                )
+                // alert("Only these file types are accepted : " + validExtensions.join(', '));
+            }
+            else {
+                if (input.files && input.files[0]) {
+                    var filerdr = new FileReader();
+                    filerdr.onload = function (e) {
+                        $('#checkpreview4').attr('src', e.target.result);
+                    }
+                    imagevalidation = true
+                    $("#image-text").hide();
+                    filerdr.readAsDataURL(input.files[0]);
+                }
+            }
+        }
     </script>
 
     <script>
