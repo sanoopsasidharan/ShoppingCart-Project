@@ -196,9 +196,12 @@
                                                             style="text-align: center;">
 
                                                             <!-- <button  onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].product._id%>',-1)">-</button><p><%= products[i].quantity%></p><button onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].product._id%>',1)">+</button> -->
-                                                            <a id="pluse"
-                                                                onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].product._id%>','<%= user._id%>',-1)"
-                                                                href="#!">-</a>
+                                                            <% if(products[i].quantity > 1){ %>
+                                                                <a id="pluse" onclick="changeQuantity('<%= products[i]._id%>','<%= products[i].product._id%>','<%= user._id%>',-1)"  href="#!">-</a>
+                                                              <% }else{ %>  
+                                                                <a href=""> &nbsp;</a>
+                                                             <% } %>
+                                                            
                                                             <p id="<%= products[i].product._id%>">
                                                                 <%= products[i].quantity%>
                                                             </p>

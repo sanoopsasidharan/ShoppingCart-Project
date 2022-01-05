@@ -182,7 +182,7 @@
                         <div class="shop-pro-inner">
                             <div id="serachdisplayProduct" class="row">
 
-                                
+
                                 <% for(var i=0; i < product.length; i++) { %>
                                     <div id="serachdisplayProduct" id="displayProduct"
                                         class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
@@ -191,58 +191,70 @@
                                                 <a href="/productdetails?id=<%= product[i]._id %>">
                                                     <div class="ec-pro-image">
 
-                                                        <% if( product[i].proOfferPercentage>0 ||product[i].cateOfferPercentage>0){ %>
-                                                            <% if( product[i].proOfferPercentage > product[i].cateOfferPercentage){ %>
-                                                               
-                                                                <span class="percentage" style="user-select: auto;"><%= product[i].proOfferPercentage %> %</span>
-                                                                <% } else{ %> 
-                                                                    <span class="percentage" style="user-select: auto;"><%= product[i].cateOfferPercentage %> %</span>
-                                                                    
+                                                        <% if( product[i].proOfferPercentage>0
+                                                            ||product[i].cateOfferPercentage>0){ %>
+                                                            <% if( product[i].proOfferPercentage>
+                                                                product[i].cateOfferPercentage){ %>
+
+                                                                <span class="percentage" style="user-select: auto;">
+                                                                    <%= product[i].proOfferPercentage %> %
+                                                                </span>
+                                                                <% } else{ %>
+                                                                    <span class="percentage" style="user-select: auto;">
+                                                                        <%= product[i].cateOfferPercentage %> %
+                                                                    </span>
+
                                                                     <% } %>
-                                                        
-                                                          <% } else{ %>  
-                                                            
-                                                         <% } %>
-                                                        
-                                                        <a href="product-left-sidebar.html" class="image">
-                                                            <img class="main-image"
-                                                                src="/productimage/image1/<%=product[i]._id%>_1.jpg"
-                                                                alt="Product" />
-                                                            <img class="hover-image"
-                                                                src="/productimage/image1/<%=product[i]._id%>_2.jpg"
-                                                                alt="Product" />
 
-                                                        </a>
-                                                        <!-- <span class="percentage">20%</span> -->
-                                                        <span class="flags">
-                                                            <span class="sale">Sale</span>
-                                                        </span>
-                                                        <a href="/productdetails?id=<%= product[i]._id %>"
-                                                            class="quickview"><img
-                                                                src="assets/images/icons/quickview.svg"
-                                                                class="svg_img pro_svg" alt="" /></a>
+                                                                        <% } else{ %>
 
-                                                        <div class="ec-pro-actions">
-                                                            <a onclick="wishlist('<%= product[i]._id %>')"
-                                                                class="ec-btn-group compare" title="Wishlist"><img
-                                                                    src="assets/images/icons/wishlist.svg"
-                                                                    class="svg_img pro_svg" alt="" /></a>
+                                                                            <% } %>
+
+                                                                                <a href="product-left-sidebar.html"
+                                                                                    class="image">
+                                                                                    <img class="main-image"
+                                                                                        src="/productimage/image1/<%=product[i]._id%>_1.jpg"
+                                                                                        alt="Product" />
+                                                                                    <img class="hover-image"
+                                                                                        src="/productimage/image1/<%=product[i]._id%>_2.jpg"
+                                                                                        alt="Product" />
+
+                                                                                </a>
+                                                                                <!-- <span class="percentage">20%</span> -->
+                                                                                <span class="flags">
+                                                                                    <span class="sale">Sale</span>
+                                                                                </span>
+                                                                                <a href="/productdetails?id=<%= product[i]._id %>"
+                                                                                    class="quickview"><img
+                                                                                        src="assets/images/icons/quickview.svg"
+                                                                                        class="svg_img pro_svg"
+                                                                                        alt="" /></a>
+
+                                                                                <div class="ec-pro-actions">
+                                                                                    <a onclick="wishlist('<%= product[i]._id %>')"
+                                                                                        class="ec-btn-group compare"
+                                                                                        title="Wishlist"><img
+                                                                                            src="assets/images/icons/wishlist.svg"
+                                                                                            class="svg_img pro_svg"
+                                                                                            alt="" /></a>
 
 
-                                                            <!-- <button onclick="addToCart('<%= product[i]._id %>')" title="Add To Cart" class=" "><img
+                                                                                    <!-- <button onclick="addToCart('<%= product[i]._id %>')" title="Add To Cart" class=" "><img
                                                         src="assets/images/icons/cart.svg" class=""
                                                         alt="" /> Add To Cart</button> -->
 
 
-                                                            <!-- <a href=""  class="ec-btn-group wishlist" title="Wishlist"><img
+                                                                                    <!-- <a href=""  class="ec-btn-group wishlist" title="Wishlist"><img
                                                                 src="assets/images/icons/wishlist.svg"
                                                                 class="svg_img pro_svg" alt="" /></a> -->
 
-                                                            <a onclick="addToCart('<%= product[i]._id %>')"
-                                                                class="ec-btn-group wishlist" title="Wishlist"><img
-                                                                    src="assets/images/icons/cart.svg"
-                                                                    class="svg_img pro_svg" alt="" /></a>
-                                                        </div>
+                                                                                    <a onclick="addToCart('<%= product[i]._id %>')"
+                                                                                        class="ec-btn-group wishlist"
+                                                                                        title="Wishlist"><img
+                                                                                            src="assets/images/icons/cart.svg"
+                                                                                            class="svg_img pro_svg"
+                                                                                            alt="" /></a>
+                                                                                </div>
                                                     </div>
                                                 </a>
                                             </div>
@@ -258,34 +270,44 @@
                                                 <i class="ecicon eci-star fill"></i>
                                                 <i class="ecicon eci-star"></i>
                                             </div> -->
-                                                <div  class="ec-pro-list-desc" style="text-align: center;align-items: center;">
-                                                   
+                                                <div class="ec-pro-list-desc"
+                                                    style="text-align: center;align-items: center;">
 
-                                                   
-                                                     
+
+
+
                                                 </div>
                                                 <span style="display: flex;justify-content: space-around;"
                                                     class="ec-price">
-                                                    <% if( product[i].proOfferPercentage>0 ||product[i].cateOfferPercentage>0){ %>
+                                                    <% if( product[i].proOfferPercentage>0
+                                                        ||product[i].cateOfferPercentage>0){ %>
                                                         <span class="old-price">Rs <%= product[i].price %></span>
-                                                        <% if( product[i].proOfferPercentage > product[i].cateOfferPercentage){ %>
+                                                        <% if( product[i].proOfferPercentage>
+                                                            product[i].cateOfferPercentage){ %>
 
-                                                            <span class="new-price">Rs <%= Math.round (product[i].price * 0.01*(100-product[i].proOfferPercentage)) %></span>
-                                                            <% } else{ %> 
-                                                                <span class="new-price">Rs <%= Math.round (product[i].price * 0.01*(100-product[i].cateOfferPercentage)) %></span>
+                                                            <span class="new-price">Rs <%= Math.round (product[i].price
+                                                                    * 0.01*(100-product[i].proOfferPercentage)) %>
+                                                                    </span>
+                                                            <% } else{ %>
+                                                                <span class="new-price">Rs <%= Math.round
+                                                                        (product[i].price *
+                                                                        0.01*(100-product[i].cateOfferPercentage)) %>
+                                                                        </span>
                                                                 <% } %>
-                                                    
-                                                      <% } else{ %>  
-                                                        <span class="new-price">Rs <%= product[i].price %></span>
-                                                     <% } %>
-                                                    <!-- <span class="new-price">Rs <%= product[i].price %></span> -->
-                                                    <span>
-                                                        <!-- <p><%= product[i]._id %></p> -->
-                                                        <a href="/singleProductcheckout?id=<%= product[i]._id %>"
-                                                            style="height: 40px; border-radius: 5px;"
-                                                            class="btn btn-warning text-light">buy now</a>
-                                                        <!-- <button style="height: 40px; border-radius: 5px;"  class="btn btn-warning text-light"> abbuy now</button> -->
-                                                    </span>
+
+                                                                    <% } else{ %>
+                                                                        <span class="new-price">Rs <%= product[i].price
+                                                                                %></span>
+                                                                        <% } %>
+                                                                            <!-- <span class="new-price">Rs <%= product[i].price %></span> -->
+                                                                            <span>
+                                                                                <!-- <p><%= product[i]._id %></p> -->
+                                                                                <a href="/singleProductcheckout?id=<%= product[i]._id %>"
+                                                                                    style="height: 40px; border-radius: 5px;"
+                                                                                    class="btn btn-warning text-light">buy
+                                                                                    now</a>
+                                                                                <!-- <button style="height: 40px; border-radius: 5px;"  class="btn btn-warning text-light"> abbuy now</button> -->
+                                                                            </span>
                                                 </span>
                                                 <div>
 
@@ -312,15 +334,17 @@
                                         </div>
                                     </div>
                                     <% } %>
-                                    
-                                   <div>
-                                    <% if(product){ %>
-                                        <% if(product.length==0){ %>
-                                            <h1 style="color: red; display: flex;justify-content: center; margin: 20px"> product not found</h1>
-                                         <% } %>
-    
-                                     <% } %>
-                                   </div>
+
+                                        <div>
+                                            <% if(product){ %>
+                                                <% if(product.length==0){ %>
+                                                    <h1
+                                                        style="color: red; display: flex;justify-content: center; margin: 20px">
+                                                        product not found</h1>
+                                                    <% } %>
+
+                                                        <% } %>
+                                        </div>
 
                                         <!-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content">
                                     <div class="ec-product-inner">
@@ -921,14 +945,17 @@
                                                         <button type="submit" class="btn btn-info   ">ok</button>
                                             </form> -->
 
-                                            <form onsubmit="return fromSubmit()" action="/filterProductInPrice" method="post">
+                                            <form onsubmit="return fromSubmit()" action="/filterProductInPrice"
+                                                method="post">
                                                 <input
                                                     style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;"
-                                                    type="number" name="miniPrice" placeholder="minimum price" id="filterPrices1">
+                                                    type="number" name="miniPrice" placeholder="minimum price"
+                                                    id="filterPrices1">
                                                 <input
                                                     style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;"
-                                                    type="number" name="maxPrice" placeholder="maximum price"  id="filterPrices2">
-                                                    <p style="color: red; margin-top: 5px;" id="error-messages"></p>
+                                                    type="number" name="maxPrice" placeholder="maximum price"
+                                                    id="filterPrices2">
+                                                <p style="color: red; margin-top: 5px;" id="error-messages"></p>
                                                 <button style="margin-top: 10px; border-radius: 5px;"
                                                     class="btn btn-mini btn-primary" type="submit">submit</button>
 
@@ -1335,7 +1362,7 @@
             </div>
             <!--/ End Floating Panel Container -->
             <!-- Start Right Floating Button-->
-           
+
             <!--/ End Right Floating Button-->
         </div>
         <!-- Whatsapp end -->
@@ -1441,30 +1468,48 @@
                     url: '/addTocarts/' + proId,
                     method: 'get',
                     success: (response) => {
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 2000,
-                            didOpen: (toast) => {
-                                toast.addEventListener('mouseenter', Swal.stopTimer)
-                                toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                        })
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Product Add In Cart'
-                        })
+                        if (response.status) {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Product Add In Cart'
+                            })
 
 
-                        var count = response.cartCount
+                            var count = response.cartCount
 
-                        $('#coundtId').html(count)
-                        count = parseInt(count) + 1
-                        $('#coundtId').html(count)
+                            $('#coundtId').html(count)
+                            count = parseInt(count) + 1
+                            $('#coundtId').html(count)
 
-                        $('#coundtId-mob').html(count)
-                        $('#coundtId-mob').html(count)
+                            $('#coundtId-mob').html(count)
+                            $('#coundtId-mob').html(count)
+                        } else {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 2000,
+                                didOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                }
+                            })
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'please login the website'
+                            })
+                        }
+
 
                         // alert(response)
                     }
@@ -1585,7 +1630,7 @@
                                 title: 'Product add in to Wishlist'
                             })
 
-                        } else {
+                        } else if (response.status == false) {
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: 'top-end',
@@ -1616,13 +1661,13 @@
             });
 
             function fromSubmit() {
-                
+
                 let pas1 = document.getElementById('filterPrices1').value
                 let pas2 = document.getElementById('filterPrices2').value
-                if(pas1=='' && pas2 == ''){
+                if (pas1 == '' && pas2 == '') {
                     // alert('sorry no number')
                     // Swal.fire('you can enter only valid numbers')
-                    document.getElementById('error-messages').innerHTML='sorry please enter price'
+                    document.getElementById('error-messages').innerHTML = 'sorry please enter price'
                     return false
                 }
             }

@@ -1155,10 +1155,12 @@ router.get('/wishlist', verifyLogin, async (req, res) => {
 })
 
 // add to wishlist
-router.post('/wishlist', (req, res) => {
-  userHelpers.addToWishlist(req.body.proId, req.session.user._id).then((response) => {
-    res.json(response)
-  })
+router.post('/wishlist',verifyLogin,(req, res) => {
+  if(req.session.user){
+    userHelpers.addToWishlist(req.body.proId, req.session.user._id).then((response) => {
+      res.json(response)
+    })
+  }
 })
 
 // remove form wishlist

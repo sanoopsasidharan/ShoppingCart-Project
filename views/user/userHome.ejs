@@ -98,7 +98,7 @@
 
     <!-- Main Slider Start -->
     <div style="background-image: url('/productimage/image1/<%=allProducts._id%>_1.jpg');">
-        
+
     </div>
     <% if(banner.length> 0){ %>
         <div class="sticky-header-next-sec ec-main-slider section section-space-pb mt-5">
@@ -109,22 +109,29 @@
                     <% for(var i=0; i < banner.length; i++) { %>
 
 
-                        <div style="background-image: url(/productimage/image2/<%=banner[i]._id%>_1.jpg);" class="ec-slide-item swiper-slide d-flex ec-slide-1">
+                        <div style="background-image: url(/productimage/image2/<%=banner[i]._id%>_1.jpg);"
+                            class="ec-slide-item swiper-slide d-flex ec-slide-1">
                             <div class="container align-self-center">
                                 <div class="row">
                                     <div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center">
-                                        <div  class="ec-slide-content slider-animation">
-                                            <h1 style="color: rgb(224, 224, 224);" class="ec-slide-title"><%= banner[i].offerHead %></h1>
-                                            <h2 style="color: rgb(224, 224, 224);" class="ec-slide-stitle">Sale Offer</h2>
-                                            <p style="color: rgb(224, 224, 224);"><%= banner[i].offerDescription %></p>
-                                            <a href="/cateproduct?id=<%= banner[i].category %>" class="btn btn-lg btn-secondary">Order Now</a>
+                                        <div class="ec-slide-content slider-animation">
+                                            <h1 style="color: rgb(224, 224, 224);" class="ec-slide-title">
+                                                <%= banner[i].offerHead %>
+                                            </h1>
+                                            <h2 style="color: rgb(224, 224, 224);" class="ec-slide-stitle">Sale Offer
+                                            </h2>
+                                            <p style="color: rgb(224, 224, 224);">
+                                                <%= banner[i].offerDescription %>
+                                            </p>
+                                            <a href="/cateproduct?id=<%= banner[i].category %>"
+                                                class="btn btn-lg btn-secondary">Order Now</a>
                                         </div>
-                                      
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                         <% } %>
                 </div>
                 <div class="swiper-pagination swiper-pagination-white"></div>
@@ -135,7 +142,7 @@
             </div>
         </div>
         <% } else{ %>
-            
+
             <% } %>
                 <!-- background-image: url("../images/main-slider-banner/1.jpg"); -->
 
@@ -309,7 +316,7 @@
                                                                                     <% } else{ %>
                                                                                         <span class="new-price">Rs <%=
                                                                                                 allProducts[i].price %>
-                                                                                                </span>
+                                                                                        </span>
                                                                                         <% } %>
 
                                                                 </span>
@@ -4514,7 +4521,7 @@
                                             title: 'Product add in to Wishlist'
                                         })
 
-                                    } else {
+                                    } else if(response.status==false) {
                                         const Toast = Swal.mixin({
                                             toast: true,
                                             position: 'top-end',
@@ -4542,29 +4549,44 @@
                                 url: '/addTocarts/' + proId,
                                 method: 'get',
                                 success: (response) => {
-                                    const Toast = Swal.mixin({
-                                        toast: true,
-                                        position: 'top-end',
-                                        showConfirmButton: false,
-                                        timer: 2000,
-                                        didOpen: (toast) => {
-                                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                        }
-                                    })
-                                    Toast.fire({
-                                        icon: 'success',
-                                        title: 'Product Add In Cart'
-                                    })
+                                    if (response.status) {
+                                        const Toast = Swal.mixin({
+                                            toast: true,
+                                            position: 'top-end',
+                                            showConfirmButton: false,
+                                            timer: 2000,
+                                            didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        })
+                                        Toast.fire({
+                                            icon: 'success',
+                                            title: 'Product Add In Cart'
+                                        })
 
 
-                                    var count = response.cartCount
+                                        var count = response.cartCount
 
-                                    $('#coundtId').html(count)
-                                    count = parseInt(count) + 1
-                                    $('#coundtId').html(count)
-
-                                    // alert(response)
+                                        $('#coundtId').html(count)
+                                        count = parseInt(count) + 1
+                                        $('#coundtId').html(count)
+                                    } else {
+                                        const Toast = Swal.mixin({
+                                            toast: true,
+                                            position: 'top-end',
+                                            showConfirmButton: false,
+                                            timer: 2000,
+                                            didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        })
+                                        Toast.fire({
+                                            icon: 'error',
+                                            title: 'please login the website'
+                                        })
+                                    }
                                 }
                             })
                         }
