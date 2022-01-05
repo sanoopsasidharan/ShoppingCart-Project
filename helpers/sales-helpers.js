@@ -334,7 +334,27 @@ module.exports = {
             }
            
         })
-    },
+    },cancelTotalOrders:()=>{
+        return new Promise(async(resolve,reject)=>{
+            let Cancelled = await db.get().collection(collection.orderCollection).aggregate([
+                
+                {
+                    $match: { status: 'Cancelled' }
+                },
+                {
+                    $group: { _id: null, count: { $sum: 1 } }
+                }
+            ]).toArray()
+            
+            if(Cancelled){
+                resolve(Cancelled)
+            }else{
+                resolve(null)
+            }
+           
+        })
+    }
+    ,
     sortSalesReportDate:(staring,end)=>{
         return new Promise(async(resolve,reject)=>{
            var orders= await db.get().collection(collection.orderCollection).aggregate([{$match:{$and:[{date:{$lte:new Date(end)}},{date:{$gte:new Date(staring)}},{'status':{$eq:'Completed'}}]}}]).toArray()

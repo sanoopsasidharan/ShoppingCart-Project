@@ -45,6 +45,30 @@
 
     <!-- Background css -->
     <link rel="stylesheet" id="bg-switcher-css" href="assets/css/backgrounds/bg-4.css">
+    <style>
+        #addressList {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        #addressList td, #addressList th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #addressList tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #addressList tr:hover {background-color: #ddd;}
+        
+        #addressList th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #242531c9;
+          color: white;
+        }
+        </style>
 
 </head>
 
@@ -135,6 +159,21 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- ekka Cart Start -->
     <div class="ec-side-cart-overlay"></div>
@@ -258,7 +297,7 @@
                                         <div class="table-responsive ">
 
                                             <h2 style="display: flex; justify-content: center;" class="m-3">Address</h2>
-                                            <table id="addressList" class="table"
+                                            <table  id="addressList" class="table"
                                                 style=" border: 1px solid rgba(0, 0, 0, 0.596);">
                                                 <thead>
                                                     <tr>
@@ -300,7 +339,14 @@
                                                             <td>
                                                                 <%= addresss[i].address.City %>
                                                             </td>
-                                                            <td>Edit</td>
+                                                            <td>
+                                                                <button onclick="editAddress('<%= addresss[i].address.addresId %>')">Edit</button>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                                                   Edit
+                                                                  </button>
+                                                            </td>
 
                                                             <td><button
                                                                     onclick='deleteAddress("<%= addresss[i]._id %>","<%= addresss[i].address.addresId %>")'>delete</button>
@@ -821,6 +867,26 @@
 
     <!-- Main Js -->
     <script src="assets/js/main.js"></script>
+
+
+    <script>
+        function editAddress(id){
+            alert(id)
+            $.ajax({
+                url:'/editUserAddress',
+                data:{id:id},
+                method:'post',
+                success:(response)=>{
+                    if(response.status){
+                        alert(response.status)
+
+                    }else{
+                        alert('status fales')
+                    }
+                }
+            })
+        }
+    </script>
     <script>
         $('#spinninerId').hide();
 

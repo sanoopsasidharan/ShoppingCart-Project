@@ -212,6 +212,16 @@ module.exports = {
                 resolve(null)
             }
         })
+    },
+    getAllProductsAdmins:()=>{
+        return new Promise(async(resolve,reject)=>{
+           var products = await db.get().collection(collection.productCollection).find().sort({ _id: -1 }).toArray();
+           if(products.length>0){
+               resolve(products)
+           }else{
+               resolve(null)
+           }
+        })
     }
 
 

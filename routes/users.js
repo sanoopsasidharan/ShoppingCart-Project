@@ -1217,6 +1217,17 @@ router.get('/userAddressManagement', verifyLogin, async (req, res) => {
 
 })
 
+// edit address user
+router.post('/editUserAddress',(req,res)=>{
+  console.log(req.body.id);
+  userHelpers.editUserAddress(req.body.id).then((response)=>{
+    res.json(response)
+  }).catch((response)=>{
+    res.json(response)
+  })
+  
+})
+
 // delete user address
 router.post('/deleteUserAddress', (req, res) => {
   userHelpers.DeleteUserAddress(req.body._id, req.body.addressId).then((response) => {

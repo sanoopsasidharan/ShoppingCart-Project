@@ -119,6 +119,22 @@ module.exports = {
             })
         })
 
+    },
+    findCategoryProductCount:()=>{
+        return new Promise(async(resolve,reject)=>{
+           var woman = await  db.get().collection(collection.productCollection).aggregate([{ $match: { category: 'woman' }},{  $group: { _id: null, count: { $sum: 1 } }}]).toArray()
+           var men = await  db.get().collection(collection.productCollection).aggregate([{ $match: { category: 'men' }},{  $group: { _id: null, count: { $sum: 1 } }}]).toArray()
+           var kids = await  db.get().collection(collection.productCollection).aggregate([{ $match: { category: 'kids' }},{  $group: { _id: null, count: { $sum: 1 } }}]).toArray()
+          console.log('this is woman men kid ');
+           console.log(woman[0].count,men,kids);
+
+           if (woman.length > 0 || men.length > 0 || kids.length > 0){
+               resolve ({woman,men,kids})
+           }else{
+               resolve(null)
+           }
+
+        })
     }
 
 }

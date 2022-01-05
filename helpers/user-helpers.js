@@ -488,6 +488,22 @@ module.exports = {
                resolve(null)
            }
         })
+    },
+    editUserAddress:(Id)=>{
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.addressCollection).aggregate([
+                {
+                    $match:{address:{$elemMatch:{addresId : objectId(Id)}}}
+                },
+                {
+                    $project: { } 
+                }
+            ]).toArray().then((address)=>{
+                console.log(address);
+                resolve({status:true,address})
+                reject({status:false})
+            })
+        })
     }
 
 

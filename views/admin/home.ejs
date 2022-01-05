@@ -15,9 +15,9 @@
     <!-- ============================================================== -->
     <!-- Start right Content here -->
     <!-- ============================================================== -->
-    <div class="main-content">
+    <div style="margin-top: 100px;" class="main-content">
 
-        <div class="page-content">
+        <div class="page-content p-0">
             <div class="container-fluid">
 
                 <!-- start page title -->
@@ -143,73 +143,74 @@
                 </div>
 
                 <!-- user list -->
-                <div style="padding: 0;" class="page-content">
-                    <div class="container-fluid">
-
-                        <!-- start page title -->
-
-                        <!-- end page title -->
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-body">
-
-                                        <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Number</th>
-                                                    <th>Email</th>
-                                                    <th>action</th>
-                                                    
-
-                                                </tr>
-                                            </thead>
+                <% if(users){ %>
 
 
-                                            <tbody>
-                                                <% for(var i=0; i < 5; i++) { %>
-                                                    <tr>
-                                                        <td>
-                                                            <%= users[i].name %>
-                                                        </td>
-                                                        <td>
-                                                            <%= users[i].number %>
-                                                        </td>
-                                                        <td>
-                                                            <%= users[i].email %>
-                                                        </td>
-                                                        <% if(users[i].isactive){ %>
-                                                            <td id="blockUser">
-                                                                <button class="btn btn-warning"
-                                                                    onclick="blockUser('<%= users[i]._id %>')">Block</button>
-                                                            </td>
-                                                            <% } else{ %>
-                                                                <td id="unBlockUser">
-                                                                    <button class="btn btn-info"
-                                                                        onclick="unBlockUser('<%= users[i]._id %>')">UnBlock</button>
+                    <h4 class=" m-4 font-size-18">New Users</h4>
+                    <div style="padding: 0;" class="page-content">
+                        <div class="container-fluid">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Number</th>
+                                                            <th>Email</th>
+                                                            <th>action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% for(var i=0; i < 5; i++) { %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%= users[i].name %>
                                                                 </td>
-                                                                <% } %>
-                                                    </tr>
-                                                    <% } %>
+                                                                <td>
+                                                                    <%= users[i].number %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= users[i].email %>
+                                                                </td>
+                                                                <% if(users[i].isactive){ %>
+                                                                    <td id="blockUser">
+                                                                        <button class="btn btn-warning"
+                                                                            onclick="blockUser('<%= users[i]._id %>')">Block</button>
+                                                                    </td>
+                                                                    <% } else{ %>
+                                                                        <td id="unBlockUser">
+                                                                            <button class="btn btn-info"
+                                                                                onclick="unBlockUser('<%= users[i]._id %>')">UnBlock</button>
+                                                                        </td>
+                                                                        <% } %>
+                                                            </tr>
+                                                            <% } %>
 
-                                            </tbody>
-                                        </table>
+                                                    </tbody>
 
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
-                    </div> <!-- container-fluid -->
-                </div>
-                <!-- end of user list -->
+                            </div>
+                        </div>
+                    </div>
+                    <% } else{ %>
 
-                <div class="row">
-                    <div class="col-xl-8">
-                        <!-- card -->
+                        <% } %>
+                            <!-- end of user list -->
+
+                            <div class="row">
+                                <!-- <div class="col-xl-8">
+                        
                         <div class="card">
-                            <!-- card body -->
+                            
                             <div class="card-body">
 
                                 <canvas id="myChart" width="200" height="200"></canvas>
@@ -217,7 +218,7 @@
 
 
 
-                                <!-- <div class="d-flex flex-wrap align-items-center mb-4">
+                                <div class="d-flex flex-wrap align-items-center mb-4">
                                             <h5 class="card-title me-2">Market Overview</h5>
                                             <div class="ms-auto">
                                                 <div>
@@ -235,9 +236,9 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                        </div> -->
+                                        </div>
 
-                                <!-- <div class="row align-items-center">
+                                <div class="row align-items-center">
                                             <div class="col-xl-8">
                                                 <div>
                                                     <div id="market-overview" data-colors='["#1c84ee", "#33c38e"]' class="apex-charts"></div>
@@ -336,18 +337,19 @@
         
                                                 </div>
                                             </div>
-                                        </div> -->
+                                        </div>
                             </div>
-                            <!-- end card -->
-                        </div>
-                        <!-- end col -->
-                    </div>
-                    <!-- end row-->
+                           
+                       
+                    </div> -->
+                                <!-- end row-->
 
-                    <div class="col-xl-4">
-                        <!-- card -->
+
+
+                                <!-- <div class="col-xl-4">
+                      
                         <div class="card">
-                            <!-- card body -->
+                           
                             <div class="card-body">
 
                                 <h6 style="display: flex;justify-content: center; padding: 15px;">Order Status</h6>
@@ -374,41 +376,41 @@
                                     </div>
                                 </div>
 
-                                <div id="sales-by-locations" data-colors='["#33c38e"]' style="height: 253px"></div>
+                                    <div id="sales-by-locations" data-colors='["#33c38e"]' style="height: 253px"></div>
 
-                                <div class="px-2 py-2">
-                                    <p class="mb-1">USA <span class="float-end">75%</span></p>
-                                    <div class="progress mt-2" style="height: 6px;">
-                                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
-                                            style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="75">
+                                    <div class="px-2 py-2">
+                                        <p class="mb-1">USA <span class="float-end">75%</span></p>
+                                        <div class="progress mt-2" style="height: 6px;">
+                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+                                                style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="75">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <p class="mt-3 mb-1">Russia <span class="float-end">55%</span></p>
-                                    <div class="progress mt-2" style="height: 6px;">
-                                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
-                                            style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="55">
+                                        <p class="mt-3 mb-1">Russia <span class="float-end">55%</span></p>
+                                        <div class="progress mt-2" style="height: 6px;">
+                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+                                                style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="55">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <p class="mt-3 mb-1">Australia <span class="float-end">85%</span></p>
-                                    <div class="progress mt-2" style="height: 6px;">
-                                        <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
-                                            style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="85">
+                                        <p class="mt-3 mb-1">Australia <span class="float-end">85%</span></p>
+                                        <div class="progress mt-2" style="height: 6px;">
+                                            <div class="progress-bar progress-bar-striped bg-primary" role="progressbar"
+                                                style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="85">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- end card body -->
+                           
                         </div>
-                        <!-- end card -->
-                    </div>
-                    <!-- end col -->
-                </div>
-                <!-- end row-->
+                        
+                    </div> -->
 
-                <div class="row">
-                    <div class="col-xl-3">
+                            </div>
+                            <!-- end row-->
+
+                            <div class="row">
+                                <!-- <div class="col-xl-2">
                         <div class="card">
                             <div class="card-header align-items-center d-flex">
                                 <h4 class="card-title mb-0 flex-grow-1">Customer List</h4>
@@ -598,13 +600,21 @@
                             
                         </div>
                         
-                    </div>
-                    <!-- end col -->
+                    </div> -->
+                                <!-- end col -->
 
-                    <div class="col-xl-5">
-                        <div class="card">
-                            <div class="card-header align-items-center d-flex">
-                                <h4 class="card-title mb-0 flex-grow-1">Selling Products</h4>
+                                <div class="col-xl-6">
+                                    <div class="card">
+                                        <div
+                                            style="margin-top: 10px; margin-left: 15px; margin-bottom: 0; display: flex; justify-content: center; padding: 0;">
+                                            <h5 style="padding: 0; margin: 0;">weekly sales</h5>
+                                        </div>
+                                        `
+                                        <div class="card-header align-items-center d-flex">
+
+                                            <canvas id="myChart" width="200" height="200"></canvas>
+                                            <!-- <h4 class="card-title mb-0 flex-grow-1">Selling Products</h4>
+                                
                                 <div class="flex-shrink-0">
                                     <div class="dropdown align-self-start">
                                         <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -618,11 +628,11 @@
                                             <a class="dropdown-item" href="#">Delete</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
-                            </div>
+                                        </div>
 
-                            <div class="card-body px-0 pt-2">
+                                        <!-- <div class="card-body px-0 pt-2">
                                 <div class="table-responsive px-3" data-simplebar style="max-height: 395px;">
                                     <table class="table align-middle table-nowrap">
                                         <tbody>
@@ -839,16 +849,112 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                    <!-- end col -->
+                            </div> -->
 
-                    <div class="col-xl-4">
+                                    </div>
+
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card">
+                                        <div
+                                            style="margin-top: 30px; margin-left: 15px; margin-bottom: 0; display: flex; justify-content: center; padding: 0;">
+                                            <h5 style="padding: 0; margin: 0;">category products</h5>
+                                        </div>
+                                        <div class="card-header align-items-center d-flex">
+                                            <canvas id="myChart1" width="200" height="200"></canvas>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card">
+                                        <div
+                                            style="margin-top: 30px; margin-left: 15px; margin-bottom: 0; display: flex; justify-content: center; padding: 0;">
+                                            <h5 style="padding: 0; margin: 0;">Order</h5>
+                                        </div>
+                                        <div class="card-header align-items-center d-flex">
+                                            <canvas id="myChart2" width="200" height="200"></canvas>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card">
+                                        <div
+                                            style="margin-top: 30px; margin-left: 15px; margin-bottom: 0; display: flex; justify-content: center; padding: 0;">
+                                            <h5 style="padding: 0; margin: 0;">revanu</h5>
+                                        </div>
+                                        <div class="card-header align-items-center d-flex">
+                                            <canvas id="myChart3" width="200" height="200"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card">
+                                        <div
+                                            style="margin-top: 30px; margin-left: 15px; margin-bottom: 0; display: flex; justify-content: center; padding: 0;">
+                                            <h5 style="padding: 0; margin: 0;">revanu</h5>
+                                        </div>
+                                        <div class="card-header align-items-center d-flex">
+                                            <canvas id="myChart4" width="200" height="200"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% if(orders){ %>
+                                <div class="col-xl-6">
+                                    <div class="card">
+                                        <div
+                                            style="margin-top: 30px; margin-left: 15px; margin-bottom: 0; display: flex; justify-content: center; padding: 0;">
+                                            <h5 style="padding: 0; margin: 0;" class="mb-4">last Orders</h5>
+                                        </div>
+                                       
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Date</th>
+                                                            <th>Price</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% for(var i=0; i < 10; i++) { %>
+                                                            <tr>
+                                                                <td>
+                                                                    <%= orders[i].deliveryDetails.name%>
+                                                                   
+                                                                </td>
+                                                                <td>
+                                                                    <%= orders[i].date.getDate()%><span>/</span><%= orders[i].date.getMonth()%><span>/</span><%= orders[i].date.getFullYear()%> <span> || </span> <%= orders[i].date.getHours()%> <span>:</span><%= orders[i].date.getMinutes()%>
+                                                                </td>
+                                                                <td>
+                                                                    ₹ <%= orders[i].totalamount%>
+                                                                </td>
+                                                               <td>
+                                                                <%= orders[i].status%>
+                                                               </td>
+                                                            </tr>
+                                                            <% } %>
+
+                                                    </tbody>
+
+                                                </table>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } else{ %>  
+                                    
+                                 <% } %>
+
+
+                                <!-- <div class="col-xl-4">
                         <div class="card">
                             <div class="card-header align-items-center d-flex">
+                                <canvas id="myChart1" width="200" height="200"></canvas>
                                 <h4 class="card-title mb-0 flex-grow-1">Chat</h4>
                                 <div class="flex-shrink-0">
                                     <select class="form-select form-select-sm mb-0 my-n1">
@@ -1136,15 +1242,83 @@
                             </div>
                         </div>
                        
-                    </div>
+                    </div> -->
+                                <% if(product){ %>
+                                    <h4 class=" m-4 font-size-18">New products</h4>
+                                    <div style="padding: 0; " class="page-content ">
+                                        <div class="container-fluid">
 
-                </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card">
+                                                        <div class="card-body">
+
+                                                            <div class="table-responsive">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Image</th>
+                                                                            <th>Name</th>
+                                                                            <th>Price</th>
+                                                                            <th>Category</th>
+                                                                            <th>Product offer</th>
+                                                                            <th>Category offer</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <% for(var i=0; i < 5; i++) { %>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="width: 25px;">
+                                                                                        <img src="/productimage/image1/<%=product[i]._id%>_1.jpg"
+                                                                                            class="img-fluid mx-auto d-block">
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <%= product[i].productname %>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <%= product[i].price %>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <%= product[i].category %>
+                                                                                </td>
+
+                                                                                <td>
+                                                                                    <%= product[i].proOfferPercentage %>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <%= product[i].cateOfferPercentage
+                                                                                        %>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <% } %>
+
+                                                                    </tbody>
+
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } else{ %>
+
+                                        <% } %>
+
+
+
+
+                            </div>
             </div>
-            <!-- container-fluid -->
-        </div>
-        <!-- End Page-content -->
 
-        <footer class="footer">
+        </div>
+
+
+        <!-- <footer class="footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
@@ -1157,7 +1331,7 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer> -->
     </div>
     <!-- end main content-->
 
@@ -1187,6 +1361,34 @@
                         }
 
 
+
+                       
+                     console.log(response.category.men[0].count);
+                
+                        var women 
+                        var men 
+                        var kids 
+
+                        if(response.category.woman[0].count){
+                            women = response.category.woman[0].count
+                        }else{
+                            women = 0
+                        }
+                        if(response.category.men[0].count){
+                            men = response.category.men[0].count
+                        }else{
+                            men = 0
+                        }
+                        if(response.category.kids[0].count){
+                            kids = response.category.kids[0].count
+                        }else{
+                            kids = 0
+                        }
+
+
+                        var revanu = response.revanu[0].total
+                        var cancelOrders = response.cancelSales[0].count
+                        var sales = response.totalcompleteSales[0].count
                         var cancel = response.statusData.cancel
                         var pending = response.statusData.pending
                         var process = response.statusData.process
@@ -1216,7 +1418,7 @@
                                 }]
                             }
                         });
-                        const ctx1 = document.getElementById('myChart1').getContext('2d');
+                        const ctx1 = document.getElementById('myChart3').getContext('2d');
                         const myChart1 = new Chart(ctx1, {
                             type: 'bar',
                             data: {
@@ -1263,6 +1465,77 @@
                             }
                         });
 
+
+                        const ctx2 = document.getElementById('myChart2').getContext('2d');
+                        const myChart2 = new Chart(ctx2, {
+                            type: 'pie',
+
+                            data: {
+                                // labels: [days1[(new Date().getDay()) % 7], days1[(new Date().getDay() + 1) % 7], days1[(new Date().getDay() + 2) % 7], days1[(new Date().getDay() + 3) % 7], days1[(new Date().getDay() + 4) % 7], days1[(new Date().getDay() + 5) % 7], days1[(new Date().getDay() + 6) % 7], days1[(new Date().getDay())]],
+                                labels: ['completed', 'cancelled'],
+                                datasets: [
+                                    {
+                                        label: 'My First Dataset',
+                                        data: [sales, cancelOrders],
+                                        backgroundColor: [
+                                            'rgb(54, 162, 235)',
+                                            'red',
+
+                                        ],
+                                        hoverOffset: 4
+                                    }
+                                ]
+                            }
+                        });
+
+                        const ctx3 = document.getElementById('myChart1').getContext('2d');
+                        const myChart3 = new Chart(ctx3, {
+                            type: 'doughnut',
+
+                            data: {
+                                
+                                labels: ['women','men','kids'],
+                                datasets: [
+                                    {
+                                        label: 'My First Dataset',
+                                        data: [women,men,kids],
+                                        backgroundColor: [
+                                            'blue',
+                                            'green',
+                                            'yellow'
+
+                                        ],
+                                        hoverOffset: 4
+                                    }
+                                ]
+                            }
+                        });
+
+
+                        const ctx4 = document.getElementById('myChart4').getContext('2d');
+                        const days4 = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                        let _labels4 = []
+                        for (i = 0; i < 7; i++) {
+                            let index4 = (new Date().getDay() + i) % 7
+                            _labels4.push(days4[index4])
+                        }
+                        const today4 = new Date().getDate()
+                        const myChart4 = new Chart(ctx4, {
+                            type: 'line',
+                            data: {
+                                labels: [days4[(new Date().getDay()) % 7], days4[(new Date().getDay() + 1) % 7], days4[(new Date().getDay() + 2) % 7], days4[(new Date().getDay() + 3) % 7], days4[(new Date().getDay() + 4) % 7], days4[(new Date().getDay() + 5) % 7], days4[(new Date().getDay() + 6) % 7], days4[(new Date().getDay())]],
+                                datasets: [{
+                                    label: 'Weekly Sales',
+                                    data: revanu,
+                                    backgroundColor: 'rgb(44, 120, 220)',
+                                    borderColor: 'rgb(44, 120, 220)',
+                                    borderWidth: 1
+                                }]
+                            }
+                        });
+
+
+
                     }
                 })
             }
@@ -1272,35 +1545,35 @@
 
 
 
-<script>
-    function blockUser(userId){
-        var  check = confirm("are you sure to block");
-        if(check){
-            $.ajax({
-           url:'/admin/blockuser',
-           data:{userId:userId},
-           method:'post',
-           success:(response)=>{
-               if(response.status){
-                location.reload()
-               }
-           }
-       })
-        } 
-    }
-    function unBlockUser(userId){
-        $.ajax({
-            url:'/admin/unblockuser',
-            data:{userId:userId},
-            method:'post',
-            success:(response)=>{
-                if(response.status){
-                    location.reload()
+        <script>
+            function blockUser(userId) {
+                var check = confirm("are you sure to block");
+                if (check) {
+                    $.ajax({
+                        url: '/admin/blockuser',
+                        data: { userId: userId },
+                        method: 'post',
+                        success: (response) => {
+                            if (response.status) {
+                                location.reload()
+                            }
+                        }
+                    })
                 }
             }
-        })
-    }
-</script>
+            function unBlockUser(userId) {
+                $.ajax({
+                    url: '/admin/unblockuser',
+                    data: { userId: userId },
+                    method: 'post',
+                    success: (response) => {
+                        if (response.status) {
+                            location.reload()
+                        }
+                    }
+                })
+            }
+        </script>
 
 </body>
 

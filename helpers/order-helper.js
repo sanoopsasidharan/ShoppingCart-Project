@@ -185,6 +185,16 @@ module.exports={
                resolve(null)
            }
         })
+    },
+    getNewOrders:()=>{
+        return new Promise(async(resolve,reject)=>{
+           var orders = await db.get().collection(collection.orderCollection).find({ status: { $ne: 'onlinePending' } }).sort({date: -1}).toArray()
+           if(orders.length > 0){
+               resolve(orders)
+           }else{
+               resolve(null)
+           }
+        })
     }
     
     

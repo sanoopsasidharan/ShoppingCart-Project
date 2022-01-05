@@ -353,12 +353,16 @@
                         </div>
                     </div>
                 </div>
+              
                 <div class="ec-shop-rightside col-lg-9 col-md-12">
                     <div class="ec-vendor-dashboard-card ec-vendor-setting-card">
                         <div class="ec-vendor-card-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="ec-vendor-block-profile">
+                                        <div style="display: flex; justify-content: right; margin-bottom: 20px;">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Edit Profile</button>
+                                          </div>
 
 
                                         <!-- user profile show  -->
@@ -382,11 +386,16 @@
                                                             <% } %>
 
 
-                                                                <p style="color: black; cursor: pointer;"
-                                                                    onclick="profileEdit()" id="picEdit">edit</p>
-                                                                <p style="color: rgb(255, 0, 0); cursor: pointer;"
-                                                                    onclick="cancelProfileEdit()"
-                                                                    id="cancelProfileEdit">cancel</p>
+                                                                <div style="display: flex; justify-content: center;">
+                                                                    <button onclick="profileEdit()"
+                                                                        class="btn btn-primary"
+                                                                        id="picEdit">Edit Pic</button>
+                                                                    <button onclick="cancelProfileEdit()"
+                                                                        id="cancelProfileEdit"
+                                                                        class="btn btn-danger">Cancel</button>
+                                                                </div>
+
+
 
                                                                 <form method="post" enctype="multipart/form-data"
                                                                     action="/savePropic">
@@ -460,10 +469,7 @@
                                             </div>
                                         </div> -->
 
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
-                                            edit
-                                        </button>
+                                       
 
 
                                     </div>
@@ -1073,7 +1079,7 @@
             }
         });
 
-        
+
 
         $("#password1").keyup(function () {
             if ($("#password1").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
@@ -1159,7 +1165,7 @@
                 password2
             ) {
                 num.preventDefault();
-                
+
                 $.ajax({
                     url: '/userEditPassword',
                     data: $('#edit-password-form').serialize(),
@@ -1206,7 +1212,7 @@
         //     var pass0 = document.getElementById('password0').value
         //     var pass1 = document.getElementById('password1').value
         //     var pass2 = document.getElementById('password2').value
-            
+
         //     if (password0 == false) {
         //         Swal.fire(
         //             '',
@@ -1215,7 +1221,7 @@
         //         )
         //         $("#pass0error").show();
         //     } else {
-                
+
 
         //     }
 
@@ -1468,7 +1474,7 @@
                 num.preventDefault();
 
 
-                
+
 
             } else {
                 num.preventDefault();

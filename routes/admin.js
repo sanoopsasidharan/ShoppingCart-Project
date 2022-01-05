@@ -44,11 +44,12 @@ router.post('/',(req,res)=>{
 })
 
 // home page of admin
-router.get('/home',verifyLogin,(req,res)=>{
+router.get('/home',verifyLogin,async(req,res)=>{
     if(req.session.adminlogged){
-         userHelpers.getAllusers().then((users)=>{
-
-             res.render('admin/home',{admin:1,users})
+        var orders = await orderHelpers.getNewOrders()
+       var product = await productHelpers.getAllProductsAdmins()
+        await userHelpers.getAllusers().then((users)=>{
+             res.render('admin/home',{admin:1,users,product,orders})
          })
     }else{
         res.redirect('/admin/')
@@ -362,14 +363,15 @@ router.get('/chart',(req,res)=>{
 
 router.post('/getGraphResponse',async(req,res)=>{
     console.log('getGraphResponse');
-
+    var category = await categoryHelpers.findCategoryProductCount()
     var users = await userHelpers.showalluserCount()
     var statusData =await salesHelpers.getOrdersStatus()
    var ProductItemsCount = await productHelpers.totalProductCount()
    var revanu = await salesHelpers.totalRevanu()
    var totalcompleteSales = await salesHelpers.totalOrderCompletedCound()
+   var cancelSales = await salesHelpers.cancelTotalOrders()
     await salesHelpers.getWeeklyUsers().then((values)=>{
-        res.json({values,statusData,ProductItemsCount,revanu,totalcompleteSales,users})
+        res.json({values,statusData,ProductItemsCount,revanu,totalcompleteSales,users,cancelSales,category})
     })
 })
 
