@@ -698,7 +698,10 @@ router.post('/productBuy', verifyLogin, async (req, res) => {
     await cartHelpers.placeOrder(req.body, product, totalPrice.OfferTotal, address, singleProduct).then((orderId) => {
     })
     res.json({ CODsuccess: true })
-  } else {
+  }else if(req.body['paymentmethod'] === "paypal"){
+    res.json({payapl:true})
+    
+  }else {
     if (totalPrice.OfferTotal != 0) {
       await cartHelpers.placeOrderOnline(req.body, product, totalPrice.OfferTotal, address, req.session.user._id).then((orderId) => {
         orderHelpers.generateRazorpay(orderId, totalPrice.OfferTotal, req.session.user).then((response) => {
@@ -864,7 +867,10 @@ router.post('/placeOrders', verifyLogin, async (req, res) => {
     await cartHelpers.placeOrder(req.body, products, totalPrice.OfferTotal, address, singleProduct).then((orderId) => {
     })
     res.json({ CODsuccess: true })
-  } else {
+  }else if(req.body['paymentmethod'] === "paypal"){
+    res.json({payapl:true})
+    
+  }else {
     if (totalPrice.OfferTotal != 0) {
       await cartHelpers.placeOrderOnline(req.body, products, totalPrice.OfferTotal, address, req.session.user._id).then((orderId) => {
         orderHelpers.generateRazorpay(orderId, totalPrice.OfferTotal, req.session.user).then((response) => {
