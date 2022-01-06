@@ -1226,14 +1226,24 @@ router.get('/userAddressManagement', verifyLogin, async (req, res) => {
 })
 
 // edit address user
-router.post('/editUserAddress',(req,res)=>{
+router.post('/findOneUserAddress',verifyLogin,(req,res)=>{
   console.log(req.body.id);
-  userHelpers.editUserAddress(req.body.id).then((response)=>{
+  userHelpers.editUserAddress(req.body.id,req.session.user._id).then((response)=>{
     res.json(response)
   }).catch((response)=>{
     res.json(response)
   })
-  
+})
+
+// edit user address 
+router.post('/edituserAddresss',verifyLogin,(req,res)=>{
+  console.log('comming post req in edit address');
+  console.log(req.body);
+  userHelpers.editedUserAddresss(req.body,req.session.user._id).then((resp)=>{
+    res.json(resp)
+  }).catch((resp)=>{
+    res.json(resp)
+  })
 })
 
 // delete user address

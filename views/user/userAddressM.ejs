@@ -47,28 +47,33 @@
     <link rel="stylesheet" id="bg-switcher-css" href="assets/css/backgrounds/bg-4.css">
     <style>
         #addressList {
-          font-family: Arial, Helvetica, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
         }
-        
-        #addressList td, #addressList th {
-          border: 1px solid #ddd;
-          padding: 8px;
-        }
-        
-        #addressList tr:nth-child(even){background-color: #f2f2f2;}
-        
-        #addressList tr:hover {background-color: #ddd;}
-        
+
+        #addressList td,
         #addressList th {
-          padding-top: 12px;
-          padding-bottom: 12px;
-          text-align: left;
-          background-color: #242531c9;
-          color: white;
+            border: 1px solid #ddd;
+            padding: 8px;
         }
-        </style>
+
+        #addressList tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #addressList tr:hover {
+            background-color: #ddd;
+        }
+
+        #addressList th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #242531c9;
+            color: white;
+        }
+    </style>
 
 </head>
 
@@ -161,19 +166,73 @@
     </div>
 
     <!-- Modal -->
-<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="edit-userAddressed">
+                        <span class="ec-bill-wrap ec-bill-half">
+                            <label>First Name*</label>
+                            <input id="add-fname" type="text" name="name" placeholder="Enter your Name">
+                            <div class="invalid-feedback text-danger mb-3" id="add-name-Text">enter
+                                your Name</div>
+                        </span>
+
+                        <span class="ec-bill-wrap ec-bill-half">
+                            <label>Number*</label>
+                            <input id="add-numberValidation" type="text" name="number" placeholder="Enter your Number"
+                                maxlength="10" />
+                            <div class="invalid-feedback text-danger mb-3" id="addtext-Number">
+                                Enter your phone number </div>
+                        </span>
+                        <span class="ec-bill-wrap">
+                            <label>Address</label>
+                            <input type="text" id="add-address" name="address" placeholder="Address Line 1" />
+                            <div class="invalid-feedback text-danger mb-3" id="addaddress-Text">
+                                enter your Name</div>
+                        </span>
+                        <span class="ec-bill-wrap">
+                            <label>Location</label>
+                            <input id="add-location" type="text" name="location" placeholder=" current location" />
+                            <div class="invalid-feedback text-danger mb-3" id="addlocation-Text">
+                                enter your location</div>
+                        </span>
+                        <span class="ec-bill-wrap">
+                            <label>City</label>
+                            <input id="add-city" type="text" name="City" placeholder=" current city" />
+                            <div class="invalid-feedback text-danger mb-3" id="addcity-Text">enter
+                                your city</div>
+                        </span>
+                        <span class="ec-bill-wrap ec-bill-half">
+                            <label>Post Code</label>
+                            <input type="text" id="add-pinValidation" name="pincode" placeholder="Pin code" />
+                            <div class="invalid-feedback text-danger mb-3" id="addtext-pin">Enter
+                                your pin </div>
+                        </span>
+                        <span class="ec-bill-wrap">
+                            <label>state</label>
+                            <input id="add-state" type="text" name="state" placeholder="state" />
+                            <div class="invalid-feedback text-danger mb-3" id="addstate-Text">Enter
+                                your state </div>
+                        </span>
+
+
+                        <input type="text" name="addressId" id="useRaddressId" hidden>
+                        <input type="text" name="userId" value="<%=user._id%>" id="" hidden>
+
+                        <div style="display: flex; justify-content: right; width: 100%; padding-top: 10px;">
+                            <button id="addsubmitbtn" class="btn btn btn-primary " type="submit">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            
-        </div>
-      </div>
     </div>
-  </div>
 
     <!-- ekka Cart Start -->
     <div class="ec-side-cart-overlay"></div>
@@ -297,7 +356,7 @@
                                         <div class="table-responsive ">
 
                                             <h2 style="display: flex; justify-content: center;" class="m-3">Address</h2>
-                                            <table  id="addressList" class="table"
+                                            <table id="addressList" class="table"
                                                 style=" border: 1px solid rgba(0, 0, 0, 0.596);">
                                                 <thead>
                                                     <tr>
@@ -340,12 +399,8 @@
                                                                 <%= addresss[i].address.City %>
                                                             </td>
                                                             <td>
-                                                                <button onclick="editAddress('<%= addresss[i].address.addresId %>')">Edit</button>
-                                                            </td>
-                                                            <td>
-                                                                <button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                                                                   Edit
-                                                                  </button>
+                                                                <button
+                                                                    onclick="editAddress('<%= addresss[i].address.addresId %>')">Edit</button>
                                                             </td>
 
                                                             <td><button
@@ -870,22 +925,330 @@
 
 
     <script>
-        function editAddress(id){
-            alert(id)
+        function editAddress(id) {
             $.ajax({
-                url:'/editUserAddress',
-                data:{id:id},
-                method:'post',
-                success:(response)=>{
-                    if(response.status){
-                        alert(response.status)
+                url: '/findOneUserAddress',
+                data: { id: id },
+                method: 'post',
+                success: (response) => {
+                    if (response.status) {
+                        console.log(response.address[0].address);
+                        document.getElementById('add-fname').value = response.address[0].address.name
+                        document.getElementById('add-numberValidation').value = response.address[0].address.number
+                        document.getElementById('add-location').value = response.address[0].address.location
+                        document.getElementById('add-pinValidation').value = response.address[0].address.pincode
+                        document.getElementById('add-city').value = response.address[0].address.City
+                        document.getElementById('add-state').value = response.address[0].address.state
+                        document.getElementById('add-address').value = response.address[0].address.address
+                        document.getElementById('useRaddressId').value = response.address[0].address.addresId
 
-                    }else{
-                        alert('status fales')
+                        $("#exampleModal1").modal("show");
+                    } else {
+                        alert('something error please try again')
                     }
                 }
             })
         }
+
+        var editnameValidated = true
+        var editphoneValidated = true
+        var editaddressValidated = true
+        var editlocationValidated = true
+        var editpinValidated = true
+        var editcityValidated = true
+        var editstateValidated = true
+
+
+        $("#add-fname").keyup(function () {
+            if ($("#add-fname").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#add-name-Text").show();
+                $("#add-name-Text").text(" ");
+                editnameValidated = true;
+            } else {
+                $("#add-name-Text").show();
+                $("#add-name-Text").text("Invalid name! try again");
+                $("#add-name-Text").css("class", "invalid-feedback");
+                editnameValidated = false;
+            }
+            $("#add-fname").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#add-fname").val().length < 3) {
+                $("#add-name-Text").show();
+                $("#add-name-Text").text("Name should have type morethan 3 characters");
+                $("#add-name-Text").css("class", "invalid-feedback");
+                editnameValidated = false;
+            }
+        });
+        $("#add-fname").blur(function () {
+            if ($("#add-fname").val() == "") {
+                $("#add-name-Text").show();
+                $("#add-name-Text").text("Name should not be empty!");
+                $("#add-name-Text").css("class", "invalid-feedback");
+                editnameValidated = false;
+            }
+        });
+
+
+        $("#add-numberValidation").keypress(function (num) {
+            return num.charCode >= 48 && num.charCode <= 57;
+        });
+        $("#add-numberValidation").keyup(function () {
+            if ($("#add-numberValidation").val().match(/^\d+$/)) {
+                $("#addtext-Number").show();
+                $("#addtext-Number").text(" ");
+                editphoneValidated = true;
+            }
+            if ($("#add-numberValidation").val().length < 10) {
+                $("#addtext-Number").show();
+                $("#addtext-Number").text("Phone number should be 10 digits!");
+                $("#addtext-Number").css("class", "invalid-feedback");
+                editphoneValidated = false;
+            }
+        });
+
+        $("#add-numberValidation").blur(function () {
+            if ($("#numberValidation").val() == "") {
+                $("#addtext-Number").show();
+                $("#addtext-Number").text("Phone number is required!");
+                $("#addtext-Number").css("class", "invalid-feedback");
+                editphoneValidated = false;
+            }
+        });
+
+
+        $("#add-address").keyup(function () {
+            if ($("#add-address").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#addaddress-Text").show();
+                $("#addaddress-Text").text(" ");
+                editaddressValidated = true;
+            } else {
+                $("#addaddress-Text").show();
+                $("#addaddress-Text").text("Invalid Address! try again");
+                $("#addaddress-Text").css("class", "invalid-feedback");
+                editaddressValidated = false;
+            }
+            $("#add-address").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#add-address").val().length < 3) {
+                $("#addaddress-Text").show();
+                $("#addaddress-Text").text("Address should have type morethan 3 characters");
+                $("#addaddress-Text").css("class", "invalid-feedback");
+                editaddressValidated = false;
+            }
+        });
+        $("#add-address").blur(function () {
+            if ($("#add-address").val() == "") {
+                $("#addaddress-Text").show();
+                $("#addaddress-Text").text("Address should not be empty!");
+                $("#addaddress-Text").css("class", "invalid-feedback");
+                editaddressValidated = false;
+            }
+        });
+
+        $("#add-location").keyup(function () {
+            if ($("#add-location").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#addlocation-Text").show();
+                $("#addlocation-Text").text(" ");
+                editlocationValidated = true;
+            } else {
+                $("#addlocation-Text").show();
+                $("#addlocation-Text").text("Invalid location! try again");
+                $("#addlocation-Text").css("class", "invalid-feedback");
+                editlocationValidated = false;
+            }
+            $("#add-location").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#add-location").val().length < 3) {
+                $("#addlocation-Text").show();
+                $("#addlocation-Text").text("location should have type morethan 3 characters");
+                $("#addlocation-Text").css("class", "invalid-feedback");
+                editlocationValidated = false;
+            }
+        });
+        $("#add-location").blur(function () {
+            if ($("#location").val() == "") {
+                $("#addlocation-Text").show();
+                $("#addlocation-Text").text("location should not be empty!");
+                $("#addlocation-Text").css("class", "invalid-feedback");
+                editlocationValidated = false;
+            }
+        });
+
+        $("#add-city").keyup(function () {
+            if ($("#add-city").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#addcity-Text").show();
+                $("#addcity-Text").text(" ");
+                editcityValidated = true;
+            } else {
+                $("#addcity-Text").show();
+                $("#addcity-Text").text("Invalid city! try again");
+                $("#addcity-Text").css("class", "invalid-feedback");
+                editcityValidated = false;
+            }
+            $("#add-city").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#add-city").val().length < 3) {
+                $("#addcity-Text").show();
+                $("#addcity-Text").text("city should have type morethan 3 characters");
+                $("#addcity-Text").css("class", "invalid-feedback");
+                editcityValidated = false;
+            }
+        });
+        $("#add-city").blur(function () {
+            if ($("#add-city").val() == "") {
+                $("#addcity-Text").show();
+                $("#addcity-Text").text("city should not be empty!");
+                $("#addcity-Text").css("class", "invalid-feedback");
+                editcityValidated = false;
+            }
+        });
+
+
+
+        $("#add-pinValidation").keypress(function (num) {
+            return num.charCode >= 48 && num.charCode <= 57;
+        });
+        $("#add-pinValidation").keyup(function () {
+            if ($("#add-pinValidation").val().match(/^\d+$/)) {
+                $("#addtext-pin").show();
+                $("#addtext-pin").text(" ");
+                editpinValidated = true;
+            }
+            if ($("#add-pinValidation").val().length < 6) {
+                $("#addtext-pin").show();
+                $("#addtext-pin").text("pin should be 6 digits!");
+                $("#addtext-pin").css("class", "invalid-feedback");
+                editpinValidated = false;
+            }
+        });
+
+        $("#add-pinValidation").blur(function () {
+            if ($("#add-pinValidation").val() == "") {
+                $("#addtext-pin").show();
+                $("#addtext-pin").text("Pin is required!");
+                $("#addtext-pin").css("class", "invalid-feedback");
+                editpinValidated = false;
+            }
+        });
+
+
+
+
+
+
+        $("#add-state").keyup(function () {
+            if ($("#add-state").val().match(/^[A-Za-z][A-Za-z\ ]/)) {
+                $("#addstate-Text").show();
+                $("#addstate-Text").text(" ");
+                editstateValidated = true;
+            } else {
+                $("#addstate-Text").show();
+                $("#addstate-Text").text("Invalid city! try again");
+                $("#addstate-Text").css("class", "invalid-feedback");
+                editstateValidated = false;
+            }
+            $("#add-state").keypress(function (num) {
+                if ((num.charCode >= 33 && num.charCode <= 64) || (num.charCode >= 91 && num.charCode <= 96) || (num.charCode >= 123 && num.charCode <= 126)) {
+                    num.preventDefault();
+                }
+            });
+            if ($("#add-state").val().length < 3) {
+                $("#addstate-Text").show();
+                $("#addstate-Text").text("city should have type morethan 3 characters");
+                $("#addstate-Text").css("class", "invalid-feedback");
+                editstateValidated = false;
+            }
+        });
+        $("#add-state").blur(function () {
+            if ($("#add-state").val() == "") {
+                $("#addstate-Text").show();
+                $("#addstate-Text").text("city should not be empty!");
+                $("#addstate-Text").css("class", "invalid-feedback");
+                editstateValidated = false;
+            }
+        });
+
+
+
+
+        $("#edit-userAddressed").submit(function (num) {
+            if ($("#add-fname").val() == "" || $("#add-numberValidation").val() == "" ||
+                $("#add-address").val() == "" || $("#add-location").val() == "" || $("#add-city").val() == ""
+                || $("#add-pinValidation").val() == "" || $("#add-state").val() == "") {
+                Swal.fire(
+                    'Unknown error !',
+                    'please fill the form properly',
+                    'warning'
+                )
+            }
+            if ($("#add-fname").val() == "" && $("#add-numberValidation").val() == ""
+                && $("#add-address").val() == "" && $("#add-location").val() == "" && $("#add-city").val() == ""
+                && $("#add-pinValidation").val() == "" && $("#add-state").val() == "") {
+                num.preventDefault();
+                $("#add-name-Text").show();
+                $("#addtext-Number").show();
+                $("#addaddress-Text").show();
+                $("#addlocation-Text").show();
+                $("#addcity-Text").show();
+                $("#addtext-pin").show();
+                $("#addstate-Text").show();
+            } else if (
+                editnameValidated &&
+                editphoneValidated &&
+                editaddressValidated &&
+                editlocationValidated &&
+                editpinValidated &&
+                editcityValidated &&
+                editstateValidated
+
+            ) {
+                num.preventDefault();
+
+                $.ajax({
+                    url: '/edituserAddresss',
+                    data: $('#edit-userAddressed').serialize(),
+                    method: 'post',
+                    success: (response) => {
+                        if (response.status) {
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your address has been edit',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            location.reload();
+                        }
+                    }
+                })
+
+            } else {
+                // $("#add-name-Text").show();
+                // $("#addtext-Number").show();
+                // $("#addaddress-Text").show();
+                // $("#addlocation-Text").show();
+                // $("#addcity-Text").show();
+                // $("#addtext-pin").show();
+                // $("#addstate-Text").show();
+                num.preventDefault();
+            }
+        });
+
+
+
+
     </script>
     <script>
         $('#spinninerId').hide();

@@ -489,16 +489,23 @@ module.exports = {
            }
         })
     },
-    editUserAddress:(Id)=>{
-        return new Promise((resolve,reject)=>{
+    editUserAddress:(Id,userId)=>{
+        return new Promise(async(resolve,reject)=>{
             db.get().collection(collection.addressCollection).aggregate([
                 {
                     $match:{address:{$elemMatch:{addresId : objectId(Id)}}}
                 },
                 {
-                    $project: { } 
+                    $unwind:'$address'
+                },
+                {
+                    $project:{address:'$address'}
+                },
+                {
+                    $match:{"address.addresId":objectId(Id)}
                 }
             ]).toArray().then((address)=>{
+                console.log('address result');
                 console.log(address);
                 resolve({status:true,address})
                 reject({status:false})
@@ -520,6 +527,35 @@ module.exports = {
           }
 
         })
+    },
+    editedUserAddresss:(address, userId)=>{
+        let newAddress = {
+            addresId:objectId(address.addressId),
+            name: address.name,
+            number: address.number,
+            address: address.address,
+            location: address.location,
+            City: address.City,
+            pincode: address.pincode,
+            state: address.state,
+            userId: address.userId
+            
+        }
+
+        console.log('address in mongoy');
+        console.log(address);
+        return new Promise(async(resolve,reject)=>{
+        var remove= await db.get().collection(collection.addressCollection).updateOne({ user: objectId(userId) },{$pull:{address:{addresId:objectId(address.addressId)}}})
+        console.log(remove);
+           await db.get().collection(collection.addressCollection).updateOne({ user: objectId(userId) },
+                    {
+                        $push: { address: newAddress }
+                    }).then((response) => {
+                        console.log(response);
+                        resolve({status:true})
+                        reject({status:false})
+                    })
+        }) 
     }
 
 

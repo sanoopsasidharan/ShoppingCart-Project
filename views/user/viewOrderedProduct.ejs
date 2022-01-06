@@ -209,27 +209,20 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="ec-pro-content">
-                                                <h5 class="ec-pro-title"><a href="">
+                                            <div  class="ec-pro-content">
+                                                <div style="display: flex;justify-content: center;">
+                                                    <h5 class="ec-pro-title"><a href="">
                                                         <%= products[i].quantity.productname %>
                                                     </a></h5>
-
+                                                </div>
                                                 <div class="ec-pro-list-desc">
                                                     <%= products[i].status %>
                                                 </div>
-                                                <span class="ec-price">
-
-                                                    <span class="new-price">Rs <%= products[i].quantity.price %></span>
-
-                                                    <span class="new-price"
-                                                        style="color: rgba(0, 0, 0, 0.747);">&nbsp;&nbsp;&nbsp;quantity
-                                                        &nbsp;</span>
-                                                    <span style="color: black;">
-                                                        <%= products[i].quantity.quantity %>
+                                                <div  style="display: flex;justify-content: center;">
+                                                    <span class="ec-price">
+                                                        <span class="new-price">Rs <%= products[i].quantity.price %></span>
                                                     </span>
-
-                                                </span>
-
+                                                </div>
 
                                             </div>
                                         </div>

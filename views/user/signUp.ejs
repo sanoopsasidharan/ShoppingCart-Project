@@ -389,7 +389,7 @@
       <input type="text" id="mailValidation" class="fadeIn third" name="email" placeholder="Email">
       <div class="invalid-feedback" id="mail-type"> Enter email address </div>
 
-      
+
 
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" maxlength="15">
       <div class="invalid-feedback" id="password-Text">password</div>
@@ -431,8 +431,8 @@
           <h1 class="m-5">OTP validation</h1>
         </div>
         <div style="display: flex; justify-content: space-around;">
-          <!-- <p id="timer"></p> -->
-          <p style="color: red; cursor: pointer;" onclick="retryOTP()">Retry</p>
+          <p id="timer"></p>
+          <!-- <p style="color: red; cursor: pointer;" onclick="retryOTP()">Retry</p> -->
         </div>
         <input type="text" name="number" placeholder="Number" id="Otpnumber">
         <input type="text" maxlength="4" name="code" placeholder="Otp" id="otp-input">
@@ -450,7 +450,7 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script> -->
 
-<!-- <script>
+<script>
 
 
 
@@ -473,11 +473,11 @@
     }
 
     if (!timerOn) {
-     
+
       return;
     }
 
-    
+
     Swal.fire({
       title: 'Timeout for otp',
       text: "You won't resent OTP !",
@@ -488,17 +488,24 @@
       confirmButtonText: 'Yes'
     }).then((result) => {
       if (result.isConfirmed) {
-         $("#otpform").load(location.href + " #otpform");
-        location.reload()
+        var phoneNumber = parseInt(document.getElementById('numberValidation').value)
+        document.getElementById('Otpnumber').value = phoneNumber
+
+        $.ajax({
+          url: '/registationOtpchecking',
+          data: { number: phoneNumber },
+          method: 'post',
+          success: (response) => {
+            if (response.status) {
+              timer(120);
+            }
+          }
+
+        })
       }
     })
   }
 
-  timer(120);
-</script> -->
-
-
-<script>
   $("#otp-input").keypress(function (num) {
     return num.charCode >= 48 && num.charCode <= 57;
   });
@@ -518,6 +525,7 @@
         method: 'post',
         success: (response) => {
           if (response.status) {
+            timer(120);
             document.getElementById('siginup_form').style.display = 'none'
             document.getElementById('otpform').style.display = 'block'
           }
@@ -528,9 +536,14 @@
 
   }
 
+  
+</script>
+
+
+<script>
+
+
   function retryOTP() {
-    
-   
     var phoneNumber = parseInt(document.getElementById('numberValidation').value)
 
     if ($("#numberValidation").val().length === 10) {
@@ -550,9 +563,6 @@
 
       })
     }
-
-
-
   }
 
 
