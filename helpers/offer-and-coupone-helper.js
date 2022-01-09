@@ -166,7 +166,7 @@ module.exports = {
             }
         })
     },
-    checkingVaildCoupone: (cpCode, total,userId) => {
+     checkingVaildCoupone: (cpCode, total,userId) => {
         console.log(userId);
         return new Promise(async (resolve, reject) => {
             let userUseCoupone = await db.get().collection(collection.userCollection).findOne({_id:objectId(userId),copArray:cpCode})
