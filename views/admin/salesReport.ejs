@@ -55,9 +55,9 @@
            <div >
             <form onsubmit="return fromSubmit()" action="/admin/sortSalesReport" method="post">
                 <label class="mt-2" for="">start date</label>
-                <input style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;" class="col-12" type="datetime-local" name="startingDate" id="Cexpirydate">
+                <input style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;" class="col-12" type="datetime-local"  name="startingDate" id="Cexpirydate">
                 <label class="mt-2" for=""> end date</label>
-                <input style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;" class="col-12" type="datetime-local" onchange="maxdate()" name="endDate" id="max_date">
+                <input style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;" class="col-12" type="datetime-local"  name="endDate" id="max_date">
                
                 <div  style="display: flex; justify-content: right;">
                     <button class="btn btn-primary mt-3">sort</button>
@@ -615,14 +615,15 @@
                                         <!-- <button onclick="datesReport('day')" class="btn bg-secondary text-light m-1 mt-2 mb-3">Day</button>
                                         <button onclick="datesReport('month')" class="btn bg-secondary text-light m-1 mt-2 mb-3">Month</button>
                                         <button onclick="datesReport('Year')" class="btn bg-secondary text-light m-1 mt-2 mb-3">Year</button> -->
-                                    
+                                      
+                                          
                                         <a  href="/admin/salesReportSorting?type=Daily" class="btn bg-secondary text-light m-1 mt-2 mb-3">Daily</a>
                                         <a  href="/admin/salesReportSorting?type=Weekly" class="btn bg-secondary text-light m-1 mt-2 mb-3">Weekly</a>
                                         <a  href="/admin/salesReportSorting?type=Monthly" class="btn bg-secondary text-light m-1 mt-2 mb-3">Monthly</a>
                                         <a  href="/admin/salesReportSorting?type=Yearly" class="btn bg-secondary text-light m-1 mt-2 mb-3">Yearly</a>
                                         <button type="button" class="btn bg-secondary text-light m-1 mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">sort</button>
-
-                                        <% if(orders){ %>
+                                        
+                                        <% if(orders.length > 0){ %>
                                             <table  id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
                                             
                                                 <thead>
@@ -643,7 +644,7 @@
                                                 <tr>
                                                     <td><%= orders[i]._id%></td>
                                                     <td>
-                                                        <%= orders[i].date.getDate()%><span>/</span><%= orders[i].date.getMonth()%><span>/</span><%= orders[i].date.getFullYear()%> <span> || </span> <%= orders[i].date.getHours()%> <span>:</span><%= orders[i].date.getMinutes()%>
+                                                        <%= orders[i].date.getDate()%><span>/</span><%= orders[i].date.getMonth()+1%><span>/</span><%= orders[i].date.getFullYear()%> <span> || </span> <%= orders[i].date.getHours()%> <span>:</span><%= orders[i].date.getMinutes()%>
                                                     </td>
                                                     <td><%= orders[i].paymentmethod%></td>
                                                     <td><%= orders[i].totalamount%></td>
@@ -921,6 +922,9 @@
                 let maxDate = year + '-' + month + '-'+ day + 'T'+ '00:00'
                 $('#Cexpirydate').attr('max',maxDate)
             })
+            function minidate(){
+                document.getElementById()
+            }
             $(function (){
                 let dtToday = new Date();
                 let month = dtToday.getMonth() +1;
@@ -933,6 +937,7 @@
                     day = '0'+ day.toString();
                 
                 let maxDate = year + '-' + month + '-'+ day + 'T'+ '00:00'
+                $('#max_date').attr('max',minidate)
                 $('#max_date').attr('max',maxDate)
             })
 

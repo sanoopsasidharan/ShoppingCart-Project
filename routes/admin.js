@@ -334,12 +334,13 @@ router.get('/logout',(req,res)=>{
 // sales report in admin side
 router.get('/salesReport',verifyLogin,(req,res)=>{
     salesHelpers.SalesReportAllOrders().then((orders)=>{
+        console.log(orders);
         res.render('admin/salesReport',{admin:1,orders})  
     })
 })
 router.get('/salesReportSorting',verifyLogin,(req,res)=>{
     console.log(req.query.type);
-    salesHelpers.getReportData(req.query.type   ).then((orders)=>{
+    salesHelpers.getReportData(req.query.type).then((orders)=>{
         res.render('admin/salesReport',{admin:1,orders}) 
     })
 })

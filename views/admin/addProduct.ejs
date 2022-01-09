@@ -241,7 +241,8 @@
                                                     <label for="productname">Product Name</label>
                                                     <input id="productName" name="productname" type="text"
                                                         maxlength="20" class="form-control">
-                                                    <div class="invalid-feedback" id="name-Text">enter your Name</div>
+                                                    <div class="invalid-feedback" id="name-Text">enter Product Name
+                                                    </div>
                                                 </div>
 
                                                 <!-- <div class="mb-3">
@@ -253,27 +254,28 @@
                                                     <label for="manufacturerbrand">Brand</label>
                                                     <input id="manufacturerbrand" name="manufacturerbrand" type="text"
                                                         class="form-control">
-                                                    <div class="invalid-feedback" id="manufacturerbrand-Text">enter your
+                                                    <div class="invalid-feedback" id="manufacturerbrand-Text">enter
+                                                        Brand
                                                         Name</div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="productname">Product quantity</label>
                                                     <input id="quantity" name="quantity" type="text"
                                                         class="form-control">
-                                                    <div class="invalid-feedback" id="text-quantity">Enter your phone
-                                                        number </div>
+                                                    <div class="invalid-feedback" id="text-quantity">Enter quantity
+                                                    </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="productname">Product tag</label>
                                                     <input id="tag" name="tag" type="text" class="form-control">
-                                                    <div class="invalid-feedback" id="tag-Text">Enter your phone number
+                                                    <div class="invalid-feedback" id="tag-Text">Enter tag
                                                     </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="price">Price</label>
                                                     <input id="price" name="price" type="text" class="form-control">
-                                                    <div class="invalid-feedback" id="text-price">Enter your phone
-                                                        number </div>
+                                                    <div class="invalid-feedback" id="text-price">Enter Price
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -287,7 +289,7 @@
                                                     <select onchange="getsubcat()" id="categoryid" name='category'
                                                         class="form-control select2">
                                                         <!-- <option  >Select</option> -->
-                                                        
+
                                                         <% for(var i=0; i< response.length; i++) {%>
                                                             <option value="<%= response[i].category %>">
                                                                 <%= response[i].category %>
@@ -310,10 +312,10 @@
                                                                     <%= response[i].subcategory[i] %>
                                                                 </option>
                                                                 <% } %>
-                                                          <% } else{ %>  
-                                                         
-                                                         <% } %>
-                                                        
+                                                                    <% } else{ %>
+
+                                                                        <% } %>
+
                                                     </select>
 
                                                 </div>
@@ -333,16 +335,14 @@
                                                         <!-- <h4 class="title"> Image 1</h4> -->
                                                         <div class="fileinput fileinput-new text-center">
                                                             <div class="fileinput-new thumbnail">
-                                                                <img style="width: 70px;" src=""
-                                                                    id="chekPreview1" >
+                                                                <img style="width: 70px;" src="" id="chekPreview1">
 
                                                             </div>
                                                             <div>
                                                                 <span class="btn btn-rose btn-round btn-file">
                                                                     <!-- <span class="fileinput-new">Select image</span> -->
-                                                                    <input type="file" onchange="show1(this)" id="image1"
-                                                                        
-                                                                        required />
+                                                                    <input type="file" onchange="show1(this)"
+                                                                        id="image1" required />
                                                                     <textarea name="image1" id="imageValue1" cols="30"
                                                                         rows="10" hidden></textarea>
                                                                 </span>
@@ -355,16 +355,14 @@
                                                         <!-- <h4 class="title"> Image 2</h4> -->
                                                         <div class="fileinput fileinput-new text-center">
                                                             <div class="fileinput-new thumbnail">
-                                                                <img style="width: 70px;" src=""
-                                                                    id="chekPreview2" >
+                                                                <img style="width: 70px;" src="" id="chekPreview2">
 
                                                             </div>
                                                             <div>
                                                                 <span class="btn btn-rose btn-round btn-file">
                                                                     <!-- <span class="fileinput-new">Select image</span> -->
                                                                     <input type="file" id="image2"
-                                                                    onchange="show2(this)"
-                                                                        required />
+                                                                        onchange="show2(this)" required />
                                                                     <textarea name="image2" id="imageValue2" cols="30"
                                                                         rows="10" hidden></textarea>
                                                                 </span>
@@ -376,16 +374,14 @@
                                                         <!-- <h4 class="title"> Image 3</h4> -->
                                                         <div class="fileinput fileinput-new text-center">
                                                             <div class="fileinput-new thumbnail">
-                                                                <img style="width: 70px;" src=""
-                                                                    id="chekPreview3" >
+                                                                <img style="width: 70px;" src="" id="chekPreview3">
 
                                                             </div>
                                                             <div>
                                                                 <span class="btn btn-rose btn-round btn-file">
                                                                     <!-- <span class="fileinput-new">Select image</span> -->
                                                                     <input type="file" id="image3"
-                                                                    onchange="show3(this)"
-                                                                        required />
+                                                                        onchange="show3(this)" required />
                                                                     <textarea name="image3" id="imageValue3" cols="30"
                                                                         rows="10" hidden></textarea>
                                                                 </span>
@@ -979,7 +975,11 @@
             $("#tag-Text").show();
             $("#msg-text").show();
 
-            alert(' please full fill form')
+            Swal.fire(
+                '',
+                'please full fill form',
+                'question'
+            )
             return false
         }
 
@@ -1017,7 +1017,7 @@
 
         modal1.on('shown.bs.modal', function () {
             cropper1 = new Cropper(image1, {
-                aspectRatio: 7/8,
+                aspectRatio: 7 / 8,
                 viewMode: 1,
                 preview: '#preview1'
             });
@@ -1075,7 +1075,7 @@
 
         modal2.on('shown.bs.modal', function () {
             cropper2 = new Cropper(image2, {
-                aspectRatio: 7/8,
+                aspectRatio: 7 / 8,
                 viewMode: 1,
                 preview: '#preview2'
             });
@@ -1134,7 +1134,7 @@
 
         modal3.on('shown.bs.modal', function () {
             cropper3 = new Cropper(image3, {
-                aspectRatio: 7/8,
+                aspectRatio: 7 / 8,
                 viewMode: 1,
                 preview: '#preview3'
             });

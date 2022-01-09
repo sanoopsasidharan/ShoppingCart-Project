@@ -357,6 +357,7 @@
       //   })
       // })
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
 var nameValidated = false;
 var passwordValidated = false;
@@ -431,7 +432,12 @@ $("#password").blur(function () {
 
 $("#loginForm").submit(function (num) {
   if ($("#login").val() == "" ||  $("#password").val() == "") {
-    alert("please fill the form properly");
+    // alert("please fill the form properly");
+    Swal.fire(
+                '',
+                'please full fill form',
+                'question'
+            )
   }
   if ($("#login").val() == "" &&  $("#password").val() == "" ) {
     num.preventDefault();
