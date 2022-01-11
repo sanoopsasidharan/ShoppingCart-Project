@@ -27,7 +27,7 @@
                                     <li><a class="dropdown-item" href="/signup">Register</a></li>
                                     <% } %>
                                     <% if(user){ %>
-                                        <li><a class="dropdown-item" href="/login"><%= user.name %></a></li>
+                                        <li><a class="dropdown-item" href="/userProfile"><%= user.name %></a></li>
                                       <% } else{ %>  
                                         <li><a class="dropdown-item" href="/login">login</a></li>
                                      <% } %>
@@ -81,7 +81,7 @@
                     <!-- Ec Header Logo Start -->
                     <div class="align-self-center">
                         <div class="header-logo">
-                            <a href="/"><img src="assets/images/logo/logo.png" alt="Site Logo" /><img
+                            <a style="display: flex;" href="/"><img style=" transform: rotate(180deg);" src="assets/images/logo/dark-logo.png" alt="Site Logo" /><p style="margin: 0px;font-size: 24px; font-family: cursive;margin-left: 10px;color: black;">Shopee</p><img
                                     class="dark-logo" src="assets/images/logo/dark-logo.png" alt="Site Logo"
                                     style="display: none;" /></a>
                         </div>
@@ -90,15 +90,24 @@
 
                     <!-- Ec Header Search Start -->
 
-                    <!-- <div class="align-self-center">
+
+                    <!-- <form >
+                        <input
+                            style="border: 1px solid #a2a2a2; margin-top: 10px; border-radius: 5px; height: 35px;"
+                            type="text" placeholder="type product name ..."  id="">
+                        <button style="margin-top: 10px; border-radius: 5px;"
+                            class="btn btn-mini btn-primary" type="submit">search</button>
+                    </form> -->
+
+                    <div class="align-self-center">
                         <div class="header-search">
-                            <form class="ec-btn-group-form" action="#">
-                                <input class="form-control" placeholder="Enter Your Product Name..." type="text">
+                            <form method="post" action="productSearch" class="ec-btn-group-form">
+                                <input class="form-control" placeholder="Enter Your Product Name..." name="searchValue" type="text">
                                 <button class="submit" type="submit"><img src="assets/images/icons/search.svg"
                                         class="svg_img header_svg" alt="" /></button>
                             </form>
                         </div>
-                    </div> -->
+                    </div>
 
                     <!-- Ec Header Search End -->
 
@@ -173,25 +182,28 @@
             <div class="row ">
 
                 <!-- Ec Header Logo Start -->
-                <div class="col">
+
+
+
+                <!-- <div class="col">
                     <div class="header-logo">
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Site Logo" /><img
-                                class="dark-logo" src="assets/images/logo/dark-logo.png" alt="Site Logo"
-                                style="display: none;" /></a>
+                        <a style="display: flex;" href="/"><img style=" transform: rotate(180deg);" src="assets/images/logo/dark-logo.png" alt="Site Logo" /><p style="margin: 0px;font-size: 24px; font-family: cursive;margin-left: 10px;color: black;">Shopee</p><img
+                                    class="dark-logo" src="assets/images/logo/dark-logo.png" alt="Site Logo"
+                                    style="display: none;" /></a>
                     </div>
-                </div>
+                </div> -->
                 <!-- Ec Header Logo End -->
                 <!-- Ec Header Search Start -->
 
-                <!-- <div class="col">
+                <div class="col">
                     <div class="header-search">
-                        <form class="ec-btn-group-form" action="#">
-                            <input class="form-control" placeholder="Enter Your Product Name..." type="text">
+                        <form method="post" action="productSearch" class="ec-btn-group-form">
+                            <input class="form-control" placeholder="Enter Your Product Name..." name="searchValue" type="text">
                             <button class="submit" type="submit"><img src="assets/images/icons/search.svg"
-                                    class="svg_img header_svg" alt="icon" /></button>
+                                    class="svg_img header_svg" alt="" /></button>
                         </form>
                     </div>
-                </div> -->
+                </div>
 
                 <!-- Ec Header Search End -->
             </div>
@@ -757,7 +769,7 @@
                             <li><a href="elemets-blog.html">Blogs</a></li>
                         </ul>
                     </li> -->
-                    <li><a href="offer.html"> Offers</a></li>
+                    <!-- <li><a href="offer.html"> Offers</a></li> -->
                 </ul>
             </div>
             
