@@ -921,7 +921,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <% for(var i=0; i < 12; i++) { %>
+                                                        <% for(var i=0; i < 1; i++) { %>
                                                             <tr>
                                                                 <td>
                                                                     <%= orders[i].deliveryDetails.name%>
@@ -1382,7 +1382,7 @@
 
                         var women
                         var men
-                        var kids
+                     
 
                         if (response.category.woman[0].count) {
                             women = response.category.woman[0].count
@@ -1394,11 +1394,7 @@
                         } else {
                             men = 0
                         }
-                        if (response.category.kids[0].count) {
-                            kids = response.category.kids[0].count
-                        } else {
-                            kids = 0
-                        }
+                       
 
 
                         var revanu = response.revanu[0].total
@@ -1509,11 +1505,11 @@
 
                             data: {
 
-                                labels: ['women', 'men', 'kids'],
+                                labels: ['women', 'men'],
                                 datasets: [
                                     {
                                         label: 'My First Dataset',
-                                        data: [women, men, kids],
+                                        data: [women, men],
                                         backgroundColor: [
                                             'blue',
                                             'green',

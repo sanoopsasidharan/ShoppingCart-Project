@@ -164,13 +164,10 @@
                             <div class="ec-vendor-block">
                                 <div class="ec-vendor-block-items">
                                     <ul>
-                                        <li><a href="user-profile.html">User Profile</a></li>
-                                        <li><a href="user-history.html">History</a></li>
-                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="cart.html">Cart</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="track-order.html">Track Order</a></li>
-                                        <li><a href="user-invoice.html">Invoice</a></li>
+                                        <li><a href="/userProfile">User Profile</a></li>
+                                        <li><a href="/wishlist">Wishlist</a></li>
+                                        <li><a href="/cartmanagement">Cart</a></li>
+                                        <li><a href="/">Home</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -182,7 +179,7 @@
                         <div class="ec-vendor-card-header">
                             <h5>Product History</h5>
                             <div class="ec-header-btn">
-                                <a class="btn btn-lg btn-primary" href="#">Shop Now</a>
+                                <a class="btn btn-lg btn-primary" href="/product">Shop Now</a>
                             </div>
                         </div>
                         <div class="ec-vendor-card-body">
@@ -206,7 +203,7 @@
                                             <!-- <td><img class="prod-img" src="assets/images/product-image/1.jpg"
                                                     alt="product image"></td> -->
                                             <!-- <td><span>Stylish baby shoes</span></td> -->
-                                            <td><span> <%= orders[i].date.getDate();%>/<%= orders[i].date.getMonth();%>/<%= orders[i].date.getFullYear();%>    <%= orders[i].date.getHours();%>:<%= orders[i].date.getMinutes();%></span></td>
+                                            <td><span> <%= orders[i].date.getDate();%>/<%= orders[i].date.getMonth()+1;%>/<%= orders[i].date.getFullYear();%>    <%= orders[i].date.getHours();%>:<%= orders[i].date.getMinutes();%></span></td>
                                             <td><span>₹ <%= orders[i].totalamount %></span></td>
                                             <td><span> <%= orders[i].status %></span></td>
                                             <td><span> <%= orders[i].paymentmethod %></span></td>
