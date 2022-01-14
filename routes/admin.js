@@ -347,7 +347,7 @@ router.get('/salesReportSorting',verifyLogin,(req,res)=>{
 
 // sort sales report in two dates
 router.post('/sortSalesReport',verifyLogin,(req,res)=>{
-    // console.log(req.body);
+    console.log(req.body);
     // console.log(req.body.startingDate);
     //        console.log(req.body.endDate);
   salesHelpers.sortSalesReportDate(req.body.startingDate,req.body.endDate).then((orders)=>{

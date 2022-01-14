@@ -357,7 +357,7 @@ module.exports = {
     ,
     sortSalesReportDate:(staring,end)=>{
         return new Promise(async(resolve,reject)=>{
-           var orders= await db.get().collection(collection.orderCollection).aggregate([{$match:{$and:[{date:{$lte:new Date(end)}},{date:{$gte:new Date(staring)}},{'status':{$eq:'Completed'}}]}}]).toArray()
+           var orders= await db.get().collection(collection.orderCollection).aggregate([{$match:{$and:[{date:{$lte:new Date(end)}},{date:{$gte:new Date(staring)}},{'status':{$eq:'Completed'}}]}}]).toArray();
            console.log(staring);
            console.log(end);
            console.log(orders);

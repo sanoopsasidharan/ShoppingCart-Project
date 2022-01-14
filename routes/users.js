@@ -778,8 +778,8 @@ router.post('/singleProductPaypal', verifyLogin, async (req, res) => {
           "payment_method": "paypal"
         },
         "redirect_urls": {
-          "return_url": "http://localhost:3000/success?price=" + totalPrice.OfferTotal + "&orderId=" + orderId+"&singleProduct="+singleProduct,
-          "cancel_url": "http://localhost:3000/checkout"
+          "return_url": "http://shopee.sanoopsasidharan.tech/success?price=" + totalPrice.OfferTotal + "&orderId=" + orderId+"&singleProduct="+singleProduct,
+          "cancel_url": "https://shopee.sanoopsasidharan.tech/checkout"
         },
         "transactions": [{
           "item_list": {
@@ -937,8 +937,8 @@ router.post('/paypal', verifyLogin, async (req, res) => {
           "payment_method": "paypal"
         },
         "redirect_urls": {
-          "return_url": "http://localhost:3000/success?price=" + totalPrice.OfferTotal + "&orderId=" + orderId+"&singleProduct="+singleProduct,
-          "cancel_url": "http://localhost:3000/checkout"
+          "return_url": "http://shopee.sanoopsasidharan.tech/success?price=" + totalPrice.OfferTotal + "&orderId=" + orderId+"&singleProduct="+singleProduct,
+          "cancel_url": "http://shopee.sanoopsasidharan.tech/checkout"
         },
         "transactions": [{
           "item_list": {

@@ -623,7 +623,7 @@
                                         <a  href="/admin/salesReportSorting?type=Yearly" class="btn bg-secondary text-light m-1 mt-2 mb-3">Yearly</a>
                                         <button type="button" class="btn bg-secondary text-light m-1 mt-2 mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">sort</button>
                                         
-                                        <% if(orders.length > 0){ %>
+                                        <% if(orders){ %>
                                             <table  id="datatable-buttons" class="table table-bordered dt-responsive nowrap w-100">
                                             
                                                 <thead>
@@ -897,6 +897,14 @@
                     )
                     return false
                 }
+                if(minidate == maxdate){
+                    Swal.fire(
+                        '',
+                        'please consider start date lessthan end date ',
+                        'question'
+                    )
+                    return false
+                }
             }
 
 
@@ -937,7 +945,6 @@
                     day = '0'+ day.toString();
                 
                 let maxDate = year + '-' + month + '-'+ day + 'T'+ '00:00'
-                $('#max_date').attr('max',minidate)
                 $('#max_date').attr('max',maxDate)
             })
 
